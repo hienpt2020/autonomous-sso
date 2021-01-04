@@ -13,7 +13,7 @@ export const MainStackNavigator = () => {
   );
 
   return (
-    <Stack.Navigator mode="card" screenOptions={screenOptions}>
+    <Stack.Navigator screenOptions={screenOptions}>
       {publicRoutes.map((route) => (
         <Stack.Screen key={route.name} name={route.name} component={route.component} options={route.options} />
       ))}
