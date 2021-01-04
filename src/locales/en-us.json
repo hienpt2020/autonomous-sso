@@ -1,0 +1,13 @@
+{
+  "common": {},
+  "button": {
+    "back": "Back",
+    "goToHome": "Go to home"
+  },
+  "login": {
+    "title": "Login page"
+  },
+  "home": {
+    "title": "Home"
+  }
+}
