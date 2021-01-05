@@ -13,11 +13,11 @@ const Intro = (props: any) => {
                 <Logo style={styles.logo} width={180} height={180} />
             </View>
             <View style={styles.wrapperButton}>
-                <PrimaryButton title={t('intro.register')}
+                <PrimaryButton title={t('intro.login')}
                     style={styles.button}
                     onPress={() => logIn()}
                 />
-                <SecondaryButton title="Register"
+                <SecondaryButton title={t('intro.register')}
                     style={styles.button}
                     onPress={() => register()} />
 
