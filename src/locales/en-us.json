@@ -6,7 +6,8 @@
     "register": "Register" ,
     "forgot_password": "Forgot Password", 
     "reset_password": "Reset Password",
-    "reset": "Reset"
+    "reset": "Reset",
+    "join": "Join"
     
   },
   "button": {
@@ -29,6 +30,10 @@
     "term_condition2": "Terms of Service", 
     "term_condition3": " and ", 
     "term_condition4": " Privacy Policy. "
+  },
+  "join":{
+    "content": "By Join, you agree to join ",
+    "join_workspace": "Join Workspace"
   },
   "home": {
     "title": "Home"

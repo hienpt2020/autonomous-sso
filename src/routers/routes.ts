@@ -7,6 +7,7 @@ export type RootStackParams = {
   [RouteName.RESET_PASSWORD]: undefined;
   [RouteName.LOGIN]: undefined;
   [RouteName.REGISTER]: undefined;
+  [RouteName.JOINING]: { workspace: string };
   [RouteName.HOME]: { userId: string };
 };
 export type RootStackParamType = keyof RootStackParams;
@@ -16,6 +17,10 @@ export const publicRoutes: RouteProps[] = [
   {
     name: RouteName.INTRO,
     component: require('src/screens/intro').default,
+  },
+  {
+    name: RouteName.JOINING,
+    component: require('src/screens/joining').default,
   },
   {
     name: RouteName.RESET_PASSWORD,
