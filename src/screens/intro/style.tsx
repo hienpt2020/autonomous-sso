@@ -20,8 +20,6 @@ export const styles = StyleSheet.create({
         paddingEnd: 8,
     },
     button: {
-        padding: 8,
-
     },
     logo: {
         flex: 1
