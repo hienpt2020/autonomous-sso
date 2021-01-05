@@ -11,6 +11,7 @@ import { REQUEST_END, REQUEST_START } from 'src/redux/request/requestType';
 import { LoginProps } from './types';
 import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
 import { styles } from './styles';
+import { RouteName } from 'src/routers/routeName';
 
 const Login = (props: LoginProps) => {
   const { t } = useTranslation();
@@ -125,7 +126,7 @@ const Login = (props: LoginProps) => {
 
   }
   function handleRegister() {
-
+    props.navigation.navigate(RouteName.JOINING, {workspace: "Autonomous"})
   }
 
   function request() {

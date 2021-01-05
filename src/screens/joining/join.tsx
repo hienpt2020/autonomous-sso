@@ -6,10 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { PrimaryButton } from 'src/components/button'
 import { Header } from 'src/components/header'
 import { REQUEST_END, REQUEST_START } from 'src/redux/request/requestType';
-import { LoginProps } from './types';
+import { Props } from './types';
 import { styles } from './styles';
 
-const Join = (props: LoginProps) => {
+const Join = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const Join = (props: LoginProps) => {
         <Header title={t('join.join_workspace')} />
         <Text style={styles.term}>
           {t('join.content')}
-          <Text style={styles.link}>Autonomous</Text>
+          <Text style={styles.link}>{props.route.params.workspace}</Text>
         </Text>
         <View style={{ flex: 1 }} />
         <PrimaryButton
