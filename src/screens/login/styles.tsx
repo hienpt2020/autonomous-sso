@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   },
   button: {
     marginTop: 32,
-    marginStart: 8,
-    marginEnd: 8,
+    marginStart: 16,
+    marginEnd: 16,
   }
 });

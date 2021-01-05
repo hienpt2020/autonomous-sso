@@ -11,6 +11,7 @@ import { REQUEST_END, REQUEST_START } from 'src/redux/request/requestType';
 import { LoginProps } from './types';
 import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
 import { styles } from './styles';
+import { RouteName } from 'src/routers/routeName';
 
 
 const ForgotPassword = (props: LoginProps) => {
@@ -69,7 +70,7 @@ const ForgotPassword = (props: LoginProps) => {
 
   }
   function handleForgot() {
-
+      props.navigation.navigate(RouteName.RESET_PASSWORD)
   }
   
   function request() {
