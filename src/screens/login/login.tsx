@@ -34,9 +34,11 @@ const Login = (props: LoginProps) => {
         <View style={{flex: 1}}/>
         <PrimaryInput
           placeholder={t('common.email')}
+          keyboardType='email-address'
           errorMessage={emailError} />
         <PrimaryInput
           placeholder={t('common.password')}
+          secureTextEntry={true}
           errorMessage={passwordError} />
         <Link
           title={t('login.forgot_password')}
