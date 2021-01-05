@@ -4,8 +4,9 @@ import { styles } from './style'
 import { PrimaryButton, SecondaryButton } from 'src/components/button';
 import Logo from 'src/assets/logo_black.svg'
 import { useTranslation } from 'react-i18next';
+import { Props } from './types';
 
-const Intro = (props: any) => {
+const Intro = (props: Props) => {
     const { t } = useTranslation()
     return (
         <View style={styles.container}>

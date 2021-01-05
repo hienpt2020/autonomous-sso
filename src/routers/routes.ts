@@ -2,6 +2,7 @@ import { RouteProps } from './routeProps';
 import { RouteName } from './routeName';
 
 export type RootStackParams = {
+  [RouteName.INTRO]: undefined;
   [RouteName.LOGIN]: undefined;
   [RouteName.HOME]: { userId: string };
 };
