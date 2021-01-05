@@ -6,23 +6,19 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { PrimaryButton } from 'src/components/button'
 import { PrimaryInput } from 'src/components/input'
-import { Link } from 'src/components/link'
 import { BackHeaderX } from 'src/components/header'
 import { REQUEST_END, REQUEST_START } from 'src/redux/request/requestType';
 import { LoginProps } from './types';
 import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
 import { styles } from './styles';
-import { RouteName } from 'src/routers/routeName';
 
-const Login = (props: LoginProps) => {
+
+const ForgotPassword = (props: LoginProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
   const [emailError, setEmailError] = useState("")
-  const [passwordError, setPasswordError] = useState("")
   const emailValidator: Validator = new EmailValidator()
-  const passwordValidator: Validator = new PasswordValidator()
 
   React.useEffect(() => {
     // dispatch({ type: REQUEST_START });
@@ -36,8 +32,7 @@ const Login = (props: LoginProps) => {
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
 
-        <BackHeaderX title={t('common.login')} onPress={() => handleBack()} />
-        <View style={{ flex: 1 }} />
+        <BackHeaderX title={t('common.forgot_password')} onPress={() => handleBack()} />
         <PrimaryInput
           placeholder={t('common.email')}
           onChangeText={text => {
@@ -46,20 +41,8 @@ const Login = (props: LoginProps) => {
           }}
           keyboardType='email-address'
           errorMessage={emailError} />
-        <PrimaryInput
-          placeholder={t('common.password')}
-          onChangeText={text => {
-            setPasswordError('')
-            setPassword(text)}
-          }
-          secureTextEntry={true}
-          errorMessage={passwordError} />
-        <Link
-          title={t('common.forgot_password')}
-          onPress={() => handleForgotPassword()}
-          style={styles.link} />
         <PrimaryButton
-          title={t('common.login')}
+          title={t('common.forgot_password')}
           wapperStyle={styles.button}
           onPress={() => validateLogin()} />
         <View style={{ flex: 3 }} />
@@ -72,32 +55,27 @@ const Login = (props: LoginProps) => {
     props.navigation.goBack()
   }
   function validateLogin() {
-    let validEmail, validPassword = false
+    let validEmail = false
     if(emailValidator.isValid(email)){
       validEmail = true 
       setEmailError(t(''))
     }else{
       setEmailError(t('login.email_invalid'))
     }
-    if(passwordValidator.isValid(password)) {
-      validPassword = true 
-      setPasswordError(t(''))
-    }else {
-      setPasswordError(t('login.password_require'))
-    }
-
-    if(validEmail && validPassword){
-      handleLogin()
+  
+    if(validEmail){
+      handleForgot()
     }
 
   }
-  function handleLogin() {
+  function handleForgot() {
 
   }
   
-  function handleForgotPassword() {
-    props.navigation.navigate(RouteName.FORGOT_PASSWORD)
+  function request() {
+    dispatch({ type: REQUEST_START })
+    setTimeout(() => dispatch({ type: REQUEST_END }), 3000);
   }
 };
 
-export default Login;
+export default ForgotPassword;

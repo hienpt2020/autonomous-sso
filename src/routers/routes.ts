@@ -3,6 +3,7 @@ import { RouteName } from './routeName';
 
 export type RootStackParams = {
   [RouteName.INTRO]: undefined;
+  [RouteName.FORGOT_PASSWORD]: undefined;
   [RouteName.LOGIN]: undefined;
   [RouteName.REGISTER]: undefined;
   [RouteName.HOME]: { userId: string };
@@ -14,6 +15,10 @@ export const publicRoutes: RouteProps[] = [
   {
     name: RouteName.INTRO,
     component: require('src/screens/intro').default,
+  },
+  {
+    name: RouteName.FORGOT_PASSWORD,
+    component: require('src/screens/forgotpass').default,
   },
   {
     name: RouteName.LOGIN,

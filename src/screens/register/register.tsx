@@ -119,7 +119,7 @@ const Login = (props: LoginProps) => {
       setConfirmPasswordError(t('login.password_require'))
     }
 
-    if (validPassword && validPassword && validConfirmPassword) {
+    if (validEmail && validPassword && validConfirmPassword) {
       handleRegister()
     }
 
