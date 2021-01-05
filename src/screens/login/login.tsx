@@ -59,9 +59,9 @@ const Login = (props: LoginProps) => {
           style={styles.link} />
         <PrimaryButton
           title={t('common.login')}
-          style={styles.button}
+          wapperStyle={styles.button}
           onPress={() => validateLogin()} />
-        <View style={{ flex: 1 }} />
+        <View style={{ flex: 3 }} />
       </KeyboardAvoidingView>
 
     </SafeAreaView>
