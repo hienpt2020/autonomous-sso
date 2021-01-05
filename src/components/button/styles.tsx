@@ -3,9 +3,11 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     wrapper: {
+        flexGrow: 1,
         margin: 8
     },
     button: {
+        flexGrow: 1,
         height: 48,
     },
     title: {

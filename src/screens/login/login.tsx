@@ -35,7 +35,7 @@ const Login = (props: LoginProps) => {
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "padding"} style={{ flex: 1 }}>
 
-        <BackHeaderX title={t('common.login')} onPress={() => handleBack} />
+        <BackHeaderX title={t('common.login')} onPress={() => handleBack()} />
         <View style={{ flex: 1 }} />
         <PrimaryInput
           placeholder={t('common.email')}
@@ -110,7 +110,9 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   button: {
-    marginTop: 32
+    marginTop: 32, 
+    marginStart: 8, 
+    marginEnd: 8, 
   }
 })
 

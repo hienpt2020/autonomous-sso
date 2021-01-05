@@ -7,7 +7,6 @@ export const PrimaryButton = (buttonProps: AppButtonProps) => {
     return (
         <View style={styles.wrapper}>
             <Button {...buttonProps}
-                type="outline"
                 titleStyle={[styles.title, styles.titlePrimary]}
                 buttonStyle={[styles.button, styles.buttonPrimary]}
             />
@@ -18,6 +17,7 @@ export const SecondaryButton = (buttonProps: AppButtonProps) => {
     return (
         <View style={styles.wrapper}>
             <Button {...buttonProps}
+                type="outline"
                 titleStyle={[styles.title, styles.titleSecondary]}
                 buttonStyle={[styles.button, styles.buttonSecondary]}
             />
