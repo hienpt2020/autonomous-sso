@@ -8,12 +8,12 @@ import { PrimaryButton } from 'src/components/button'
 import { PrimaryInput } from 'src/components/input'
 import { BackHeaderX } from 'src/components/header'
 import { REQUEST_END, REQUEST_START } from 'src/redux/request/requestType';
-import { LoginProps } from './types';
+import { Props } from './types';
 import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
 import { styles } from './styles';
 import { RouteName } from 'src/routers/routeName';
 
-const Login = (props: LoginProps) => {
+const Login = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("")
