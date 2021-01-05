@@ -1,4 +1,4 @@
-package com.devblock.rncodebase;
+package ai.autonomous.rncodebase;
 
 import com.facebook.react.ReactActivity;
 
