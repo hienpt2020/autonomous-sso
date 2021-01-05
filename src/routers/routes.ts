@@ -12,10 +12,6 @@ export type RootStackParamType = keyof RootStackParams;
 export const publicRoutes: RouteProps[] = [
 
   {
-    name: RouteName.REGISTER,
-    component: require('src/screens/register').default,
-  },
-  {
     name: RouteName.INTRO,
     component: require('src/screens/intro').default,
   },
@@ -23,6 +19,10 @@ export const publicRoutes: RouteProps[] = [
     name: RouteName.LOGIN,
     component: require('src/screens/login').default,
   },
+  {
+    name: RouteName.REGISTER,
+    component: require('src/screens/register').default,
+  }
 ];
 
 export const authenticatedRoutes: RouteProps[] = [

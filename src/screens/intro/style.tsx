@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    wrapperButton: {
+    containerButton: {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
@@ -18,6 +18,10 @@ export const styles = StyleSheet.create({
         paddingBottom: 16,
         paddingStart: 8,
         paddingEnd: 8,
+    },
+    wrapperButton: {
+        flex: 1, 
+        margin: 8
     },
     button: {
     },
