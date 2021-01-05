@@ -2,7 +2,8 @@
   "common": {
     "login": "Log In", 
     "password": "Password",
-    "email": "Email"
+    "email": "Email", 
+    "register": "Register"  
     
   },
   "button": {
@@ -19,6 +20,14 @@
     "register": "Register",  
     "login": "Log In"
   }, 
+  "register": {
+    "confirm_password": "Confirm Password", 
+    "password_not_match": "Passwords do not match",
+    "term_condition1": "By signing up, you agree to Autonomous’s ", 
+    "term_condition2": "Terms of Service", 
+    "term_condition3": " and ", 
+    "term_condition4": " Privacy Policy. "
+  },
   "home": {
     "title": "Home"
   }

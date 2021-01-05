@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView, Platform, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
@@ -18,8 +18,10 @@ const Login = (props: LoginProps) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
+  const [confirmPasswordError, setConfirmPasswordError] = useState("")
   const emailValidator: Validator = new EmailValidator()
   const passwordValidator: Validator = new PasswordValidator()
 
@@ -33,9 +35,9 @@ const Login = (props: LoginProps) => {
   return (
 
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "padding"} style={{ flex: 1 }}>
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
 
-        <BackHeaderX title={t('common.login')} onPress={() => handleBack()} />
+        <BackHeaderX title={t('common.register')} onPress={() => handleBack()} />
         <View style={{ flex: 1 }} />
         <PrimaryInput
           placeholder={t('common.email')}
@@ -49,51 +51,84 @@ const Login = (props: LoginProps) => {
           placeholder={t('common.password')}
           onChangeText={text => {
             setPasswordError('')
-            setPassword(text)}
-          }
+            setPassword(text)
+          }}
           secureTextEntry={true}
           errorMessage={passwordError} />
-        <Link
-          title={t('login.forgot_password')}
-          onPress={() => request()}
-          style={styles.link} />
+        <PrimaryInput
+          placeholder={t('register.confirm_password')}
+          onChangeText={text => {
+            setConfirmPasswordError('')
+            setConfirmPassword(text)
+          }}
+          secureTextEntry={true}
+          errorMessage={confirmPasswordError} />
+
         <PrimaryButton
-          title={t('common.login')}
+          title={t('common.register')}
           style={styles.button}
-          onPress={() => validateLogin()} />
-        <View style={{ flex: 1 }} />
+          onPress={() => validateRegister()} />
+        <Text style={styles.term}>
+          {t('register.term_condition1')}
+          <Text style={styles.link} onPress={() => handleTerm()}>{t('register.term_condition2')}</Text>
+          {t('register.term_condition3')}
+          <Text style={styles.link} onPress={() => handlePrivacy()}>{t('register.term_condition4')}</Text>
+        </Text>
+
+        <View style={{ flex: 3 }} />
+
       </KeyboardAvoidingView>
 
     </SafeAreaView>
 
   )
+  function handleTerm() {
+
+  }
+  function handlePrivacy() {
+
+  }
+
   function handleBack() {
     props.navigation.goBack()
   }
-  function validateLogin() {
-    let validEmail, validPassword = false
-    if(emailValidator.isValid(email)){
-      validEmail = true 
+  function validateRegister() {
+    let validEmail, validPassword, validConfirmPassword = false
+    //Email 
+    if (emailValidator.isValid(email)) {
+      validEmail = true
       setEmailError(t(''))
-    }else{
+    } else {
       setEmailError(t('login.email_invalid'))
     }
-    if(passwordValidator.isValid(password)) {
-      validPassword = true 
+    //Password
+    if (passwordValidator.isValid(password)) {
+      validPassword = true
       setPasswordError(t(''))
-    }else {
+    } else {
       setPasswordError(t('login.password_require'))
     }
+    //Confirm password
+    if (passwordValidator.isValid(confirmPassword)) {
+      if (password === confirmPassword) {
+        validConfirmPassword = true
+        setConfirmPasswordError(t(''))
+      } else {
+        setConfirmPasswordError(t('register.password_not_match'))
+      }
+    } else {
+      setConfirmPasswordError(t('login.password_require'))
+    }
 
-    if(validPassword && validPassword){
-      handleLogin()
+    if (validPassword && validPassword && validConfirmPassword) {
+      handleRegister()
     }
 
   }
-  function handleLogin() {
+  function handleRegister() {
 
   }
-  
+
   function request() {
     dispatch({ type: REQUEST_START })
     setTimeout(() => dispatch({ type: REQUEST_END }), 3000);
@@ -106,13 +141,21 @@ const styles = StyleSheet.create({
     backgroundColor: AppColor.WHITE,
     justifyContent: 'center',
   },
+  wrap: {
+    margin: 16
+  },
+  term: {
+    flexShrink: 1,
+    padding: 16
+  },
   link: {
     flexShrink: 1,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline'
   },
   button: {
-    marginTop: 32, 
-    marginStart: 8, 
-    marginEnd: 8, 
+    marginStart: 8,
+    marginEnd: 8,
   }
 })
 
