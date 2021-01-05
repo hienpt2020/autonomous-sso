@@ -3,7 +3,8 @@ import { AppColor } from 'src/styles/colors';
 
 export const styles = StyleSheet.create({
     wrapper: {
-        margin: 8
+        marginStart: 8, 
+        marginEnd: 8, 
     },
     inputContainer: {
         padding: 4,

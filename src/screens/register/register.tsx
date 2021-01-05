@@ -66,7 +66,7 @@ const Login = (props: LoginProps) => {
 
         <PrimaryButton
           title={t('common.register')}
-          style={styles.button}
+          wapperStyle={styles.button}
           onPress={() => validateRegister()} />
         <Text style={styles.term}>
           {t('register.term_condition1')}
@@ -154,8 +154,9 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline'
   },
   button: {
-    marginStart: 8,
-    marginEnd: 8,
+    marginStart: 16,
+    backgroundColor: "#f00",
+    marginEnd: 16,
   }
 })
 
