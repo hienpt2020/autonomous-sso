@@ -11,12 +11,17 @@ import { BackHeaderX } from 'src/components/header'
 import { REQUEST_END, REQUEST_START } from 'src/redux/request/requestType';
 import { LoginProps } from './types';
 import { AppColor } from 'src/styles/colors';
+import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
 
 const Login = (props: LoginProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
+  const emailValidator: Validator = new EmailValidator()
+  const passwordValidator: Validator = new PasswordValidator()
 
   React.useEffect(() => {
     // dispatch({ type: REQUEST_START });
@@ -28,16 +33,24 @@ const Login = (props: LoginProps) => {
   return (
 
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behavior={Platform.OS ==="ios" ? "padding" : "padding"} style={{flex: 1}}>
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "padding"} style={{ flex: 1 }}>
 
         <BackHeaderX title={t('common.login')} onPress={() => handleBack} />
-        <View style={{flex: 1}}/>
+        <View style={{ flex: 1 }} />
         <PrimaryInput
           placeholder={t('common.email')}
+          onChangeText={text => {
+            setEmail(text)
+            setEmailError('')
+          }}
           keyboardType='email-address'
           errorMessage={emailError} />
         <PrimaryInput
           placeholder={t('common.password')}
+          onChangeText={text => {
+            setPasswordError('')
+            setPassword(text)}
+          }
           secureTextEntry={true}
           errorMessage={passwordError} />
         <Link
@@ -46,8 +59,9 @@ const Login = (props: LoginProps) => {
           style={styles.link} />
         <PrimaryButton
           title={t('common.login')}
-          style={styles.button} />
-          <View style={{flex: 1}}/>
+          style={styles.button}
+          onPress={() => validateLogin()} />
+        <View style={{ flex: 1 }} />
       </KeyboardAvoidingView>
 
     </SafeAreaView>
@@ -56,6 +70,30 @@ const Login = (props: LoginProps) => {
   function handleBack() {
     props.navigation.goBack()
   }
+  function validateLogin() {
+    let validEmail, validPassword = false
+    if(emailValidator.isValid(email)){
+      validEmail = true 
+      setEmailError(t(''))
+    }else{
+      setEmailError(t('login.email_invalid'))
+    }
+    if(passwordValidator.isValid(password)) {
+      validPassword = true 
+      setPasswordError(t(''))
+    }else {
+      setPasswordError(t('login.password_require'))
+    }
+
+    if(validPassword && validPassword){
+      handleLogin()
+    }
+
+  }
+  function handleLogin() {
+
+  }
+  
   function request() {
     dispatch({ type: REQUEST_START })
     setTimeout(() => dispatch({ type: REQUEST_END }), 3000);
