@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     wrapper: {
-        flex: 1,
         margin: 8
     },
     button: {
@@ -15,16 +14,16 @@ export const styles = StyleSheet.create({
         color: AppColor.PRIMARY,
     },
     buttonPrimary: {
+        backgroundColor: AppColor.PRIMARY,
+    },
+    buttonSecondary: {
         borderColor: AppColor.PRIMARY,
         borderWidth: 2
     },
-    buttonSecondary: {
-        backgroundColor: AppColor.PRIMARY,
-    },
     titlePrimary: {
-        color: AppColor.PRIMARY,
+        color: AppColor.WHITE,
     },
     titleSecondary: {
-        color: AppColor.WHITE,
+        color: AppColor.PRIMARY,
     },
 });
