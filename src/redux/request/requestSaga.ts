@@ -5,7 +5,7 @@ import { URL } from '../../common/constant';
 
 const testSaga = function* testSaga() {
   try {
-    const response = yield apiPost(URL.LOGIN, 'auth/login', {
+    const response = yield apiPost(URL.LOGIN, '/auth/login', {
       email: 'kien.q@autonomous.nyc',
       password: '123456',
       client_id: 'vflozjmgtirdrppu',
