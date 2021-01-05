@@ -1,17 +1,35 @@
 import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import { styles } from './style'
+import { PrimaryButton, SecondaryButton } from 'src/components/button';
 import Logo from 'src/assets/logo_black.svg'
+import { useTranslation } from 'react-i18next';
+
 const Intro = (props: any) => {
+    const { t } = useTranslation()
     return (
         <View style={styles.container}>
-            <Logo width={120} height={40} />
-        </View>
+            <View style={styles.wrapperLogo}>
+                <Logo style={styles.logo} width={180} height={180} />
+            </View>
+            <View style={styles.wrapperButton}>
+                <PrimaryButton title={t('intro.register')}
+                    style={styles.button}
+                    onPress={() => logIn()}
+                />
+                <SecondaryButton title="Register"
+                    style={styles.button}
+                    onPress={() => register()} />
+
+            </View>
+
+        </View >
     )
 };
+function logIn(): void {
+
+}
+function register(): void {
+
+}
 export default Intro;
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#fff', 
-        flex: 1
-    } 
-})

@@ -1,4 +1,5 @@
 export enum AppColor {
-  PRIMARY = '#918B0F',
+  PRIMARY = '#000000',
+  WHITE = '#ffffff',
   ALPHA_40 = 'rgba(0, 0, 0, 0.4)',
 }

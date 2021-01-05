@@ -7,6 +7,10 @@
   "login": {
     "title": "Login page"
   },
+  "intro": {
+    "register": "Register",  
+    "login": "Log In"
+  }, 
   "home": {
     "title": "Home"
   }
