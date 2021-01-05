@@ -10,13 +10,13 @@ export type RootStackParamType = keyof RootStackParams;
 
 export const publicRoutes: RouteProps[] = [
   {
+    name: RouteName.LOGIN,
+    component: require('src/screens/login').default,
+  },
+  {
     name: RouteName.INTRO,
     component: require('src/screens/intro').default,
     options: { headerShown: false  }
-  },
-  {
-    name: RouteName.LOGIN,
-    component: require('src/screens/login').default,
   },
 ];
 
