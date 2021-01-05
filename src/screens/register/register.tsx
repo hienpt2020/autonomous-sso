@@ -1,17 +1,16 @@
 import * as React from 'react';
-import { StyleSheet, View, KeyboardAvoidingView, Platform, Text } from 'react-native';
+import { View, KeyboardAvoidingView, Platform, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { PrimaryButton } from 'src/components/button'
 import { PrimaryInput } from 'src/components/input'
-import { Link } from 'src/components/link'
 import { BackHeaderX } from 'src/components/header'
 import { REQUEST_END, REQUEST_START } from 'src/redux/request/requestType';
 import { LoginProps } from './types';
-import { AppColor } from 'src/styles/colors';
 import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
+import { styles } from './styles';
 
 const Login = (props: LoginProps) => {
   const { t } = useTranslation();
@@ -134,30 +133,5 @@ const Login = (props: LoginProps) => {
     setTimeout(() => dispatch({ type: REQUEST_END }), 3000);
   }
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: AppColor.WHITE,
-    justifyContent: 'center',
-  },
-  wrap: {
-    margin: 16
-  },
-  term: {
-    flexShrink: 1,
-    padding: 16
-  },
-  link: {
-    flexShrink: 1,
-    fontWeight: 'bold',
-    textDecorationLine: 'underline'
-  },
-  button: {
-    marginStart: 16,
-    backgroundColor: "#f00",
-    marginEnd: 16,
-  }
-})
 
 export default Login;
