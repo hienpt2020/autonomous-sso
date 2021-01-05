@@ -5,6 +5,7 @@ import { PrimaryButton, SecondaryButton } from 'src/components/button';
 import Logo from 'src/assets/logo_black.svg'
 import { useTranslation } from 'react-i18next';
 import { Props } from './types';
+import { RouteName } from 'src/routers/routeName';
 
 const Intro = (props: Props) => {
     const { t } = useTranslation()
@@ -26,11 +27,12 @@ const Intro = (props: Props) => {
 
         </View >
     )
+    function logIn(): void {
+        props.navigation.navigate(RouteName.LOGIN)
+    }
+    function register(): void {
+
+    }
 };
-function logIn(): void {
 
-}
-function register(): void {
-
-}
 export default Intro;
