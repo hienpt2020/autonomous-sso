@@ -1,11 +1,19 @@
 {
-  "common": {},
+  "common": {
+    "login": "Log In", 
+    "password": "Password",
+    "email": "Email"
+    
+  },
   "button": {
     "back": "Back",
     "goToHome": "Go to home"
   },
   "login": {
-    "title": "Login page"
+    "title": "Log in", 
+    "forgot_password": "Forgot Password", 
+    "email_invalid": "Email is invalid",
+    "password_require": "Password is require"
   },
   "intro": {
     "register": "Register",  
