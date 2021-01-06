@@ -12,4 +12,10 @@ export const styles = StyleSheet.create({
         paddingTop: 8,
         paddingBottom: 8,
     },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around', 
+        paddingStart: 8, 
+        paddingEnd: 8
+    }
 });
