@@ -45,6 +45,7 @@ const Login = (props: LoginProps) => {
             setEmailError('')
           }}
           keyboardType='email-address'
+          autoCapitalize="none"
           errorMessage={emailError} />
         <PrimaryInput
           placeholder={t('common.password')}
@@ -92,7 +93,7 @@ const Login = (props: LoginProps) => {
 
   }
   function handleLogin() {
-
+      props.navigation.navigate(RouteName.HOME)
   }
   
   function handleForgotPassword() {
