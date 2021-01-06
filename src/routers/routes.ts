@@ -10,6 +10,15 @@ export type RootStackParams = {
   [RouteName.REGISTER]: undefined;
   [RouteName.JOINING]: { workspace: string };
   [RouteName.HOME]: { userId: string };
+  [RouteName.MAP]: undefined;
+  [RouteName.SEAT]: undefined;
+  [RouteName.BOOKING_RESULT]: undefined;
+  [RouteName.SEAT_ADMIN]: undefined;
+  [RouteName.CONFIGURATION_STEP1]: undefined;
+  [RouteName.CONFIGURATION_STEP2]: undefined;
+  [RouteName.CONFIGURATION_RESULT]: undefined;
+  [RouteName.MY_BOOKING]: undefined;
+  [RouteName.BOOKING_DETAIL]: undefined;
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -43,6 +52,10 @@ export const publicRoutes: RouteProps[] = [
 
 
 export const authenticatedRoutes: RouteProps[] = [
+  {
+    name: RouteName.MAP,
+    component: require('src/screens/map').default,
+  },
   {
     name: RouteName.HOME,
     component: require('src/screens/home').default,
