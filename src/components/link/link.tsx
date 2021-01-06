@@ -9,7 +9,7 @@ export const Link = (props: Props) => {
         <View style={styles.wrapper} {...props.style}>
             <TouchableOpacity onPress={props.onPress}>
                 <Text
-                    style={styles.text}>
+                    style={[styles.text, { fontSize: props.size }]}>
                     {props.title}
                 </Text>
             </TouchableOpacity>

@@ -36,11 +36,12 @@ const Map = (props: Props) => {
     const [dateFrom, setDateFrom] = useState(today)
     const [dateTo, setDateTo] = useState(tomorrow)
     const [isFrom, setIsFrom] = useState(true)
+    const [isBottomSheetShow, setIsBottomSheetShow] = useState(false)
 
 
     useEffect(() => {
         setMapData(presenter.fetchMap())
-        
+
     }, [])
     const renderItem = (data: CardData) => {
         return (<CardItem cardData={data} />)
@@ -54,38 +55,14 @@ const Map = (props: Props) => {
         })
     }
     const sheetRef = React.useRef<BottomSheet | null>(null);
-    const renderContent = () => (
-        <View
-            style={{
-                backgroundColor: AppColor.WHITE,
-                padding: 16,
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-        >
-            <DatePicker
-                date={date}
-                style={{ height: FIXED_DATE_TIME }}
-                onDateChange={(date) => setConsiderDate(date)}
-            />
-        </View>
-    );
-    const renderHeader = () => <View style={{
-        width: '100%',
-        alignItems: 'flex-end',
-        backgroundColor: AppColor.WHITE,
-    }} >
-        <Link title="Close" onPress={() => {
-            sheetRef.current?.snapTo(2)
-        }} />
-    </View>
+
     function setConsiderDate(date: Date) {
         if (isFrom) {
             setDateFrom(date)
         } else {
             setDateTo(date)
         }
+        setDate(date)
     }
     function switchFromDate() {
         setIsFrom(true)
@@ -97,6 +74,20 @@ const Map = (props: Props) => {
         setDate(dateTo)
         sheetRef.current?.snapTo(0)
     }
+    const renderContent = () => (
+        <View style={styles.bottomSheetContainer}>
+            <DatePicker
+                date={date}
+                style={{ height: FIXED_DATE_TIME }}
+                onDateChange={(date) => setConsiderDate(date)}
+            />
+            <Link style={styles.button} size={16} title="Close" onPress={() => {
+                sheetRef.current?.snapTo(2)
+            }} />
+        </View>
+    );
+    const renderOverlay = () => <View style={styles.overlay} />
+
     return (
         <View style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
@@ -114,13 +105,24 @@ const Map = (props: Props) => {
                     getItemLayout={(data, index) => getItemLayout(data, index)}
                 />
             </SafeAreaView>
+            {
+                isBottomSheetShow ? renderOverlay() : null}
+
             <BottomSheet
                 ref={sheetRef}
                 snapPoints={[FIXED_DATE_TIME, 0, 0]}
-                borderRadius={10}
                 initialSnap={1}
                 renderContent={renderContent}
-                renderHeader={renderHeader}
+                enabledContentTapInteraction={false}
+                onOpenEnd={() => {
+                    console.log("show")
+                    setIsBottomSheetShow(true)
+                }
+                }
+                onCloseEnd={() => {
+                    console.log("end")
+                    setIsBottomSheetShow(false)
+                }}
                 enabledInnerScrolling={false}
             />
         </View>
