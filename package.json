@@ -8,18 +8,21 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "react-devtools": "react-devtools"
+    "react-devtools": "react-devtools",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.1.7",
     "@react-navigation/stack": "^5.2.14",
     "i18next": "^19.4.4",
+    "patch-package": "^6.2.2",
     "react": "16.11.0",
     "react-i18next": "^11.4.0",
     "react-native": "0.62.2",
     "react-native-config": "1.0.0",
     "react-native-elements": "^3.1.0",
+    "react-native-fast-image": "^8.3.4",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^3.1.9",
