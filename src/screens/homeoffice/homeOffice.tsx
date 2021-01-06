@@ -35,6 +35,7 @@ const Office = (props: Props) => {
             <Header title={t('office.title')} />
             <SectionList
                 sections={sectionData}
+                stickySectionHeadersEnabled={false}
                 keyExtractor={(item, index) => item.id + index}
                 renderItem={({ item }) => renderItem(item)}
                 getItemLayout={(data, index) => getItemLayout(data, index)}
