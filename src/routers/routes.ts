@@ -9,9 +9,9 @@ export type RootStackParams = {
   [RouteName.REGISTER]: undefined;
   [RouteName.JOINING]: { workspace: string };
   [RouteName.HOME]: { userId: string };
-  [RouteName.HOME_OFFICE]: { };
-  [RouteName.HOME_PROFILE]: { email: "hoang.q@autonomous.nyc" };
-  [RouteName.HOME_CONTROLL]: { };
+  [RouteName.HOME_OFFICE]: {};
+  [RouteName.HOME_PROFILE]: {};
+  [RouteName.HOME_CONTROLL]: {};
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -60,5 +60,5 @@ export const authenticatedRoutes: RouteProps[] = [
     name: RouteName.HOME,
     component: require('src/screens/home').default,
   },
-  
+
 ];

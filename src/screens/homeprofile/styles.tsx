@@ -3,7 +3,15 @@ import { AppColor } from 'src/styles/colors';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: "center",
         backgroundColor: AppColor.WHITE,
+    },
+    avatar:{
+        width: 128, 
+        height: 128, 
+        borderRadius: 64, 
+        alignSelf: 'center', 
+        marginBottom: 64
     },
     header: {
         fontSize: 24,
@@ -12,4 +20,10 @@ export const styles = StyleSheet.create({
         paddingTop: 8,
         paddingBottom: 8,
     },
+    containerButton: {
+        marginStart: 16,
+        marginEnd: 16,
+        marginTop: 8,
+        marginBottom: 8,
+    }
 });
