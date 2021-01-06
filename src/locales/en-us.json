@@ -40,7 +40,11 @@
   },
   "office": {
     "title": "Office"
-  },"controll": {
+  },
+  "controll": {
     "title": "Devices"
+  },
+  "profile": {
+    "title": "Profile"
   }
 }
