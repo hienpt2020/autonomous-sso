@@ -40,5 +40,7 @@
   },
   "office": {
     "title": "Office"
+  },"controll": {
+    "title": "Devices"
   }
 }
