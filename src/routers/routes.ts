@@ -9,6 +9,9 @@ export type RootStackParams = {
   [RouteName.REGISTER]: undefined;
   [RouteName.JOINING]: { workspace: string };
   [RouteName.HOME]: { userId: string };
+  [RouteName.HOME_OFFICE]: { };
+  [RouteName.HOME_PROFILE]: { };
+  [RouteName.HOME_DEVICES]: { };
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -42,7 +45,12 @@ export const publicRoutes: RouteProps[] = [
 
 export const authenticatedRoutes: RouteProps[] = [
   {
+    name: RouteName.HOME_OFFICE,
+    component: require('src/screens/homeoffice').default,
+  },
+  {
     name: RouteName.HOME,
     component: require('src/screens/home').default,
   },
+  
 ];

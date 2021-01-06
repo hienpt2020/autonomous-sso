@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Text, View } from 'react-native';
 import { PropsHeader, PropsBackHeader } from './types'
-import Icon from 'src/assets/back.svg'
+import Icon from 'src/assets/images/back.svg'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styles } from './styles';
 

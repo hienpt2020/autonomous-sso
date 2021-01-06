@@ -14,11 +14,11 @@ export const MainStackNavigator = () => {
 
   return (
     <Stack.Navigator screenOptions={screenOptions} headerMode="none">
-      {publicRoutes.map((route) => (
+      {authenticatedRoutes.map((route) => (
         <Stack.Screen key={route.name} name={route.name} component={route.component} options={route.options} />
       ))}
 
-      {authenticatedRoutes.map((route) => (
+      {publicRoutes.map((route) => (
         <Stack.Screen key={route.name} name={route.name} component={route.component} options={route.options} />
       ))}
     </Stack.Navigator>

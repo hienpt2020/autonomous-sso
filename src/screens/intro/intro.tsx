@@ -2,7 +2,7 @@ import * as React from 'react'
 import { View } from 'react-native';
 import { styles } from './style'
 import { PrimaryButton, SecondaryButton } from 'src/components/button';
-import Logo from 'src/assets/logo_black.svg'
+import Logo from 'src/assets/images/logo_black.svg'
 import { useTranslation } from 'react-i18next';
 import { Props } from './types';
 import { RouteName } from 'src/routers/routeName';
