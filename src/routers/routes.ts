@@ -1,5 +1,6 @@
 import { RouteProps } from './routeProps';
 import { RouteName } from './routeName';
+import { Home } from './tabHome';
 
 export type RootStackParams = {
   [RouteName.INTRO]: undefined;
@@ -9,9 +10,6 @@ export type RootStackParams = {
   [RouteName.REGISTER]: undefined;
   [RouteName.JOINING]: { workspace: string };
   [RouteName.HOME]: { userId: string };
-  [RouteName.HOME_OFFICE]: {};
-  [RouteName.HOME_PROFILE]: {};
-  [RouteName.HOME_CONTROLL]: {};
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -43,19 +41,8 @@ export const publicRoutes: RouteProps[] = [
   }
 ];
 
+
 export const authenticatedRoutes: RouteProps[] = [
-  {
-    name: RouteName.HOME_PROFILE,
-    component: require('src/screens/homeprofile').default,
-  },
-  {
-    name: RouteName.HOME_CONTROLL,
-    component: require('src/screens/homecontroll').default,
-  },
-  {
-    name: RouteName.HOME_OFFICE,
-    component: require('src/screens/homeoffice').default,
-  },
   {
     name: RouteName.HOME,
     component: require('src/screens/home').default,
