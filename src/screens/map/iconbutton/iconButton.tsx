@@ -9,7 +9,7 @@ const IconButton = (props: Props) => {
     const title = props.title
 
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={props.onPress}>
             < Clock width="18" height="18"
                 style={styles.icon} />
             <Text style={styles.title}>{title}</Text>

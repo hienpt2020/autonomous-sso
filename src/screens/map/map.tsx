@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { useState, useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,19 +11,36 @@ import { styles } from './styles';
 import { RouteName } from 'src/routers/routeName';
 import { CardItem, CardData } from './card';
 import { IconButton } from './iconbutton';
+import Animated from 'react-native-reanimated';
+import BottomSheet from 'reanimated-bottom-sheet';
+import DatePicker from 'react-native-date-picker'
+import { AppColor } from 'src/styles';
+import { Link } from 'src/components/link';
+import moment from 'moment';
 
 
 const Map = (props: Props) => {
 
     const initialData: CardData[] = []
     const { t } = useTranslation()
-    const [mapData, setMapData] = useState(initialData)
     const presenter: Presenter = new PresenterImpl()
     const FIXED_ITEM_HEIGHT = 140
+    const FIXED_DATE_TIME = 300
     const NUM_COLUMNS = 2
+
+    const [mapData, setMapData] = useState(initialData)
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    const [date, setDate] = useState(today)
+    const [dateFrom, setDateFrom] = useState(today)
+    const [dateTo, setDateTo] = useState(tomorrow)
+    const [isFrom, setIsFrom] = useState(true)
+
 
     useEffect(() => {
         setMapData(presenter.fetchMap())
+        
     }, [])
     const renderItem = (data: CardData) => {
         return (<CardItem cardData={data} />)
@@ -36,22 +53,79 @@ const Map = (props: Props) => {
             index
         })
     }
-    return (
-        <SafeAreaView style={styles.container}>
-            <BackHeader title={props.title} onPress={() => handleBack()} />
-            <View style={styles.buttonContainer}>
-                <IconButton title="09:00 Mar 31" />
-                <IconButton title="09:00 Mar 31" />
-            </View>
-            <FlatList
-                data={mapData}
-                style={{ paddingStart: 8, paddingEnd: 8 }}
-                keyExtractor={(item, index) => `${item.id}${index}`}
-                numColumns={NUM_COLUMNS}
-                renderItem={({ item }) => renderItem(item)}
-                getItemLayout={(data, index) => getItemLayout(data, index)}
+    const sheetRef = React.useRef<BottomSheet | null>(null);
+    const renderContent = () => (
+        <View
+            style={{
+                backgroundColor: AppColor.WHITE,
+                padding: 16,
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
+            <DatePicker
+                date={date}
+                style={{ height: FIXED_DATE_TIME }}
+                onDateChange={(date) => setConsiderDate(date)}
             />
-        </SafeAreaView>
+        </View>
+    );
+    const renderHeader = () => <View style={{
+        width: '100%',
+        alignItems: 'flex-end',
+        backgroundColor: AppColor.WHITE,
+    }} >
+        <Link title="Close" onPress={() => {
+            sheetRef.current?.snapTo(2)
+        }} />
+    </View>
+    function setConsiderDate(date: Date) {
+        if (isFrom) {
+            setDateFrom(date)
+        } else {
+            setDateTo(date)
+        }
+    }
+    function switchFromDate() {
+        setIsFrom(true)
+        setDate(dateFrom)
+        sheetRef.current?.snapTo(0)
+    }
+    function switchToDate() {
+        setIsFrom(false)
+        setDate(dateTo)
+        sheetRef.current?.snapTo(0)
+    }
+    return (
+        <View style={{ flex: 1 }}>
+            <SafeAreaView style={styles.container}>
+                <BackHeader title={props.title} onPress={() => handleBack()} />
+                <View style={styles.buttonContainer}>
+                    <IconButton title={moment(dateFrom).format("hh:mm MMM DD")} onPress={() => switchFromDate()} />
+                    <IconButton title={moment(dateTo).format("hh:mm MMM DD")} onPress={() => switchToDate()} />
+                </View>
+                <FlatList
+                    data={mapData}
+                    style={{ paddingStart: 8, paddingEnd: 8 }}
+                    keyExtractor={(item, index) => `${item.id}${index}`}
+                    numColumns={NUM_COLUMNS}
+                    renderItem={({ item }) => renderItem(item)}
+                    getItemLayout={(data, index) => getItemLayout(data, index)}
+                />
+            </SafeAreaView>
+            <BottomSheet
+                ref={sheetRef}
+                snapPoints={[FIXED_DATE_TIME, 0, 0]}
+                borderRadius={10}
+                initialSnap={1}
+                renderContent={renderContent}
+                renderHeader={renderHeader}
+                enabledInnerScrolling={false}
+            />
+        </View>
+
+
     )
 
     function handleBack() {
