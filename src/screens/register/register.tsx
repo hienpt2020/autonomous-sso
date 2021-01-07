@@ -66,7 +66,7 @@ const Login = (props: Props) => {
 
         <PrimaryButton
           title={t('common.register')}
-          containerStyle={styles.button}
+          wrapperContainer={styles.button}
           onPress={() => validateRegister()} />
         <Text style={styles.term}>
           {t('register.term_condition1')}

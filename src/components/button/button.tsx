@@ -5,7 +5,7 @@ import { AppButtonProps } from './types'
 import { styles } from './styles';
 export const PrimaryButton = (buttonProps: AppButtonProps) => {
     return (
-        <View style={buttonProps.containerStyle}>
+        <View style={buttonProps.wrapperContainer}>
             <Button {...buttonProps}
                 titleStyle={[styles.title, styles.titlePrimary]}
                 buttonStyle={[styles.button, styles.buttonPrimary]}
@@ -15,7 +15,7 @@ export const PrimaryButton = (buttonProps: AppButtonProps) => {
 }
 export const SecondaryButton = (buttonProps: AppButtonProps) => {
     return (
-        <View style={buttonProps.containerStyle}>
+        <View style={buttonProps.wrapperContainer}>
             <Button {...buttonProps}
                 type="outline"
                 titleStyle={[styles.title, styles.titleSecondary]}

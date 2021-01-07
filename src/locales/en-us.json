@@ -45,6 +45,9 @@
   "controll": {
     "title": "Devices"
   },
+  "seat": {
+    "book_seat": "book this desk"
+  },
   "profile": {
     "title": "Profile"
   }

@@ -52,6 +52,10 @@ export const publicRoutes: RouteProps[] = [
 
 export const authenticatedRoutes: RouteProps[] = [
   {
+    name: RouteName.SEAT,
+    component: require('src/screens/seat').default,
+  },
+  {
     name: RouteName.HOME,
     component: require('src/screens/home').default,
   },

@@ -17,12 +17,12 @@ const Intro = (props: Props) => {
             <View style={styles.containerButton}>
                 <PrimaryButton title={t('intro.login')}
                     style={styles.button}
-                    containerStyle={styles.wrapperButton}
+                    containerStyle={styles.wrapperContainer}
                     onPress={() => logIn()}
                 />
                 <SecondaryButton title={t('intro.register')}
                     style={styles.button}
-                    containerStyle={styles.wrapperButton}
+                    containerStyle={styles.wrapperContainer}
                     onPress={() => register()} />
 
             </View>

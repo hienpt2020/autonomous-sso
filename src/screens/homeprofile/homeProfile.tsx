@@ -21,9 +21,9 @@ const Profile = (props: Props) => {
         <SafeAreaView style={styles.container}>
             <Image source={{ uri: avatar }} style={styles.avatar}/>
             <Link title={email} />
-            <PrimaryButton containerStyle={styles.containerButton}
+            <PrimaryButton wrapperContainer={styles.containerButton}
                 title={workspace} />
-            <SecondaryButton containerStyle={styles.containerButton}
+            <SecondaryButton wrapperContainer={styles.containerButton}
                 title={t('common.logout')} />
         </SafeAreaView>
     )
