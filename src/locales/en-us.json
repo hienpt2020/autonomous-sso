@@ -8,8 +8,8 @@
     "reset_password": "Reset Password",
     "reset": "Reset",
     "logout": "Log out",
-    "join": "Join"
-    
+    "join": "Join", 
+    "close": "Close"
   },
   "button": {
     "back": "Back",

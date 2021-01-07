@@ -12,5 +12,7 @@ export class CardData {
     }
 }
 export interface Props {
-    cardData: CardData
+    cardData: CardData,
+    onPress?: () => void
+
 }

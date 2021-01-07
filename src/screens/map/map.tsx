@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { FlatList, View } from 'react-native';
+import { FlatList, View, TouchableWithoutFeedback } from 'react-native';
 import { Button } from 'react-native-elements';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader } from 'src/components/header'
 import { useTranslation } from 'react-i18next';
@@ -22,16 +22,19 @@ import moment from 'moment';
 const Map = (props: Props) => {
 
     const initialData: CardData[] = []
-    const { t } = useTranslation()
-    const presenter: Presenter = new PresenterImpl()
     const FIXED_ITEM_HEIGHT = 140
     const FIXED_DATE_TIME = 300
     const NUM_COLUMNS = 2
+    const timeFormatter = "hh:mm MMM DD";
+    const presenter: Presenter = new PresenterImpl()
+    
 
-    const [mapData, setMapData] = useState(initialData)
     const today = new Date()
     const tomorrow = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1)
+
+    const { t } = useTranslation()
+    const [mapData, setMapData] = useState(initialData)
     const [date, setDate] = useState(today)
     const [dateFrom, setDateFrom] = useState(today)
     const [dateTo, setDateTo] = useState(tomorrow)
@@ -39,12 +42,13 @@ const Map = (props: Props) => {
     const [isBottomSheetShow, setIsBottomSheetShow] = useState(false)
 
 
+    const sheetRef = useRef<BottomSheet | null>(null);
     useEffect(() => {
         setMapData(presenter.fetchMap())
-
     }, [])
+
     const renderItem = (data: CardData) => {
-        return (<CardItem cardData={data} />)
+        return (<CardItem cardData={data} onPress={()=>onItemSelected(data)}/>)
     }
 
     const getItemLayout = (data: any, index: any) => {
@@ -54,8 +58,54 @@ const Map = (props: Props) => {
             index
         })
     }
-    const sheetRef = React.useRef<BottomSheet | null>(null);
 
+    const renderContent = () => (
+        <View style={styles.bottomSheetContainer}>
+            <DatePicker
+                date={date}
+                onDateChange={(date) => setConsiderDate(date)}
+            />
+            <Link style={styles.button} size={16} title={t('common.close')} onPress={() => {
+                sheetRef.current?.snapTo(2)
+            }} />
+        </View>
+    );
+    const renderOverlay = () => <TouchableWithoutFeedback style={styles.overlay} onPress={()=>{ sheetRef.current?.snapTo(2) }}><View style={styles.overlay}/></TouchableWithoutFeedback>
+
+    return (
+        <View style={{ flex: 1 }}>
+            <SafeAreaView style={styles.container}>
+                <BackHeader title={props.title} onPress={() => handleBack()} />
+                <View style={styles.buttonContainer}>
+                    <IconButton title={moment(dateFrom).format(timeFormatter)} onPress={() => switchFromDate()} />
+                    <IconButton title={moment(dateTo).format(timeFormatter)} onPress={() => switchToDate()} />
+                </View>
+                <FlatList
+                    data={mapData}
+                    style={{ paddingStart: 8, paddingEnd: 8 }}
+                    keyExtractor={(item, index) => `${item.id}${index}`}
+                    numColumns={NUM_COLUMNS}
+                    renderItem={({ item }) => renderItem(item)}
+                    getItemLayout={(data, index) => getItemLayout(data, index)}
+                />
+            </SafeAreaView>
+            { isBottomSheetShow ? renderOverlay() : null}
+            <BottomSheet
+                ref={sheetRef}
+                snapPoints={[FIXED_DATE_TIME, 0, 0]}
+                initialSnap={1}
+                renderContent={renderContent}
+                enabledContentTapInteraction={false}
+                onOpenEnd={() => setIsBottomSheetShow(true)}
+                onCloseEnd={() => setIsBottomSheetShow(false)}
+                enabledInnerScrolling={false}
+            />
+        </View>
+    )
+
+    function onItemSelected(data: CardData){
+        console.log(data)
+    }
     function setConsiderDate(date: Date) {
         if (isFrom) {
             setDateFrom(date)
@@ -74,62 +124,7 @@ const Map = (props: Props) => {
         setDate(dateTo)
         sheetRef.current?.snapTo(0)
     }
-    const renderContent = () => (
-        <View style={styles.bottomSheetContainer}>
-            <DatePicker
-                date={date}
-                style={{ height: FIXED_DATE_TIME }}
-                onDateChange={(date) => setConsiderDate(date)}
-            />
-            <Link style={styles.button} size={16} title="Close" onPress={() => {
-                sheetRef.current?.snapTo(2)
-            }} />
-        </View>
-    );
-    const renderOverlay = () => <View style={styles.overlay} />
-
-    return (
-        <View style={{ flex: 1 }}>
-            <SafeAreaView style={styles.container}>
-                <BackHeader title={props.title} onPress={() => handleBack()} />
-                <View style={styles.buttonContainer}>
-                    <IconButton title={moment(dateFrom).format("hh:mm MMM DD")} onPress={() => switchFromDate()} />
-                    <IconButton title={moment(dateTo).format("hh:mm MMM DD")} onPress={() => switchToDate()} />
-                </View>
-                <FlatList
-                    data={mapData}
-                    style={{ paddingStart: 8, paddingEnd: 8 }}
-                    keyExtractor={(item, index) => `${item.id}${index}`}
-                    numColumns={NUM_COLUMNS}
-                    renderItem={({ item }) => renderItem(item)}
-                    getItemLayout={(data, index) => getItemLayout(data, index)}
-                />
-            </SafeAreaView>
-            {
-                isBottomSheetShow ? renderOverlay() : null}
-
-            <BottomSheet
-                ref={sheetRef}
-                snapPoints={[FIXED_DATE_TIME, 0, 0]}
-                initialSnap={1}
-                renderContent={renderContent}
-                enabledContentTapInteraction={false}
-                onOpenEnd={() => {
-                    console.log("show")
-                    setIsBottomSheetShow(true)
-                }
-                }
-                onCloseEnd={() => {
-                    console.log("end")
-                    setIsBottomSheetShow(false)
-                }}
-                enabledInnerScrolling={false}
-            />
-        </View>
-
-
-    )
-
+    
     function handleBack() {
         props.navigation.goBack()
     }
