@@ -54,5 +54,8 @@
   "configuration": {
     "wifi": "Wifi name",
     "wifi_password": "Wifi password"
+  }, 
+  "booking": {
+    "title": "My Booking"
   }
 }

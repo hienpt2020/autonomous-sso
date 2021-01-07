@@ -52,6 +52,10 @@ export const publicRoutes: RouteProps[] = [
 
 export const authenticatedRoutes: RouteProps[] = [
   {
+    name: RouteName.MY_BOOKING,
+    component: require('src/screens/booking').default,
+  },
+  {
     name: RouteName.CONFIGURATION_STEP2,
     component: require('src/screens/configuration2').default,
   },
