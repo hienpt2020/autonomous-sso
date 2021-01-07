@@ -1,11 +1,10 @@
 // Service
 import { takeLatest } from 'redux-saga/effects';
 import { apiPost } from '../../services/networking';
-import { URL } from '../../common/constant';
-
+import Config from 'react-native-config';
 const testSaga = function* testSaga() {
   try {
-    const response = yield apiPost(URL.LOGIN, '/auth/login', {
+    const response = yield apiPost(Config.ENDPOINT_SSO, '/auth/login', {
       email: 'kien.q@autonomous.nyc',
       password: '123456',
       client_id: 'vflozjmgtirdrppu',
