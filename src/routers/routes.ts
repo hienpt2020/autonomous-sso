@@ -18,6 +18,7 @@ export type RootStackParams = {
   [RouteName.CONFIGURATION_RESULT]: undefined;
   [RouteName.MY_BOOKING]: undefined;
   [RouteName.BOOKING_DETAIL]: undefined;
+  [RouteName.SWITCH_WORKSPACE]: undefined;
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -51,6 +52,10 @@ export const publicRoutes: RouteProps[] = [
 
 
 export const authenticatedRoutes: RouteProps[] = [
+  {
+    name: RouteName.SWITCH_WORKSPACE,
+    component: require('src/screens/switchws').default,
+  },
   {
     name: RouteName.BOOKING_DETAIL,
     component: require('src/screens/bookingdetail').default,

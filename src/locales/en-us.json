@@ -12,7 +12,7 @@
     "close": "Close", 
     "assets": "Assets",
     "policies": "Policies",
-    "code": "code"
+    "code": "Code"
   },
   "button": {
     "back": "Back",
@@ -63,5 +63,8 @@
   },
   "booking_detail": {
     "cancel_booking": "Cancel booking"
+  },
+  "switch_workspace": {
+    "title": "Switch Workspace"
   }
 }
