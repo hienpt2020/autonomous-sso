@@ -53,6 +53,14 @@ export const publicRoutes: RouteProps[] = [
 
 export const authenticatedRoutes: RouteProps[] = [
   {
+    name: RouteName.BOOKING_RESULT,
+    component: require('src/screens/booking-result').default,
+  },
+  {
+    name: RouteName.CONFIGURATION_RESULT,
+    component: require('src/screens/configuration-result').default,
+  },
+  {
     name: RouteName.SWITCH_WORKSPACE,
     component: require('src/screens/switchws').default,
   },

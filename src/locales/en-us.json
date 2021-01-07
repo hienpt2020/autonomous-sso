@@ -12,7 +12,9 @@
     "close": "Close", 
     "assets": "Assets",
     "policies": "Policies",
-    "code": "Code"
+    "code": "Code", 
+    "done": "Done"
+    
   },
   "button": {
     "back": "Back",
