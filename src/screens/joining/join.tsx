@@ -8,6 +8,7 @@ import { Header } from 'src/components/header'
 import { REQUEST_END, REQUEST_START } from 'src/redux/request/requestType';
 import { Props } from './types';
 import { styles } from './styles';
+import { RouteName } from 'src/routers/routeName';
 
 const Join = (props: Props) => {
   const { t } = useTranslation();
@@ -42,7 +43,7 @@ const Join = (props: Props) => {
 
   
   function handleJoin() {
-
+    props.navigation.navigate(RouteName.HOME)
   }
 
 };
