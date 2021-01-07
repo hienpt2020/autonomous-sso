@@ -58,7 +58,7 @@ const ResetPassWord = (props: Props) => {
        
         <PrimaryButton
           title={t('common.reset')}
-          wapperStyle={styles.button}
+          containerStyle={styles.button}
           onPress={() => validateReset()} />
         <View style={{ flex: 3 }} />
       </KeyboardAvoidingView>

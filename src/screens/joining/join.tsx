@@ -30,7 +30,7 @@ const Join = (props: Props) => {
         <View style={{ flex: 1 }} />
         <PrimaryButton
           title={t('common.join')}
-          wapperStyle={styles.button}
+          containerStyle={styles.button}
           onPress={() => handleJoin()} />
 
       </KeyboardAvoidingView>
