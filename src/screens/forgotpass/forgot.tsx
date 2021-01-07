@@ -44,7 +44,7 @@ const ForgotPassword = (props: LoginProps) => {
           errorMessage={emailError} />
         <PrimaryButton
           title={t('common.forgot_password')}
-          containerStyle={styles.button}
+          wrapperContainer={styles.button}
           onPress={() => validateLogin()} />
         <View style={{ flex: 3 }} />
       </KeyboardAvoidingView>

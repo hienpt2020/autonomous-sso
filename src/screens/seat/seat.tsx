@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { View, Image, Text, StatusBar } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 import { useState, useEffect, useRef } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { Props, Presenter } from './types';
 import { PresenterImpl } from './presenter';
@@ -11,6 +10,7 @@ import { Chip } from 'src/components/chip';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Device } from 'src/components/device';
 import { YellowBox } from 'react-native'
+import { ImageSlider } from 'src/components/images/images';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -20,7 +20,7 @@ const Seat = (props: Props) => {
 
     const presenter: Presenter = new PresenterImpl()
     const { t } = useTranslation()
-
+    const imageHeight = 221
 
     useEffect(() => {
 
@@ -29,12 +29,9 @@ const Seat = (props: Props) => {
     return (
         <View style={styles.container}>
             <StatusBar translucent backgroundColor='transparent' />
-
             <ScrollView style={styles.container} >
-                <View style={styles.sliderContainer}>
-                    <Image style={styles.coverImage} source={require('src/assets/images/image-hover-background.png')} />
-                    <Text style={styles.sliderTitle}>(1/10)</Text>
-                </View>
+                <ImageSlider data={["https://source.unsplash.com/wgivdx9dBdQ/1600x900", "https://source.unsplash.com/wgivdx9dBdQ/1600x900", "https://source.unsplash.com/wgivdx9dBdQ/1600x900", "https://source.unsplash.com/wgivdx9dBdQ/1600x900", "https://source.unsplash.com/wgivdx9dBdQ/1600x900"]}
+                    height={imageHeight} />
                 <Text style={styles.title}>Seat#1</Text>
                 <Text style={styles.subTitle}>139 Hong Ha, Phu Nhuan</Text>
                 <Chip
