@@ -6,11 +6,8 @@ import { Props, Presenter } from './types';
 import { PresenterImpl } from './presenter';
 import { styles } from './styles';
 import { PrimaryButton } from 'src/components/button';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { YellowBox } from 'react-native'
 import { ImageSlider } from 'src/components/images/images';
-import Check from 'src/assets/images/check_light.svg'
-import BluetoothLight from 'src/assets/images/bluetooth_light.svg'
 import { PrimaryInput } from 'src/components/input'
 
 //JUST disable this warning
