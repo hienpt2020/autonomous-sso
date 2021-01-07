@@ -50,5 +50,9 @@
   },
   "profile": {
     "title": "Profile"
+  },
+  "configuration": {
+    "wifi": "Wifi name",
+    "wifi_password": "Wifi password"
   }
 }
