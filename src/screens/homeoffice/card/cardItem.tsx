@@ -10,7 +10,7 @@ const CardItem = (props: Props) => {
         <View style={styles.itemContainer} >
             <FastImage
                 style={styles.coverImage}
-                source={{ uri: "https://source.unsplash.com/wgivdx9dBdQ/360x180" }}
+                source={{ uri: cardData.image }}
             />
             <FastImage
                 style={styles.coverImage}
