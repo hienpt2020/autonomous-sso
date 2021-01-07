@@ -104,7 +104,7 @@ const Map = (props: Props) => {
     )
 
     function onItemSelected(data: CardData){
-        console.log(data)
+        props.navigation.navigate(RouteName.SEAT)
     }
     function setConsiderDate(date: Date) {
         if (isFrom) {

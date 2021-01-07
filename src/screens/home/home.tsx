@@ -6,6 +6,7 @@ import { RouteProps } from 'src/routers/routeProps';
 import { RouteName } from 'src/routers/routeName';
 import { styles } from './styles';
 
+import { Props } from './types';
 import Profile from 'src/assets/images/profile.svg';
 import Office from 'src/assets/images/office.svg';
 import Controll from 'src/assets/images/controll.svg';
@@ -40,14 +41,14 @@ function renderTabBarIcon(routeName: String, focused: boolean) {
   } else if (routeName === RouteName.HOME_OFFICE) {
     icon = focused ? <OfficeWhite width="40" height="40" /> : <Office width="40" height="40" />;
   } else {
-    icon = focused ? <ProfileWhite width="40" height="40" /> : <Profile width="40" height="40"/>;
+    icon = focused ? <ProfileWhite width="40" height="40" /> : <Profile width="40" height="40" />;
   }
 
   const view = focused ? <View style={styles.iconContainer}>{icon}</View> : icon;
   return view;
 }
 
-const Home = () => {
+const Home = (props: Props) => {
   const Tab = createBottomTabNavigator()
   return (
     <Tab.Navigator

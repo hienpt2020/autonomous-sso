@@ -7,20 +7,14 @@ import { styles } from './styles';
 import { PrimaryButton } from 'src/components/button';
 import { YellowBox } from 'react-native'
 import ImageSuccess from 'src/assets/images/image_success.svg';
+import { RouteName } from 'src/routers/routeName';
 
-//JUST disable this warning
-YellowBox.ignoreWarnings([
-    'VirtualizedLists should never be nested', // TODO: Remove when fixed
-])
+
 
 const BookingResult = (props: Props) => {
 
     const { t } = useTranslation()
-
-
-    useEffect(() => {
-
-    }, [])
+    const [manualLeave, setManualLeave] = useState(false);
 
     return (
 
@@ -29,13 +23,12 @@ const BookingResult = (props: Props) => {
             <Text style={styles.title}>Successful!</Text>
             <Text style={styles.subTitle}>You have booked the seat. Your unlock code below, use it to unlock your seat </Text>
             <Text style={styles.code}>1969</Text>
-            <PrimaryButton wrapperContainer={styles.button} title={t('common.done')} />
+            <PrimaryButton wrapperContainer={styles.button} title={t('common.done')} onPress={() => handleDone()} />
 
         </View>
     )
-
-    function handleBack() {
-        props.navigation.goBack()
+    function handleDone() {
+        props.navigation.navigate(RouteName.HOME)
     }
 };
 

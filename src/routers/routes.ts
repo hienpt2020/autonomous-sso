@@ -8,7 +8,7 @@ export type RootStackParams = {
   [RouteName.LOGIN]: undefined;
   [RouteName.REGISTER]: undefined;
   [RouteName.JOINING]: { workspace: string };
-  [RouteName.HOME]: { userId: string };
+  [RouteName.HOME]: undefined;
   [RouteName.MAP]: { floorId: string, floorName: string };
   [RouteName.SEAT]: undefined;
   [RouteName.BOOKING_RESULT]: undefined;
@@ -53,6 +53,10 @@ export const publicRoutes: RouteProps[] = [
 
 export const authenticatedRoutes: RouteProps[] = [
   {
+    name: RouteName.HOME,
+    component: require('src/screens/home').default,
+  },
+  {
     name: RouteName.BOOKING_RESULT,
     component: require('src/screens/booking-result').default,
   },
@@ -83,10 +87,6 @@ export const authenticatedRoutes: RouteProps[] = [
   {
     name: RouteName.SEAT,
     component: require('src/screens/seat').default,
-  },
-  {
-    name: RouteName.HOME,
-    component: require('src/screens/home').default,
   },
   {
     name: RouteName.MAP,
