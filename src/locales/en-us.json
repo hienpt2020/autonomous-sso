@@ -9,7 +9,10 @@
     "reset": "Reset",
     "logout": "Log out",
     "join": "Join", 
-    "close": "Close"
+    "close": "Close", 
+    "assets": "Assets",
+    "policies": "Policies",
+    "code": "code"
   },
   "button": {
     "back": "Back",
@@ -57,5 +60,8 @@
   }, 
   "booking": {
     "title": "My Booking"
+  },
+  "booking_detail": {
+    "cancel_booking": "Cancel booking"
   }
 }
