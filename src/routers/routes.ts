@@ -1,6 +1,5 @@
 import { RouteProps } from './routeProps';
 import { RouteName } from './routeName';
-import { Home } from './tabHome';
 
 export type RootStackParams = {
   [RouteName.INTRO]: undefined;
