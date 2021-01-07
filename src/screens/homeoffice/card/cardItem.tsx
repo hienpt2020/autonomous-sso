@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import { styles } from './styles'
 import { Props } from './types'
@@ -7,18 +7,20 @@ const CardItem = (props: Props) => {
     const cardData = props.cardData
 
     return (
-        <View style={styles.itemContainer} >
-            <FastImage
-                style={styles.coverImage}
-                source={{ uri: cardData.image }}
-            />
-            <FastImage
-                style={styles.coverImage}
-                source={require('src/assets/images/image-hover-background.png')}
-            />
-            <Text style={styles.itemSubTitle}>{cardData.address}</Text>
-            <Text style={styles.itemTitle}>{cardData.name}</Text>
-        </View>
+        <TouchableOpacity onPress={props.onPress}>
+            <View style={styles.itemContainer} >
+                <FastImage
+                    style={styles.coverImage}
+                    source={{ uri: cardData.image }}
+                />
+                <FastImage
+                    style={styles.coverImage}
+                    source={require('src/assets/images/image-hover-background.png')}
+                />
+                <Text style={styles.itemSubTitle}>{cardData.address}</Text>
+                <Text style={styles.itemTitle}>{cardData.name}</Text>
+            </View>
+        </TouchableOpacity>
     )
 }
 export default CardItem;

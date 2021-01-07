@@ -22,7 +22,7 @@ const Office = (props: Props) => {
         setSectionData(floorsResult)
     }, [])
     const renderItem = (data: CardData) => {
-        return ( <CardItem  cardData={data}/> )
+        return ( <CardItem  cardData={data} onPress={()=>onItemSelected(data)}/> )
     }
     const renderHeader = (title: string) => {
         return (<Text style={styles.header}>{title}</Text>)
@@ -43,6 +43,9 @@ const Office = (props: Props) => {
             />
         </SafeAreaView>
     )
+    function onItemSelected(data: CardData){
+        console.log(data)
+    }
 
 };
 

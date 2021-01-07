@@ -52,12 +52,12 @@ export const publicRoutes: RouteProps[] = [
 
 export const authenticatedRoutes: RouteProps[] = [
   {
-    name: RouteName.MAP,
-    component: require('src/screens/map').default,
-  },
-  {
     name: RouteName.HOME,
     component: require('src/screens/home').default,
+  },
+  {
+    name: RouteName.MAP,
+    component: require('src/screens/map').default,
   },
 
 ];
