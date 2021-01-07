@@ -44,7 +44,7 @@ const Map = (props: Props) => {
 
     const sheetRef = useRef<BottomSheet | null>(null);
     useEffect(() => {
-        setMapData(presenter.fetchMap())
+        setMapData(presenter.fetchMap(props.route.params.floorId))
     }, [])
 
     const renderItem = (data: CardData) => {
@@ -75,7 +75,7 @@ const Map = (props: Props) => {
     return (
         <View style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
-                <BackHeader title={props.title} onPress={() => handleBack()} />
+                <BackHeader title={props.route.params.floorName} onPress={() => handleBack()} />
                 <View style={styles.buttonContainer}>
                     <IconButton title={moment(dateFrom).format(timeFormatter)} onPress={() => switchFromDate()} />
                     <IconButton title={moment(dateTo).format(timeFormatter)} onPress={() => switchToDate()} />

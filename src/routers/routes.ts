@@ -9,7 +9,7 @@ export type RootStackParams = {
   [RouteName.REGISTER]: undefined;
   [RouteName.JOINING]: { workspace: string };
   [RouteName.HOME]: { userId: string };
-  [RouteName.MAP]: undefined;
+  [RouteName.MAP]: { floorId: string, floorName: string };
   [RouteName.SEAT]: undefined;
   [RouteName.BOOKING_RESULT]: undefined;
   [RouteName.SEAT_ADMIN]: undefined;

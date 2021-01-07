@@ -12,7 +12,7 @@ export class PresenterImpl implements Presenter{
     fakeFloor(): CardData[] {
         let result: CardData[] = []
         for (let i = 0; i < 10; i++) {
-            result.push(new CardData('$i', "Floor 1", "139 Hong Ha, Phu Nhuan", "https://source.unsplash.com/wgivdx9dBdQ/1600x900"))
+            result.push(new CardData(`${i}`, "Floor 1", "139 Hong Ha, Phu Nhuan", "https://source.unsplash.com/wgivdx9dBdQ/1600x900"))
         }
         return result
     }

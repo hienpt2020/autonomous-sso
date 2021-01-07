@@ -9,26 +9,27 @@ import { PresenterImpl } from './presenter';
 import { styles } from './styles';
 import { RouteName } from 'src/routers/routeName';
 import { CardItem, CardData } from './card';
+import { Card } from 'react-native-elements';
 
 const Office = (props: Props) => {
-   
+
     const initialData: SectionData[] = []
     const { t } = useTranslation()
     const [sectionData, setSectionData] = useState(initialData)
-    const presenter : Presenter = new PresenterImpl()
+    const presenter: Presenter = new PresenterImpl()
 
     useEffect(() => {
         let floorsResult = presenter.fetchFloor()
         setSectionData(floorsResult)
     }, [])
     const renderItem = (data: CardData) => {
-        return ( <CardItem  cardData={data} onPress={()=>onItemSelected(data)}/> )
+        return (<CardItem cardData={data} onPress={() => onItemSelected(data)} />)
     }
     const renderHeader = (title: string) => {
         return (<Text style={styles.header}>{title}</Text>)
     }
-    const getItemLayout = (data: any, index:any) => {
-        return ( {length: 180, offset: 180 * index, index})
+    const getItemLayout = (data: any, index: any) => {
+        return ({ length: 180, offset: 180 * index, index })
     }
     return (
         <SafeAreaView style={styles.container}>
@@ -43,8 +44,8 @@ const Office = (props: Props) => {
             />
         </SafeAreaView>
     )
-    function onItemSelected(data: CardData){
-        console.log(data)
+    function onItemSelected(data: CardData) {
+        props.navigation.navigate(RouteName.MAP, { floorId: data.id, floorName: data.name })
     }
 
 };
