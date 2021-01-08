@@ -1,12 +1,12 @@
 
 import { authHeader } from './header';
-import { request } from './axios';
+import { requestSaga } from './axios';
 
 /**
  * @param url: string, required
  * @param params: string, optional
  */
-export function _get(baseUrl: string, url: string, headers: object, params?: object) {
+export function* _get(baseUrl: string, url: string, headers: object, params?: object) {
   const config = {
     baseURL: baseUrl,
     url,
@@ -17,7 +17,7 @@ export function _get(baseUrl: string, url: string, headers: object, params?: obj
     // @ts-ignore
     config.params = params;
   }
-  return request(config);
+  return yield* requestSaga(config);
 
 }
 
@@ -26,7 +26,7 @@ export function _get(baseUrl: string, url: string, headers: object, params?: obj
  * @param body: object, required
  * @param params: string, optional
  */
-export function _post(baseURL: string, url: string, headers: object, body: object) {
+export function* _post(baseURL: string, url: string, headers: object, body: object) {
   const config = {
     baseURL,
     url,
@@ -34,7 +34,7 @@ export function _post(baseURL: string, url: string, headers: object, body: objec
     method: 'post',
     data: body,
   };
-  return request(config);
+  return yield* requestSaga(config);
 }
 
 
@@ -42,7 +42,7 @@ export function _post(baseURL: string, url: string, headers: object, body: objec
  * @param url: string, required
  * @param params: string, optional
  */
-export function _delete(baseURL: string, url: string, headers: object, params?: object) {
+export function* _delete(baseURL: string, url: string, headers: object, params?: object) {
   const config = {
     baseURL,
     url,
@@ -51,7 +51,7 @@ export function _delete(baseURL: string, url: string, headers: object, params?: 
     params: params,
   };
   // @ts-ignore
-  return request(config);
+  return yield* requestSaga(config);
 }
 
 
@@ -61,7 +61,7 @@ export function _delete(baseURL: string, url: string, headers: object, params?: 
  * @param headers: object, required
  * @param params: string, optional
  */
-export function _put(baseUrl: string, url: string, headers: object, body: object, params?: object) {
+export function* _put(baseUrl: string, url: string, headers: object, body: object, params?: object) {
   const config = {
     baseURL: baseUrl,
     url,
@@ -70,5 +70,5 @@ export function _put(baseUrl: string, url: string, headers: object, body: object
     data: body
   };
   // @ts-ignore
-  return request(config);
+  return yield* requestSaga(config);
 }
