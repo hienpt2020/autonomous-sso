@@ -1,4 +1,5 @@
 import { StackNavigationOptions } from '@react-navigation/stack';
+import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { RouteName } from './routeName';
 
 export type RouteProps = {
@@ -6,5 +7,5 @@ export type RouteProps = {
   component: React.ComponentType<any>;
   initialParams?: object;
   key?: string | number;
-  options?: StackNavigationOptions;
+  options?: StackNavigationOptions | BottomTabNavigationOptions;
 };

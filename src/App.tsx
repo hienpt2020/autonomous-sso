@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -11,13 +11,14 @@ import { navigationRef } from './routers/rootNavigation';
 const App = () => {
   return (
     <Provider store={store}>
-      <NavigationContainer ref={navigationRef}>
-        {/* Navigations */}
-        <MainStackNavigator />
-
-        {/* Global components */}
-        <Spinner />
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer ref={navigationRef}>
+          {/* Navigations */}
+            <MainStackNavigator />
+          {/* Global components */}
+          <Spinner />
+        </NavigationContainer>
+      </SafeAreaProvider>
     </Provider>
   );
 };

@@ -1,13 +1,72 @@
 {
-  "common": {},
+  "common": {
+    "login": "Log In", 
+    "password": "Password",
+    "email": "Email", 
+    "register": "Register" ,
+    "forgot_password": "Forgot Password", 
+    "reset_password": "Reset Password",
+    "reset": "Reset",
+    "logout": "Log out",
+    "join": "Join", 
+    "close": "Close", 
+    "assets": "Assets",
+    "policies": "Policies",
+    "code": "Code", 
+    "done": "Done"
+    
+  },
   "button": {
     "back": "Back",
     "goToHome": "Go to home"
   },
   "login": {
-    "title": "Login page"
+    "title": "Log in", 
+    "email_invalid": "Email is invalid",
+    "password_require": "Password is require"
+  },
+  "intro": {
+    "register": "Register",  
+    "login": "Log In"
+  }, 
+  "register": {
+    "confirm_password": "Confirm Password", 
+    "password_not_match": "Passwords do not match",
+    "term_condition1": "By signing up, you agree to Autonomous’s ", 
+    "term_condition2": "Terms of Service", 
+    "term_condition3": " and ", 
+    "term_condition4": " Privacy Policy. "
+  },
+  "join":{
+    "content": "By Join, you agree to join ",
+    "join_workspace": "Join Workspace"
   },
   "home": {
     "title": "Home"
+  },
+  "office": {
+    "title": "Office"
+  },
+  "controll": {
+    "title": "Devices"
+  },
+  "seat": {
+    "book_seat": "book this desk"
+  },
+  "profile": {
+    "title": "Profile"
+  },
+  "configuration": {
+    "wifi": "Wifi name",
+    "wifi_password": "Wifi password"
+  }, 
+  "booking": {
+    "title": "My Booking"
+  },
+  "booking_detail": {
+    "cancel_booking": "Cancel booking"
+  },
+  "switch_workspace": {
+    "title": "Switch Workspace"
   }
 }
