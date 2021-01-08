@@ -24,6 +24,7 @@ export default async function request(config: AxiosRequestConfig, directResult =
     })
     .catch((error) => {
       console.log('@Error request from axios:', error);
+      return Promise.reject(error)
     });
 }
 
