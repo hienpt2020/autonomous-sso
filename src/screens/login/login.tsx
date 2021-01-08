@@ -8,7 +8,7 @@ import { PrimaryButton } from 'src/components/button'
 import { PrimaryInput } from 'src/components/input'
 import { Link } from 'src/components/link'
 import { BackHeaderX } from 'src/components/header'
-import { SSOApi } from 'src/services/networking';
+import { createLoginAction } from 'src/redux/user/userAction';
 import { LoginProps } from './types';
 import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
 import { styles } from './styles';
@@ -88,13 +88,7 @@ const Login = (props: LoginProps) => {
 
   }
   function handleLogin() {
-    SSOApi.login(email, password)
-      .then(response => {
-        
-      })
-      .catch(exception=>{
-        console.log(exception)
-      })
+    dispatch(createLoginAction(email, password));
 
   }
 
