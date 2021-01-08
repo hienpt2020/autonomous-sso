@@ -17,7 +17,7 @@ axios.defaults.timeout = 20000;
  */
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function request(config: AxiosRequestConfig, directResult = false) {
+async function requestAxios(config: AxiosRequestConfig, directResult = false) {
   return await axios(config)
     .then((response) => {
       return Promise.resolve(response.data || {});
@@ -32,5 +32,10 @@ export default async function request(config: AxiosRequestConfig, directResult =
  * usage: call this function to request api in generator functions
  */
 export function* requestSaga(config: any, isDirectResult?: boolean) {
-  return yield call(request, config, isDirectResult);
+  return yield call(requestAxios, config, isDirectResult);  
 }
+  
+export function request(config: any, isDirectResult?: boolean) {
+  return requestAxios(config, isDirectResult)
+}
+
