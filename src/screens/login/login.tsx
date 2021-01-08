@@ -8,7 +8,7 @@ import { PrimaryButton } from 'src/components/button'
 import { PrimaryInput } from 'src/components/input'
 import { Link } from 'src/components/link'
 import { BackHeaderX } from 'src/components/header'
-import { REQUEST_END, REQUEST_START } from 'src/redux/request/requestType';
+import { SSOApi } from 'src/services/networking';
 import { LoginProps } from './types';
 import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
 import { styles } from './styles';
@@ -17,19 +17,13 @@ import { RouteName } from 'src/routers/routeName';
 const Login = (props: LoginProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("kien.q@autonomous.nyc")
+  const [password, setPassword] = useState("123456")
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const emailValidator: Validator = new EmailValidator()
   const passwordValidator: Validator = new PasswordValidator()
 
-  React.useEffect(() => {
-    // dispatch({ type: REQUEST_START });
-    // setTimeout(() => dispatch({ type: REQUEST_END }), 3000);
-    //setEmailError(t('login.email_invalid'))
-    //setPasswordError(t('login.password_require'))
-  }, []);
 
   return (
 
@@ -51,7 +45,8 @@ const Login = (props: LoginProps) => {
           placeholder={t('common.password')}
           onChangeText={text => {
             setPasswordError('')
-            setPassword(text)}
+            setPassword(text)
+          }
           }
           secureTextEntry={true}
           errorMessage={passwordError} />
@@ -74,28 +69,35 @@ const Login = (props: LoginProps) => {
   }
   function validateLogin() {
     let validEmail, validPassword = false
-    if(emailValidator.isValid(email)){
-      validEmail = true 
+    if (emailValidator.isValid(email)) {
+      validEmail = true
       setEmailError(t(''))
-    }else{
+    } else {
       setEmailError(t('login.email_invalid'))
     }
-    if(passwordValidator.isValid(password)) {
-      validPassword = true 
+    if (passwordValidator.isValid(password)) {
+      validPassword = true
       setPasswordError(t(''))
-    }else {
+    } else {
       setPasswordError(t('login.password_require'))
     }
 
-    if(validEmail && validPassword){
+    if (validEmail && validPassword) {
       handleLogin()
     }
 
   }
   function handleLogin() {
-      props.navigation.navigate(RouteName.HOME)
+    SSOApi.login(email, password)
+      .then(response => {
+        
+      })
+      .catch(exception=>{
+        console.log(exception)
+      })
+
   }
-  
+
   function handleForgotPassword() {
     props.navigation.navigate(RouteName.FORGOT_PASSWORD)
   }
