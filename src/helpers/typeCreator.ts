@@ -1,7 +1,11 @@
+const REQUEST: string = 'GET';
+const SUCCESS: string = 'SUCCESS';
+const FAILURE: string = 'FAILURE';
+
 const defaultTypes = [REQUEST, SUCCESS, FAILURE];
 
-export function createRequestTypes(base: any, types = defaultTypes) {
-  const res = {};
-  types.forEach((type) => (res[type] = `${base}_${type}`));
+export function createActionTypes(base: string, types: string[] = defaultTypes): object {
+  const res: any = {};
+  types.forEach((type: any) => (res[type] = `${base}/${type}`));
   return res;
 }

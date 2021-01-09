@@ -1,18 +1,21 @@
 // Service
-import { takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import { HybridApi } from 'src/services/networking';
+import { WORKPLACE_GET_INFO_START } from './workplaceType';
+import { getWorkplaceLayoutSuccessAction } from './workplaceAction';
 
-export const workingPlaceSaga = function* root() {
-  yield takeLatest('GET_WORKING_PLACES_START', getListWorkspace);
+export const workplaceSaga = function* root() {
+  yield takeLatest(WORKPLACE_GET_INFO_START, getListWorkplaceLayout);
 };
 
 // DEFINE FUNCTIONS AS BELOW
-const getListWorkspace = function* getListWorkspace() {
+function* getListWorkplaceLayout() {
   try {
-    const response = yield HybridApi.getListWorkspace();
-
-    console.log('@Test login :', response);
+    const { code, data } = yield HybridApi.getListWorkingLayout(1);
+    if (code > 0) {
+      yield put(getWorkplaceLayoutSuccessAction(data));
+    }
   } catch (e) {
-    console.log('@@Error', e);
+    console.log('@@getListWorkspace', e);
   }
-};
+}
