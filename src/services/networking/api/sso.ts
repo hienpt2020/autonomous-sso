@@ -21,16 +21,19 @@ function _put(url: string, body: object, params?: object) {
 }
 const CLIENT_ID = "vflozjmgtirdrppu"
 /**List all API below */
-function login(email: string, password: string){
-    return _post('/auth/login', {email, password, CLIENT_ID})
+function login(email: string, password: string) {
+    return _post('/auth/login', { email, password, CLIENT_ID })
 }
-function validateToken(token: string){
-    return _post('/auth/introspect', {token, CLIENT_ID})
+function logout() {
+    return _get('/auth/logout')
 }
-function retrieveUserProfile(token: string){
+function validateToken(token: string) {
+    return _post('/auth/introspect', { token, CLIENT_ID })
+}
+function retrieveUserProfile() {
     return _get('/me/profile')
 }
 
 
-export const SSOApi = { login, validateToken, retrieveUserProfile }
+export const SSOApi = { login, logout, validateToken, retrieveUserProfile }
 

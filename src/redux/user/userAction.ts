@@ -1,45 +1,59 @@
-import { USER_LOGGED_IN, USER_LOGGED_OUT, USER_REQUEST_LOGIN, SET_INVALID_USER_TOKEN, VALIDATE_USER_TOKEN } from './userType';
+import { USER_LOGGED_IN, USER_LOGGED_OUT, REQUEST_LOGIN_ACTION, REQUEST_LOGOUT_ACTION, USER_INVALID_TOKEN, VALIDATE_USER_TOKEN, REQUEST_VALIDATE_ACCESS_TOKEN, UserState } from './userType';
 
-export interface RequestLoginAction {
-  type: typeof USER_REQUEST_LOGIN;
-  payload: {
-    email: string,
-    password: string
-  }
-}
-export interface LoginAction {
+export interface UserLoggedInAction {
   type: typeof USER_LOGGED_IN;
-  payload: object
+  payload: UserState
 }
 
-export interface LogoutAction {
+export interface UserLoggedOutAction {
   type: typeof USER_LOGGED_OUT;
 }
-export interface SetInvalidUserToken {
-  type: typeof SET_INVALID_USER_TOKEN;
+
+export function createLogoutAction(): UserLoggedOutAction {
+  return {
+    type: USER_LOGGED_OUT
+  }
 }
-export interface ValidateTokenAction {
-  type: typeof VALIDATE_USER_TOKEN;
+export function createLoginAction(userProfile: any): UserLoggedInAction {
+  console.log("hitle", userProfile)
+  return {
+    type: USER_LOGGED_IN,
+    payload: {
+      dateCreated: userProfile.date_created,
+      dateModified: userProfile.date_modified,
+      email: userProfile.email,
+      status: userProfile.status,
+      fullName: userProfile.full_name,
+      address: userProfile.address,
+      userAvatar: userProfile.user_avatar,
+      phone: userProfile.phone,
+      code: userProfile.code,
+      referralCode: userProfile.referral_code,
+      accountBirthday: userProfile.account_birthday,
+      source: userProfile.source,
+      isVerifiedEmail: userProfile.is_verified_email,
+      accessToken: userProfile.accessToken,
+    }
+  }
 }
 
-export function createLoginAction(email: string, password: string): RequestLoginAction {
+export function createRequestLoginAction(email: string, password: string): any {
   return {
-    type: USER_REQUEST_LOGIN,
+    type: REQUEST_LOGIN_ACTION,
     payload: {
       email,
       password
     }
   }
 }
-export function createInvalidTokenAction(): SetInvalidUserToken {
-  return {
-    type: SET_INVALID_USER_TOKEN
-  }
-}
 
-export function createValidateTokenAction(): ValidateTokenAction {
+export function createRequestLogoutAction(): object {
   return {
-    type: VALIDATE_USER_TOKEN
+    type: REQUEST_LOGOUT_ACTION
   }
 }
-export type UserAction = LoginAction | LogoutAction | SetInvalidUserToken | ValidateTokenAction;
+export function requestValidateAccessTokenAction(): object {
+  return {
+    type: REQUEST_VALIDATE_ACCESS_TOKEN
+  }
+}

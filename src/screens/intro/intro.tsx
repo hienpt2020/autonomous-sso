@@ -24,8 +24,9 @@ const Intro = (props: Props) => {
 
     const renderActionButton = () => {
         //It should be improve, status begin with verifying(don't show button) verified(true -> login/ faile stay in this screen)
-        switch (verifyState) {
-            case VerifyState.VERIFYING: return null
+        
+        switch (requestReducer.isLoading) {
+            case true: return null
             default: return <View style={styles.containerButton} >
                 <PrimaryButton title={t('intro.login')}
                     style={styles.button}
@@ -41,18 +42,9 @@ const Intro = (props: Props) => {
         }
 
     }
+
+
     
-    useEffect(() => {
-        dispatch(createValidateTokenAction())
-    }, [])
-    useEffect(() => {
-        if (requestReducer.isLoading) {
-            setVerifyState(VerifyState.VERIFYING)
-        } else {
-            const valid = userReducer.accessToken && userReducer.isValidToken
-            setVerifyState(valid ? VerifyState.VALID : VerifyState.INVALID)
-        }
-    }, [requestReducer.isLoading, userReducer.accessToken, userReducer.isValidToken])
     return (
         <View style={styles.container}>
             <View style={styles.wrapperLogo}>
@@ -63,6 +55,7 @@ const Intro = (props: Props) => {
 
         </View >
     )
+    
     function logIn(): void {
         props.navigation.navigate(RouteName.LOGIN)
     }

@@ -23,8 +23,17 @@ export interface UserState {
   isVerifiedEmail?: string,
 }
 
-export const USER_REQUEST_LOGIN = 'USER_REQUEST_LOGIN';
+//action to reducer
 export const USER_LOGGED_IN = 'USER_LOGGED_IN';
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
-export const SET_INVALID_USER_TOKEN = 'SET_INVALID_USER_TOKEN';
+//actions for middleware
+export const USER_INVALID_TOKEN = 'USER_INVALID_TOKEN';
 export const VALIDATE_USER_TOKEN = 'VALIDATE_USER_TOKEN';
+export const USER_REQUEST_LOGIN = 'USER_REQUEST_LOGIN';
+
+export const REQUEST_LOGIN_ACTION = 'REQUEST_LOGIN_ACTION';
+export const REQUEST_LOGOUT_ACTION = 'REQUEST_LOGOUT_ACTION';
+export const REQUEST_VALIDATE_ACCESS_TOKEN = 'REQUEST_VALIDATE_ACCESS_TOKEN';
+
+export const KEY_ACCESS_TOKEN = 'KEY_ACCESS_TOKEN';
+

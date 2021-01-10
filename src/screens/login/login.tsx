@@ -8,13 +8,11 @@ import { PrimaryButton } from 'src/components/button'
 import { PrimaryInput } from 'src/components/input'
 import { Link } from 'src/components/link'
 import { BackHeaderX } from 'src/components/header'
-import { createLoginAction } from 'src/redux/user/userAction';
-import { createRequestStartAction, createRequestErrorAction, createRequestSuccessAction, createRequestEndAction } from 'src/redux/request/requestAction';
+import { createRequestLoginAction } from 'src/redux/user/';
 import { LoginProps } from './types';
 import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
 import { styles } from './styles';
 import { RouteName } from 'src/routers/routeName';
-import { useLogger } from 'src/hooks/useLogger';
 
 const Login = (props: LoginProps) => {
   const { t } = useTranslation();
@@ -90,7 +88,7 @@ const Login = (props: LoginProps) => {
 
   }
   function handleLogin() {
-    dispatch(createLoginAction(email, password));
+    dispatch(createRequestLoginAction(email, password));
 
   }
 
