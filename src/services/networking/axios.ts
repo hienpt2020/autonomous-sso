@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { call } from 'redux-saga/effects';
+import { container } from "src/di/container";
+import { TYPES } from 'src/di/types';
 
 /**
  * config axios and api url
@@ -23,7 +25,6 @@ async function requestAxios(config: AxiosRequestConfig, directResult = false) {
       return Promise.resolve(response.data || {});
     })
     .catch((error) => {
-      console.log('@Error request from axios:', error);
       return Promise.reject(error)
     });
 }
@@ -32,9 +33,9 @@ async function requestAxios(config: AxiosRequestConfig, directResult = false) {
  * usage: call this function to request api in generator functions
  */
 export function* requestSaga(config: any, isDirectResult?: boolean) {
-  return yield call(requestAxios, config, isDirectResult);  
+  return yield call(requestAxios, config, isDirectResult);
 }
-  
+
 export function request(config: any, isDirectResult?: boolean) {
   return requestAxios(config, isDirectResult)
 }
