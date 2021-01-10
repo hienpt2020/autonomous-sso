@@ -1,4 +1,5 @@
 import store from '../../redux/store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const authHeader = () => {
   const headers = anonymousHeader();
@@ -17,3 +18,11 @@ export const anonymousHeader = () => {
     Authorization: '',
   };
 };
+export async function header() {
+  const token = await AsyncStorage.getItem('USER_TOKEN')
+  const headers = anonymousHeader();
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  return headers
+}

@@ -9,10 +9,12 @@ import { PrimaryInput } from 'src/components/input'
 import { Link } from 'src/components/link'
 import { BackHeaderX } from 'src/components/header'
 import { createLoginAction } from 'src/redux/user/userAction';
+import { createRequestStartAction, createRequestErrorAction, createRequestSuccessAction, createRequestEndAction } from 'src/redux/request/requestAction';
 import { LoginProps } from './types';
 import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
 import { styles } from './styles';
 import { RouteName } from 'src/routers/routeName';
+import { useLogger } from 'src/hooks/useLogger';
 
 const Login = (props: LoginProps) => {
   const { t } = useTranslation();
@@ -24,9 +26,9 @@ const Login = (props: LoginProps) => {
   const emailValidator: Validator = new EmailValidator()
   const passwordValidator: Validator = new PasswordValidator()
 
-
+  
   return (
-
+    
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
 

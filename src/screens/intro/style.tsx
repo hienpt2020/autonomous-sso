@@ -7,6 +7,10 @@ export const styles = StyleSheet.create({
     },
     wrapperLogo: {
         flex: 1,
+        position: 'absolute',
+        start: 0,
+        end: 0,
+        top: 0, bottom: 0,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -14,13 +18,14 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        paddingTop: 16,
-        paddingBottom: 16,
-        paddingStart: 8,
-        paddingEnd: 8,
+        position: 'absolute',
+        bottom: 32,
+        start: 16,
+        end: 16,
+
     },
     wrapperButton: {
-        flex: 1, 
+        flex: 1,
         margin: 8
     },
     button: {

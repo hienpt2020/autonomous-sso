@@ -1,4 +1,4 @@
-import { authHeader } from '../header';
+import { authHeader, header } from '../header';
 import { _get as __get, _post as __post, _delete as __delete, _put as __put } from '../request';
 import Config from 'react-native-config';
 
@@ -8,23 +8,29 @@ import Config from 'react-native-config';
  */
 const baseURL = Config.ENDPOINT_SSO
 function _get(url: string, params?: object) {
-    return __get(baseURL, url, authHeader, params)
+    return __get(baseURL, url, header(), params)
 }
 function _post(url: string, body?: object) {
-    return __post(baseURL, url, authHeader(), body ? body : {})
+    return __post(baseURL, url, header(), body ? body : {})
 }
 function _delete(url: string, params?: object) {
-    return __delete(baseURL, url, authHeader(), params)
+    return __delete(baseURL, url, header(), params)
 }
 function _put(url: string, body: object, params?: object) {
-    return __put(baseURL, url, authHeader(), body, params)
+    return __put(baseURL, url, header(), body, params)
 }
+const CLIENT_ID = "vflozjmgtirdrppu"
 /**List all API below */
 function login(email: string, password: string){
-    const client_id = "vflozjmgtirdrppu"
-    return _post('/auth/login', {email, password, client_id})
+    return _post('/auth/login', {email, password, CLIENT_ID})
+}
+function validateToken(token: string){
+    return _post('/auth/introspect', {token, CLIENT_ID})
+}
+function retrieveUserProfile(token: string){
+    return _post('/me/profile', {token, CLIENT_ID})
 }
 
 
-export const SSOApi = { login }
+export const SSOApi = { login, validateToken, retrieveUserProfile }
 
