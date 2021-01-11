@@ -1,24 +1,26 @@
-import { PropsBase } from 'src/types/propsBase'
-import { RouteName } from 'src/routers/routeName'
-export class BookingData {
-    id: string
-    name: string
-    address: string
-    timeFrom: number
-    timeTo: number
-    workspace: string
-    constructor(id: string, name: string, address: string, timeFrom: number, timeTo: number, workspace: string) {
-        this.id = id
-        this.name = name
-        this.address = address
-        this.timeFrom = timeFrom
-        this.timeTo = timeTo
-        this.workspace = workspace
-    }
+import { PropsBase } from 'src/types/propsBase';
+import { RouteName } from 'src/routers/routeName';
+import { Booking } from 'src/services/networking/modal/booking/Booking';
+import moment from 'moment';
 
+export class BookingData {
+  id: number;
+  name: string;
+  address: string;
+  timeFrom: string;
+  timeTo: string;
+  workspace: string;
+
+  constructor(booking: Booking) {
+    this.id = booking.id;
+    this.name = booking.working_place.working_place_types.type_name + ' ' + booking.working_place.code.toString();
+    this.address = booking.working_place.working_space_layout.street;
+    this.timeFrom = moment(booking.from).format('MM ddd, YYYY');
+    this.timeTo = moment(booking.to).format('MM ddd, YYYY');
+    this.workspace = booking.working_place.working_space_layout.name;
+  }
 }
 export interface Presenter {
-    fetchBooking(): BookingData[]
+  fetchBooking(): BookingData[];
 }
-export interface Props extends PropsBase<RouteName.MY_BOOKING> { }
-
+export interface Props extends PropsBase<RouteName.MY_BOOKING> {}
