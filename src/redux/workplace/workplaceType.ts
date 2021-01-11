@@ -6,6 +6,10 @@ export const WORKPLACE_GET_INFO_FILTER_START = 'WORKPLACE/GET_INFO_FILTER_START'
 export const WORKPLACE_GET_INFO_FILTER_SUCCESS = 'WORKPLACE/GET_INFO_FILTER_SUCCESS';
 export const WORKPLACE_GET_INFO_FILTER_FAILED = 'WORKPLACE/GET_INFO_FILTER_FAILED';
 
+export const WORKPLACE_GET_INFO_FILTER_BY_DATE_START = 'WORKPLACE/GET_INFO_FILTER_BY_DATE_START';
+export const WORKPLACE_GET_INFO_FILTER_BY_DATE_SUCCESS = 'WORKPLACE/GET_INFO_FILTER_BY_DATE_SUCCESS';
+export const WORKPLACE_GET_INFO_FILTER_BY_DATE_FAILED = 'WORKPLACE/GET_INFO_FILTER_BY_DATE_FAILED';
+
 export interface IWorkplaceLayout {
   floorPlan?: [];
   address: string;
@@ -86,7 +90,11 @@ export interface IWorkplaceStateReducer {
   layout?: IWorkplaceLayoutsPayload;
   filter?: IWorkplaceFiltersPayload;
 }
-
+export interface IParamGetWorkplaceByDate {
+  layoutId: number;
+  from: string;
+  to: string;
+}
 export interface IGetWorkplaceActionType {
   type:
     | typeof WORKPLACE_GET_INFO_LAYOUT_START
@@ -94,8 +102,9 @@ export interface IGetWorkplaceActionType {
     | typeof WORKPLACE_GET_INFO_LAYOUT_FAILED
     | typeof WORKPLACE_GET_INFO_FILTER_START
     | typeof WORKPLACE_GET_INFO_FILTER_SUCCESS
-    | typeof WORKPLACE_GET_INFO_FILTER_FAILED;
-  payload?: IWorkplaceStateReducer;
+    | typeof WORKPLACE_GET_INFO_FILTER_FAILED
+    | typeof WORKPLACE_GET_INFO_FILTER_BY_DATE_START;
+  payload?: IWorkplaceStateReducer | IParamGetWorkplaceByDate;
 }
 
 export const formatWorkplaceLayout = (data: any) => {

@@ -11,10 +11,9 @@ import { RouteName } from 'src/routers/routeName';
 import { CardItem, CardData } from './card';
 // import { Card } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getWorkplaceFilterByIdStartAction,
-  getWorkplaceLayoutStartAction,
-} from '../../redux/workplace/workplaceAction';
+import { getWorkplaceLayoutStartAction } from '../../redux/workplace/workplaceAction';
+import { Empty } from '../../components/empty';
+import { Loading } from '../../components/loading/loading';
 
 const Office = (props: Props) => {
   // const initialData: SectionData[] = [];
@@ -50,16 +49,21 @@ const Office = (props: Props) => {
       {/*  getItemLayout={(data, index) => getItemLayout(data, index)}*/}
       {/*  renderSectionHeader={({ section: { title } }) => renderHeader(title)}*/}
       {/*/>*/}
-      <FlatList
-        data={presenter.formatOffice(layout.items)}
-        renderItem={({ item }) => renderItem(item)}
-        keyExtractor={(item) => item.id + ''}
-      />
+      {layout.isLoading ? (
+        <Loading />
+      ) : layout.items.length > 0 ? (
+        <FlatList
+          data={presenter.formatOffice(layout.items)}
+          renderItem={({ item }) => renderItem(item)}
+          keyExtractor={(item) => item.id + ''}
+        />
+      ) : (
+        <Empty />
+      )}
     </SafeAreaView>
   );
   function onItemSelected(data: CardData) {
     props.navigation.navigate(RouteName.MAP, { floorId: data.id, floorName: data.name });
-    dispatch(getWorkplaceFilterByIdStartAction(data.id));
   }
 };
 

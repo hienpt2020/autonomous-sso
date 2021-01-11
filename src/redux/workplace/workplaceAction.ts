@@ -2,6 +2,8 @@ import {
   formatWorkplaceFilter,
   formatWorkplaceLayout,
   IGetWorkplaceActionType,
+  IParamGetWorkplaceByDate,
+  WORKPLACE_GET_INFO_FILTER_BY_DATE_START,
   WORKPLACE_GET_INFO_FILTER_START,
   WORKPLACE_GET_INFO_FILTER_SUCCESS,
   WORKPLACE_GET_INFO_LAYOUT_START,
@@ -39,6 +41,17 @@ export const getWorkplaceFilterByIdStartAction = (layoutId: number): IGetWorkpla
     payload: {
       layoutId,
     },
+  };
+};
+
+export const getWorkplaceFilterByDateStartAction = (
+  layoutId: number,
+  from: string,
+  to: string,
+): IGetWorkplaceActionType => {
+  return {
+    type: WORKPLACE_GET_INFO_FILTER_BY_DATE_START,
+    payload: { layoutId, from, to },
   };
 };
 

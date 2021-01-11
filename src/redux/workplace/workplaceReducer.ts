@@ -1,5 +1,6 @@
 import {
   IWorkplaceStateReducer,
+  WORKPLACE_GET_INFO_FILTER_BY_DATE_START,
   WORKPLACE_GET_INFO_FILTER_FAILED,
   WORKPLACE_GET_INFO_FILTER_START,
   WORKPLACE_GET_INFO_FILTER_SUCCESS,
@@ -41,12 +42,16 @@ export function workplaceReducer(
     case WORKPLACE_GET_INFO_LAYOUT_START:
       return {
         ...state,
-        filter: {
-          ...state.filter,
-          isLoading: false,
+        layout: {
+          ...state.layout,
+          isLoading: true,
         },
       };
     case WORKPLACE_GET_INFO_LAYOUT_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+      };
     case WORKPLACE_GET_INFO_LAYOUT_FAILED:
       return {
         ...state,
@@ -55,9 +60,9 @@ export function workplaceReducer(
     case WORKPLACE_GET_INFO_FILTER_START:
       return {
         ...state,
-        layout: {
-          ...state.layout,
-          isLoading: false,
+        filter: {
+          ...state.filter,
+          isLoading: true,
         },
       };
     case WORKPLACE_GET_INFO_FILTER_SUCCESS:
@@ -66,6 +71,18 @@ export function workplaceReducer(
         ...action.payload,
       };
     case WORKPLACE_GET_INFO_FILTER_FAILED:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    case WORKPLACE_GET_INFO_FILTER_BY_DATE_START:
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          isLoading: true,
+        },
+      };
     default:
       return state;
   }
