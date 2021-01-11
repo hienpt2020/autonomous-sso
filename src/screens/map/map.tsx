@@ -30,8 +30,9 @@ const Map = (props: Props) => {
   const timeFormatter = 'hh:mm MMM DD';
   const presenter: Presenter = new PresenterImpl();
   const today = new Date();
+  today.setHours(today.getHours() + 1, 0, 0, 0);
   const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(tomorrow.getHours() + 2);
 
   const { t } = useTranslation();
   const [mapData, setMapData] = useState(initialData);
@@ -128,13 +129,17 @@ const Map = (props: Props) => {
     props.navigation.navigate(RouteName.SEAT);
   }
   function setConsiderDate(date: Date) {
-    let _dateFrom: Date = dateFrom;
-    let _dateTo: Date = dateTo;
+    let _dateFrom = dateFrom;
+    let _dateTo = dateTo;
     if (isFrom) {
-      _dateFrom = date;
+      if (moment(_dateTo).diff(moment(_dateFrom), 'hours') > 2) {
+        _dateTo.setHours(date.getHours() + 2);
+      }
       setDateFrom(date);
+      setDateTo(_dateTo);
     } else {
-      _dateTo = date;
+      _dateFrom.setHours(date.getHours() - 2);
+      setDateFrom(_dateFrom);
       setDateTo(date);
     }
     setDate(date);
