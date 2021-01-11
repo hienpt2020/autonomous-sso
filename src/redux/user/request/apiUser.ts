@@ -10,7 +10,7 @@ async function retrieveUserProfile(token: string) {
       status: response.status,
     })
   } catch (error) {
-    return ({ error })
+    return (error)
   }
 }
 

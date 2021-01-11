@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { call, put } from 'redux-saga/effects';
-import { createRequestStartAction, createRequestErrorAction, createRequestEndAction } from 'src/redux/request/requestAction';
+import { createRequestStartAction, createRequestErrorMessageAction, createRequestEndAction } from 'src/redux/request/requestAction';
 import { createLoginAction } from '../userAction'
 import { requestLogin, retrieveUserProfile } from './apiUser';
+import _ from 'lodash'
 
 export function* requestLoginAction(action: any) {
     yield put(createRequestStartAction())
@@ -17,11 +18,13 @@ export function* requestLoginAction(action: any) {
             userProfile.accessToken = token;
             yield put(createLoginAction(userProfile));
         } else {
-            yield put(createRequestErrorAction(error));
+            const message = _.get(error, 'errorMessage', "Something went wrong")
+            yield put(createRequestErrorMessageAction(message));
         }
 
     } else {
-        yield put(createRequestErrorAction(error))
+        const message = _.get(error, 'errorMessage', "Something went wrong")
+        yield put(createRequestErrorMessageAction(message))
     }
     yield put(createRequestEndAction())
 };

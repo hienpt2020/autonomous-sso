@@ -16,14 +16,13 @@ export default StyleSheet.create({
 
   },
   textButton: {
-    color: AppColor.PRIMARY,
-
+    color: AppColor.WHITE,
   },
   container: {
     backgroundColor: AppColor.WHITE,
     margin: 20,
     borderRadius: 20,
-    padding: 35,
+    padding: 32,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -35,9 +34,13 @@ export default StyleSheet.create({
     elevation: 5
   },
   button: {
-    backgroundColor: "#F194FF",
+    backgroundColor: AppColor.PRIMARY,
+    marginTop: 32,
     borderRadius: 20,
-    padding: 10,
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingStart: 16,
+    paddingEnd: 16,
     elevation: 2
   },
 });

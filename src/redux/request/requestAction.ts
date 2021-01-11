@@ -16,16 +16,24 @@ export interface RequestSuccessAction {
 export interface RequestErrorAction {
   type: typeof REQUEST_ERROR;
   payload: any;
+  errorMessage?: string;
 }
 export function createRequestStartAction(): RequestStartAction {
   return {
     type: REQUEST_START
   }
 }
-export function createRequestErrorAction(message: string): RequestErrorAction {
+export function createRequestErrorAction(payload: object): RequestErrorAction {
   return {
     type: REQUEST_ERROR, 
-    payload: message
+    payload
+  }
+}
+export function createRequestErrorMessageAction(message: string, payload?: object): RequestErrorAction {
+  return {
+    type: REQUEST_ERROR, 
+    payload,
+    errorMessage: message
   }
 }
 

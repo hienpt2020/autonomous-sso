@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { call } from 'redux-saga/effects';
-import { container } from "src/di/container";
-import { TYPES } from 'src/di/types';
+import _ from "lodash";
 
 /**
  * config axios and api url
@@ -22,40 +21,33 @@ axios.defaults.timeout = 20000;
 async function requestAxios(config: AxiosRequestConfig, directResult = false) {
   return await axios(config)
     .then((response) => {
-      console.info(
-        config.baseURL,
-        config.url,
-        config.headers,
-        "\n***RESPONSE***\n",
-        response
-      )
       return Promise.resolve({
-        ...response.data,  
+        ...response.data,
         status: response.status
-      }|| {});
+      } || {});
     })
     .catch((error) => {
+      let result = { data: { error: { message: "Something went wrong" } } }
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
+        result = {
+          ...error.response.data,
+          status: error.response.status,
+        }
       } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
         console.log(error.request);
+        result = { ...error.request }
       } else {
         // Something happened in setting up the request that triggered an Error
-        console.log('Error', error.message);
+        result = {...error}
       }
-      console.log(error.config);
-
-
       return Promise.reject({
-        data: error.response.data,
-        status: error.response.status,
+        ...result, 
+        errorMessage: _.get(error, 'response.data.error.message')
       })
     });
 }
