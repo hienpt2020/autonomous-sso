@@ -1,13 +1,18 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore, StoreEnhancer } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { applyAppEnhances } from '../config';
 import * as reducers from './reducers';
-import { RootState } from './types';
 import rootSaga from './sagas';
+import { RootState } from './types';
 
 const appReducer = combineReducers<RootState>(reducers);
 const sagaMiddleware = createSagaMiddleware();
 
-export default createStore(appReducer, applyMiddleware(sagaMiddleware));
+let enhancers: StoreEnhancer;
+
+enhancers = applyAppEnhances([applyMiddleware(sagaMiddleware)]);
+
+export default createStore(appReducer, enhancers);
 
 // then run the saga
 sagaMiddleware.run(rootSaga);
