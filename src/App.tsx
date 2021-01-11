@@ -7,10 +7,7 @@ import { Spinner } from './components/spinner';
 import store from './redux/store';
 import { MainStackNavigator } from './routers/mainStack';
 import { navigationRef } from './routers/rootNavigation';
-
-if (__DEV__) {
-  import('./config/reactotronConfig').then(() => console.log('Reactotron Configured'));
-}
+import './config';
 
 const App = () => {
   return (
