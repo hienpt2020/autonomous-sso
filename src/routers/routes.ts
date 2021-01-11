@@ -9,7 +9,7 @@ export type RootStackParams = {
   [RouteName.REGISTER]: undefined;
   [RouteName.JOINING]: { workspace: string };
   [RouteName.HOME]: undefined;
-  [RouteName.MAP]: { floorId: string, floorName: string };
+  [RouteName.MAP]: { floorId: number; floorName: string };
   [RouteName.SEAT]: undefined;
   [RouteName.BOOKING_RESULT]: undefined;
   [RouteName.SEAT_ADMIN]: undefined;
@@ -23,7 +23,6 @@ export type RootStackParams = {
 export type RootStackParamType = keyof RootStackParams;
 
 export const publicRoutes: RouteProps[] = [
-
   {
     name: RouteName.INTRO,
     component: require('src/screens/intro').default,
@@ -47,9 +46,8 @@ export const publicRoutes: RouteProps[] = [
   {
     name: RouteName.REGISTER,
     component: require('src/screens/register').default,
-  }
+  },
 ];
-
 
 export const authenticatedRoutes: RouteProps[] = [
   {
@@ -92,5 +90,4 @@ export const authenticatedRoutes: RouteProps[] = [
     name: RouteName.MAP,
     component: require('src/screens/map').default,
   },
-
 ];

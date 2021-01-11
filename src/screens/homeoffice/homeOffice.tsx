@@ -1,17 +1,20 @@
 import * as React from 'react';
-import { Image, SectionList, Text, View, Dimensions, FlatList } from 'react-native';
-import { useState, useEffect } from 'react';
+import { FlatList } from 'react-native';
+import { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header } from 'src/components/header';
 import { useTranslation } from 'react-i18next';
-import { Props, SectionData, Presenter } from './types';
+import { Props, Presenter } from './types';
 import { PresenterImpl } from './presenter';
 import { styles } from './styles';
 import { RouteName } from 'src/routers/routeName';
 import { CardItem, CardData } from './card';
-import { Card } from 'react-native-elements';
+// import { Card } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
-import { getWorkplaceLayoutStartAction } from '../../redux/workplace/workplaceAction';
+import {
+  getWorkplaceFilterByIdStartAction,
+  getWorkplaceLayoutStartAction,
+} from '../../redux/workplace/workplaceAction';
 
 const Office = (props: Props) => {
   // const initialData: SectionData[] = [];
@@ -19,7 +22,7 @@ const Office = (props: Props) => {
   // const [sectionData, setSectionData] = useState(initialData);
   const dispatch = useDispatch();
   const presenter: Presenter = new PresenterImpl();
-  const { items } = useSelector((state) => state.workplaceReducer);
+  const { layout } = useSelector((state) => state.workplaceReducer);
 
   useEffect(() => {
     dispatch(getWorkplaceLayoutStartAction());
@@ -48,7 +51,7 @@ const Office = (props: Props) => {
       {/*  renderSectionHeader={({ section: { title } }) => renderHeader(title)}*/}
       {/*/>*/}
       <FlatList
-        data={presenter.formatOffice(items)}
+        data={presenter.formatOffice(layout.items)}
         renderItem={({ item }) => renderItem(item)}
         keyExtractor={(item) => item.id + ''}
       />
@@ -56,6 +59,7 @@ const Office = (props: Props) => {
   );
   function onItemSelected(data: CardData) {
     props.navigation.navigate(RouteName.MAP, { floorId: data.id, floorName: data.name });
+    dispatch(getWorkplaceFilterByIdStartAction(data.id));
   }
 };
 

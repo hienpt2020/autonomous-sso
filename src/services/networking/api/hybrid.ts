@@ -34,7 +34,7 @@ function getListWorkingPlaceById(layoutId: number) {
   return _get(`working-place/${layoutId}`);
 }
 
-function getListWorkingPlaceByDate(layoutId: string, from: string, to: string) {
+function getListWorkingPlaceByDate(layoutId: number, from: string, to: string) {
   return _get(`working-place-filter/filter-available-by-date/${layoutId}`, { from, to, layoutID: layoutId });
 }
 
