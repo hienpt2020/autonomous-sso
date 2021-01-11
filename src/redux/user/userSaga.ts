@@ -1,9 +1,9 @@
 // Service
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 import { REQUEST_LOGOUT_ACTION, REQUEST_LOGIN_ACTION, REQUEST_VALIDATE_ACCESS_TOKEN } from './userType';
-import { requestLoginAction } from './actions/requestLoginAction';
-import { requestLogoutAction } from './actions/requestLogoutAction';
-import { validateUserToken } from './actions/validateUserToken';
+import { requestLoginAction } from './request/requestLoginAction';
+import { requestLogoutAction } from './request/requestLogoutAction';
+import { validateUserToken } from './request/validateUserToken';
 
 
 

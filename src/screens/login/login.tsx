@@ -17,8 +17,8 @@ import { RouteName } from 'src/routers/routeName';
 const Login = (props: LoginProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("kien.q@autonomous.nyc")
+  const [password, setPassword] = useState("123456")
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const emailValidator: Validator = new EmailValidator()

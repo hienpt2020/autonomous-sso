@@ -1,5 +1,6 @@
 export interface RequestState {
   isLoading: boolean;
+  payload?: any
 }
 
 export const REQUEST_START = 'REQUEST_START';

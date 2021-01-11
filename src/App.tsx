@@ -7,6 +7,7 @@ import { Spinner } from './components/spinner';
 import store from './redux/store';
 import { MainStackNavigator } from './routers/mainStack';
 import { navigationRef } from './routers/rootNavigation';
+import { Popup } from './components/popup';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <MainStackNavigator />
           {/* Global components */}
           <Spinner />
+          <Popup />
         </NavigationContainer>
       </SafeAreaProvider>
     </Provider>
