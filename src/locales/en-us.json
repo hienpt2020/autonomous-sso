@@ -13,7 +13,8 @@
     "assets": "Assets",
     "policies": "Policies",
     "code": "Code", 
-    "done": "Done"
+    "done": "Done", 
+    "error": "Something went wrong"
     
   },
   "button": {
@@ -35,7 +36,8 @@
     "term_condition1": "By signing up, you agree to Autonomous’s ", 
     "term_condition2": "Terms of Service", 
     "term_condition3": " and ", 
-    "term_condition4": " Privacy Policy. "
+    "term_condition4": " Privacy Policy. ", 
+    "verify_email":"Please check your email to verify your account"
   },
   "join":{
     "content": "By Join, you agree to join ",

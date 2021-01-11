@@ -15,7 +15,6 @@ export function createLogoutAction(): UserLoggedOutAction {
   }
 }
 export function createLoginAction(userProfile: any): UserLoggedInAction {
-  console.log("hitle", userProfile)
   return {
     type: USER_LOGGED_IN,
     payload: {

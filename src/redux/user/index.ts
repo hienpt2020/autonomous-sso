@@ -1,5 +1,9 @@
 export {
+    createRequestLoginAction,
     createRequestLogoutAction,
-    createRequestLoginAction, 
     requestValidateAccessTokenAction
 } from './userAction'
+export {
+    createRequestRegisterAction
+} from './userSaga'
+
