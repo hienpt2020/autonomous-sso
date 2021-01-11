@@ -4,6 +4,7 @@ import * as reducers from './reducers';
 import { RootState } from './types';
 import rootSaga from './sagas';
 import logger from 'redux-logger';
+import reactotron from '../config/reactotronConfig';
 
 const appReducer = combineReducers<RootState>(reducers);
 const sagaMiddleware = createSagaMiddleware();
@@ -11,7 +12,7 @@ const sagaMiddleware = createSagaMiddleware();
 let enhancers: any;
 
 if (__DEV__) {
-  enhancers = compose(applyMiddleware(sagaMiddleware), applyMiddleware(logger));
+  enhancers = compose(applyMiddleware(sagaMiddleware), applyMiddleware(logger), reactotron.createEnhancer());
 } else {
   enhancers = compose(applyMiddleware(sagaMiddleware));
 }

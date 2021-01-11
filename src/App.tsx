@@ -8,13 +8,17 @@ import store from './redux/store';
 import { MainStackNavigator } from './routers/mainStack';
 import { navigationRef } from './routers/rootNavigation';
 
+if (__DEV__) {
+  import('./config/reactotronConfig').then(() => console.log('Reactotron Configured'));
+}
+
 const App = () => {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
         <NavigationContainer ref={navigationRef}>
           {/* Navigations */}
-            <MainStackNavigator />
+          <MainStackNavigator />
           {/* Global components */}
           <Spinner />
         </NavigationContainer>
