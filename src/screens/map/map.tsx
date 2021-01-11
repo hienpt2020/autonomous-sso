@@ -27,12 +27,13 @@ const Map = (props: Props) => {
   const FIXED_ITEM_HEIGHT = 140;
   const FIXED_DATE_TIME = 300;
   const NUM_COLUMNS = 2;
+  const HOUR_GAP = 2;
   const timeFormatter = 'hh:mm MMM DD';
   const presenter: Presenter = new PresenterImpl();
   const today = new Date();
   today.setHours(today.getHours() + 1, 0, 0, 0);
   const tomorrow = new Date(today);
-  tomorrow.setHours(tomorrow.getHours() + 2);
+  tomorrow.setHours(tomorrow.getHours() + HOUR_GAP);
 
   const { t } = useTranslation();
   const [mapData, setMapData] = useState(initialData);
@@ -133,12 +134,12 @@ const Map = (props: Props) => {
     let _dateTo = dateTo;
     if (isFrom) {
       if (moment(_dateTo).diff(moment(_dateFrom), 'hours') > 2) {
-        _dateTo.setHours(date.getHours() + 2);
+        _dateTo.setHours(date.getHours() + HOUR_GAP);
       }
       setDateFrom(date);
       setDateTo(_dateTo);
     } else {
-      _dateFrom.setHours(date.getHours() - 2);
+      _dateFrom.setHours(date.getHours() - HOUR_GAP);
       setDateFrom(_dateFrom);
       setDateTo(date);
     }
