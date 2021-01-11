@@ -95,6 +95,7 @@ export interface IParamGetWorkplaceByDate {
   from: string;
   to: string;
 }
+
 export interface IGetWorkplaceActionType {
   type:
     | typeof WORKPLACE_GET_INFO_LAYOUT_START

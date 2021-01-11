@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getWorkplaceLayoutStartAction } from '../../redux/workplace/workplaceAction';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
+import { getWorkspaceStartAction } from '../../redux/workspace/workspaceAction';
 
 const Office = (props: Props) => {
   // const initialData: SectionData[] = [];
@@ -22,9 +23,10 @@ const Office = (props: Props) => {
   const dispatch = useDispatch();
   const presenter: Presenter = new PresenterImpl();
   const { layout } = useSelector((state) => state.workplaceReducer);
+  const workspaceReducer = useSelector((state) => state.workspaceReducer);
 
   useEffect(() => {
-    dispatch(getWorkplaceLayoutStartAction());
+    dispatch(getWorkspaceStartAction());
     // let floorsResult = presenter.fetchFloor();
     // setSectionData(floorsResult);
   }, []);
@@ -49,7 +51,7 @@ const Office = (props: Props) => {
       {/*  getItemLayout={(data, index) => getItemLayout(data, index)}*/}
       {/*  renderSectionHeader={({ section: { title } }) => renderHeader(title)}*/}
       {/*/>*/}
-      {layout.isLoading ? (
+      {layout.isLoading || workspaceReducer.isLoading ? (
         <Loading />
       ) : layout.items.length > 0 ? (
         <FlatList

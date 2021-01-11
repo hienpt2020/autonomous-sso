@@ -19,11 +19,22 @@ export function workspaceReducer(
 ): IWorkspaceStateReducer {
   switch (action.type) {
     case WORKSPACE_GET_INFO_START:
+      return {
+        ...state,
+        ...action.payload,
+        isLoading: true,
+      };
     case WORKSPACE_GET_INFO_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+        isLoading: false,
+      };
     case WORKSPACE_GET_INFO_FAILED:
       return {
         ...state,
         ...action.payload,
+        isLoading: false,
       };
     default:
       return state;
