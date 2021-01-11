@@ -1,8 +1,11 @@
 import * as React from 'react'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Image } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { createRequestLogoutAction } from 'src/redux/user'
 import { Props } from './types';
 import { styles } from './styles';
 import { Link } from 'src/components/link';
@@ -11,6 +14,7 @@ import { RouteName } from 'src/routers/routeName';
 
 const Profile = (props: Props) => {
     const { t } = useTranslation()
+    const dispatch = useDispatch()
 
     useEffect(() => {
     }, [])
@@ -26,6 +30,7 @@ const Profile = (props: Props) => {
                 onPress={() => props.navigation.navigate(RouteName.SWITCH_WORKSPACE)}
                 title={workspace} />
             <SecondaryButton wrapperContainer={styles.containerButton}
+                onPress={() => dispatch(createRequestLogoutAction())}
                 title={t('common.logout')} />
         </SafeAreaView>
     )

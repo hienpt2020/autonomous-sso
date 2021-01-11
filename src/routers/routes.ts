@@ -19,11 +19,11 @@ export type RootStackParams = {
   [RouteName.MY_BOOKING]: undefined;
   [RouteName.BOOKING_DETAIL]: undefined;
   [RouteName.SWITCH_WORKSPACE]: undefined;
+
 };
 export type RootStackParamType = keyof RootStackParams;
 
 export const publicRoutes: RouteProps[] = [
-
   {
     name: RouteName.INTRO,
     component: require('src/screens/intro').default,
@@ -48,8 +48,8 @@ export const publicRoutes: RouteProps[] = [
     name: RouteName.REGISTER,
     component: require('src/screens/register').default,
   }
-];
 
+];
 
 export const authenticatedRoutes: RouteProps[] = [
   {
