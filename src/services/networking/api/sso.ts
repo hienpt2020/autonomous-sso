@@ -1,6 +1,7 @@
 import { authHeader } from '../header';
 import { _get as __get, _post as __post, _delete as __delete, _put as __put } from '../request';
 import Config from 'react-native-config';
+import reactotron from 'src/config/configReactoron';
 
 /**
  * @param url: string, required
@@ -33,7 +34,29 @@ function validateToken(token: string) {
 function retrieveUserProfile() {
     return _get('/me/profile')
 }
+function activeAccount(token: string) {
+    return _post('/auth/activate', { token })
+}
+
+function getUserProfile(userId: string) {
+    return _get(`/users/${userId}`)
+}
+function register(email: string, password: string, confirmPassword: string) {
+    reactotron.log(email, password, confirmPassword)
+    return _post('/auth/register', {
+        email, 
+        password, 
+        confirm_password: confirmPassword
+    })
+}
 
 
-export const SSOApi = { login, logout, validateToken, retrieveUserProfile }
+
+export const SSOApi = { login, 
+    logout, 
+    validateToken, 
+    retrieveUserProfile, 
+    activeAccount,
+    register
+}
 

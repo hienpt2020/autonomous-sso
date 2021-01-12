@@ -60,6 +60,7 @@
 		825698C36D6DA2E81CD71EBA /* libPods-RNCodebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCodebase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D73C595C7387FB95CB6E32E /* Pods-RNCodebase-RNCodebaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-RNCodebaseTests.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase-RNCodebaseTests/Pods-RNCodebase-RNCodebaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		9223E6F09CC0AE45680D13B2 /* Pods-RNCodebase-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-tvOS.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase-tvOS/Pods-RNCodebase-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		AD4B947D25AD1521001E78BE /* RNCodebase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = RNCodebase.entitlements; path = RNCodebase/RNCodebase.entitlements; sourceTree = "<group>"; };
 		AD9EAB1A25A3D663005F6E1C /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNSVG.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA10D85B670632C3067AC600 /* Pods-RNCodebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase/Pods-RNCodebase.release.xcconfig"; sourceTree = "<group>"; };
 		BA8703EEC1FD20E461FCB41D /* Pods-RNCodebase-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase-tvOSTests/Pods-RNCodebase-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		13B07FAE1A68108700A75B9A /* RNCodebase */ = {
 			isa = PBXGroup;
 			children = (
+				AD4B947D25AD1521001E78BE /* RNCodebase.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -730,6 +732,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = RNCodebase/RNCodebase.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -757,6 +760,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = RNCodebase/RNCodebase.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = RNCodebase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

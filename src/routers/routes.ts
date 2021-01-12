@@ -19,6 +19,7 @@ export type RootStackParams = {
   [RouteName.MY_BOOKING]: undefined;
   [RouteName.BOOKING_DETAIL]: undefined;
   [RouteName.SWITCH_WORKSPACE]: undefined;
+  [RouteName.DEEPLINK_REGISTER]: undefined;
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -46,6 +47,10 @@ export const publicRoutes: RouteProps[] = [
   {
     name: RouteName.REGISTER,
     component: require('src/screens/register').default,
+  }, 
+  {
+    name: RouteName.DEEPLINK_REGISTER,
+    component: require('src/screens/redirect-register').default,
   }
 
 ];

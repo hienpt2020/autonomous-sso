@@ -34,5 +34,25 @@ async function requestLogout() {
     return ({ error });
   }
 }
-export { requestLogin, retrieveUserProfile, requestLogout }
-export const apiUser = { requestLogin, retrieveUserProfile, requestLogout } 
+async function requestRegister(email: string, password: string, confirmPassword: string) {
+  try {
+    const response = await SSOApi.register(email, password, confirmPassword);
+    const { access_token } = response.data;
+    AsyncStorage.setItem(KEY_ACCESS_TOKEN, access_token);
+    return ({ response });
+  } catch (error) {
+    return ({ error });
+  }
+}
+export {
+  requestLogin,
+  retrieveUserProfile,
+  requestLogout,
+  requestRegister
+}
+export const apiUser = {
+  requestLogin,
+  retrieveUserProfile,
+  requestLogout,
+  requestRegister
+} 

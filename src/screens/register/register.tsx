@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { View, KeyboardAvoidingView, Platform, Text } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { PrimaryButton } from 'src/components/button'
-import { PrimaryInput } from 'src/components/input'
-import { BackHeaderX } from 'src/components/header'
-import { REQUEST_END, REQUEST_START } from 'src/redux/request/requestType';
-import { Props } from './types';
-import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators'
+import { useTranslation } from 'react-i18next';
+import { KeyboardAvoidingView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux';
+import { PrimaryButton } from 'src/components/button';
+import { BackHeaderX } from 'src/components/header';
+import { PrimaryInput } from 'src/components/input';
+import reactotron from 'src/config/configReactoron';
+import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
+import { createRequestRegisterAction } from 'src/redux/user';
 import { styles } from './styles';
-import { RouteName } from 'src/routers/routeName';
+import { Props } from './types';
 
 const Login = (props: Props) => {
   const { t } = useTranslation();
@@ -30,6 +30,7 @@ const Login = (props: Props) => {
     // setTimeout(() => dispatch({ type: REQUEST_END }), 3000);
     //setEmailError(t('login.email_invalid'))
     //setPasswordError(t('login.password_require'))
+    reactotron.log(props.route.params)
   }, []);
 
   return (
@@ -45,6 +46,7 @@ const Login = (props: Props) => {
             setEmail(text)
             setEmailError('')
           }}
+          autoCapitalize="none"
           keyboardType='email-address'
           errorMessage={emailError} />
         <PrimaryInput
@@ -126,12 +128,7 @@ const Login = (props: Props) => {
 
   }
   function handleRegister() {
-    props.navigation.navigate(RouteName.JOINING, {workspace: "Autonomous"})
-  }
-
-  function request() {
-    dispatch({ type: REQUEST_START })
-    setTimeout(() => dispatch({ type: REQUEST_END }), 3000);
+    dispatch(createRequestRegisterAction(email, password, confirmPassword))
   }
 };
 

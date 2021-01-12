@@ -1,18 +1,15 @@
-import * as React from 'react'
-import { useState, useEffect } from 'react'
-import { View } from 'react-native';
-import { useDispatch } from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { styles } from './style'
+import * as React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-
-import { RootState } from 'src/redux/types'
-import { createValidateTokenAction } from 'src/redux/user/userAction'
+import { View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import Logo from 'src/assets/images/logo_black.svg';
 import { PrimaryButton, SecondaryButton } from 'src/components/button';
-import Logo from 'src/assets/images/logo_black.svg'
-import { Props, VerifyState } from './types';
+import { RootState } from 'src/redux/types';
 import { RouteName } from 'src/routers/routeName';
+import { styles } from './style';
+import { Props, VerifyState } from './types';
+
 
 const Intro = (props: Props) => {
     const verifyStateInitial = VerifyState.VERIFYING
