@@ -37,6 +37,8 @@ async function requestLogout() {
 async function requestRegister(email: string, password: string, confirmPassword: string) {
   try {
     const response = await SSOApi.register(email, password, confirmPassword);
+    const { access_token } = response.data;
+    AsyncStorage.setItem(KEY_ACCESS_TOKEN, access_token);
     return ({ response });
   } catch (error) {
     return ({ error });

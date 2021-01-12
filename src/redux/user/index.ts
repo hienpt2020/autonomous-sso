@@ -1,9 +1,10 @@
+
 export {
+    createRequestRegisterAction,
     createRequestLoginAction,
     createRequestLogoutAction,
     requestValidateAccessTokenAction
-} from './userAction'
-export {
-    createRequestRegisterAction
 } from './userSaga'
-
+export {
+    KEY_ACCESS_TOKEN
+} from './userType'

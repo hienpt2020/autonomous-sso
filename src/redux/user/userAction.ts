@@ -1,4 +1,4 @@
-import { USER_LOGGED_IN, USER_LOGGED_OUT, REQUEST_LOGIN_ACTION, REQUEST_LOGOUT_ACTION, USER_INVALID_TOKEN, VALIDATE_USER_TOKEN, REQUEST_VALIDATE_ACCESS_TOKEN, UserState } from './userType';
+import { UserState, USER_LOGGED_IN, USER_LOGGED_OUT } from './userType';
 
 export interface UserLoggedInAction {
   type: typeof USER_LOGGED_IN;
@@ -33,26 +33,5 @@ export function createLoginAction(userProfile: any): UserLoggedInAction {
       isVerifiedEmail: userProfile.is_verified_email,
       accessToken: userProfile.accessToken,
     }
-  }
-}
-
-export function createRequestLoginAction(email: string, password: string): any {
-  return {
-    type: REQUEST_LOGIN_ACTION,
-    payload: {
-      email,
-      password
-    }
-  }
-}
-
-export function createRequestLogoutAction(): object {
-  return {
-    type: REQUEST_LOGOUT_ACTION
-  }
-}
-export function requestValidateAccessTokenAction(): object {
-  return {
-    type: REQUEST_VALIDATE_ACCESS_TOKEN
   }
 }

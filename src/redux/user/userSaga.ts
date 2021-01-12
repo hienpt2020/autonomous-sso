@@ -29,3 +29,23 @@ export function createRequestRegisterAction(email: string, password: string, con
     }
   }
 } 
+export function createRequestLoginAction(email: string, password: string): any {
+  return {
+    type: REQUEST_LOGIN_ACTION,
+    payload: {
+      email,
+      password
+    }
+  }
+}
+
+export function createRequestLogoutAction(): object {
+  return {
+    type: REQUEST_LOGOUT_ACTION
+  }
+}
+export function requestValidateAccessTokenAction(): object {
+  return {
+    type: REQUEST_VALIDATE_ACCESS_TOKEN
+  }
+}

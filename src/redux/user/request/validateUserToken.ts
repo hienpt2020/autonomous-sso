@@ -1,11 +1,16 @@
-import axios from 'axios';
-import { call, put } from 'redux-saga/effects';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import axios from 'axios';
+import i18next from 'i18next';
+import _ from 'lodash';
+import { call, put } from 'redux-saga/effects';
+import Log from 'src/helpers/logger';
+import { createRequestEndAction, createRequestErrorAction, createRequestErrorMessageAction, createRequestStartAction } from 'src/redux/request/requestAction';
 import { SSOApi } from 'src/services/networking';
-import { createLoginAction, createLogoutAction } from '../userAction'
-import { createRequestStartAction, createRequestErrorAction, createRequestEndAction } from 'src/redux/request/requestAction';
-import { retrieveUserProfile } from './apiUser'
+import { createLoginAction } from '../userAction';
+import { retrieveUserProfile } from './apiUser';
+import { navigate } from 'src/routers/rootNavigation';
+import { RouteName } from 'src/routers/routeName';
+
 
 
 const KEY_ACCESS_TOKEN = 'KEY_ACCESS_TOKEN';
@@ -48,11 +53,15 @@ export function* validateUserToken(action: any) {
                 yield put(createLoginAction(userProfile));
             } else {
                 //create invalid token & require user re authenticate
-                yield put(createRequestErrorAction(error));
+                const message = _.get(error, 'errorMessage', i18next.t("common.error"))
+                yield put(createRequestErrorMessageAction(message));
             }
+        } else {
+            const message = i18next.t("common.error")
+            yield put(createRequestErrorMessageAction(message));
         }
     } else {
-        yield put(createRequestErrorAction(error))
+        navigate(RouteName.INTRO, {})
     }
     yield put(createRequestEndAction())
 };

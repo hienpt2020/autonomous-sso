@@ -26,7 +26,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>ai.autonomous.</string>
+			<string>autonomous</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>autonomous</string>
