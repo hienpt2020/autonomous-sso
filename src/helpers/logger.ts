@@ -1,48 +1,40 @@
-import { inject, injectable } from 'inversify';
-import { Environment } from 'src/common/environment';
-import { TYPES } from 'src/di/types';
+import reactotron from "src/config/configReactoron";
 
 export interface Logger {
-  debug(message: string, metaData?: any): void;
-  verbose(message: string, metaData?: any): void;
-  info(message: string, metaData?: any): void;
-  warn(message: string, metaData?: any): void;
-  error(message: string, metaData?: any): void;
+  debug(message?: any, ...optionalParams: any[]): void;
+  verbose(message?: any, ...optionalParams: any[]): void;
+  info(message?: any, ...optionalParams: any[]): void;
+  warn(message?: any, ...optionalParams: any[]): void;
+  error(message?: any, ...optionalParams: any[]): void;
 }
 
-@injectable()
 export class LoggerImpl implements Logger {
-  private instance: any;
+  private instance?: Console = __DEV__ ? reactotron : undefined
 
-  constructor(@inject(TYPES.Environment) private readonly environment: string) {
-    this.instance = console;
+  public debug(message?: any, ...optionalParams: any[]): void {
+    
+    this.instance?.debug(message, this.buildMetaData(optionalParams));
   }
 
-  public debug(message: string, metaData?: any): void {
-    if (this.environment === Environment.PRODUCTION) {
-      return;
-    }
-
-    this.instance.log(message, this.buildMetaData(metaData));
+  public verbose(message?: any, ...optionalParams: any[]): void {
+    this.debug(message, message)
   }
 
-  public verbose(message: string, metaData?: any): void {
-    this.instance.log(message, this.buildMetaData(metaData));
+  public info(message?: any, ...optionalParams: any[]): void {
+    this.instance?.info(message, this.buildMetaData(optionalParams));
   }
 
-  public info(message: string, metaData?: any): void {
-    this.instance.log(message, this.buildMetaData(metaData));
+  public warn(message?: any, ...optionalParams: any[]): void {
+    this.instance?.warn(message, this.buildMetaData(optionalParams));
   }
 
-  public warn(message: string, metaData?: any): void {
-    this.instance.log(message, this.buildMetaData(metaData));
+  public error(message?: any, ...optionalParams: any[]): void {
+    this.instance?.error(message, this.buildMetaData(optionalParams));
   }
 
-  public error(message: string, metaData?: any): void {
-    this.instance.log(message, this.buildMetaData(metaData));
-  }
-
-  private buildMetaData(metaData: any): object {
+  private buildMetaData(metaData: any): any[] {
     return metaData;
   }
 }
+const Log: Logger = new LoggerImpl()
+export default Log
