@@ -23,13 +23,14 @@ export function requestReducer(state: RequestState = initialState, action: Reque
       return {
         ...state,
         ...action.payload,
+        errorMessage: "",
         isLoading: false,
       };
 
     case REQUEST_ERROR:
       return {
         ...state,
-        ...action.payload,
+        errorMessage: action.errorMessage,
         isLoading: false,
       };
 

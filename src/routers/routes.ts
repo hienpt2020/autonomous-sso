@@ -46,7 +46,8 @@ export const publicRoutes: RouteProps[] = [
   {
     name: RouteName.REGISTER,
     component: require('src/screens/register').default,
-  },
+  }
+
 ];
 
 export const authenticatedRoutes: RouteProps[] = [
