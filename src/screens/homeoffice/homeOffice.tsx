@@ -9,9 +9,7 @@ import { PresenterImpl } from './presenter';
 import { styles } from './styles';
 import { RouteName } from 'src/routers/routeName';
 import { CardItem, CardData } from './card';
-// import { Card } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
-import { getWorkplaceLayoutStartAction } from '../../redux/workplace/workplaceAction';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
 import { getWorkspaceStartAction } from '../../redux/workspace/workspaceAction';
@@ -22,8 +20,8 @@ const Office = (props: Props) => {
   // const [sectionData, setSectionData] = useState(initialData);
   const dispatch = useDispatch();
   const presenter: Presenter = new PresenterImpl();
-  const { layout } = useSelector((state) => state.workplaceReducer);
-  const workspaceReducer = useSelector((state) => state.workspaceReducer);
+  const { layout } = useSelector((state: any) => state.workplaceReducer);
+  const workspaceReducer = useSelector((state: any) => state.workspaceReducer);
 
   useEffect(() => {
     dispatch(getWorkspaceStartAction());

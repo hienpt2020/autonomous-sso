@@ -15,9 +15,11 @@ export const workplaceSaga = function* root() {
 };
 
 // DEFINE FUNCTIONS AS BELOW
-function* getListWorkplaceLayout(payload: any) {
+function* getListWorkplaceLayout(params: any) {
   try {
-    const { id } = payload;
+    const {
+      payload: { id },
+    } = params;
     const { code, data } = yield HybridApi.getListWorkingLayout(id);
     if (code > 0) {
       yield put(getWorkplaceLayoutSuccessAction(data));
@@ -40,9 +42,11 @@ function* getListWorkplaceFilterById() {
 }
 
 // DEFINE FUNCTIONS AS BELOW
-function* getListWorkplaceFilterByDate(payload: any) {
+function* getListWorkplaceFilterByDate(params: any) {
   try {
-    const { layoutId, from, to } = payload;
+    const {
+      payload: { layoutId, from, to },
+    } = params;
     const data = yield HybridApi.getListWorkingPlaceByDate(layoutId, from, to);
     yield put(getWorkplaceFilterByIdSuccessAction(data.data));
   } catch (e) {
