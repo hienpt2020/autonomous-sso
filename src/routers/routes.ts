@@ -19,7 +19,7 @@ export type RootStackParams = {
   [RouteName.MY_BOOKING]: undefined;
   [RouteName.BOOKING_DETAIL]: undefined;
   [RouteName.SWITCH_WORKSPACE]: undefined;
-  [RouteName.SWITCH_WORKSPACE]: undefined;
+  [RouteName.DEEPLINK_REGISTER]: undefined;
 };
 export type RootStackParamType = keyof RootStackParams;
 

@@ -4,7 +4,7 @@ import { Loading } from 'src/components/loading'
 const config = {
     screens: {
         [RouteName.DEEPLINK_REGISTER]: {
-            path: 'account-activation',
+            path: 'account-activation/:token',
         }
     },
 };
