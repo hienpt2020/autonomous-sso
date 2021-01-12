@@ -1,4 +1,4 @@
-import { BookingData } from 'src/screens/booking/types';
+import { BookingData } from 'src/models/booking/bookingData';
 
 export interface IGetBookingHistory {
   isAdmin: boolean;
@@ -9,7 +9,8 @@ export interface IGetBookingHistory {
 export interface GetBookingHistoryState {
   isLoading: boolean;
   error: string;
-  bookings?: Array<BookingData>;
+  bookings: Array<BookingData>;
+  page: number;
 }
 
 // --------- Action Types

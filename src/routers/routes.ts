@@ -1,5 +1,6 @@
 import { RouteProps } from './routeProps';
 import { RouteName } from './routeName';
+import { BookingData } from 'src/models/booking/bookingData';
 
 export type RootStackParams = {
   [RouteName.INTRO]: undefined;
@@ -9,7 +10,7 @@ export type RootStackParams = {
   [RouteName.REGISTER]: undefined;
   [RouteName.JOINING]: { workspace: string };
   [RouteName.HOME]: undefined;
-  [RouteName.MAP]: { floorId: string, floorName: string };
+  [RouteName.MAP]: { floorId: number; floorName: string };
   [RouteName.SEAT]: undefined;
   [RouteName.BOOKING_RESULT]: undefined;
   [RouteName.SEAT_ADMIN]: undefined;
@@ -17,13 +18,12 @@ export type RootStackParams = {
   [RouteName.CONFIGURATION_STEP2]: undefined;
   [RouteName.CONFIGURATION_RESULT]: undefined;
   [RouteName.MY_BOOKING]: undefined;
-  [RouteName.BOOKING_DETAIL]: undefined;
+  [RouteName.BOOKING_DETAIL]: { booking: BookingData };
   [RouteName.SWITCH_WORKSPACE]: undefined;
 };
 export type RootStackParamType = keyof RootStackParams;
 
 export const publicRoutes: RouteProps[] = [
-
   {
     name: RouteName.INTRO,
     component: require('src/screens/intro').default,
@@ -47,9 +47,8 @@ export const publicRoutes: RouteProps[] = [
   {
     name: RouteName.REGISTER,
     component: require('src/screens/register').default,
-  }
+  },
 ];
-
 
 export const authenticatedRoutes: RouteProps[] = [
   {
@@ -92,5 +91,4 @@ export const authenticatedRoutes: RouteProps[] = [
     name: RouteName.MAP,
     component: require('src/screens/map').default,
   },
-
 ];

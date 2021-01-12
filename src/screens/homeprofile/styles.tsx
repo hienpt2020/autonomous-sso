@@ -6,12 +6,22 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: AppColor.WHITE,
     },
-    avatar:{
+    avatarContainer:{
         width: 128, 
         height: 128, 
         borderRadius: 64, 
         alignSelf: 'center', 
-        marginBottom: 64
+        marginBottom: 64, 
+        backgroundColor: AppColor.WHITE,
+        elevation: 2, 
+        shadowOpacity: 0.5,
+        shadowColor: AppColor.PRIMARY, 
+        shadowOffset: { width: 2, height: 2 },
+        shadowRadius: 2
+    },
+    avatar:{
+        width: 128, 
+        height: 128, 
     },
     header: {
         fontSize: 24,

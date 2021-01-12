@@ -8,7 +8,7 @@ import { PrimaryButton } from 'src/components/button';
 import { PrimaryInput } from 'src/components/input';
 import { Link } from 'src/components/link';
 import { BackHeaderX } from 'src/components/header';
-import { SSOApi } from 'src/services/networking';
+import { createRequestLoginAction } from 'src/redux/user/';
 import { LoginProps } from './types';
 import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators';
 import { styles } from './styles';
@@ -18,8 +18,8 @@ import { navigate } from 'src/routers/rootNavigation';
 const Login = (props: LoginProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('kien.q@autonomous.nyc');
-  const [password, setPassword] = useState('123456');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const emailValidator: Validator = new EmailValidator();
@@ -79,13 +79,7 @@ const Login = (props: LoginProps) => {
     }
   }
   function handleLogin() {
-    SSOApi.login(email, password)
-      .then((response) => {
-        navigate(RouteName.MY_BOOKING, null);
-      })
-      .catch((exception) => {
-        console.log(exception);
-      });
+    dispatch(createRequestLoginAction(email, password));
   }
 
   function handleForgotPassword() {

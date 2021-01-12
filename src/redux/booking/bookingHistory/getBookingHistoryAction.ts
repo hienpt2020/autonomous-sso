@@ -1,30 +1,28 @@
-import {
-  ACTION_GET_BOOKING_HISTORY,
-  ACTION_GET_BOOKING_HISTORY_SUCCESS,
-  ACTION_GET_BOOKING_HISTORY_FAILURE,
-} from './getBookingHistoryTypes';
-import { BookingData } from 'src/screens/booking/types';
+const ACTION_GET_BOOKING_HISTORY = 'ACTION_GET_BOOKING_HISTORY';
+const ACTION_GET_BOOKING_HISTORY_SUCCESS = 'ACTION_GET_BOOKING_HISTORY_SUCCESS';
+const ACTION_GET_BOOKING_HISTORY_FAILURE = 'ACTION_GET_BOOKING_HISTORY_FAILURE';
+import { BookingData } from 'src/models/booking/bookingData';
 import { IGetBookingHistory } from './getBookingHistoryTypes';
 
-interface IGetBookingHistoryActionType {
+type IGetBookingHistoryActionType = {
   type: typeof ACTION_GET_BOOKING_HISTORY;
   requestParam: IGetBookingHistory;
-}
+};
 
-interface IGetBookingHistorySuccessActionType {
+type IGetBookingHistorySuccessActionType = {
   type: typeof ACTION_GET_BOOKING_HISTORY_SUCCESS;
   payload: BookingData[];
-}
+};
 
-interface IGetBookingHistoryFailureActionType {
+type IGetBookingHistoryFailureActionType = {
   type: typeof ACTION_GET_BOOKING_HISTORY_FAILURE;
   error: string;
-}
+};
 
-// type IGetBookingHistoryType =
-//   | IGetBookingHistoryActionType
-//   | IGetBookingHistorySuccessActionType
-//   | IGetBookingHistoryFailureActionType;
+type IGetBookingHistoryType =
+  | IGetBookingHistoryActionType
+  | IGetBookingHistorySuccessActionType
+  | IGetBookingHistoryFailureActionType;
 
 const getBookingHistoryAction = (requestParam: IGetBookingHistory): IGetBookingHistoryActionType => ({
   type: ACTION_GET_BOOKING_HISTORY,
@@ -41,6 +39,11 @@ const getBookingHistoryFailureAction = (error: string): IGetBookingHistoryFailur
   error,
 });
 
-export type { IGetBookingHistoryActionType, IGetBookingHistorySuccessActionType, IGetBookingHistoryFailureActionType };
+export type {
+  IGetBookingHistoryActionType,
+  IGetBookingHistorySuccessActionType,
+  IGetBookingHistoryFailureActionType,
+  IGetBookingHistoryType,
+};
 
 export { getBookingHistoryAction, getBookingHistorySuccessAction, getBookingHistoryFailureAction };

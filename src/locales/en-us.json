@@ -45,7 +45,8 @@
     "title": "Home"
   },
   "office": {
-    "title": "Office"
+    "title": "Office",
+    "button_my_booking": "My Booking"
   },
   "controll": {
     "title": "Devices"
