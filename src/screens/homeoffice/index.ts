@@ -1,1 +1,1 @@
-export { default } from './homeOffice'
+export { default } from './homeOffice';
