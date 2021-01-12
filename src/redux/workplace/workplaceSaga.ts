@@ -15,7 +15,7 @@ export const workplaceSaga = function* root() {
 };
 
 // DEFINE FUNCTIONS AS BELOW
-function* getListWorkplaceLayout({ payload }) {
+function* getListWorkplaceLayout(payload: any) {
   try {
     const { id } = payload;
     const { code, data } = yield HybridApi.getListWorkingLayout(id);
@@ -40,7 +40,7 @@ function* getListWorkplaceFilterById() {
 }
 
 // DEFINE FUNCTIONS AS BELOW
-function* getListWorkplaceFilterByDate({ payload }) {
+function* getListWorkplaceFilterByDate(payload: any) {
   try {
     const { layoutId, from, to } = payload;
     const data = yield HybridApi.getListWorkingPlaceByDate(layoutId, from, to);

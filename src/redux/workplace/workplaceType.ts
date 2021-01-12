@@ -96,6 +96,15 @@ export interface IParamGetWorkplaceByDate {
   to: string;
 }
 
+export interface IParamGetWorkplaceById {
+  layoutId: number;
+}
+
+export interface IParamGetWorkplaceLayout {
+  type: typeof WORKPLACE_GET_INFO_LAYOUT_START;
+  payload: { id: number };
+}
+
 export interface IGetWorkplaceActionType {
   type:
     | typeof WORKPLACE_GET_INFO_LAYOUT_START
@@ -105,7 +114,7 @@ export interface IGetWorkplaceActionType {
     | typeof WORKPLACE_GET_INFO_FILTER_SUCCESS
     | typeof WORKPLACE_GET_INFO_FILTER_FAILED
     | typeof WORKPLACE_GET_INFO_FILTER_BY_DATE_START;
-  payload?: IWorkplaceStateReducer | IParamGetWorkplaceByDate;
+  payload?: IWorkplaceStateReducer | IParamGetWorkplaceByDate | IParamGetWorkplaceById;
 }
 
 export const formatWorkplaceLayout = (data: any) => {

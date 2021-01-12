@@ -2,6 +2,7 @@ import {
   formatWorkplaceFilter,
   formatWorkplaceLayout,
   IGetWorkplaceActionType,
+  IParamGetWorkplaceLayout,
   WORKPLACE_GET_INFO_FILTER_BY_DATE_START,
   WORKPLACE_GET_INFO_FILTER_START,
   WORKPLACE_GET_INFO_FILTER_SUCCESS,
@@ -9,7 +10,7 @@ import {
   WORKPLACE_GET_INFO_LAYOUT_SUCCESS,
 } from './workplaceType';
 
-export const getWorkplaceLayoutStartAction = (id: number): IGetWorkplaceActionType => {
+export const getWorkplaceLayoutStartAction = (id: number): IParamGetWorkplaceLayout => {
   return {
     type: WORKPLACE_GET_INFO_LAYOUT_START,
     payload: { id },
