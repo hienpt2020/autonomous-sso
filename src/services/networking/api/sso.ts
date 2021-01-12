@@ -8,7 +8,7 @@ import Config from 'react-native-config';
  */
 const baseURL = Config.ENDPOINT_SSO
 function _get(url: string, params?: object) {
-    return __get(baseURL, url, authHeader, params)
+    return __get(baseURL, url, authHeader(), params)
 }
 function _post(url: string, body?: object) {
     return __post(baseURL, url, authHeader(), body ? body : {})
@@ -19,12 +19,21 @@ function _delete(url: string, params?: object) {
 function _put(url: string, body: object, params?: object) {
     return __put(baseURL, url, authHeader(), body, params)
 }
+const CLIENT_ID = "vflozjmgtirdrppu"
 /**List all API below */
-function login(email: string, password: string){
-    const client_id = "vflozjmgtirdrppu"
-    return _post('/auth/login', {email, password, client_id})
+function login(email: string, password: string) {
+    return _post('/auth/login', { email, password, CLIENT_ID })
+}
+function logout() {
+    return _get('/auth/logout')
+}
+function validateToken(token: string) {
+    return _post('/auth/introspect', { token, CLIENT_ID })
+}
+function retrieveUserProfile() {
+    return _get('/me/profile')
 }
 
 
-export const SSOApi = { login }
+export const SSOApi = { login, logout, validateToken, retrieveUserProfile }
 
