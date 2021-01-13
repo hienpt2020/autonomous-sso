@@ -11,6 +11,7 @@ import { Chip } from 'src/components/chip';
 import { Device } from 'src/components/device';
 import { BackHeader } from 'src/components/header';
 import { ImageSlider } from 'src/components/images/images';
+import { getImage } from 'src/helpers/imageHelper';
 import Booking from 'src/models/Booking';
 import { BookingHistory } from 'src/models/BookingHistory';
 import WorkPlace from 'src/models/WorkPlace';
@@ -61,15 +62,12 @@ const BookingDetail = (props: Props) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar translucent backgroundColor="transparent" />
+      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <ScrollView style={styles.container}>
         {placeData && placeData.imageUrls.length > 0 ? (
           <ImageSlider data={placeData.imageUrls} height={imageHeight} />
         ) : (
-          <FastImage
-            style={{ width: '100%', height: imageHeight }}
-            source={{ uri: 'https://source.unsplash.com/wgivdx9dBdQ/1600x900' }}
-          />
+          <FastImage style={{ width: '100%', height: imageHeight }} source={{ uri: getImage('') }} />
         )}
         <Text style={styles.title}>{placeData ? placeData.name : ''}</Text>
         <Text style={styles.subTitle}>{placeData ? placeData.address : ''}</Text>

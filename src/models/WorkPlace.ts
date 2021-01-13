@@ -22,6 +22,9 @@ export default class WorkPlace {
     this.imageUrls = placeResponse.working_p_lace_images
       ? placeResponse.working_p_lace_images.map((image: any) => 'https://storage.googleapis.com' + image.image_url)
       : [];
-    this.thumbImageUrl = 'https://storage.googleapis.com';
+    this.thumbImageUrl =
+      placeResponse.working_p_lace_images && placeResponse.working_p_lace_images.length > 0
+        ? placeResponse.working_p_lace_images[0]
+        : '';
   }
 }

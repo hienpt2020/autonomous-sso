@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { getImage } from 'src/helpers/imageHelper';
 import { styles } from './styles';
 import { Props } from './types';
 
@@ -10,7 +11,7 @@ const CardItem = (props: Props) => {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View style={styles.itemContainer}>
-        <FastImage style={styles.coverImage} source={{ uri: cardData.thumbImageUrl }} />
+        <FastImage style={styles.coverImage} source={{ uri: getImage(cardData.thumbImageUrl) }} />
         <Text style={styles.itemTitle}>{cardData.name}</Text>
       </View>
     </TouchableOpacity>
