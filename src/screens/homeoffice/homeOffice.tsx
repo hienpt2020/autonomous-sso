@@ -14,6 +14,7 @@ import FoatingButton from './floatingButton';
 import { styles } from './styles';
 import { Props } from './types';
 import { getWorkLayout } from './actions/homeAction';
+import reactotron from 'src/config/configReactoron';
 
 const Office = (props: Props) => {
   const { t } = useTranslation();
