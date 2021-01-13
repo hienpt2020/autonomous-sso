@@ -8,7 +8,7 @@ import { PrimaryButton } from 'src/components/button';
 import { BackHeaderX } from 'src/components/header';
 import { PrimaryInput } from 'src/components/input';
 import { EmailValidator, Validator } from 'src/helpers/validators';
-import { IRequestForgotPassword, RequestForgotPassword } from './actions/requestForgotAction';
+import { IRequestForgotPassword, RequestForgotPassword } from './actions/requestForgotPasswordAction';
 import { styles } from './styles';
 import { LoginProps } from './types';
 

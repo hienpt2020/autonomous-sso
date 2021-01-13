@@ -17,9 +17,7 @@ const Deeplink = (props: Props) => {
         if (token) {
             Log.debug(token)
             AsyncStorage.setItem(KEY_ACCESS_TOKEN, token)
-            .then(()=> {
-                dispatch(requestValidateAccessTokenAction())
-            })
+            .then(()=> { dispatch(requestValidateAccessTokenAction()) })
         } else {
             dispatch(createRequestErrorMessageAction("Can not parse the token data"))
         }

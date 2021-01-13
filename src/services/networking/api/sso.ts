@@ -41,6 +41,11 @@ function activeAccount(token: string) {
 function forgotPassword(email: string) {
     return _post(`/auth/forgot-password`, { email })
 }
+
+function resetPassword(token: string, password: string) {
+    return _post(`/auth/reset-forgot-password`, { token, password })
+}
+
 function register(email: string, password: string, confirmPassword: string) {
     reactotron.log(email, password, confirmPassword)
     return _post('/auth/register', {
@@ -59,6 +64,7 @@ export const SSOApi = {
     validateToken,
     retrieveUserProfile,
     activeAccount,
-    register
+    register, 
+    resetPassword, 
 }
 
