@@ -31,6 +31,9 @@ function logout() {
 function validateToken(token: string) {
     return _post('/auth/introspect', { token, CLIENT_ID })
 }
+function isActivated(token: string) {
+    return _post('/auth/introspect', { token, CLIENT_ID })
+}
 function retrieveUserProfile() {
     return _get('/me/profile')
 }
@@ -38,8 +41,8 @@ function activeAccount(token: string) {
     return _post('/auth/activate', { token })
 }
 
-function getUserProfile(userId: string) {
-    return _get(`/users/${userId}`)
+function getCurrentWorspace() {
+    return _get(`/me/current_workspace`)
 }
 function register(email: string, password: string, confirmPassword: string) {
     reactotron.log(email, password, confirmPassword)
@@ -57,6 +60,7 @@ export const SSOApi = { login,
     validateToken, 
     retrieveUserProfile, 
     activeAccount,
-    register
+    register, 
+    getCurrentWorspace
 }
 
