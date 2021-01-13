@@ -1,5 +1,7 @@
 import { RouteProps } from './routeProps';
 import { RouteName } from './routeName';
+import { BookingHistory } from 'src/models/BookingHistory';
+import WorkPlace from 'src/models/WorkPlace';
 
 export type RootStackParams = {
   [RouteName.INTRO]: undefined;
@@ -10,14 +12,13 @@ export type RootStackParams = {
   [RouteName.JOINING]: { workspace: string };
   [RouteName.HOME]: undefined;
   [RouteName.MAP]: { floorId: number; floorName: string };
-  [RouteName.SEAT]: undefined;
-  [RouteName.BOOKING_RESULT]: undefined;
+  [RouteName.BOOKING_RESULT]: { booking: BookingHistory };
   [RouteName.SEAT_ADMIN]: undefined;
   [RouteName.CONFIGURATION_STEP1]: undefined;
   [RouteName.CONFIGURATION_STEP2]: undefined;
   [RouteName.CONFIGURATION_RESULT]: undefined;
-  [RouteName.MY_BOOKING]: undefined;
-  [RouteName.BOOKING_DETAIL]: undefined;
+  [RouteName.BOOKING_HISTORY]: undefined;
+  [RouteName.PLACE_DETAIL]: { booking?: BookingHistory; place?: WorkPlace };
   [RouteName.SWITCH_WORKSPACE]: undefined;
   [RouteName.DEEPLINK_REGISTER]: undefined;
 };
@@ -47,12 +48,11 @@ export const publicRoutes: RouteProps[] = [
   {
     name: RouteName.REGISTER,
     component: require('src/screens/register').default,
-  }, 
+  },
   {
     name: RouteName.DEEPLINK_REGISTER,
     component: require('src/screens/redirect-register').default,
   }
-
 ];
 
 export const authenticatedRoutes: RouteProps[] = [
@@ -73,12 +73,12 @@ export const authenticatedRoutes: RouteProps[] = [
     component: require('src/screens/switchws').default,
   },
   {
-    name: RouteName.BOOKING_DETAIL,
-    component: require('src/screens/bookingdetail').default,
+    name: RouteName.PLACE_DETAIL,
+    component: require('src/screens/place').default,
   },
   {
-    name: RouteName.MY_BOOKING,
-    component: require('src/screens/booking').default,
+    name: RouteName.BOOKING_HISTORY,
+    component: require('src/screens/booking-history').default,
   },
   {
     name: RouteName.CONFIGURATION_STEP2,
@@ -87,10 +87,6 @@ export const authenticatedRoutes: RouteProps[] = [
   {
     name: RouteName.CONFIGURATION_STEP1,
     component: require('src/screens/configuration1').default,
-  },
-  {
-    name: RouteName.SEAT,
-    component: require('src/screens/seat').default,
   },
   {
     name: RouteName.MAP,
