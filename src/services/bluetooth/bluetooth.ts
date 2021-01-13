@@ -52,9 +52,9 @@ class BleManagerImp {
     return this.manager.cancelDeviceConnection(deviceId);
   }
 
-  onDeviceDisconnected(deviceId: string): void {
-    this.manager.onDeviceDisconnected( deviceId, listener: function (error: BleError?, device: Device))
-  }
+  // onDeviceDisconnected(deviceId: string): void {
+  //   this.manager.onDeviceDisconnected( deviceId, listener: function (error: BleError?, device: Device))
+  // }
 }
 
 export default new BleManagerImp();
