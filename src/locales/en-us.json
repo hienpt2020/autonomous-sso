@@ -51,13 +51,14 @@
     "title": "Home"
   },
   "office": {
-    "title": "Office"
+    "title": "Office",
+    "button_my_booking": "My Booking"
   },
   "controll": {
     "title": "Devices"
   },
-  "seat": {
-    "book_seat": "book this desk"
+  "place": {
+    "book_place": "book this place"
   },
   "profile": {
     "title": "Profile"

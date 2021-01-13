@@ -1,60 +1,64 @@
-import * as React from 'react';
-import { FlatList, View, TouchableWithoutFeedback } from 'react-native';
-import { Button } from 'react-native-elements';
-import { useState, useEffect, useRef } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { BackHeader } from 'src/components/header';
-import { useTranslation } from 'react-i18next';
-import { Props, Presenter } from './types';
-import { PresenterImpl } from './presenter';
-import { styles } from './styles';
-import { RouteName } from 'src/routers/routeName';
-import { CardItem, CardData } from './card';
-import { IconButton } from './iconbutton';
-import Animated from 'react-native-reanimated';
-import BottomSheet from 'reanimated-bottom-sheet';
-import DatePicker from 'react-native-date-picker';
-import { AppColor } from 'src/styles';
-import { Link } from 'src/components/link';
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
-import { Loading } from '../../components/loading/loading';
+import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FlatList, TouchableWithoutFeedback, View } from 'react-native';
+import DatePicker from 'react-native-date-picker';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux';
+import BottomSheet from 'reanimated-bottom-sheet';
+import { BackHeader } from 'src/components/header';
+import { Link } from 'src/components/link';
+import WorkPlace from 'src/models/WorkPlace';
+import { navigate } from 'src/routers/rootNavigation';
+import { RouteName } from 'src/routers/routeName';
 import { Empty } from '../../components/empty';
-import { getWorkplaceFilterByDateStartAction } from '../../redux/workplace/workplaceAction';
+import { Loading } from '../../components/loading/loading';
+import { getAvailableWorkPlace } from './actions/mapAction';
+import { CardItem } from './card';
+import { IconButton } from './iconbutton';
+import { styles } from './styles';
+import { Props } from './types';
+import { setBookingDataAction } from 'src/redux/booking/bookingAction';
+import Booking from 'src/models/Booking';
 
 const Map = (props: Props) => {
-  const initialData: CardData[] = [];
   const FIXED_ITEM_HEIGHT = 140;
   const FIXED_DATE_TIME = 300;
   const NUM_COLUMNS = 2;
   const HOUR_GAP = 2;
   const timeFormatter = 'hh:mm MMM DD';
-  const presenter: Presenter = new PresenterImpl();
   const today = new Date();
   today.setHours(today.getHours() + 1, 0, 0, 0);
   const tomorrow = new Date(today);
   tomorrow.setHours(tomorrow.getHours() + HOUR_GAP);
 
   const { t } = useTranslation();
-  const [mapData, setMapData] = useState(initialData);
   const [date, setDate] = useState(today);
   const [dateFrom, setDateFrom] = useState(today);
   const [dateTo, setDateTo] = useState(tomorrow);
   const [isFrom, setIsFrom] = useState(true);
   const [isBottomSheetShow, setIsBottomSheetShow] = useState(false);
-  const { filter } = useSelector((state) => state.workplaceReducer);
   const sheetRef = useRef<BottomSheet | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [workPlaces, setWorkPlaces] = useState<WorkPlace[]>([]);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(
-      getWorkplaceFilterByDateStartAction(
-        props.route.params.floorId,
-        moment(dateFrom).toISOString(),
-        moment(dateTo).toISOString(),
-      ),
-    );
+    _getData(dateFrom, dateTo);
   }, []);
-  const renderItem = (data: CardData) => {
+
+  const _getData = async (from: Date, to: Date) => {
+    setIsLoading(true);
+    try {
+      setWorkPlaces(
+        await getAvailableWorkPlace(props.route.params.floorId, moment(from).toISOString(), moment(to).toISOString()),
+      );
+    } catch (error) {}
+    setIsLoading(false);
+  };
+
+  const renderItem = (data: WorkPlace) => {
     return <CardItem cardData={data} onPress={() => onItemSelected(data)} />;
   };
 
@@ -97,13 +101,13 @@ const Map = (props: Props) => {
           <IconButton title={moment(dateFrom).format(timeFormatter)} onPress={() => switchFromDate()} />
           <IconButton title={moment(dateTo).format(timeFormatter)} onPress={() => switchToDate()} />
         </View>
-        {filter.isLoading ? (
+        {isLoading ? (
           <Loading />
-        ) : filter.items.length > 0 ? (
+        ) : workPlaces.length > 0 ? (
           <FlatList
-            data={presenter.formatData(filter.items)}
+            data={workPlaces}
             style={{ paddingStart: 8, paddingEnd: 8 }}
-            keyExtractor={(item, index) => `${item.id}${index}`}
+            keyExtractor={(item, index) => `${item.id.toString()}${index}`}
             numColumns={NUM_COLUMNS}
             renderItem={({ item }) => renderItem(item)}
             getItemLayout={(data, index) => getItemLayout(data, index)}
@@ -126,9 +130,11 @@ const Map = (props: Props) => {
     </View>
   );
 
-  function onItemSelected(data: CardData) {
-    props.navigation.navigate(RouteName.SEAT);
+  function onItemSelected(data: WorkPlace) {
+    navigate(RouteName.PLACE_DETAIL, { place: data });
+    dispatch(setBookingDataAction(new Booking(dateFrom, dateTo)));
   }
+
   function setConsiderDate(date: Date) {
     let _dateFrom = dateFrom;
     let _dateTo = dateTo;
@@ -144,13 +150,7 @@ const Map = (props: Props) => {
       setDateTo(date);
     }
     setDate(date);
-    dispatch(
-      getWorkplaceFilterByDateStartAction(
-        props.route.params.floorId,
-        moment(_dateFrom).toISOString(),
-        moment(_dateTo).toISOString(),
-      ),
-    );
+    _getData(_dateFrom, _dateTo);
   }
   function switchFromDate() {
     setIsFrom(true);
