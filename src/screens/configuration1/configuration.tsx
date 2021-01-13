@@ -1,79 +1,81 @@
-import * as React from 'react'
-import { View, Text, StatusBar, FlatList, ScrollView } from 'react-native';
-import { useState, useEffect, useRef } from 'react'
+import * as React from 'react';
+import { View, Text, StatusBar, FlatList, ScrollView, DeviceEventEmitter } from 'react-native';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Props, Presenter } from './types';
-import { PresenterImpl } from './presenter';
+import { ICardData, Props } from './types';
 import { styles } from './styles';
 import { PrimaryButton } from 'src/components/button';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { YellowBox } from 'react-native'
+import { YellowBox } from 'react-native';
 import { ImageSlider } from 'src/components/images/images';
-import Check from 'src/assets/images/check_light.svg'
-import BluetoothLight from 'src/assets/images/bluetooth_light.svg'
+import { BleManager, EVENT_EMITTER_BLE } from 'src/services/bluetooth';
+import { CardData } from './CardData';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
-    'VirtualizedLists should never be nested', // TODO: Remove when fixed
-])
+  'VirtualizedLists should never be nested', // TODO: Remove when fixed
+]);
 
 const ConfigurationStep1 = (props: Props) => {
+  const { t } = useTranslation();
+  const imageHeight = 221;
+  const [selected, setSelected] = useState('');
+  const [peripherals, setPeripherals] = useState([]);
+  useEffect(() => {
+    DeviceEventEmitter.addListener(EVENT_EMITTER_BLE.DISCOVERED_DEVICE, (data) => {
+      setPeripherals(data);
+    });
+  }, []);
 
-    const presenter: Presenter = new PresenterImpl()
-    const { t } = useTranslation()
-    const imageHeight = 221
-    const [selected, setSelected] = useState(1)
+  const flatListItemSeparator = () => {
+    return <View style={styles.divider} />;
+  };
 
-    useEffect(() => {
+  function renderItem(data: ICardData) {
+    return <CardData data={data} onPress={() => connectToDevice(data.id)} selectedId={selected} />;
+  }
+  return (
+    <View style={styles.container}>
+      <StatusBar translucent backgroundColor="transparent" />
+      <ScrollView style={styles.container} nestedScrollEnabled={true}>
+        <ImageSlider
+          data={[
+            'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
+            'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
+            'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
+            'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
+            'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
+          ]}
+          height={imageHeight}
+        />
+        <Text style={styles.title}>Seat#1</Text>
+        <Text style={styles.subTitle}>Autonomous WorkSpace</Text>
+        <Text style={styles.subTitle}>Floor #3</Text>
+        <Text style={styles.subTitle}>Seat #1</Text>
+        <Text style={styles.sectionTitle}>Available assets</Text>
+        <FlatList
+          nestedScrollEnabled={true}
+          data={peripherals}
+          style={[styles.list]}
+          keyExtractor={(item, index) => `${item}${index}`}
+          ItemSeparatorComponent={flatListItemSeparator}
+          renderItem={({ item }) => renderItem(item)}
+        />
+      </ScrollView>
+      <PrimaryButton
+        wrapperContainer={styles.button}
+        title={t('seat.book_seat')}
+        onPress={() => BleManager.startScanDevice()}
+      />
+    </View>
+  );
 
-    }, [])
+  function handleBack() {
+    props.navigation.goBack();
+  }
 
-    const renderItem = (data: string, index: number) => {
-        return (
-            <TouchableOpacity onPress={() => { setSelected(index) }}>
-                <View style={styles.chipContainer}>
-                    <BluetoothLight width="16" height="16" />
-                    <Text style={[styles.chipContent]}>{data}</Text>
-                    {index === selected ? <Check width="32" height="32" style={styles.chipIcon} /> : null}
-
-                </View>
-            </TouchableOpacity>
-        )
-    }
-
-    const flatListItemSeparator = () => {
-        return (
-            <View style={styles.divider}
-            />
-        );
-    }
-
-    return (
-        <View style={styles.container}>
-            <StatusBar translucent backgroundColor='transparent' />
-            <ScrollView style={styles.container} nestedScrollEnabled={true}>
-                <ImageSlider data={["https://source.unsplash.com/wgivdx9dBdQ/1600x900", "https://source.unsplash.com/wgivdx9dBdQ/1600x900", "https://source.unsplash.com/wgivdx9dBdQ/1600x900", "https://source.unsplash.com/wgivdx9dBdQ/1600x900", "https://source.unsplash.com/wgivdx9dBdQ/1600x900"]}
-                    height={imageHeight} />
-                <Text style={styles.title}>Seat#1</Text>
-                <Text style={styles.subTitle}>Autonomous WorkSpace</Text>
-                <Text style={styles.subTitle}>Floor #3</Text>
-                <Text style={styles.subTitle}>Seat #1</Text>
-                <Text style={styles.sectionTitle}>Available assets</Text>
-                <FlatList
-                    nestedScrollEnabled={true}
-                    data={["smartdesk-abc-1", "smartdesk-abc-2", "smartdesk-abc-3", "smartdesk-abc-4", "smartdesk-abc-5"]}
-                    style={[styles.list]}
-                    keyExtractor={(item, index) => `${item}${index}`}
-                    ItemSeparatorComponent={flatListItemSeparator}
-                    renderItem={({ item, index }) => renderItem(item, index)}
-                />
-            </ScrollView>
-            <PrimaryButton wrapperContainer={styles.button} title={t('seat.book_seat')} />
-        </View>
-    )
-
-    function handleBack() {
-        props.navigation.goBack()
-    }
+  function connectToDevice(deviceId: string): void {
+    setSelected(deviceId);
+    BleManager.connectToDevice(deviceId);
+  }
 };
 
 export default ConfigurationStep1;

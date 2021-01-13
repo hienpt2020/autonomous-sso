@@ -1,63 +1,60 @@
-import BleManagerRN from 'react-native-ble-manager';
-import { NativeEventEmitter, NativeModules } from 'react-native';
-import { IBleManager, IEventEmitter, IStartBleStatus } from './interfaces';
+import { DeviceEventEmitter } from 'react-native';
+import { DeviceInfo, IBleManager } from './interfaces';
+import { BleManager } from 'react-native-ble-plx';
 
-let bleInstance: any = null;
+export const EVENT_EMITTER_BLE = {
+  DISCOVERED_DEVICE: 'DISCOVERED_DEVICE',
+  DISCONNECT_DEVICE: 'DISCONNECTED_DEVICE',
+  CONNECTED_DEVICE: 'CONNECTED_DEVICE',
+  STOP_SCAN: 'STOP_SCAN',
+};
+class BleManagerImp {
+  manager: any = null;
+  devices: any[] = [];
 
-class BleManager implements IBleManager {
-  bleManagerModule: any;
-  bleManagerEmitter: any;
-  eventEmitters: any[] = [];
   constructor() {
-    console.log('@BleManager');
-    if (!bleInstance) {
-      bleInstance = BleManagerRN;
-      this.init();
+    if (!this.manager) {
+      this.manager = new BleManager();
+      this.devices = [];
     }
   }
 
-  test(): void {
-    console.log('@BleManager');
+  startScanDevice(): void {
+    this.manager.startDeviceScan(null, null, (error: any, device: any) => {
+      if (error) {
+        console.log('@error:', error);
+        return;
+      }
+      let _device: DeviceInfo = new DeviceInfo(device);
+      this.handleDiscoverDevice(_device);
+    });
   }
 
-  init(): void {
-    try {
-      this.bleManagerModule = NativeModules.BleManager;
-      this.bleManagerEmitter = new NativeEventEmitter(this.bleManagerModule);
-    } catch (e) {
-      console.log('@Init ble error:', e);
-    }
+  stopScanDevice(): void {
+    this.manager.stopDeviceScan();
   }
 
-  initEventEmitter(events: IEventEmitter): void {
-    if (typeof events.handleDiscoverPeripheral === 'function') {
-      this.bleManagerEmitter.addListener('BleManagerDiscoverPeripheral', events.handleDiscoverPeripheral);
-    }
-    if (typeof events.handleStopScan === 'function') {
-      this.bleManagerEmitter.addListener('BleManagerStopScan', events.handleStopScan);
-    }
-
-    if (typeof events.handleDisconnectedPeripheral === 'function') {
-      this.bleManagerEmitter.addListener('BleManagerDisconnectPeripheral', events.handleDisconnectedPeripheral);
-    }
-    if (typeof events.handleReadBleNotification === 'function') {
-      this.bleManagerEmitter.addListener('BleManagerDidUpdateValueForCharacteristic', events.handleReadBleNotification);
-    }
-    if (typeof events.handleConnectedPeripheral === 'function') {
-      this.bleManagerEmitter.addListener('BleManagerConnectPeripheral', events.handleConnectedPeripheral);
-    }
+  connectToDevice(deviceId: string): Promise<any> {
+    return this.manager.connectToDevice(deviceId);
   }
 
-  removeEventEmitter(): void {}
-
-  async start(): Promise<IStartBleStatus> {
-    try {
-      await bleInstance.start({ showAlert: false });
-      return Promise.resolve({ isSuccess: true, message: '' });
-    } catch (e) {
-      return Promise.resolve({ isSuccess: false, message: e });
+  handleDiscoverDevice = (device: DeviceInfo): void => {
+    let devices: any = [...this.devices];
+    let isExisted = devices.some((item: any) => item.id === device.id);
+    if (!isExisted) {
+      devices.push(device);
+      DeviceEventEmitter.emit(EVENT_EMITTER_BLE.DISCOVERED_DEVICE, devices);
+      this.devices = [...devices];
     }
+  };
+
+  cancelDeviceConnection(deviceId: string): Promise<any> {
+    return this.manager.cancelDeviceConnection(deviceId);
+  }
+
+  onDeviceDisconnected(deviceId: string): void {
+    this.manager.onDeviceDisconnected( deviceId, listener: function (error: BleError?, device: Device))
   }
 }
 
-export default new BleManager();
+export default new BleManagerImp();

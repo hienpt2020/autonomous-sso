@@ -1,6 +1,12 @@
-import { PropsBase } from 'src/types/propsBase'
-import { RouteName } from 'src/routers/routeName'
-export interface Presenter {
-}
-export interface Props extends PropsBase<RouteName.CONFIGURATION_STEP1>{}
+import { PropsBase } from 'src/types/propsBase';
+import { RouteName } from 'src/routers/routeName';
+import { BleModel } from 'src/services/bluetooth';
+export interface Presenter {}
 
+export type ICardData = BleModel.IDevice;
+export interface CardDataProps {
+  data: ICardData;
+  onPress?: () => void;
+  selectedId: string;
+}
+export interface Props extends PropsBase<RouteName.CONFIGURATION_STEP1> {}
