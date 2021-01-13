@@ -1,10 +1,10 @@
 import axios from 'axios';
+import i18next from 'i18next';
+import _ from 'lodash';
 import { call, put } from 'redux-saga/effects';
-import { createRequestStartAction, createRequestErrorMessageAction, createRequestEndAction } from 'src/redux/request/requestAction';
-import { createLoginAction } from '../userAction'
+import { createRequestEndAction, createRequestErrorMessageAction, createRequestStartAction } from 'src/redux/request/requestAction';
+import { createLoginAction } from '../userAction';
 import { requestLogin, retrieveUserProfile } from './apiUser';
-import _ from 'lodash'
-import i18next from 'i18next'
 
 export function* requestLoginAction(action: any) {
     yield put(createRequestStartAction())

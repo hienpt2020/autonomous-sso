@@ -30,6 +30,10 @@
     "register": "Register",  
     "login": "Log In"
   }, 
+  "forgot_password": {
+    "forgot_success": "We're send you an email, Check your email and follow instructions included in the message",  
+    "login": "Log In"
+  }, 
   "register": {
     "confirm_password": "Confirm Password", 
     "password_not_match": "Passwords do not match",
