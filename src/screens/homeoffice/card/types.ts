@@ -1,16 +1,6 @@
-export class CardData {
-  id: number;
-  name: string;
-  address: string;
-  image: string;
-  constructor(id: number, name: string, address: string, image: string) {
-    this.id = id;
-    this.name = name;
-    this.address = address;
-    this.image = image;
-  }
-}
+import WorkLayout from 'src/models/WorkLayout';
+
 export interface Props {
-  cardData: CardData;
+  cardData: WorkLayout;
   onPress?: () => void;
 }
