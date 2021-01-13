@@ -10,7 +10,7 @@ const CardItem = (props: Props) => {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View style={styles.itemContainer}>
-        <FastImage style={styles.coverImage} source={{ uri: cardData.image }} />
+        <FastImage style={styles.coverImage} source={{ uri: cardData.thumbImageUrl }} />
         <Text style={styles.itemTitle}>{cardData.name}</Text>
       </View>
     </TouchableOpacity>

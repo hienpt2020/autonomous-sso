@@ -51,8 +51,8 @@
   "controll": {
     "title": "Devices"
   },
-  "seat": {
-    "book_seat": "book this desk"
+  "place": {
+    "book_place": "book this place"
   },
   "profile": {
     "title": "Profile"

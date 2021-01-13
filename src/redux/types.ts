@@ -1,7 +1,6 @@
-import { GetBookingHistoryState } from './booking/bookingHistory/getBookingHistoryTypes';
+import { BookingState } from './booking/bookingType';
 import { RequestState } from './request/requestType';
 import { UserState } from './user/userType';
-import { GetPlaceDetailState } from './workplace/getPlaceDetail/getPlaceDetailTypes';
 export type { UserState };
 
 export interface BaseState {
@@ -11,7 +10,6 @@ export interface BaseState {
 
 export interface RootState {
   requestReducer: RequestState;
-  getBookingHistoryReducer: GetBookingHistoryState;
   userReducer: UserState;
-  getPlaceDetailReducer: GetPlaceDetailState;
+  booking: BookingState;
 }

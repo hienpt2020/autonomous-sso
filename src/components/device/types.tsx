@@ -1,6 +1,6 @@
 import { ViewStyle } from 'react-native';
-import AssetData from 'src/models/asset/assetData';
+import Asset from 'src/models/Asset';
 export interface Props {
-  data: AssetData[];
+  data: Asset[];
   containerStyle?: ViewStyle;
 }
