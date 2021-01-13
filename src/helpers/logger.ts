@@ -12,7 +12,7 @@ export class LoggerImpl implements Logger {
   private instance?: Console = __DEV__ ? reactotron : undefined
 
   public debug(message?: any, ...optionalParams: any[]): void {
-    
+
     this.instance?.debug(message, this.buildMetaData(optionalParams));
   }
 
@@ -36,5 +36,4 @@ export class LoggerImpl implements Logger {
     return metaData;
   }
 }
-const Log: Logger = new LoggerImpl()
-export default Log
+export const Log: Logger = new LoggerImpl()

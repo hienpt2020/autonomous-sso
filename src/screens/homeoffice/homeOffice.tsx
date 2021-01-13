@@ -1,65 +1,65 @@
-import * as React from 'react';
-import { FlatList } from 'react-native';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header } from 'src/components/header';
-import { useTranslation } from 'react-i18next';
-import { Props, Presenter } from './types';
-import { PresenterImpl } from './presenter';
-import { styles } from './styles';
+import WorkLayout from 'src/models/WorkLayout';
+import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
-import { CardItem, CardData } from './card';
-import { useDispatch, useSelector } from 'react-redux';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
-import { getWorkspaceStartAction } from '../../redux/workspace/workspaceAction';
+import { CardData, CardItem } from './card';
+import FoatingButton from './floatingButton';
+import { styles } from './styles';
+import { Props } from './types';
+import { getWorkLayout } from './actions/homeAction';
 
 const Office = (props: Props) => {
-  // const initialData: SectionData[] = [];
   const { t } = useTranslation();
-  // const [sectionData, setSectionData] = useState(initialData);
-  const dispatch = useDispatch();
-  const presenter: Presenter = new PresenterImpl();
-  const { layout } = useSelector((state: any) => state.workplaceReducer);
-  const workspaceReducer = useSelector((state: any) => state.workspaceReducer);
+  const [workLayouts, setWorkLayouts] = useState<WorkLayout[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    dispatch(getWorkspaceStartAction());
-    // let floorsResult = presenter.fetchFloor();
-    // setSectionData(floorsResult);
+    _getData();
   }, []);
+
+  const _getData = async () => {
+    setIsLoading(true);
+    try {
+      setWorkLayouts(await getWorkLayout(1));
+    } catch (error) {}
+    setIsLoading(false);
+  };
+
   const renderItem = (data: CardData) => {
     return <CardItem cardData={data} onPress={() => onItemSelected(data)} />;
   };
-  // const renderHeader = (title: string) => {
-  //   return <Text style={styles.header}>{title}</Text>;
-  // };
-  // const getItemLayout = (data: any, index: any) => {
-  //   return { length: 180, offset: 180 * index, index };
-  // };
-  // console.log('@nsandnasdnsadnsda:', items);
+
+  const _onPressMyBooking = () => {
+    navigate(RouteName.BOOKING_HISTORY, null);
+  };
+
+  const _renderFloatingButton = () => {
+    return <FoatingButton onPress={_onPressMyBooking} />;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Header title={t('office.title')} />
-      {/*<SectionList*/}
-      {/*  sections={sectionData}*/}
-      {/*  stickySectionHeadersEnabled={false}*/}
-      {/*  keyExtractor={(item, index) => item.id + index}*/}
-      {/*  renderItem={({ item }) => renderItem(item)}*/}
-      {/*  getItemLayout={(data, index) => getItemLayout(data, index)}*/}
-      {/*  renderSectionHeader={({ section: { title } }) => renderHeader(title)}*/}
-      {/*/>*/}
-      {layout.isLoading || workspaceReducer.isLoading ? (
+
+      {isLoading ? (
         <Loading />
-      ) : layout.items.length > 0 ? (
+      ) : workLayouts.length > 0 ? (
         <FlatList
-          data={presenter.formatOffice(layout.items)}
+          data={workLayouts}
           renderItem={({ item }) => renderItem(item)}
           keyExtractor={(item) => item.id + ''}
         />
       ) : (
         <Empty />
       )}
+      {_renderFloatingButton()}
     </SafeAreaView>
   );
   function onItemSelected(data: CardData) {
