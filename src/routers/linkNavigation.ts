@@ -1,16 +1,21 @@
 
+import Config from 'react-native-config';
 import { RouteName } from './routeName'
-import { Loading } from 'src/components/loading'
 const config = {
     screens: {
         [RouteName.DEEPLINK_REGISTER]: {
             path: 'account-activation/:token',
+        },
+        [RouteName.RESET_PASSWORD]: {
+            path: 'reset-password/:token',
         }
     },
 };
 const linking = {
     prefixes: [
-        'autonomous://'
+        Config.DEEPLINK_AUTONOMOUS, 
+        Config.LINK_UNIVERSAL_AUTONOMOUS,
+
     ],
     config: config
 };

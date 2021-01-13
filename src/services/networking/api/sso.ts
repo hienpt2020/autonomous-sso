@@ -1,7 +1,7 @@
-import { authHeader } from '../header';
-import { _get as __get, _post as __post, _delete as __delete, _put as __put } from '../request';
 import Config from 'react-native-config';
 import reactotron from 'src/config/configReactoron';
+import { authHeader } from '../header';
+import { _delete as __delete, _get as __get, _post as __post, _put as __put } from '../request';
 
 /**
  * @param url: string, required
@@ -44,23 +44,34 @@ function activeAccount(token: string) {
 function getCurrentWorspace() {
     return _get(`/me/current_workspace`)
 }
+function forgotPassword(email: string) {
+    return _post(`/auth/forgot-password`, { email })
+}
+
+function resetPassword(token: string, password: string) {
+    return _post(`/auth/reset-forgot-password`, { token, password })
+}
+
 function register(email: string, password: string, confirmPassword: string) {
     reactotron.log(email, password, confirmPassword)
     return _post('/auth/register', {
-        email, 
-        password, 
+        email,
+        password,
         confirm_password: confirmPassword
     })
 }
 
 
 
-export const SSOApi = { login, 
-    logout, 
-    validateToken, 
-    retrieveUserProfile, 
+export const SSOApi = {
+    forgotPassword,
+    login,
+    logout,
+    validateToken,
+    retrieveUserProfile,
     activeAccount,
     register, 
-    getCurrentWorspace
+    getCurrentWorspace,
+    resetPassword, 
 }
 
