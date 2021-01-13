@@ -1,30 +1,16 @@
-export const WORKSPACE_GET_INFO_START = 'WORKSPACE/GET_INFO_START';
-export const WORKSPACE_GET_INFO_SUCCESS = 'WORKSPACE/GET_INFO_SUCCESS';
-export const WORKSPACE_GET_INFO_FAILED = 'WORKSPACE/GET_INFO_FAILED';
+import Workspace from "src/models/Workspace";
 
-export interface IWorkspace {
-  defaultWorkspace: number;
-  total: number;
-  workspaces: [];
-}
+export const ACTION_SET_WORKSPACE = 'ACTION_SET_WORKSPACE';
+export const ACTION_CLEAR_WORKSPACE = 'ACTION_CLEAR_WORKSPACE';
 
-export interface IWorkspaceStateReducer {
-  defaultWorkspace: number;
-  total: number;
-  workspaces: [];
-  isLoading: boolean;
-}
+export class WorkspaceState extends Workspace { }
 
-export interface IWorkspacePayload {
-  defaultWorkspace?: number;
-  total?: number;
-  workspaces?: [];
-  isLoading?: boolean;
-  fnFailed?: () => void;
-  fnSuccess?: () => void;
+export interface SetWorkspaceActionType {
+  type: typeof ACTION_SET_WORKSPACE
+  payload?: Workspace;
 }
-
-export interface IGetWorkspaceActionType {
-  type: typeof WORKSPACE_GET_INFO_START | typeof WORKSPACE_GET_INFO_SUCCESS | typeof WORKSPACE_GET_INFO_FAILED;
-  payload?: IWorkspacePayload;
+export interface ClearWorkspaceActionType {
+  type: typeof ACTION_CLEAR_WORKSPACE
+  payload?: Workspace;
 }
+export type WorkspaceActionType = SetWorkspaceActionType | ClearWorkspaceActionType

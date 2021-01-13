@@ -6,7 +6,7 @@ import { createRequestEndAction, createRequestErrorMessageAction, createRequestS
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { SSOApi, NetworkingConfig } from 'src/services/networking';
-import { createLoginAction } from '../userAction';
+import { createSetUserProfileAction } from '../userAction';
 import { retrieveUserProfile } from './apiUser';
 
 
@@ -47,7 +47,7 @@ export function* validateUserToken(action: any) {
             if (userProfile) {
                 //update store 
                 userProfile.accessToken = token;
-                yield put(createLoginAction(userProfile));
+                yield put(createSetUserProfileAction(userProfile));
             } else {
                 //create invalid token & require user re authenticate
                 const message = _.get(error, 'errorMessage', i18next.t("common.error"))

@@ -1,37 +1,26 @@
-import { UserState, USER_LOGGED_IN, USER_LOGGED_OUT } from './userType';
+import User from 'src/models/User';
+import { UserState, ACTION_SET_USER_PROFILE, ACTION_CLEAR_USER_PROFILE } from './userType';
 
 export interface UserLoggedInAction {
-  type: typeof USER_LOGGED_IN;
-  payload: UserState
+  type: typeof ACTION_SET_USER_PROFILE;
+  payload: User
 }
 
 export interface UserLoggedOutAction {
-  type: typeof USER_LOGGED_OUT;
+  type: typeof ACTION_CLEAR_USER_PROFILE;
 }
 
-export function createLogoutAction(): UserLoggedOutAction {
+export function createClearUserProfileAction(): UserLoggedOutAction {
   return {
-    type: USER_LOGGED_OUT
+    type: ACTION_CLEAR_USER_PROFILE
   }
 }
-export function createLoginAction(userProfile: any): UserLoggedInAction {
+export function createSetUserProfileAction(userProfile: User): UserLoggedInAction {
   return {
-    type: USER_LOGGED_IN,
+    type: ACTION_SET_USER_PROFILE,
     payload: {
-      dateCreated: userProfile.date_created,
-      dateModified: userProfile.date_modified,
-      email: userProfile.email,
-      status: userProfile.status,
-      fullName: userProfile.full_name,
-      address: userProfile.address,
-      userAvatar: userProfile.user_avatar,
-      phone: userProfile.phone,
-      code: userProfile.code,
-      referralCode: userProfile.referral_code,
-      accountBirthday: userProfile.account_birthday,
-      source: userProfile.source,
-      isVerifiedEmail: userProfile.is_verified_email,
-      accessToken: userProfile.accessToken,
+      ...userProfile
     }
   }
 }
+export type UserAction = UserLoggedInAction | UserLoggedOutAction 
