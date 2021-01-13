@@ -20,6 +20,7 @@ export type RootStackParams = {
   [RouteName.BOOKING_HISTORY]: undefined;
   [RouteName.PLACE_DETAIL]: { booking?: BookingHistory; place?: WorkPlace };
   [RouteName.SWITCH_WORKSPACE]: undefined;
+  [RouteName.DEEPLINK_REGISTER]: undefined;
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -34,11 +35,11 @@ export const publicRoutes: RouteProps[] = [
   },
   {
     name: RouteName.RESET_PASSWORD,
-    component: require('src/screens/resetpass').default,
+    component: require('src/screens/reset-password').default,
   },
   {
     name: RouteName.FORGOT_PASSWORD,
-    component: require('src/screens/forgotpass').default,
+    component: require('src/screens/forgot-password').default,
   },
   {
     name: RouteName.LOGIN,
@@ -48,6 +49,10 @@ export const publicRoutes: RouteProps[] = [
     name: RouteName.REGISTER,
     component: require('src/screens/register').default,
   },
+  {
+    name: RouteName.DEEPLINK_REGISTER,
+    component: require('src/screens/redirect-register').default,
+  }
 ];
 
 export const authenticatedRoutes: RouteProps[] = [
