@@ -34,11 +34,11 @@ export const publicRoutes: RouteProps[] = [
   },
   {
     name: RouteName.RESET_PASSWORD,
-    component: require('src/screens/resetpass').default,
+    component: require('src/screens/reset-password').default,
   },
   {
     name: RouteName.FORGOT_PASSWORD,
-    component: require('src/screens/forgotpass').default,
+    component: require('src/screens/forgot-password').default,
   },
   {
     name: RouteName.LOGIN,

@@ -1,15 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
 import i18next from 'i18next';
 import _ from 'lodash';
 import { call, put } from 'redux-saga/effects';
-import Log from 'src/helpers/logger';
-import { createRequestEndAction, createRequestErrorAction, createRequestErrorMessageAction, createRequestStartAction } from 'src/redux/request/requestAction';
-import { SSOApi } from 'src/services/networking';
-import { createLoginAction } from '../userAction';
-import { retrieveUserProfile } from './apiUser';
+import { createRequestEndAction, createRequestErrorMessageAction, createRequestStartAction } from 'src/redux/request/requestAction';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
+import { SSOApi, NetworkingConfig } from 'src/services/networking';
+import { createLoginAction } from '../userAction';
+import { retrieveUserProfile } from './apiUser';
 
 
 
@@ -37,14 +35,13 @@ async function retrieveUserToken() {
 
 export function* validateUserToken(action: any) {
     yield put(createRequestStartAction())
-    const { token, error } = yield call(retrieveUserToken);
-
+    const { token } = yield call(retrieveUserToken);
     if (token) {
         //check usertoken valid
-        const { active } = yield call(validateToken, token);
+        const { active, error } = yield call(validateToken, token);
         if (active) {
             //inject default bearer token to axios
-            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+            NetworkingConfig.putCommonHeaderWithToken(token)
             // user is auto logged in 
             const { userProfile, error } = yield call(retrieveUserProfile, token);
             if (userProfile) {
