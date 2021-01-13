@@ -4,6 +4,7 @@ import { createRequestStartAction, createRequestErrorMessageAction, createReques
 import { createLoginAction } from '../userAction'
 import { requestLogin, retrieveUserProfile } from './apiUser';
 import _ from 'lodash'
+import i18next from 'i18next'
 
 export function* requestLoginAction(action: any) {
     yield put(createRequestStartAction())
@@ -18,12 +19,12 @@ export function* requestLoginAction(action: any) {
             userProfile.accessToken = token;
             yield put(createLoginAction(userProfile));
         } else {
-            const message = _.get(error, 'errorMessage', "Something went wrong")
+            const message = _.get(error, 'errorMessage', i18next.t('common.error'))
             yield put(createRequestErrorMessageAction(message));
         }
 
     } else {
-        const message = _.get(error, 'errorMessage', "Something went wrong")
+        const message = _.get(error, 'errorMessage', i18next.t('common.error'))
         yield put(createRequestErrorMessageAction(message))
     }
     yield put(createRequestEndAction())
