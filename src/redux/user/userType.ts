@@ -1,31 +1,13 @@
-export interface UserState {
-  accessToken?: string,
-  expiresIn?: number,
-  redirectUri?: string,
-  refreshToken?: string,
-  scope?: string,
-  tokenType?: string,
-  userId?: number,
-  isValidToken?: boolean,
-  //User information
-  dateCreated?: string,
-  dateModified?: string,
-  email?: string,
-  status?: string,
-  fullName?: string,
-  address?: string,
-  userAvatar?: string,
-  phone?: string,
-  code?: string,
-  referralCode?: string,
-  accountBirthday?: string,
-  source?: string,
-  isVerifiedEmail?: string,
-}
+import { User } from 'src/models';
+
+export class UserState extends User {}
 
 //action to reducer
-export const USER_LOGGED_IN = 'USER_LOGGED_IN';
-export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
+export const ACTION_SET_USER_PROFILE = 'ACTION_SET_USER_PROFILE';
+export const ACTION_CLEAR_USER_PROFILE = 'ACTION_CLEAR_USER_PROFILE';
+//action to reducer
+export const SET_USER_WORKSPACE_ACTION = 'SET_USER_WORKSPACE_ACTION';
+export const CLEAR_USER_WORKSPACE_ACTION = 'CLEAR_USER_WORKSPACE_ACTION';
 //actions for middleware
 export const USER_INVALID_TOKEN = 'USER_INVALID_TOKEN';
 export const VALIDATE_USER_TOKEN = 'VALIDATE_USER_TOKEN';
@@ -37,4 +19,3 @@ export const REQUEST_VALIDATE_ACCESS_TOKEN = 'REQUEST_VALIDATE_ACCESS_TOKEN';
 export const REQUEST_REGISTER_ACTION = 'REQUEST_REGISTER_ACTION';
 
 export const KEY_ACCESS_TOKEN = 'KEY_ACCESS_TOKEN';
-

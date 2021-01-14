@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header } from 'src/components/header';
@@ -9,29 +9,29 @@ import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
+import { getWorkLayout } from './actions/homeAction';
 import { CardData, CardItem } from './card';
 import FoatingButton from './floatingButton';
 import { styles } from './styles';
 import { Props } from './types';
-import { getWorkLayout } from './actions/homeAction';
-import reactotron from 'src/config/configReactoron';
+import { RootState } from 'src/redux/types';
 
 const Office = (props: Props) => {
   const { t } = useTranslation();
+  const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer);
   const [workLayouts, setWorkLayouts] = useState<WorkLayout[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    _getData();
-  }, []);
-
-  const _getData = async () => {
     setIsLoading(true);
-    try {
-      setWorkLayouts(await getWorkLayout(1));
-    } catch (error) {}
-    setIsLoading(false);
-  };
+    getWorkLayout(workspaceReducer.id).then((data) => {
+      setWorkLayouts(data);
+    }).catch(() => {
+
+    }).finally(() => {
+      setIsLoading(false);
+    })
+  }, [workspaceReducer.id]);
 
   const renderItem = (data: CardData) => {
     return <CardItem cardData={data} onPress={() => onItemSelected(data)} />;
@@ -58,8 +58,8 @@ const Office = (props: Props) => {
           keyExtractor={(item) => item.id + ''}
         />
       ) : (
-        <Empty />
-      )}
+            <Empty />
+          )}
       {_renderFloatingButton()}
     </SafeAreaView>
   );

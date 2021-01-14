@@ -28,5 +28,10 @@ export const styles = StyleSheet.create({
     chipIcon: {
         position: 'absolute',
         end: 16,
+    }, 
+    buttonContainer: {
+        marginStart: 16, 
+        marginEnd: 16, 
+        marginBottom: 16, 
     }
 });
