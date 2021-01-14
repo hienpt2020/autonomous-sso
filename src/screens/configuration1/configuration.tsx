@@ -8,7 +8,7 @@ import { PrimaryButton } from 'src/components/button';
 import { YellowBox } from 'react-native';
 import { ImageSlider } from 'src/components/images/images';
 import { BleManager, EVENT_EMITTER_BLE } from 'src/services/bluetooth';
-import { CardData } from './CardData';
+import CardData from './CardData';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed

@@ -6,7 +6,7 @@ import { styles } from './styles';
 import BluetoothLight from '../../assets/images/bluetooth_light.svg';
 import Check from '../../assets/images/check_light.svg';
 
-export const CardData = (props: CardDataProps) => {
+const CardData = (props: CardDataProps) => {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View style={styles.chipContainer}>
@@ -17,3 +17,5 @@ export const CardData = (props: CardDataProps) => {
     </TouchableOpacity>
   );
 };
+
+export default CardData;
