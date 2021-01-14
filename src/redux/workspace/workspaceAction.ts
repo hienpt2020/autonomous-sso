@@ -1,18 +1,15 @@
-import { WORKSPACE_GET_INFO_START, WORKSPACE_GET_INFO_SUCCESS, IGetWorkspaceActionType } from './workspaceType';
+import WorkSpace from 'src/models/WorkSpace';
+import { ACTION_SET_WORKSPACE, ACTION_CLEAR_WORKSPACE, SetWorkspaceActionType, ClearWorkspaceActionType } from './workspaceType';
 
-export const getWorkspaceStartAction = (): IGetWorkspaceActionType => {
+export const createActionSetWorkSpace = (workspace: WorkSpace): SetWorkspaceActionType => {
   return {
-    type: WORKSPACE_GET_INFO_START,
+    type: ACTION_SET_WORKSPACE,
+    payload: workspace
   };
 };
 
-export const getWorkspaceSuccessAction = (data: any): IGetWorkspaceActionType => {
+export const createActionWorkspaceSuccess = (data: any): ClearWorkspaceActionType => {
   return {
-    type: WORKSPACE_GET_INFO_SUCCESS,
-    payload: {
-      defaultWorkspace: data.default_workspace,
-      total: data.total,
-      workspaces: data.workspaces,
-    },
+    type: ACTION_CLEAR_WORKSPACE,
   };
 };

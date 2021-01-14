@@ -70,7 +70,7 @@ export const authenticatedRoutes: RouteProps[] = [
   },
   {
     name: RouteName.SWITCH_WORKSPACE,
-    component: require('src/screens/switchws').default,
+    component: require('src/screens/switch-workspace').default,
   },
   {
     name: RouteName.PLACE_DETAIL,

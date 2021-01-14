@@ -1,22 +1,26 @@
-import axios from 'axios';
-import { call, put } from 'redux-saga/effects';
-import { createRequestStartAction, createRequestEndAction, createRequestErrorAction } from 'src/redux/request/requestAction';
-import { createLogoutAction } from 'src/redux/user/userAction';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { KEY_ACCESS_TOKEN } from '../userType';
+import { call, put, all } from 'redux-saga/effects';
+import { Preference } from 'src/common/preference';
+import {
+    createRequestEndAction,
+    createRequestErrorAction,
+    createRequestStartAction,
+} from 'src/redux/request/requestAction';
+import { createClearUserProfileAction } from 'src/redux/user/userAction';
+import { NetworkingConfig } from 'src/services/networking';
 import { requestLogout } from './apiUser';
 
 export function* requestLogoutAction(action: any) {
-    yield put(createRequestStartAction())
+    yield put(createRequestStartAction());
     try {
-        yield call(requestLogout);
-        yield call(AsyncStorage.setItem, KEY_ACCESS_TOKEN, '');
-        axios.defaults.headers.common["Authorization"] = ``;
-        yield put(createLogoutAction())
+        yield all([
+            call(requestLogout),
+            put(createClearUserProfileAction()),
+            call(Preference.saveAccessToken, '')]);
+        NetworkingConfig.putCommonHeaderWithToken('');
     } catch (error) {
-        console.log(error)
-        yield put(createRequestErrorAction(error))
+        console.log(error);
+        yield put(createRequestErrorAction(error));
     }
 
-    yield put(createRequestEndAction())
-};
+    yield put(createRequestEndAction());
+}

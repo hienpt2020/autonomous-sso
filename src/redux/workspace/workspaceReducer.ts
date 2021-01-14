@@ -1,40 +1,18 @@
-import {
-  IWorkspaceStateReducer,
-  WORKSPACE_GET_INFO_START,
-  WORKSPACE_GET_INFO_SUCCESS,
-  WORKSPACE_GET_INFO_FAILED,
-} from './workspaceType';
-import { IGetWorkspaceActionType } from './workspaceType';
+import { WorkspaceState, ACTION_SET_WORKSPACE, ACTION_CLEAR_WORKSPACE } from './workspaceType';
+import { WorkspaceActionType } from './workspaceType';
 
-const initialState: IWorkspaceStateReducer = {
-  defaultWorkspace: 0,
-  total: 0,
-  workspaces: [],
-  isLoading: false,
-};
+const initialState: WorkspaceState = new WorkspaceState()
 
-export function workspaceReducer(
-  state: IWorkspaceStateReducer = initialState,
-  action: IGetWorkspaceActionType,
-): IWorkspaceStateReducer {
+export function workspaceReducer(state: WorkspaceState = initialState, action: WorkspaceActionType): WorkspaceState {
   switch (action.type) {
-    case WORKSPACE_GET_INFO_START:
+    case ACTION_SET_WORKSPACE:
       return {
         ...state,
         ...action.payload,
-        isLoading: true,
       };
-    case WORKSPACE_GET_INFO_SUCCESS:
+    case ACTION_CLEAR_WORKSPACE:
       return {
-        ...state,
-        ...action.payload,
-        isLoading: false,
-      };
-    case WORKSPACE_GET_INFO_FAILED:
-      return {
-        ...state,
-        ...action.payload,
-        isLoading: false,
+        ...initialState
       };
     default:
       return state;

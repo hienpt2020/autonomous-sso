@@ -31,11 +31,25 @@ function logout() {
 function validateToken(token: string) {
     return _post('/auth/introspect', { token, CLIENT_ID })
 }
+function isActivated(token: string) {
+    return _post('/auth/introspect', { token, CLIENT_ID })
+}
 function retrieveUserProfile() {
     return _get('/me/profile')
 }
 function activeAccount(token: string) {
     return _post('/auth/activate', { token })
+}
+
+function getCurrentWorkspace() {
+    return _get(`/me/current_workspace`)
+}
+function setCurrentWorkspace(workspaceId: number) {
+    return _post(`/me/current_workspace`, { workspace_id: workspaceId })
+}
+
+function getMyWorkspaces() {
+    return _get(`workspaces`)
 }
 
 function forgotPassword(email: string) {
@@ -64,7 +78,10 @@ export const SSOApi = {
     validateToken,
     retrieveUserProfile,
     activeAccount,
-    register, 
-    resetPassword, 
+    register,
+    getCurrentWorkspace,
+    setCurrentWorkspace,
+    resetPassword,
+    getMyWorkspaces, 
 }
 
