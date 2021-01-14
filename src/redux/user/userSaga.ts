@@ -3,7 +3,7 @@ import { takeLatest } from 'redux-saga/effects';
 import { requestLoginAction } from './request/requestLoginAction';
 import { requestLogoutAction } from './request/requestLogoutAction';
 import { requestRegisterAction } from './request/requestRegisterAction';
-import { validateUserToken } from './request/validateUserToken';
+import { validateUserToken } from './request/requestValidateUserToken';
 import {
   REQUEST_LOGIN_ACTION,
   REQUEST_LOGOUT_ACTION,

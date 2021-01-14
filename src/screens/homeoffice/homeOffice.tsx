@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Header } from 'src/components/header';
 import WorkLayout from 'src/models/WorkLayout';
 import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
+import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { Empty } from '../../components/empty';
@@ -18,21 +19,22 @@ import { Props } from './types';
 
 const Office = (props: Props) => {
   const { t } = useTranslation();
+  const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer);
   const [workLayouts, setWorkLayouts] = useState<WorkLayout[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    _getData();
-  }, []);
-
-  const _getData = async () => {
     setIsLoading(true);
-    try {
-      setWorkLayouts(await getWorkLayout(1));
-    } catch (error) {}
-    setIsLoading(false);
-  };
+    getWorkLayout(workspaceReducer.id)
+      .then((data) => {
+        setWorkLayouts(data);
+      })
+      .catch(() => {})
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [workspaceReducer.id]);
 
   const renderItem = (data: WorkLayout) => {
     return <CardItem cardData={data} onPress={() => _onItemSelected(data)} />;

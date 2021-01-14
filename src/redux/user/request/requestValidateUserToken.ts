@@ -1,13 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18next from 'i18next';
-import _ from 'lodash';
 import { call, put } from 'redux-saga/effects';
 import { createRequestEndAction, createRequestErrorMessageAction, createRequestStartAction } from 'src/redux/request/requestAction';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
-import { SSOApi, NetworkingConfig } from 'src/services/networking';
-import { createLoginAction } from '../userAction';
-import { retrieveUserProfile } from './apiUser';
+import { NetworkingConfig, SSOApi } from 'src/services/networking';
+import { fetchUserData } from './fetchUserData';
 
 
 
@@ -42,17 +40,7 @@ export function* validateUserToken(action: any) {
         if (active) {
             //inject default bearer token to axios
             NetworkingConfig.putCommonHeaderWithToken(token)
-            // user is auto logged in 
-            const { userProfile, error } = yield call(retrieveUserProfile, token);
-            if (userProfile) {
-                //update store 
-                userProfile.accessToken = token;
-                yield put(createLoginAction(userProfile));
-            } else {
-                //create invalid token & require user re authenticate
-                const message = _.get(error, 'errorMessage', i18next.t("common.error"))
-                yield put(createRequestErrorMessageAction(message));
-            }
+            yield call(fetchUserData)
         } else {
             const message = i18next.t("common.error")
             yield put(createRequestErrorMessageAction(message));
