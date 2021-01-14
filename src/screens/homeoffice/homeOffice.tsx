@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux';
 import { Header } from 'src/components/header';
 import WorkLayout from 'src/models/WorkLayout';
+import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
+import { getWorkLayout } from './actions/homeAction';
 import { CardItem } from './card';
 import FloatingButton from './floatingButton';
 import { styles } from './styles';
 import { Props } from './types';
-import { getWorkLayout } from './actions/homeAction';
-import reactotron from 'src/config/configReactoron';
-import { useDispatch } from 'react-redux';
-import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
 
 const Office = (props: Props) => {
   const { t } = useTranslation();
