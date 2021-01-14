@@ -18,11 +18,13 @@ const ConfigurationStep1 = (props: Props) => {
   const { t } = useTranslation();
   const imageHeight = 221;
   const [selected, setSelected] = useState('');
-  const [peripherals, setPeripherals] = useState([]);
+  const [peripherals, setPeripherals] = useState<ICardData[]>([]);
   useEffect(() => {
-    DeviceEventEmitter.addListener(EVENT_EMITTER_BLE.DISCOVERED_DEVICE, (data) => {
-      setPeripherals(data);
-    });
+    DeviceEventEmitter.addListener(EVENT_EMITTER_BLE.DISCOVERED_DEVICE, recoverDevice);
+
+    return () => {
+      DeviceEventEmitter.removeListener(EVENT_EMITTER_BLE.DISCOVERED_DEVICE, recoverDevice);
+    };
   }, []);
 
   const flatListItemSeparator = () => {
@@ -72,9 +74,15 @@ const ConfigurationStep1 = (props: Props) => {
     props.navigation.goBack();
   }
 
-  function connectToDevice(deviceId: string): void {
-    setSelected(deviceId);
-    BleManager.connectToDevice(deviceId);
+  async function connectToDevice(deviceId: string): void {
+    let device = await BleManager.connectToDevice(deviceId);
+    if (device) {
+      setSelected(deviceId);
+    }
+  }
+
+  function recoverDevice(data: ICardData[]) {
+    setPeripherals(data);
   }
 };
 
