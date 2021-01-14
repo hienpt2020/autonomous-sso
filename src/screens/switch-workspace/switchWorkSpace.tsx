@@ -80,7 +80,7 @@ const SwitchWorkSpace = (props: Props) => {
                                 ItemSeparatorComponent={flatListItemSeparator}
                                 renderItem={({ item, index }) => renderItem(item, index)}
                             />
-                            <PrimaryButton title="Save" onPress={() => { requestUpdateCurrentWorkSpace() }} />
+                            <PrimaryButton containerStyle={styles.buttonContainer} title="Save" onPress={() => { requestUpdateCurrentWorkSpace() }} />
                         </>
                     ) : (
                                 <Empty />
