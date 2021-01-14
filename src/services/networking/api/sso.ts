@@ -41,9 +41,17 @@ function activeAccount(token: string) {
     return _post('/auth/activate', { token })
 }
 
-function getCurrentWorspace() {
+function getCurrentWorkspace() {
     return _get(`/me/current_workspace`)
 }
+function setCurrentWorkspace(workspaceId: number) {
+    return _post(`/me/current_workspace`, { workspace_id: workspaceId })
+}
+
+function getMyWorkspaces() {
+    return _get(`workspaces`)
+}
+
 function forgotPassword(email: string) {
     return _post(`/auth/forgot-password`, { email })
 }
@@ -70,8 +78,10 @@ export const SSOApi = {
     validateToken,
     retrieveUserProfile,
     activeAccount,
-    register, 
-    getCurrentWorspace,
-    resetPassword, 
+    register,
+    getCurrentWorkspace,
+    setCurrentWorkspace,
+    resetPassword,
+    getMyWorkspaces, 
 }
 

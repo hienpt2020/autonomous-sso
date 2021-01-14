@@ -15,7 +15,7 @@ async function retrieveUserProfile() {
 }
 async function retrieveUserWorkspace() {
     try {
-        const response = await SSOApi.getCurrentWorspace();
+        const response = await SSOApi.getCurrentWorkspace();
         return {
             userWorkspace: Parser.parseWorkspace(response.data),
             status: response.status,
