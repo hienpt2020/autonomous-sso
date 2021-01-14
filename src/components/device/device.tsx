@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Dimensions, FlatList, Text } from 'react-native';
+import { View, Dimensions, FlatList, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { Props } from './types';
 import BluetoothWhite from 'src/assets/images/bluetooth_white.svg';
@@ -12,6 +12,12 @@ const imageWidth = Dimensions.get('window').width;
 export const Device = (props: Props) => {
   const NUM_COLUMNS = 2;
   const FIXED_ITEM_HEIGHT = 40;
+
+  const _onPressItem = (item: Asset) => {
+    if (props.onPressDevice) {
+      props.onPressDevice(item);
+    }
+  };
 
   const renderItem = (data: Asset) => {
     return (
@@ -26,7 +32,10 @@ export const Device = (props: Props) => {
 
   const renderMutableItem = (data: Asset) => {
     return (
-      <View style={styles.chipMutableContainer}>
+      <TouchableOpacity
+        style={styles.chipMutableContainer}
+        disabled={!props.isConfig}
+        onPress={() => _onPressItem(data)}>
         {/* <Bolt width="24" height="24" style={styles.chipIcon} /> */}
         <View style={{ width: 24 }} />
         <Text style={styles.chipMutableContent} numberOfLines={1}>
@@ -35,7 +44,7 @@ export const Device = (props: Props) => {
         <View style={{ width: 24 }}>
           <BluetoothWhite width="16" height="16" style={styles.chipMutableIcon} />
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 

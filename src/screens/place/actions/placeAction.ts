@@ -50,7 +50,6 @@ export const bookPlace = async (workPlaceId: number, dateFrom: Date, dateTo: Dat
     store.dispatch(createRequestEndAction());
     return new BookingHistory(bookingHistoryResponse);
   } catch (error) {
-    reactotron.log(error);
     const message = _.get(error, 'debug', 'Something went wrong');
     store.dispatch(createRequestErrorMessageAction(message));
     store.dispatch(createRequestEndAction());

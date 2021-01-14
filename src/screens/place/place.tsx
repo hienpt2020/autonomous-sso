@@ -12,6 +12,7 @@ import { Device } from 'src/components/device';
 import { BackHeader } from 'src/components/header';
 import { ImageSlider } from 'src/components/images/images';
 import { getImage } from 'src/helpers/imageHelper';
+import Asset from 'src/models/Asset';
 import Booking from 'src/models/Booking';
 import { BookingHistory } from 'src/models/BookingHistory';
 import WorkLayout from 'src/models/WorkLayout';
@@ -34,6 +35,7 @@ const BookingDetail = (props: Props) => {
   const place: WorkPlace | undefined = props.route.params.place;
   const booking: Booking = useSelector((state: RootState) => state.booking.booking);
   const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
+  const isAdmin: boolean = useSelector((state: RootState) => state.workspaceReducer.isAdmin);
   const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
 
   useEffect(() => {
@@ -64,6 +66,10 @@ const BookingDetail = (props: Props) => {
         }
       }
     } catch (error) {}
+  };
+
+  const _onPressDevice = (item: Asset) => {
+    navigate(RouteName.CONFIGURATION_STEP1, null);
   };
 
   return (
@@ -99,11 +105,16 @@ const BookingDetail = (props: Props) => {
         {placeData && placeData.devices.length > 0 && (
           <>
             <Text style={styles.sectionTitle}>{t('common.assets')}</Text>
-            <Device data={placeData.devices} containerStyle={styles.list} />
+            <Device
+              data={placeData.devices}
+              containerStyle={styles.list}
+              isConfig={isAdmin && !bookingHistory}
+              onPressDevice={_onPressDevice}
+            />
           </>
         )}
 
-        {workLayout ? (
+        {workLayout && workLayout.policy ? (
           <>
             <Text style={styles.sectionTitle}>{t('common.policies')}</Text>
             <Text style={styles.sectionContent}>{workLayout.policy}</Text>

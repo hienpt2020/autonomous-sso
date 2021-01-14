@@ -10,7 +10,6 @@ export const getWorkLayout = async (id: number): Promise<WorkLayout[]> => {
 
     return data.items.map((item: any) => {
       const extra = JSON.parse(item.extra);
-      reactotron.log(extra);
       const policy = extra && extra.policies ? extra.policies : '';
 
       const address = parseMapAddress(item.street, item.city, item.state, item.country);

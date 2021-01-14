@@ -7,4 +7,5 @@ export default class WorkSpace {
     code: string = '';
     status: number = -1;
     members: string = '';
+    isAdmin: boolean = false;
 }
