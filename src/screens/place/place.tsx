@@ -14,6 +14,7 @@ import { ImageSlider } from 'src/components/images/images';
 import { getImage } from 'src/helpers/imageHelper';
 import Booking from 'src/models/Booking';
 import { BookingHistory } from 'src/models/BookingHistory';
+import WorkLayout from 'src/models/WorkLayout';
 import WorkPlace from 'src/models/WorkPlace';
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
@@ -32,6 +33,7 @@ const BookingDetail = (props: Props) => {
   const bookingHistory: BookingHistory | undefined = props.route.params.booking;
   const place: WorkPlace | undefined = props.route.params.place;
   const booking: Booking = useSelector((state: RootState) => state.booking.booking);
+  const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
   const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
 
   useEffect(() => {
@@ -39,6 +41,10 @@ const BookingDetail = (props: Props) => {
       _getData(bookingHistory.mapId, bookingHistory.placeId);
     }
     if (place) {
+      const shortcutPlaceData = new WorkPlace();
+      shortcutPlaceData.name = place.name;
+      shortcutPlaceData.imageUrls = place.imageUrls;
+      setPlaceData(shortcutPlaceData);
       _getData(place.mapId, place.id);
     }
   }, []);
@@ -64,14 +70,19 @@ const BookingDetail = (props: Props) => {
     <View style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <ScrollView style={styles.container}>
-        {placeData && placeData.imageUrls.length > 0 ? (
-          <ImageSlider data={placeData.imageUrls} height={imageHeight} />
-        ) : (
-          <FastImage style={{ width: '100%', height: imageHeight }} source={{ uri: getImage('') }} />
+        <ImageSlider
+          containerStyle={{ marginBottom: 16 }}
+          data={placeData ? placeData.imageUrls : []}
+          height={imageHeight}
+        />
+
+        {placeData && (
+          <>
+            <Text style={styles.title}>{placeData.name}</Text>
+            <Text style={styles.subTitle}>{workLayout.address}</Text>
+            <Chip data={placeData.tags} containerStyle={styles.chip} />
+          </>
         )}
-        <Text style={styles.title}>{placeData ? placeData.name : ''}</Text>
-        <Text style={styles.subTitle}>{placeData ? placeData.address : ''}</Text>
-        <Chip data={placeData ? placeData.tags : []} containerStyle={styles.chip} />
 
         {bookingHistory && (
           <>
@@ -84,10 +95,20 @@ const BookingDetail = (props: Props) => {
             </View>
           </>
         )}
-        <Text style={styles.sectionTitle}>{t('common.assets')}</Text>
-        <Device data={placeData ? placeData.devices : []} containerStyle={styles.list} />
-        <Text style={styles.sectionTitle}>{t('common.policies')}</Text>
-        <Text style={styles.sectionContent}>{`• Keep the desk clean \n• Do not make noise while working`}</Text>
+
+        {placeData && placeData.devices.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>{t('common.assets')}</Text>
+            <Device data={placeData.devices} containerStyle={styles.list} />
+          </>
+        )}
+
+        {workLayout ? (
+          <>
+            <Text style={styles.sectionTitle}>{t('common.policies')}</Text>
+            <Text style={styles.sectionContent}>{workLayout.policy}</Text>
+          </>
+        ) : null}
       </ScrollView>
       <PrimaryButton
         onPress={_onPressBookPlace}

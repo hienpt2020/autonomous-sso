@@ -9,17 +9,20 @@ import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
-import { CardData, CardItem } from './card';
-import FoatingButton from './floatingButton';
+import { CardItem } from './card';
+import FloatingButton from './floatingButton';
 import { styles } from './styles';
 import { Props } from './types';
 import { getWorkLayout } from './actions/homeAction';
 import reactotron from 'src/config/configReactoron';
+import { useDispatch } from 'react-redux';
+import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
 
 const Office = (props: Props) => {
   const { t } = useTranslation();
   const [workLayouts, setWorkLayouts] = useState<WorkLayout[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     _getData();
@@ -33,8 +36,8 @@ const Office = (props: Props) => {
     setIsLoading(false);
   };
 
-  const renderItem = (data: CardData) => {
-    return <CardItem cardData={data} onPress={() => onItemSelected(data)} />;
+  const renderItem = (data: WorkLayout) => {
+    return <CardItem cardData={data} onPress={() => _onItemSelected(data)} />;
   };
 
   const _onPressMyBooking = () => {
@@ -42,9 +45,13 @@ const Office = (props: Props) => {
   };
 
   const _renderFloatingButton = () => {
-    return <FoatingButton onPress={_onPressMyBooking} />;
+    return <FloatingButton onPress={_onPressMyBooking} />;
   };
 
+  const _onItemSelected = (data: WorkLayout) => {
+    dispatch(setWorkLayoutAction(data));
+    props.navigation.navigate(RouteName.MAP, { floorId: data.id, floorName: data.name });
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Header title={t('office.title')} />
@@ -63,9 +70,6 @@ const Office = (props: Props) => {
       {_renderFloatingButton()}
     </SafeAreaView>
   );
-  function onItemSelected(data: CardData) {
-    props.navigation.navigate(RouteName.MAP, { floorId: data.id, floorName: data.name });
-  }
 };
 
 export default Office;
