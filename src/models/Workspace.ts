@@ -1,4 +1,4 @@
-export default class Workspace {
+export default class WorkSpace {
     id: number = -1;
     createdAt: string = '';
     updatedAt: string = '';

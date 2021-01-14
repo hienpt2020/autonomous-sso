@@ -27,8 +27,9 @@ function* fetchUserWorkspace() {
         //update store
         yield put(createActionSetWorkSpace(userWorkspace));
     } else {
+        // TODO handle current user are'nt belong to any WS
         const message = _.get(error, 'errorMessage', i18next.t('common.error'));
-        yield put(createRequestErrorMessageAction(message));
+        //yield put(createRequestErrorMessageAction(message));
     }
 }
 export function* fetchUserData() {

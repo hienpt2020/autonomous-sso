@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,12 +8,11 @@ import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
+import { getWorkLayout } from './actions/homeAction';
 import { CardData, CardItem } from './card';
 import FoatingButton from './floatingButton';
 import { styles } from './styles';
 import { Props } from './types';
-import { getWorkLayout } from './actions/homeAction';
-import reactotron from 'src/config/configReactoron';
 
 const Office = (props: Props) => {
   const { t } = useTranslation();
@@ -29,7 +27,7 @@ const Office = (props: Props) => {
     setIsLoading(true);
     try {
       setWorkLayouts(await getWorkLayout(1));
-    } catch (error) {}
+    } catch (error) { }
     setIsLoading(false);
   };
 
@@ -58,8 +56,8 @@ const Office = (props: Props) => {
           keyExtractor={(item) => item.id + ''}
         />
       ) : (
-        <Empty />
-      )}
+            <Empty />
+          )}
       {_renderFloatingButton()}
     </SafeAreaView>
   );

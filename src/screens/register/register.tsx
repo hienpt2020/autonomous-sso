@@ -25,14 +25,6 @@ const Login = (props: Props) => {
   const emailValidator: Validator = new EmailValidator()
   const passwordValidator: Validator = new PasswordValidator()
 
-  React.useEffect(() => {
-    // dispatch({ type: REQUEST_START });
-    // setTimeout(() => dispatch({ type: REQUEST_END }), 3000);
-    //setEmailError(t('login.email_invalid'))
-    //setPasswordError(t('login.password_require'))
-    reactotron.log(props.route.params)
-  }, []);
-
   return (
 
     <SafeAreaView style={styles.container}>

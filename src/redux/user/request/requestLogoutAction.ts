@@ -1,4 +1,4 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, all } from 'redux-saga/effects';
 import { Preference } from 'src/common/preference';
 import {
     createRequestEndAction,
@@ -12,10 +12,11 @@ import { requestLogout } from './apiUser';
 export function* requestLogoutAction(action: any) {
     yield put(createRequestStartAction());
     try {
-        yield call(requestLogout);
-        yield call(Preference.saveAccessToken, '');
+        yield all([
+            call(requestLogout),
+            put(createClearUserProfileAction()),
+            call(Preference.saveAccessToken, '')]);
         NetworkingConfig.putCommonHeaderWithToken('');
-        yield put(createClearUserProfileAction());
     } catch (error) {
         console.log(error);
         yield put(createRequestErrorAction(error));

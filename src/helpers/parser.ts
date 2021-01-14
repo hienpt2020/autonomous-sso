@@ -1,6 +1,6 @@
 import { User } from 'src/models';
 import _ from 'lodash';
-import Workspace from 'src/models/Workspace';
+import WorkSpace from 'src/models/WorkSpace';
 export class ParserImpl implements IParser {
     parseUser(responseData: any): User {
         const result = new User();
@@ -20,8 +20,8 @@ export class ParserImpl implements IParser {
         result.accessToken = _.get(responseData, 'accessToken');
         return result;
     }
-    parseWorkspace(responseData: any): Workspace {
-        const result = new Workspace();
+    parseWorkspace(responseData: any): WorkSpace {
+        const result = new WorkSpace();
         result.id = _.get(responseData, 'id');
         result.createdAt = _.get(responseData, 'created_at');
         result.updatedAt = _.get(responseData, 'updated_at');
@@ -35,7 +35,7 @@ export class ParserImpl implements IParser {
 }
 interface IParser {
     parseUser(responseData: any): User;
-    parseWorkspace(responseData: any): Workspace;
+    parseWorkspace(responseData: any): WorkSpace;
 }
 
 export const Parser = new ParserImpl();

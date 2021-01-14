@@ -1,4 +1,4 @@
-import Workspace from "src/models/Workspace";
+import Workspace from "src/models/WorkSpace";
 
 export const ACTION_SET_WORKSPACE = 'ACTION_SET_WORKSPACE';
 export const ACTION_CLEAR_WORKSPACE = 'ACTION_CLEAR_WORKSPACE';
