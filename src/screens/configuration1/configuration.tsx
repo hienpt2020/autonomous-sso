@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, StatusBar, FlatList, ScrollView, DeviceEventEmitter } from 'react-native';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ICardData, Props } from './types';
 import { styles } from './styles';
@@ -20,10 +20,10 @@ const ConfigurationStep1 = (props: Props) => {
   const [selected, setSelected] = useState('');
   const [peripherals, setPeripherals] = useState<ICardData[]>([]);
   useEffect(() => {
-    DeviceEventEmitter.addListener(EVENT_EMITTER_BLE.DISCOVERED_DEVICE, recoverDevice);
+    DeviceEventEmitter.addListener(EVENT_EMITTER_BLE.DISCOVERED_DEVICE, discoverDevice);
 
     return () => {
-      DeviceEventEmitter.removeListener(EVENT_EMITTER_BLE.DISCOVERED_DEVICE, recoverDevice);
+      DeviceEventEmitter.removeListener(EVENT_EMITTER_BLE.DISCOVERED_DEVICE, discoverDevice);
     };
   }, []);
 
@@ -74,14 +74,14 @@ const ConfigurationStep1 = (props: Props) => {
     props.navigation.goBack();
   }
 
-  async function connectToDevice(deviceId: string): void {
+  async function connectToDevice(deviceId: string): Promise<void> {
     let device = await BleManager.connectToDevice(deviceId);
     if (device) {
       setSelected(deviceId);
     }
   }
 
-  function recoverDevice(data: ICardData[]) {
+  function discoverDevice(data: ICardData[]) {
     setPeripherals(data);
   }
 };
