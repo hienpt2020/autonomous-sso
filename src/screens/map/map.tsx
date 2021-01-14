@@ -93,43 +93,6 @@ const Map = (props: Props) => {
     </TouchableWithoutFeedback>
   );
 
-  return (
-    <View style={{ flex: 1 }}>
-      <SafeAreaView style={styles.container}>
-        <BackHeader title={props.route.params.floorName} onPress={() => handleBack()} />
-        <View style={styles.buttonContainer}>
-          <IconButton title={moment(dateFrom).format(timeFormatter)} onPress={() => switchFromDate()} />
-          <IconButton title={moment(dateTo).format(timeFormatter)} onPress={() => switchToDate()} />
-        </View>
-        {isLoading ? (
-          <Loading />
-        ) : workPlaces.length > 0 ? (
-          <FlatList
-            data={workPlaces}
-            style={{ paddingStart: 8, paddingEnd: 8 }}
-            keyExtractor={(item, index) => `${item.id.toString()}${index}`}
-            numColumns={NUM_COLUMNS}
-            renderItem={({ item }) => renderItem(item)}
-            getItemLayout={(data, index) => getItemLayout(data, index)}
-          />
-        ) : (
-          <Empty />
-        )}
-      </SafeAreaView>
-      {isBottomSheetShow ? renderOverlay() : null}
-      <BottomSheet
-        ref={sheetRef}
-        snapPoints={[FIXED_DATE_TIME, 0, 0]}
-        initialSnap={1}
-        renderContent={renderContent}
-        enabledContentTapInteraction={false}
-        onOpenEnd={() => setIsBottomSheetShow(true)}
-        onCloseEnd={() => setIsBottomSheetShow(false)}
-        enabledInnerScrolling={false}
-      />
-    </View>
-  );
-
   function onItemSelected(data: WorkPlace) {
     navigate(RouteName.PLACE_DETAIL, { place: data });
     dispatch(setBookingDataAction(new Booking(dateFrom, dateTo)));
@@ -166,6 +129,43 @@ const Map = (props: Props) => {
   function handleBack() {
     props.navigation.goBack();
   }
+
+  return (
+    <View style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
+        <BackHeader title={props.route.params.floorName} onPress={() => handleBack()} />
+        <View style={styles.buttonContainer}>
+          <IconButton title={moment(dateFrom).format(timeFormatter)} onPress={() => switchFromDate()} />
+          <IconButton title={moment(dateTo).format(timeFormatter)} onPress={() => switchToDate()} />
+        </View>
+        {isLoading ? (
+          <Loading />
+        ) : workPlaces.length > 0 ? (
+          <FlatList
+            data={workPlaces}
+            style={{ paddingStart: 8, paddingEnd: 8 }}
+            keyExtractor={(item, index) => `${item.id.toString()}${index}`}
+            numColumns={NUM_COLUMNS}
+            renderItem={({ item }) => renderItem(item)}
+            getItemLayout={(data, index) => getItemLayout(data, index)}
+          />
+        ) : (
+          <Empty />
+        )}
+      </SafeAreaView>
+      {isBottomSheetShow ? renderOverlay() : null}
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={[FIXED_DATE_TIME, 0, 0]}
+        initialSnap={1}
+        renderContent={renderContent}
+        enabledContentTapInteraction={false}
+        onOpenEnd={() => setIsBottomSheetShow(true)}
+        onCloseEnd={() => setIsBottomSheetShow(false)}
+        enabledInnerScrolling={false}
+      />
+    </View>
+  );
 };
 
 export default Map;
