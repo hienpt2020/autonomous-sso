@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header } from 'src/components/header';
@@ -13,23 +14,24 @@ import { CardData, CardItem } from './card';
 import FoatingButton from './floatingButton';
 import { styles } from './styles';
 import { Props } from './types';
+import { RootState } from 'src/redux/types';
 
 const Office = (props: Props) => {
   const { t } = useTranslation();
+  const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer);
   const [workLayouts, setWorkLayouts] = useState<WorkLayout[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    _getData();
-  }, []);
-
-  const _getData = async () => {
     setIsLoading(true);
-    try {
-      setWorkLayouts(await getWorkLayout(1));
-    } catch (error) { }
-    setIsLoading(false);
-  };
+    getWorkLayout(workspaceReducer.id).then((data) => {
+      setWorkLayouts(data);
+    }).catch(() => {
+
+    }).finally(() => {
+      setIsLoading(false);
+    })
+  }, [workspaceReducer.id]);
 
   const renderItem = (data: CardData) => {
     return <CardItem cardData={data} onPress={() => onItemSelected(data)} />;

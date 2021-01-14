@@ -68,23 +68,22 @@ const SwitchWorkSpace = (props: Props) => {
         <View style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
                 <BackHeader title={t('switch_workspace.title')} onPress={() => handleBack()} />
-                {
-                    isLoading ? (
-                        <Loading />
-                    ) : workSpaceData.length > 0 ? (
-                        <>
-                            <FlatList
-                                data={workSpaceData}
-                                style={{ paddingStart: 16, paddingEnd: 16 }}
-                                keyExtractor={(item, index) => `${item.id}${index}`}
-                                ItemSeparatorComponent={flatListItemSeparator}
-                                renderItem={({ item, index }) => renderItem(item, index)}
-                            />
-                            <PrimaryButton containerStyle={styles.buttonContainer} title="Save" onPress={() => { requestUpdateCurrentWorkSpace() }} />
-                        </>
-                    ) : (
-                                <Empty />
-                            )}
+                {isLoading ? (
+                    <Loading />
+                ) : workSpaceData.length > 0 ? (
+                    <>
+                        <FlatList
+                            data={workSpaceData}
+                            style={{ paddingStart: 16, paddingEnd: 16 }}
+                            keyExtractor={(item, index) => `${item.id}${index}`}
+                            ItemSeparatorComponent={flatListItemSeparator}
+                            renderItem={({ item, index }) => renderItem(item, index)}
+                        />
+                        <PrimaryButton containerStyle={styles.buttonContainer} title="Save" onPress={() => { requestUpdateCurrentWorkSpace() }} />
+                    </>
+                ) : (
+                            <Empty />
+                        )}
             </SafeAreaView>
         </View>
     )
