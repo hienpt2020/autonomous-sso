@@ -16,7 +16,6 @@ const AppText: React.FC<AppTextProps> = ({
     return (
         <Text
             style={[
-                style,
                 {
                     fontSize: size,
                     color: color,
@@ -24,6 +23,7 @@ const AppText: React.FC<AppTextProps> = ({
                     fontWeight: bold ? '500' : '400',
                     fontStyle: italic ? 'italic' : 'normal',
                 },
+                style,
             ]}
         >
             {children}

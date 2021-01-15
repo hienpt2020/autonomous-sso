@@ -1,6 +1,6 @@
 import { TextProps } from 'react-native-elements';
 export interface AppTextProps extends TextProps {
-    children: string;
+    children?: string;
     left?: boolean;
     center?: boolean;
     right?: boolean;
