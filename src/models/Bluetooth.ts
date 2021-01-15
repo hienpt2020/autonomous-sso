@@ -1,3 +1,5 @@
+import { Mqtt } from './Mqtt';
+
 export class Connection {
     type: string = '';
     ssid: string = '';
@@ -9,8 +11,20 @@ export class Connection {
     mqtt_usr: string = '';
     mqtt_pwd: string = '';
     device_id: string = '';
+    constructor(mqttInfo: Mqtt, wifiName: string, wifiPassword: string, deviceId: string) {
+        this.type = 'init';
+        this.ssid = wifiName;
+        this.pwd = wifiPassword;
+        this.mqtt_server = mqttInfo.mqttServer;
+        this.mqtt_port = mqttInfo.mqttPort;
+        this.fa_channel = mqttInfo.faChannel;
+        this.fd_channel = mqttInfo.fdChannel;
+        this.mqtt_usr = mqttInfo.mqttUser;
+        this.mqtt_pwd = mqttInfo.mqttPassword;
+        this.device_id = deviceId;
+    }
 }
 
-interface IBluetooth {
+export interface IBluetooth {
     Connection: Connection;
 }

@@ -17,55 +17,56 @@ import { Props } from './types';
 import { RootState } from 'src/redux/types';
 
 const Office = (props: Props) => {
-  const { t } = useTranslation();
-  const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer);
-  const [workLayouts, setWorkLayouts] = useState<WorkLayout[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+    const { t } = useTranslation();
+    const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer);
+    const [workLayouts, setWorkLayouts] = useState<WorkLayout[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    setIsLoading(true);
-    getWorkLayout(workspaceReducer.id).then((data) => {
-      setWorkLayouts(data);
-    }).catch(() => {
+    useEffect(() => {
+        setIsLoading(true);
+        getWorkLayout(workspaceReducer.id)
+            .then((data) => {
+                setWorkLayouts(data);
+            })
+            .catch(() => {})
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, [workspaceReducer.id]);
 
-    }).finally(() => {
-      setIsLoading(false);
-    })
-  }, [workspaceReducer.id]);
+    const renderItem = (data: CardData) => {
+        return <CardItem cardData={data} onPress={() => onItemSelected(data)} />;
+    };
 
-  const renderItem = (data: CardData) => {
-    return <CardItem cardData={data} onPress={() => onItemSelected(data)} />;
-  };
+    const _onPressMyBooking = () => {
+        navigate(RouteName.CONFIGURATION_STEP1, null);
+    };
 
-  const _onPressMyBooking = () => {
-    navigate(RouteName.BOOKING_HISTORY, null);
-  };
+    const _renderFloatingButton = () => {
+        return <FoatingButton onPress={_onPressMyBooking} />;
+    };
 
-  const _renderFloatingButton = () => {
-    return <FoatingButton onPress={_onPressMyBooking} />;
-  };
+    return (
+        <SafeAreaView style={styles.container}>
+            <Header title={t('office.title')} />
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <Header title={t('office.title')} />
-
-      {isLoading ? (
-        <Loading />
-      ) : workLayouts.length > 0 ? (
-        <FlatList
-          data={workLayouts}
-          renderItem={({ item }) => renderItem(item)}
-          keyExtractor={(item) => item.id + ''}
-        />
-      ) : (
-            <Empty />
-          )}
-      {_renderFloatingButton()}
-    </SafeAreaView>
-  );
-  function onItemSelected(data: CardData) {
-    props.navigation.navigate(RouteName.MAP, { floorId: data.id, floorName: data.name });
-  }
+            {isLoading ? (
+                <Loading />
+            ) : workLayouts.length > 0 ? (
+                <FlatList
+                    data={workLayouts}
+                    renderItem={({ item }) => renderItem(item)}
+                    keyExtractor={(item) => item.id + ''}
+                />
+            ) : (
+                <Empty />
+            )}
+            {_renderFloatingButton()}
+        </SafeAreaView>
+    );
+    function onItemSelected(data: CardData) {
+        props.navigation.navigate(RouteName.MAP, { floorId: data.id, floorName: data.name });
+    }
 };
 
 export default Office;

@@ -32,10 +32,24 @@ export class ParserImpl implements IParser {
         result.members = _.get(responseData, 'members');
         return result;
     }
+    parseBytesToString(bytes: any): string {
+        return bytes
+            .map(function (x: any) {
+                return String.fromCharCode(x);
+            })
+            .join('');
+    }
+    parseStringToBytes(str: string) {
+        return str.split('').map(function (x: any) {
+            return x.charCodeAt(0);
+        });
+    }
 }
 interface IParser {
     parseUser(responseData: any): User;
     parseWorkspace(responseData: any): WorkSpace;
+    parseBytesToString(bytes: any): String;
+    parseStringToBytes(str: string): any[];
 }
 
 export const Parser = new ParserImpl();

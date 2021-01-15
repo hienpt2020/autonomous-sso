@@ -11,7 +11,7 @@ const CardData = (props: any) => {
         <TouchableOpacity onPress={props.onPress}>
             <View style={styles.chipContainer}>
                 <BluetoothLight width="16" height="16" />
-                <Text style={[styles.chipContent]}>{props.data.localName}</Text>
+                <Text style={[styles.chipContent]}>{props.data.name}</Text>
                 {props.data.connected ? <Check width="32" height="32" style={styles.chipIcon} /> : null}
             </View>
         </TouchableOpacity>

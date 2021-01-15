@@ -68,4 +68,7 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         end: 16,
     },
+    header: {
+        position: 'absolute',
+    },
 });
