@@ -1,42 +1,17 @@
-import { BookingHistory } from 'src/models/BookingHistory';
-import WorkPlace from 'src/models/WorkPlace';
-import { HybridApi } from 'src/services/networking';
-import store from 'src/redux/store';
-import { createRequestEndAction, createRequestErrorMessageAction, createRequestStartAction } from 'src/redux/request';
 import _ from 'lodash';
-import reactotron from 'reactotron-react-native';
-import { parseMapAddress } from 'src/helpers/locationHelper';
-import Asset from 'src/models/Asset';
+import { ParserImpl } from 'src/helpers/parser';
+import { BookingHistory } from 'src/models/BookingHistory';
+import { createRequestEndAction, createRequestErrorMessageAction, createRequestStartAction } from 'src/redux/request';
+import store from 'src/redux/store';
+import { HybridApi } from 'src/services/networking';
 
 export const getPlaceDetail = async (mapId: number, placeId: number): Promise<any> => {
   try {
     const response: any = await HybridApi.getPlaceDetail(mapId, placeId);
     const placeResponse: any = response.data;
 
-    const workPlace = new WorkPlace();
-    workPlace.id = placeResponse.id;
-    workPlace.mapId = placeResponse.working_space_layout_id;
-    workPlace.name = placeResponse.working_place_types.type_name + ' ' + placeResponse.code;
-    workPlace.address = parseMapAddress(
-      placeResponse.working_space_layout.street,
-      placeResponse.working_space_layout.city,
-      placeResponse.working_space_layout.state,
-      placeResponse.working_space_layout.street.country,
-    );
-    workPlace.devices = placeResponse.assets_details
-      ? placeResponse.assets_details.map((unit: any) => new Asset(unit.assets_stock.assets))
-      : [];
-    workPlace.tags = placeResponse.working_place_tags
-      ? placeResponse.working_place_tags?.map((tag: any) => tag.tag)
-      : [];
-    workPlace.imageUrls = placeResponse.working_p_lace_images
-      ? placeResponse.working_p_lace_images.map((image: any) => image.image_url)
-      : [];
-    workPlace.thumbImageUrl =
-      placeResponse.working_p_lace_images && placeResponse.working_p_lace_images.length > 0
-        ? placeResponse.working_p_lace_images[0]
-        : '';
-    return workPlace;
+    const parser = new ParserImpl();
+    return parser.parseWorkPlace(placeResponse);
   } catch (error) {
     return undefined;
   }
