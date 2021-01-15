@@ -188,7 +188,8 @@ class ConfigurationStep1 extends React.Component {
     };
 
     handleBack() {
-        this.props.navigation.goBack();
+        navigate(RouteName.PLACE_DETAIL, null);
+        // this.props.navigation.goBack();
     }
 
     render() {
@@ -224,7 +225,7 @@ class ConfigurationStep1 extends React.Component {
                 </ScrollView>
                 <PrimaryButton
                     wrapperContainer={styles.button}
-                    title={i18next.t(common.error)}
+                    title={i18next.t('Scan')}
                     onPress={() => this.startScan()}
                 />
                 <SafeAreaView style={styles.header}>

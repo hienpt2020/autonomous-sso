@@ -4,7 +4,7 @@ import { Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { Props } from './types';
 
-const FoatingButton = ({ onPress = () => {} }: Props) => {
+const FloatingButton = ({ onPress = () => {} }: Props) => {
   const { t } = useTranslation();
 
   const _onPress = () => {
@@ -18,4 +18,4 @@ const FoatingButton = ({ onPress = () => {} }: Props) => {
   );
 };
 
-export default FoatingButton;
+export default FloatingButton;

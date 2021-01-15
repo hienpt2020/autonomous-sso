@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StatusBar, Text, View, YellowBox } from 'react-native';
-import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
@@ -11,9 +10,10 @@ import { Chip } from 'src/components/chip';
 import { Device } from 'src/components/device';
 import { BackHeader } from 'src/components/header';
 import { ImageSlider } from 'src/components/images/images';
-import { getImage } from 'src/helpers/imageHelper';
+import Asset from 'src/models/Asset';
 import Booking from 'src/models/Booking';
 import { BookingHistory } from 'src/models/BookingHistory';
+import WorkLayout from 'src/models/WorkLayout';
 import WorkPlace from 'src/models/WorkPlace';
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
@@ -32,6 +32,8 @@ const BookingDetail = (props: Props) => {
   const bookingHistory: BookingHistory | undefined = props.route.params.booking;
   const place: WorkPlace | undefined = props.route.params.place;
   const booking: Booking = useSelector((state: RootState) => state.booking.booking);
+  const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
+  const isAdmin: boolean = useSelector((state: RootState) => state.workspaceReducer.isAdmin);
   const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
 
   useEffect(() => {
@@ -39,6 +41,10 @@ const BookingDetail = (props: Props) => {
       _getData(bookingHistory.mapId, bookingHistory.placeId);
     }
     if (place) {
+      const shortcutPlaceData = new WorkPlace();
+      shortcutPlaceData.name = place.name;
+      shortcutPlaceData.imageUrls = place.imageUrls;
+      setPlaceData(shortcutPlaceData);
       _getData(place.mapId, place.id);
     }
   }, []);
@@ -60,18 +66,27 @@ const BookingDetail = (props: Props) => {
     } catch (error) {}
   };
 
+  const _onPressDevice = (item: Asset) => {
+    navigate(RouteName.CONFIGURATION_STEP1, null);
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <ScrollView style={styles.container}>
-        {placeData && placeData.imageUrls.length > 0 ? (
-          <ImageSlider data={placeData.imageUrls} height={imageHeight} />
-        ) : (
-          <FastImage style={{ width: '100%', height: imageHeight }} source={{ uri: getImage('') }} />
+        <ImageSlider
+          containerStyle={{ marginBottom: 16 }}
+          data={placeData ? placeData.imageUrls : []}
+          height={imageHeight}
+        />
+
+        {placeData && (
+          <>
+            <Text style={styles.title}>{placeData.name}</Text>
+            <Text style={styles.subTitle}>{workLayout.address}</Text>
+            <Chip data={placeData.tags} containerStyle={styles.chip} />
+          </>
         )}
-        <Text style={styles.title}>{placeData ? placeData.name : ''}</Text>
-        <Text style={styles.subTitle}>{placeData ? placeData.address : ''}</Text>
-        <Chip data={placeData ? placeData.tags : []} containerStyle={styles.chip} />
 
         {bookingHistory && (
           <>
@@ -84,10 +99,25 @@ const BookingDetail = (props: Props) => {
             </View>
           </>
         )}
-        <Text style={styles.sectionTitle}>{t('common.assets')}</Text>
-        <Device data={placeData ? placeData.devices : []} containerStyle={styles.list} />
-        <Text style={styles.sectionTitle}>{t('common.policies')}</Text>
-        <Text style={styles.sectionContent}>{`• Keep the desk clean \n• Do not make noise while working`}</Text>
+
+        {placeData && placeData.devices.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>{t('common.assets')}</Text>
+            <Device
+              data={placeData.devices}
+              containerStyle={styles.list}
+              isConfig={isAdmin && !bookingHistory}
+              onPressDevice={_onPressDevice}
+            />
+          </>
+        )}
+
+        {workLayout && workLayout.policy ? (
+          <>
+            <Text style={styles.sectionTitle}>{t('common.policies')}</Text>
+            <Text style={styles.sectionContent}>{workLayout.policy}</Text>
+          </>
+        ) : null}
       </ScrollView>
       <PrimaryButton
         onPress={_onPressBookPlace}

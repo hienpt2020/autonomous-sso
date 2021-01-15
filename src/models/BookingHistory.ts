@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { parseMapAddress } from 'src/helpers/locationHelper';
 
 export class BookingHistory {
   id: number;
@@ -11,15 +12,15 @@ export class BookingHistory {
   placeId: number;
   code: number;
 
-  constructor(booking: any) {
-    this.id = booking.id;
-    this.name = booking.working_place.working_place_types.type_name + ' ' + booking.working_place.code.toString();
-    this.address = booking.working_place.working_space_layout.street;
-    this.timeFrom = moment(booking.from).format('DD MMM, YYYY');
-    this.timeTo = moment(booking.to).format('DD MMM, YYYY');
-    this.workspace = booking.working_place.working_space_layout.name;
-    this.placeId = booking.working_place.id;
-    this.mapId = booking.working_place.working_space_layout.id;
-    this.code = booking.code;
+  constructor() {
+    this.id = 0;
+    this.name = '';
+    this.address = '';
+    this.timeFrom = '';
+    this.timeTo = '';
+    this.workspace = '';
+    this.placeId = 0;
+    this.mapId = 0;
+    this.code = 0;
   }
 }
