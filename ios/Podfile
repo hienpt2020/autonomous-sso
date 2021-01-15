@@ -82,8 +82,6 @@ target 'RNCodebase' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
-  pod 'react-native-ble-plx', :path => '../node_modules/react-native-ble-plx'
-
   target 'RNCodebaseTests' do
     inherit! :complete
     # Pods for testing

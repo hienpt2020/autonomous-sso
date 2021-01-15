@@ -7,10 +7,8 @@ export const styles = StyleSheet.create({
         backgroundColor: AppColor.WHITE,
     },
     button: {
-        bottom: 16,
-        start: 16,
-        end: 16,
-        position: 'absolute'
+        paddingBottom: 16,
+        paddingHorizontal: 16,
     },
     title: {
         fontSize: 42,
@@ -52,23 +50,22 @@ export const styles = StyleSheet.create({
     },
     divider: {
         height: 0.5,
-        width: "100%",
+        width: '100%',
         backgroundColor: AppColor.LIGHT,
     },
     chip: {
         marginTop: 16,
         marginStart: 8,
-        marginEnd: 8
+        marginEnd: 8,
     },
     list: {
         paddingStart: 8,
         paddingEnd: 8,
         flexGrow: 0,
         margin: 16,
-
     },
     chipIcon: {
         position: 'absolute',
         end: 16,
-    }
+    },
 });

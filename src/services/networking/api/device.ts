@@ -24,7 +24,7 @@ function _put(url: string, body: object, params?: object) {
 /**List all API below */
 
 function getMqttInfo() {
-    return _get('/master/get-info');
+    return _get('/master/set-up-hub-device');
 }
 
 export const DeviceApi = {
