@@ -1,2 +1,3 @@
-import { color } from "react-native-reanimated";
-export { AppColor } from "./colors";
+export { AppColor } from './colors';
+export { AppSpacing } from './spacing';
+export { AppFontSize } from './typography';
