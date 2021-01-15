@@ -42,27 +42,33 @@ export const ImageSlider = (props: Props) => {
   const renderItem = (data: string) => {
     return (
       <View>
-        <FastImage style={styles.image} source={{ uri: getImage(data) }} />
+        <FastImage style={styles.image} source={getImage(data)} resizeMode="cover" />
         <Image style={styles.coverImage} source={require('src/assets/images/image-hover-background.png')} />
       </View>
     );
   };
 
   return (
-    <View style={styles.sliderContainer}>
-      <FlatList
-        data={props.data}
-        style={[styles.list]}
-        keyExtractor={(item, index) => `${item}${index}`}
-        renderItem={({ item, index }) => renderItem(item)}
-        horizontal
-        onScroll={onScroll}
-        pagingEnabled
-        getItemLayout={(data, index) => getItemLayout(data, index)}
-      />
-      <Text style={styles.sliderTitle}>
-        ({index + 1}/{props.data.length})
-      </Text>
+    <View style={[styles.sliderContainer, props.containerStyle]}>
+      {props.data.length > 0 ? (
+        <FlatList
+          data={props.data}
+          style={[styles.list]}
+          keyExtractor={(item, index) => `${item}${index}`}
+          renderItem={({ item, index }) => renderItem(item)}
+          horizontal
+          onScroll={onScroll}
+          pagingEnabled
+          getItemLayout={(data, index) => getItemLayout(data, index)}
+        />
+      ) : (
+        renderItem('')
+      )}
+      {props.data.length > 0 && (
+        <Text style={styles.sliderTitle}>
+          ({index + 1}/{props.data.length})
+        </Text>
+      )}
     </View>
   );
 };

@@ -6,7 +6,6 @@ const FIXED_ITEM_HEIGHT = 140;
 export const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
-    justifyContent: 'center',
     height: FIXED_ITEM_HEIGHT,
     width: FIXED_ITEM_WIDTH,
     backgroundColor: 'white',
@@ -32,7 +31,6 @@ export const styles = StyleSheet.create({
   itemTitle: {
     paddingStart: 16,
     paddingEnd: 16,
-    flexGrow: 1,
     justifyContent: 'center',
     lineHeight: 140 - 106,
     fontSize: 18,
