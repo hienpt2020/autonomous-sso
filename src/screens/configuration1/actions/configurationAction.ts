@@ -1,5 +1,4 @@
 import { DeviceApi } from 'src/services/networking';
-import { Connection, IBluetooth } from '../../../models/Bluetooth';
 import {
     createRequestEndAction,
     createRequestErrorMessageAction,
@@ -24,7 +23,7 @@ export class ConfigStep1Actions {
         this.dispatch = dispatch;
     }
 
-    getMqttInfo = async (): Promise<void> => {
+    public getMqttInfo = async (): Promise<void> => {
         try {
             this.dispatch(createRequestStartAction());
             const res: any = await DeviceApi.getMqttInfo();
@@ -74,15 +73,15 @@ export class ConfigStep1Actions {
             let data = Parser.parseStringToBytes(
                 JSON.stringify({
                     type: 'init',
-                    ssid: 'Autonomous',
-                    pwd: '@11235813',
+                    ssid: wifiName, // Autonomous
+                    pwd: wifiPassword, // '@11235813',
                     device_id: 'c6azQNF7t',
-                    mqtt_server: '34.71.0.216',
-                    mqtt_port: '1883',
+                    mqtt_server: this.mqttInfo.mqttServer, // '34.71.0.216',
+                    mqtt_port: this.mqttInfo.mqttPort,
                     fd_channel: 'SmartDesk/f_d/1/c6azQNF7t', // `SmartDesk/f_d/${layoutId}/${deviceId}`
                     fa_channel: 'SmartDesk/f_a/1/c6azQNF7t', // `SmartDesk/f_a/${layoutId}/${deviceId}`
-                    mqtt_usr: 'autonomous',
-                    mqtt_pwd: '123',
+                    mqtt_usr: this.mqttInfo.mqttUser, // 'autonomous'
+                    mqtt_pwd: this.mqttInfo.mqttPassword, // '123'
                 }),
             );
             await BleManager.write(
@@ -103,6 +102,6 @@ export class ConfigStep1Actions {
 }
 
 export interface IConfigStep1Actions {
-    getMqttInfo(): Promise<any>;
+    getMqttInfo(): Promise<void>;
     connectToPeripheral(peripheralId: string): Promise<void>;
 }

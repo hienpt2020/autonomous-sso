@@ -189,7 +189,6 @@ class ConfigurationStep1 extends React.Component {
 
     handleBack() {
         navigate(RouteName.PLACE_DETAIL, null);
-        // this.props.navigation.goBack();
     }
 
     render() {
@@ -235,13 +234,5 @@ class ConfigurationStep1 extends React.Component {
         );
     }
 }
-
-const bytesToString = function (bytes: any) {
-    return bytes
-        .map(function (x: any) {
-            return String.fromCharCode(x);
-        })
-        .join('');
-};
 
 export default connect(null, null)(ConfigurationStep1);
