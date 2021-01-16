@@ -1,1 +1,0 @@
-ENVFILE=.env.develop ./gradlew assembleRelease  -PstoreFile='autonomous-mobile.keystore' -Ppassword='autonomousdev2020' -PkeyAlias='Autonomous Mobile'
