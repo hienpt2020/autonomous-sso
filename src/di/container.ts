@@ -5,7 +5,7 @@ import { TYPES } from './types';
 
 const container = new Container();
 
-container.bind<string>(TYPES.Environment).toConstantValue(Environment.DEVELOPMENT);
+container.bind<string>(TYPES.Environment).toConstantValue(Environment.DEVELOP);
 
 container.bind<Logger>(TYPES.Logger).to(LoggerImpl).inSingletonScope();
 
