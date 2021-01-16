@@ -11,7 +11,7 @@ const CardItem = (props: Props) => {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View style={styles.itemContainer}>
-        <FastImage style={styles.coverImage} source={{ uri: getImage(cardData.image) }} />
+        <FastImage style={styles.coverImage} source={getImage(cardData.image)} />
         <FastImage style={styles.coverImage} source={require('src/assets/images/image-hover-background.png')} />
         <Text style={styles.itemSubTitle}>{cardData.address}</Text>
         <Text style={styles.itemTitle}>{cardData.name}</Text>

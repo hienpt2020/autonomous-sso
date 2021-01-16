@@ -19,7 +19,6 @@ export const styles = StyleSheet.create({
     fontSize: 42,
     marginStart: 16,
     marginEnd: 16,
-    marginTop: 16,
     color: AppColor.PRIMARY,
   },
   subTitle: {

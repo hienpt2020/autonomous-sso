@@ -4,15 +4,20 @@ import FastImage from 'react-native-fast-image';
 import { getImage } from 'src/helpers/imageHelper';
 import { styles } from './styles';
 import { Props } from './types';
+import Icon from 'src/assets/images/empty.svg';
+import reactotron from 'src/config/configReactoron';
 
 const CardItem = (props: Props) => {
   const cardData = props.cardData;
 
+  reactotron.log(cardData);
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View style={styles.itemContainer}>
-        <FastImage style={styles.coverImage} source={{ uri: getImage(cardData.thumbImageUrl) }} />
-        <Text style={styles.itemTitle}>{cardData.name}</Text>
+        <FastImage style={styles.coverImage} source={getImage(cardData.thumbImageUrl)} resizeMode="cover" />
+        <Text style={styles.itemTitle} numberOfLines={1} ellipsizeMode="tail">
+          {cardData.name}
+        </Text>
       </View>
     </TouchableOpacity>
   );
