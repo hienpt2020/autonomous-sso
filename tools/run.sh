@@ -39,7 +39,7 @@ if [[ ! -z "$BUILDTYPE"  ]]; then
 fi
 
 if [[ ${PLATFORM} = "android" ]]; then
-  ./tools/run-android.sh $ENV $3
+  ./tools/run-android.sh $ENV $BUILDTYPE $4 $5 $6
 else
-  ./tools/run-ios.sh $ENV $3
+  ./tools/run-ios.sh $ENV $BUILDTYPE
 fi
