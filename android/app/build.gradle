@@ -137,6 +137,7 @@ android {
         versionName project.env.get("APP_VERSION")
 
         resValue "string", "build_config_package", "ai.autonomous.rncodebase"
+        multiDexEnabled true
     }
     splits {
         abi {

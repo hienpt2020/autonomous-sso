@@ -98,6 +98,7 @@ class ConfigurationStep1 extends React.Component {
             this.handleConnectedPeripheral,
         );
         await this.configAction.getMqttInfo();
+        this.configAction.checkPermission();
     }
 
     componentWillUnmount() {
