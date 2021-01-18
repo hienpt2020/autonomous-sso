@@ -15,5 +15,5 @@ export enum AppFontSize {
 }
 
 export const AppFont = {
-    REGULAR: Platform.OS == 'ios' ? 'Centra No2 Medium' : 'CentraNo2-Medium',
+    REGULAR: Platform.OS == 'ios' ? 'Centra No2' : 'CentraNo2-Medium',
 };
