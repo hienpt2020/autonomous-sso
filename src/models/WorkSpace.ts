@@ -8,4 +8,5 @@ export default class WorkSpace {
     status: number = -1;
     members: string = '';
     isAdmin: boolean = false;
+    role: number = -1;
 }

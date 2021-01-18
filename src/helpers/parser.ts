@@ -7,6 +7,7 @@ import { BookingHistory } from 'src/models/BookingHistory';
 import { parseMapAddress } from './locationHelper';
 import Asset from 'src/models/Asset';
 import moment from 'moment';
+import { ROLES } from '../common/constant';
 
 export class ParserImpl implements IParser {
     parseUser(responseData: any): User {
@@ -37,6 +38,9 @@ export class ParserImpl implements IParser {
         result.code = _.get(responseData, 'code');
         result.status = _.get(responseData, 'status');
         result.members = _.get(responseData, 'members');
+        result.role = _.get(responseData, 'role');
+        result.isAdmin = ROLES.ADMIN == _.get(responseData, 'role');
+
         return result;
     }
     parseWorkLayout(responseData: any): WorkLayout {
@@ -107,12 +111,12 @@ export class ParserImpl implements IParser {
         return result;
     }
 
-     parseStringToBytes(str: string) {
+    parseStringToBytes(str: string) {
         return str.split('').map(function (x: any) {
             return x.charCodeAt(0);
         });
     }
-     parseBytesToString(bytes: any): string {
+    parseBytesToString(bytes: any): string {
         return bytes
             .map(function (x: any) {
                 return String.fromCharCode(x);
