@@ -1,38 +1,62 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { TouchableHighlight, View, Text } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { TouchableOpacity } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
+import { hidePopupAction } from 'src/redux/app/appAction';
+import { PopupButton, PopupState } from 'src/redux/app/appType';
 import { RootState } from 'src/redux/types';
+import { AppColor, AppFontSize, AppSpacing } from 'src/styles';
+import { AppText, AppView, Space } from '..';
+import { PrimaryButton, SecondaryButton } from '../button';
 import styles from './style';
 import { Props } from './types';
-import _ from 'lodash'
-import { createRequestErrorMessageAction } from 'src/redux/request'
-export const Popup = (props: Props) => {
-  const requestReducer = useSelector((state: RootState) => state.requestReducer);
-  const [error, setError] = useState("")
-  const dispatch = useDispatch()
 
-  useEffect(()=>{
-    setError(_.get(requestReducer, "errorMessage", ""))
-  }, [requestReducer.errorMessage])
-  
-
-  if (error) {
-    return (
-      <View style={styles.popup}>
-        <View style={styles.container}>
-          <Text style={styles.text}>{error}</Text>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={() => {
-              dispatch(createRequestErrorMessageAction(""))
-            }}>
-            <Text style={styles.textButton}>Close</Text>
-          </TouchableHighlight>
-        </View>
-      </View>
+const AppPopup = (props: Props) => {
+    const { visible, message, icon, buttons, title }: PopupState = useSelector(
+        (state: RootState) => state.appReducer.popup,
     );
-  }
-  return null;
+    const dispatch = useDispatch();
 
+    function _onPressOverlay() {
+        dispatch(hidePopupAction());
+    }
+
+    function _onPressButton(button: PopupButton) {
+        button.onPress();
+        dispatch(hidePopupAction());
+    }
+
+    return visible ? (
+        <TouchableOpacity style={styles.container} activeOpacity={1} onPress={_onPressOverlay}>
+            <AppView style={styles.popup} alignItemsCenter>
+                {icon && (
+                    <>
+                        {icon}
+                        <Space height={12} />
+                    </>
+                )}
+
+                <AppText center bold size={AppFontSize.SIZE_18} color={AppColor.DARK_GREY_1}>
+                    {title}
+                </AppText>
+                <Space height={12} />
+                <AppText color={AppColor.GREY_8D}>{message}</AppText>
+                <Space height={24} />
+                <FlatList
+                    style={styles.buttonContainer}
+                    data={buttons}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item, index }) => {
+                        return item.style || item.style == 'negative' ? (
+                            <SecondaryButton title={item.title} onPress={() => _onPressButton(item)} />
+                        ) : (
+                            <PrimaryButton title={item.title} onPress={() => _onPressButton(item)} />
+                        );
+                    }}
+                    ItemSeparatorComponent={() => <Space height={AppSpacing.MEDIUM} />}
+                />
+            </AppView>
+        </TouchableOpacity>
+    ) : null;
 };
+export default AppPopup;

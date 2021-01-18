@@ -8,4 +8,5 @@ export interface AppTextProps extends TextProps {
     italic?: boolean;
     size?: number;
     color?: string;
+    lineHeight?: number;
 }

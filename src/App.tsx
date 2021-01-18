@@ -3,8 +3,8 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import 'reflect-metadata';
-import { Loading } from './components/loading';
-import { Popup } from './components/popup';
+import { AppPopup } from './components';
+import { Popup } from './components/errorPopup';
 import { Spinner } from './components/spinner';
 import './config';
 import store from './redux/store';
@@ -13,20 +13,20 @@ import { MainStackNavigator } from './routers/mainStack';
 import { navigationRef } from './routers/rootNavigation';
 
 const App = () => {
-
-  return (
-    <Provider store={store}>
-      <SafeAreaProvider>
-        <NavigationContainer linking={linkNavigation.linking} ref={navigationRef} >
-          {/* Navigations */}
-          <MainStackNavigator />
-          {/* Global components */}
-          <Spinner />
-          <Popup />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </Provider>
-  );
+    return (
+        <Provider store={store}>
+            <SafeAreaProvider>
+                <NavigationContainer linking={linkNavigation.linking} ref={navigationRef}>
+                    {/* Navigations */}
+                    <MainStackNavigator />
+                    {/* Global components */}
+                    <Spinner />
+                    <Popup />
+                    <AppPopup />
+                </NavigationContainer>
+            </SafeAreaProvider>
+        </Provider>
+    );
 };
 
 export default App;

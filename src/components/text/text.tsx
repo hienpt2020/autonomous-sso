@@ -12,7 +12,9 @@ const AppText: React.FC<AppTextProps> = ({
     italic = false,
     size = AppFontSize.SIZE_14,
     color = AppColor.DARK_GREY_1,
+    lineHeight,
 }: AppTextProps) => {
+    const lineHeightStyle = lineHeight ? { lineHeight: lineHeight } : {};
     return (
         <Text
             style={[
@@ -22,6 +24,7 @@ const AppText: React.FC<AppTextProps> = ({
                     textAlign: center ? 'center' : right ? 'right' : 'left',
                     fontWeight: bold ? '500' : '400',
                     fontStyle: italic ? 'italic' : 'normal',
+                    ...lineHeightStyle,
                 },
                 style,
             ]}
