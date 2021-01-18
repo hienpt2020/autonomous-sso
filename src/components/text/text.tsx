@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text } from 'react-native';
-import { AppColor, AppFontSize } from 'src/styles';
+import { AppColor, AppFontSize, AppFont } from 'src/styles';
 import { AppTextProps } from './types';
 
 const AppText: React.FC<AppTextProps> = ({
@@ -25,6 +25,7 @@ const AppText: React.FC<AppTextProps> = ({
                     fontWeight: bold ? '500' : '400',
                     fontStyle: italic ? 'italic' : 'normal',
                     ...lineHeightStyle,
+                    fontFamily: AppFont.REGULAR,
                 },
                 style,
             ]}
