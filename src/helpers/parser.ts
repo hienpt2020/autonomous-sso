@@ -38,8 +38,8 @@ export class ParserImpl implements IParser {
         result.code = _.get(responseData, 'code');
         result.status = _.get(responseData, 'status');
         result.members = _.get(responseData, 'members');
-        result.role = _.get(responseData, 'role');
-        result.isAdmin = ROLES.ADMIN == _.get(responseData, 'role');
+        result.roleByCurrentUser = _.get(responseData, 'role_by_current_user');
+        result.isAdmin = ROLES.ADMIN == _.get(responseData, 'role_by_current_user');
 
         return result;
     }
