@@ -1,27 +1,32 @@
 import { AppColor } from 'src/styles/colors';
 import { StyleSheet } from 'react-native';
+import { AppFontSize } from 'src/styles';
 
 export const styles = StyleSheet.create({
     button: {
-        flexGrow: 1,
+        borderRadius: 0,
         height: 48,
     },
+    container: {
+        width: '100%',
+        borderRadius: 0,
+    },
     title: {
-        textTransform: 'uppercase',
         fontWeight: 'bold',
-        color: AppColor.PRIMARY,
+        color: AppColor.WHITE,
+        fontSize: AppFontSize.SIZE_16,
+        marginBottom: 2,
     },
     buttonPrimary: {
-        backgroundColor: AppColor.PRIMARY,
+        backgroundColor: AppColor.BLUE_1,
     },
     buttonSecondary: {
-        borderColor: AppColor.PRIMARY,
-        borderWidth: 2
+        backgroundColor: AppColor.GREY_3,
     },
     titlePrimary: {
         color: AppColor.WHITE,
     },
     titleSecondary: {
-        color: AppColor.PRIMARY,
+        color: '#1174DC',
     },
 });

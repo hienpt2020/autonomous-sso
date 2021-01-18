@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, View } from 'react-native';
+import { Button, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppText, AppView, Space } from 'src/components';
+import reactotron from 'reactotron-react-native';
+import { showPopup } from 'src/components';
 import { Header } from 'src/components/header';
 import WorkLayout from 'src/models/WorkLayout';
 import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
-import { AppColor, AppFontSize } from 'src/styles';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
 import { getWorkLayout } from './actions/homeAction';
@@ -57,20 +57,26 @@ const Office = (props: Props) => {
     return (
         <SafeAreaView style={styles.container}>
             <Header title={t('office.title')} />
-
-            <AppView center>
-                <AppText center bold italic color={AppColor.BLUE_1} size={AppFontSize.SIZE_24}>
-                    {'App Text 1'}
-                </AppText>
-                <Space height={10} />
-                <AppText center bold italic color={AppColor.BLUE_1} size={AppFontSize.SIZE_16}>
-                    {'App Text 1'}
-                </AppText>
-                <Space height={10} />
-                <AppText center bold italic color={AppColor.BLUE_1} size={AppFontSize.SIZE_12}>
-                    {'App Text 1'}
-                </AppText>
-            </AppView>
+            {/* <Button
+                title={'Test'}
+                onPress={() => {
+                    showPopup('Sucess', 'bbsdfasdfsdafaksfhsdkfhjksfhjksdhjkb', null, [
+                        {
+                            onPress: () => {
+                                reactotron.log('aa');
+                            },
+                            title: 'Ok',
+                        },
+                        {
+                            onPress: () => {
+                                reactotron.log('bb');
+                            },
+                            title: 'Cancel',
+                            style: 'negative',
+                        },
+                    ]);
+                }}
+            /> */}
 
             {isLoading ? (
                 <Loading />
