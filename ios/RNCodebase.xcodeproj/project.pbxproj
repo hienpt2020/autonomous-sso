@@ -21,6 +21,22 @@
 		7CC6D792C686D0EA728E4E83 /* libPods-RNCodebase-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B34A34C5399DB6DBE7DE41 /* libPods-RNCodebase-tvOS.a */; };
 		A7F66218C3A5C7115A4CDC11 /* libPods-RNCodebase-RNCodebaseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF15ACE73121FCB02C546C6D /* libPods-RNCodebase-RNCodebaseTests.a */; };
 		AD9EAB1B25A3D663005F6E1C /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9EAB1A25A3D663005F6E1C /* libRNSVG.a */; };
+		9546A51E058349899B5206C3 /* CentraNo2-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE0582388276491480A30B76 /* CentraNo2-Black.ttf */; };
+		595671A137E640C78C120EE4 /* CentraNo2-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09F6704797F1460CB60795E9 /* CentraNo2-BlackItalic.ttf */; };
+		B44AD506427B4389897EAF91 /* CentraNo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7A860F872A84EB6BF6FA50E /* CentraNo2-Bold.ttf */; };
+		06168593060E437197D9157D /* CentraNo2-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9F4DD5322DC4ADFA1474A45 /* CentraNo2-BoldItalic.ttf */; };
+		4DA4E1479A0D455283CE7FBA /* CentraNo2-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4C11B96AED44D3BA0AE126F /* CentraNo2-Book.ttf */; };
+		77FCCC1A74FA4E36BD5596EC /* CentraNo2-BookItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D9E83CFE44049C6BC7BDAAF /* CentraNo2-BookItalic.ttf */; };
+		6623ED71CA584D9CB3F4A001 /* CentraNo2-Extrabold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 334218B1E8C5436CA0520669 /* CentraNo2-Extrabold.ttf */; };
+		A3583E006C5448C4B27FD627 /* CentraNo2-ExtraboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D09DC5FAD7E4755821A64EB /* CentraNo2-ExtraboldItalic.ttf */; };
+		D1E5A84734DB4AC180353CA3 /* CentraNo2-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7163BA02AE3B43E9A0FEB6D6 /* CentraNo2-Hairline.ttf */; };
+		0C55077F68EA4D028B4B9376 /* CentraNo2-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AEDEFC980054154A9978E92 /* CentraNo2-HairlineItalic.ttf */; };
+		8E54AB7F4AE64C31A10CC00C /* CentraNo2-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDB44CE06EE74DFFB0D97BF1 /* CentraNo2-Light.ttf */; };
+		D8BD5D7257D34E22A5B915CE /* CentraNo2-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B64D1FFA740A4B9C86848A05 /* CentraNo2-LightItalic.ttf */; };
+		AD0B416514274B87BBECD71B /* CentraNo2-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 317C8F87BDF84B2280EE74BD /* CentraNo2-Medium.ttf */; };
+		CDAD50492F134B20863C9519 /* CentraNo2-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DC8D37C96B74F5DAB8329F4 /* CentraNo2-MediumItalic.ttf */; };
+		ABEFEC4A26BD45C99C2F335F /* CentraNo2-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B5DC842DF1F484EBE14296F /* CentraNo2-Thin.ttf */; };
+		E8AE5CFDBBAA4CD293B9F3A3 /* CentraNo2-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CDB2CEBAFC04CDE81BC57F9 /* CentraNo2-ThinItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +86,22 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F8B34A34C5399DB6DBE7DE41 /* libPods-RNCodebase-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCodebase-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE0582388276491480A30B76 /* CentraNo2-Black.ttf */ = {isa = PBXFileReference; name = "CentraNo2-Black.ttf"; path = "../src/assets/fonts/CentraNo2-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		09F6704797F1460CB60795E9 /* CentraNo2-BlackItalic.ttf */ = {isa = PBXFileReference; name = "CentraNo2-BlackItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C7A860F872A84EB6BF6FA50E /* CentraNo2-Bold.ttf */ = {isa = PBXFileReference; name = "CentraNo2-Bold.ttf"; path = "../src/assets/fonts/CentraNo2-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B9F4DD5322DC4ADFA1474A45 /* CentraNo2-BoldItalic.ttf */ = {isa = PBXFileReference; name = "CentraNo2-BoldItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A4C11B96AED44D3BA0AE126F /* CentraNo2-Book.ttf */ = {isa = PBXFileReference; name = "CentraNo2-Book.ttf"; path = "../src/assets/fonts/CentraNo2-Book.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0D9E83CFE44049C6BC7BDAAF /* CentraNo2-BookItalic.ttf */ = {isa = PBXFileReference; name = "CentraNo2-BookItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BookItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		334218B1E8C5436CA0520669 /* CentraNo2-Extrabold.ttf */ = {isa = PBXFileReference; name = "CentraNo2-Extrabold.ttf"; path = "../src/assets/fonts/CentraNo2-Extrabold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9D09DC5FAD7E4755821A64EB /* CentraNo2-ExtraboldItalic.ttf */ = {isa = PBXFileReference; name = "CentraNo2-ExtraboldItalic.ttf"; path = "../src/assets/fonts/CentraNo2-ExtraboldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7163BA02AE3B43E9A0FEB6D6 /* CentraNo2-Hairline.ttf */ = {isa = PBXFileReference; name = "CentraNo2-Hairline.ttf"; path = "../src/assets/fonts/CentraNo2-Hairline.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1AEDEFC980054154A9978E92 /* CentraNo2-HairlineItalic.ttf */ = {isa = PBXFileReference; name = "CentraNo2-HairlineItalic.ttf"; path = "../src/assets/fonts/CentraNo2-HairlineItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EDB44CE06EE74DFFB0D97BF1 /* CentraNo2-Light.ttf */ = {isa = PBXFileReference; name = "CentraNo2-Light.ttf"; path = "../src/assets/fonts/CentraNo2-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B64D1FFA740A4B9C86848A05 /* CentraNo2-LightItalic.ttf */ = {isa = PBXFileReference; name = "CentraNo2-LightItalic.ttf"; path = "../src/assets/fonts/CentraNo2-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		317C8F87BDF84B2280EE74BD /* CentraNo2-Medium.ttf */ = {isa = PBXFileReference; name = "CentraNo2-Medium.ttf"; path = "../src/assets/fonts/CentraNo2-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8DC8D37C96B74F5DAB8329F4 /* CentraNo2-MediumItalic.ttf */ = {isa = PBXFileReference; name = "CentraNo2-MediumItalic.ttf"; path = "../src/assets/fonts/CentraNo2-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5B5DC842DF1F484EBE14296F /* CentraNo2-Thin.ttf */ = {isa = PBXFileReference; name = "CentraNo2-Thin.ttf"; path = "../src/assets/fonts/CentraNo2-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7CDB2CEBAFC04CDE81BC57F9 /* CentraNo2-ThinItalic.ttf */ = {isa = PBXFileReference; name = "CentraNo2-ThinItalic.ttf"; path = "../src/assets/fonts/CentraNo2-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +218,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				67F40AF5D60A0C3BB3CEF358 /* Pods */,
+				679CA1A1C2144C42A5095D96 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -202,6 +235,30 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		679CA1A1C2144C42A5095D96 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				DE0582388276491480A30B76 /* CentraNo2-Black.ttf */,
+				09F6704797F1460CB60795E9 /* CentraNo2-BlackItalic.ttf */,
+				C7A860F872A84EB6BF6FA50E /* CentraNo2-Bold.ttf */,
+				B9F4DD5322DC4ADFA1474A45 /* CentraNo2-BoldItalic.ttf */,
+				A4C11B96AED44D3BA0AE126F /* CentraNo2-Book.ttf */,
+				0D9E83CFE44049C6BC7BDAAF /* CentraNo2-BookItalic.ttf */,
+				334218B1E8C5436CA0520669 /* CentraNo2-Extrabold.ttf */,
+				9D09DC5FAD7E4755821A64EB /* CentraNo2-ExtraboldItalic.ttf */,
+				7163BA02AE3B43E9A0FEB6D6 /* CentraNo2-Hairline.ttf */,
+				1AEDEFC980054154A9978E92 /* CentraNo2-HairlineItalic.ttf */,
+				EDB44CE06EE74DFFB0D97BF1 /* CentraNo2-Light.ttf */,
+				B64D1FFA740A4B9C86848A05 /* CentraNo2-LightItalic.ttf */,
+				317C8F87BDF84B2280EE74BD /* CentraNo2-Medium.ttf */,
+				8DC8D37C96B74F5DAB8329F4 /* CentraNo2-MediumItalic.ttf */,
+				5B5DC842DF1F484EBE14296F /* CentraNo2-Thin.ttf */,
+				7CDB2CEBAFC04CDE81BC57F9 /* CentraNo2-ThinItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -347,6 +404,22 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				9546A51E058349899B5206C3 /* CentraNo2-Black.ttf in Resources */,
+				595671A137E640C78C120EE4 /* CentraNo2-BlackItalic.ttf in Resources */,
+				B44AD506427B4389897EAF91 /* CentraNo2-Bold.ttf in Resources */,
+				06168593060E437197D9157D /* CentraNo2-BoldItalic.ttf in Resources */,
+				4DA4E1479A0D455283CE7FBA /* CentraNo2-Book.ttf in Resources */,
+				77FCCC1A74FA4E36BD5596EC /* CentraNo2-BookItalic.ttf in Resources */,
+				6623ED71CA584D9CB3F4A001 /* CentraNo2-Extrabold.ttf in Resources */,
+				A3583E006C5448C4B27FD627 /* CentraNo2-ExtraboldItalic.ttf in Resources */,
+				D1E5A84734DB4AC180353CA3 /* CentraNo2-Hairline.ttf in Resources */,
+				0C55077F68EA4D028B4B9376 /* CentraNo2-HairlineItalic.ttf in Resources */,
+				8E54AB7F4AE64C31A10CC00C /* CentraNo2-Light.ttf in Resources */,
+				D8BD5D7257D34E22A5B915CE /* CentraNo2-LightItalic.ttf in Resources */,
+				AD0B416514274B87BBECD71B /* CentraNo2-Medium.ttf in Resources */,
+				CDAD50492F134B20863C9519 /* CentraNo2-MediumItalic.ttf in Resources */,
+				ABEFEC4A26BD45C99C2F335F /* CentraNo2-Thin.ttf in Resources */,
+				E8AE5CFDBBAA4CD293B9F3A3 /* CentraNo2-ThinItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

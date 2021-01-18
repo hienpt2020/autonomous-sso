@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 export enum AppFontSize {
     SIZE_10 = 10,
     SIZE_11 = 11,
@@ -10,4 +11,9 @@ export enum AppFontSize {
     SIZE_24 = 24,
     SIZE_28 = 28,
     SIZE_32 = 32,
+    SIZE_48 = 48,
 }
+
+export const AppFont = {
+    REGULAR: Platform.OS == 'ios' ? 'Centra No2' : 'CentraNo2-Medium',
+};

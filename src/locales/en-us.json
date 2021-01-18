@@ -14,8 +14,8 @@
     "policies": "Policies",
     "code": "Code", 
     "done": "Done", 
-    "error": "Something went wrong"
-    
+    "error": "Something went wrong",
+    "available":"available"
   },
   "button": {
     "back": "Back",
@@ -48,7 +48,8 @@
     "join_workspace": "Join Workspace"
   },
   "home": {
-    "title": "Home"
+    "title": "Select a floor",
+    "sub_title": "start working with joy"
   },
   "office": {
     "title": "Office",

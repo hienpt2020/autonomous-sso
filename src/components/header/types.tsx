@@ -1,8 +1,15 @@
-export interface PropsHeader {
-  title: string;
+export interface PropsLargeHeader {
+    style?: object;
+    title: string;
+    subTitle: string;
 }
-export interface PropsBackHeader extends PropsHeader {
-  onPress: () => void;
-  style?: object;
-  lightContent?: boolean;
+
+export interface PropHeader {
+    title: string;
+}
+
+export interface PropsBackHeader extends PropsLargeHeader {
+    onPress: () => void;
+    style?: object;
+    lightContent?: boolean;
 }

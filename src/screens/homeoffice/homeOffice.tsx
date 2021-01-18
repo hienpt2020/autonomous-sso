@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, FlatList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlatList, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import reactotron from 'reactotron-react-native';
-import { showPopup } from 'src/components';
-import { Header } from 'src/components/header';
+import { Space } from 'src/components';
+import { LargeHeader, Header } from 'src/components/header';
 import WorkLayout from 'src/models/WorkLayout';
 import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
+import { AppSpacing } from 'src/styles';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
 import { getWorkLayout } from './actions/homeAction';
@@ -56,7 +55,10 @@ const Office = (props: Props) => {
     };
     return (
         <SafeAreaView style={styles.container}>
-            <Header title={t('office.title')} />
+            <Header title={'Booking'} />
+            <Space height={25} />
+            <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
+            <Space height={25} />
             {/* <Button
                 title={'Test'}
                 onPress={() => {
@@ -82,14 +84,17 @@ const Office = (props: Props) => {
                 <Loading />
             ) : workLayouts.length > 0 ? (
                 <FlatList
+                    // style={styles.list}
+                    contentContainerStyle={styles.list}
                     data={workLayouts}
                     renderItem={({ item }) => renderItem(item)}
                     keyExtractor={(item) => item.id + ''}
+                    ItemSeparatorComponent={() => <Space height={AppSpacing.LARGE} />}
                 />
             ) : (
                 <Empty />
             )}
-            {_renderFloatingButton()}
+            {/* {_renderFloatingButton()} */}
         </SafeAreaView>
     );
 };
