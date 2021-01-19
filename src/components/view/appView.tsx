@@ -6,6 +6,7 @@ const AppView: React.FC<AppViewProps> = ({
     children = [],
     style = {},
     center = false,
+    spaceBetween = false,
     alignItemsCenter = false,
     alignItemsEnd = false,
     horizontal = false,
@@ -19,7 +20,13 @@ const AppView: React.FC<AppViewProps> = ({
                     flexDirection: horizontal ? 'row' : 'column',
                     alignItems: center || alignItemsCenter ? 'center' : alignItemsEnd ? 'flex-end' : 'flex-start',
                     justifyContent:
-                        center || justifyContentCenter ? 'center' : justifyContentEnd ? 'flex-end' : 'flex-start',
+                        center || justifyContentCenter
+                            ? 'center'
+                            : spaceBetween
+                            ? 'space-between'
+                            : justifyContentEnd
+                            ? 'flex-end'
+                            : 'flex-start',
                 },
                 style,
             ]}

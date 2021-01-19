@@ -15,7 +15,10 @@
     "code": "Code", 
     "done": "Done", 
     "error": "Something went wrong",
-    "available":"available"
+    "available":"available",
+    "slot_available":"slots remains from your purchase",
+    "from":"From",
+    "until":"Until"
   },
   "button": {
     "back": "Back",
@@ -52,7 +55,9 @@
     "sub_title": "start working with joy"
   },
   "office": {
-    "title": "Office",
+    "title": "Select",
+    "sub_title": "working time",
+    "view": "View",
     "button_my_booking": "My Booking"
   },
   "controll": {

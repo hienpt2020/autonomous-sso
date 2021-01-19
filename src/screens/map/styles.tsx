@@ -1,22 +1,19 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColor.WHITE,
+        backgroundColor: AppColor.BACKGROUND,
+    },
+    layoutInfo: {
+        marginHorizontal: AppSpacing.LARGE - 2,
     },
     header: {
-        fontSize: 24,
-        paddingStart: 16,
-        paddingEnd: 16,
-        paddingTop: 8,
-        paddingBottom: 8,
+        paddingHorizontal: AppSpacing.LARGE,
     },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        paddingStart: 8,
-        paddingEnd: 8
+    timeSelect: {
+        marginHorizontal: AppSpacing.LARGE,
     },
     bottomSheetHeader: {
         width: '100%',
@@ -34,5 +31,5 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     button: { position: 'absolute', end: 16, top: 8, fontSize: 16 },
-    overlay: { backgroundColor: AppColor.ALPHA_40, position: 'absolute', top: 0, bottom: 0, start: 0, end: 0 }
+    overlay: { backgroundColor: AppColor.ALPHA_40, position: 'absolute', top: 0, bottom: 0, start: 0, end: 0 },
 });

@@ -5,6 +5,8 @@ export interface AppTextProps extends TextProps {
     center?: boolean;
     right?: boolean;
     bold?: boolean;
+    supperBold?: boolean;
+    thin?: boolean;
     italic?: boolean;
     size?: number;
     color?: string;
