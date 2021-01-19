@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: AppColor.BACKGROUND,
-        paddingTop: AppSpacing.LARGE,
     },
     header: {
         paddingHorizontal: AppSpacing.LARGE,

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, SafeAreaView } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Space } from 'src/components';
-import { LargeHeader, Header } from 'src/components/header';
+import { Header, LargeHeader } from 'src/components/header';
 import WorkLayout from 'src/models/WorkLayout';
 import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
 import { RootState } from 'src/redux/types';
@@ -51,10 +51,10 @@ const Office = (props: Props) => {
 
     const _onItemSelected = (data: WorkLayout) => {
         dispatch(setWorkLayoutAction(data));
-        props.navigation.navigate(RouteName.MAP, { floorId: data.id, floorName: data.name });
+        props.navigation.navigate(RouteName.MAP, { map: data });
     };
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <Header title={'Booking'} />
             <Space height={25} />
             <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
@@ -68,7 +68,7 @@ const Office = (props: Props) => {
                                 reactotron.log('aa');
                             },
                             title: 'Ok',
-                        },
+                        },rr
                         {
                             onPress: () => {
                                 reactotron.log('bb');
@@ -95,7 +95,7 @@ const Office = (props: Props) => {
                 <Empty />
             )}
             {/* {_renderFloatingButton()} */}
-        </SafeAreaView>
+        </View>
     );
 };
 

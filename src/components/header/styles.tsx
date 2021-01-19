@@ -1,12 +1,19 @@
 import { StyleSheet } from 'react-native';
+import { AppColor } from 'src/styles';
 
 export const styles = StyleSheet.create({
     container: {
         height: 44,
+        paddingHorizontal: 20,
+    },
+    buttonContainer: {
+        width: '30%',
+    },
+    safeView: {
+        backgroundColor: AppColor.WHITE,
     },
     withBack: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     space: {
         marginTop: 16,
