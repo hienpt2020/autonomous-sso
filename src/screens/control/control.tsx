@@ -31,12 +31,12 @@ const Control = (props: Props) => {
             <Text style={styles.heightText}>100.0</Text>
             <View style={styles.controlPanel}>
                 <TouchableOpacity
-                    style={{ height: 56, width: 56, borderRadius: 28, backgroundColor: 'red' }}
+                    style={styles.button}
                     onPressIn={() => control.up(device.hubId, device.workingLayoutId)}
                     onPressOut={() => control.stop(device.hubId, device.workingLayoutId)}
                 />
                 <TouchableOpacity
-                    style={{ height: 56, width: 56, borderRadius: 28, backgroundColor: 'red' }}
+                    style={styles.button}
                     onPressIn={() => control.down(device.hubId, device.workingLayoutId)}
                     onPressOut={() => control.stop(device.hubId, device.workingLayoutId)}
                 />

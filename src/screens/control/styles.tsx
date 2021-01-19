@@ -20,4 +20,5 @@ export const styles = StyleSheet.create({
     header: {
         position: 'absolute',
     },
+    button: { height: 56, width: 56, borderRadius: 28, backgroundColor: 'red' },
 });
