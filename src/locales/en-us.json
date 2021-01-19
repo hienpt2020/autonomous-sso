@@ -25,7 +25,9 @@
     "goToHome": "Go to home"
   },
   "login": {
-    "title": "Log in", 
+    "title": "Hi! Enter your account details to login", 
+    "dont_have_account": "Don’t have an account? ", 
+    "create_account": "Create Account", 
     "email_invalid": "Email is invalid",
     "password_require": "Password is require"
   },

@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { View, KeyboardAvoidingView, Platform } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { KeyboardAvoidingView, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux';
+import { AppText, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { PrimaryInput } from 'src/components/input';
 import { Link } from 'src/components/link';
-import { BackHeaderX } from 'src/components/header';
+import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
 import { createRequestLoginAction } from 'src/redux/user/';
-import { LoginProps } from './types';
-import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators';
-import { styles } from './styles';
 import { RouteName } from 'src/routers/routeName';
-import { navigate } from 'src/routers/rootNavigation';
+import { AppFontSize, AppSpacing } from 'src/styles';
+import { styles } from './styles';
+import { LoginProps } from './types';
 
 const Login = (props: LoginProps) => {
   const { t } = useTranslation();
@@ -27,11 +27,14 @@ const Login = (props: LoginProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-        <BackHeaderX title={t('common.login')} onPress={() => handleBack()} />
-        <View style={{ flex: 1 }} />
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }} >
+        <AppText children={t('login.title')}
+          style={styles.title}
+          size={AppFontSize.SIZE_28} />
+        <Space height={24} />
         <PrimaryInput
           placeholder={t('common.email')}
+          style={styles.input}
           onChangeText={(text) => {
             setEmail(text);
             setEmailError('');
@@ -40,7 +43,9 @@ const Login = (props: LoginProps) => {
           autoCapitalize="none"
           errorMessage={emailError}
         />
+        <Space height={AppSpacing.MEDIUM} />
         <PrimaryInput
+          style={styles.input}
           placeholder={t('common.password')}
           onChangeText={(text) => {
             setPasswordError('');
@@ -49,9 +54,17 @@ const Login = (props: LoginProps) => {
           secureTextEntry={true}
           errorMessage={passwordError}
         />
+        <Space height={AppSpacing.MEDIUM} />
+        <PrimaryButton title={t('common.login')} style={styles.button} onPress={() => validateLogin()} />
+        <Space height={AppSpacing.MEDIUM} />
         <Link title={t('common.forgot_password')} onPress={() => handleForgotPassword()} style={styles.link} />
-        <PrimaryButton title={t('common.login')} wrapperContainer={styles.button} onPress={() => validateLogin()} />
+        <Space height={AppSpacing.MEDIUM} />
         <View style={{ flex: 3 }} />
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          <AppText children={t('login.dont_have_account')} />
+          <Link title={t('login.create_account')} />
+        </View>
+        <Space height={AppSpacing.EXTRA} />
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

@@ -1,20 +1,16 @@
 import * as React from 'react'
-import { View } from 'react-native';
-import { Input } from 'react-native-elements'
+import { TextInput, View } from 'react-native';
 import { AppColor } from 'src/styles/colors'
 import { styles } from './styles';
 import { Props } from './types'
 
 export const PrimaryInput = (props: Props) => {
     return (
-        <View style={styles.wrapper}>
-            <Input
-                {...props}
-                inputContainerStyle={styles.inputContainer}
-                inputStyle={styles.input}
-                placeholderTextColor={AppColor.PRIMARY}
-            />
-        </View>
+        <TextInput
+            {...props}
+            style={[styles.input, props.style]}
+            placeholderTextColor={AppColor.PRIMARY}
+        />
     )
 }
 
