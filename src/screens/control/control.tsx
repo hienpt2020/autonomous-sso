@@ -42,7 +42,7 @@ const Control = (props: Props) => {
                 />
             </View>
             <SafeAreaView style={styles.header}>
-                <BackHeader title={device.name} onPress={() => handleBack()} />
+                <BackHeader title={device.hubId} onPress={() => handleBack()} />
             </SafeAreaView>
         </SafeAreaView>
     );

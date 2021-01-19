@@ -1,14 +1,18 @@
 export default class Device {
-    id: number;
-    hubId: string;
-    workingLayoutId: string;
-    image: string;
-    name: string;
-    constructor(id: number, hubId: string, name: string, workingLayoutId: string, image: string) {
-        this.id = id;
-        this.hubId = hubId;
-        this.workingLayoutId = workingLayoutId;
-        this.image = image;
-        this.name = name;
-    }
+    bookedBy: string = '';
+    bookingId: number = -1;
+    code: string = '';
+    createdAt: string = '';
+    deletedAt: string = '';
+    endTime: string = '';
+    hubId: string = '';
+    id: number = -1;
+    isCheckin: boolean = false;
+    isEnded: boolean = false;
+    isSetPin: boolean = false;
+    startTime: string = '';
+    updatedAt: string = '';
+    userId: number = -1;
+    workingLayoutId: string = '';
+    image: string = '';
 }

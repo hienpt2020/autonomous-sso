@@ -8,3 +8,7 @@ export enum ROLES {
     ADMIN,
     MEMBER,
 }
+
+export const DEFAULT_IMAGES = {
+    DEVICE: 'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
+};

@@ -7,7 +7,8 @@ import { BookingHistory } from 'src/models/BookingHistory';
 import { parseMapAddress } from './locationHelper';
 import Asset from 'src/models/Asset';
 import moment from 'moment';
-import { ROLES } from '../common/constant';
+import { DEFAULT_IMAGES, ROLES } from 'src/common/constant';
+import Device from '../models/Device';
 
 export class ParserImpl implements IParser {
     parseUser(responseData: any): User {
@@ -123,6 +124,27 @@ export class ParserImpl implements IParser {
             })
             .join('');
     }
+    parseDevice(responseData: any): Device {
+        const result = new Device();
+        result.id = _.get(responseData, 'id');
+        result.createdAt = _.get(responseData, 'created_at');
+        result.updatedAt = _.get(responseData, 'updated_at');
+        result.deletedAt = _.get(responseData, 'deleted_at');
+        result.bookedBy = _.get(responseData, 'booked_by');
+        result.bookingId = _.get(responseData, 'booking_id');
+        result.code = _.get(responseData, 'code');
+        result.endTime = _.get(responseData, 'end_time');
+        result.hubId = _.get(responseData, 'hub_id');
+        result.id = _.get(responseData, 'id');
+        result.isCheckin = _.get(responseData, 'is_checkin');
+        result.isEnded = _.get(responseData, 'is_ended');
+        result.isSetPin = _.get(responseData, 'is_set_pin');
+        result.startTime = _.get(responseData, 'startTime');
+        result.userId = _.get(responseData, 'user_id');
+        result.workingLayoutId = _.get(responseData, 'working_layout_id');
+        result.image = _.get(responseData, 'image') || DEFAULT_IMAGES.DEVICE;
+        return result;
+    }
 }
 interface IParser {
     parseUser(responseData: any): User;
@@ -132,6 +154,7 @@ interface IParser {
     parseWorkPlace(responseData: any): WorkPlace;
     parseWorkLayout(responseData: any): WorkLayout;
     parseBookingHistory(responseData: any): BookingHistory;
+    parseDevice(responseData: any): Device;
 }
 
 export const Parser = new ParserImpl();

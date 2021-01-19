@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { AppColor } from 'src/styles/colors';
 
 const FIXED_ITEM_WIDTH = (Dimensions.get('window').width - 16 * 3) / 2;
-const FIXED_ITEM_HEIGHT = 200;
+const FIXED_ITEM_HEIGHT = 210;
 export const styles = StyleSheet.create({
     itemContainer: {
         flex: 1,
@@ -31,9 +31,10 @@ export const styles = StyleSheet.create({
         paddingStart: 16,
         paddingEnd: 16,
         justifyContent: 'center',
-        lineHeight: 140 - 106,
-        fontSize: 18,
+        lineHeight: 25,
+        fontSize: 16,
         textAlignVertical: 'center',
         color: AppColor.PRIMARY,
     },
+    label: { fontWeight: 'bold' },
 });

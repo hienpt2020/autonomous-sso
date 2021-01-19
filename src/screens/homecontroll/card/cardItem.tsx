@@ -10,13 +10,13 @@ const CardItem = (props: Props) => {
     return (
         <TouchableOpacity onPress={props.onPress}>
             <View style={styles.itemContainer}>
-                <FastImage
-                    style={styles.coverImage}
-                    source={{ uri: 'https://source.unsplash.com/wgivdx9dBdQ/1600x900' }}
-                    resizeMode="cover"
-                />
+                <FastImage style={styles.coverImage} source={{ uri: cardData.image }} resizeMode="cover" />
                 <Text style={styles.itemTitle} numberOfLines={1} ellipsizeMode="tail">
-                    {cardData.name}
+                    <Text style={styles.label}>Device ID:</Text> {cardData.hubId}
+                </Text>
+                <Text style={styles.itemTitle} numberOfLines={1} ellipsizeMode="tail">
+                    <Text style={styles.label}>Booked by:</Text>{' '}
+                    {cardData.bookedBy.slice(0, cardData.bookedBy.indexOf('@'))}
                 </Text>
             </View>
         </TouchableOpacity>
