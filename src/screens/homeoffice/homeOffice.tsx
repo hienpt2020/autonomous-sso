@@ -4,6 +4,7 @@ import { FlatList, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Space } from 'src/components';
 import { Header, LargeHeader } from 'src/components/header';
+import LayoutInfo from 'src/components/layoutInfo';
 import WorkLayout from 'src/models/WorkLayout';
 import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
 import { RootState } from 'src/redux/types';
@@ -57,6 +58,21 @@ const Office = (props: Props) => {
         <View style={styles.container}>
             <Header title={'Booking'} />
             <Space height={25} />
+
+            <LayoutInfo
+                style={styles.info}
+                workLayout={{
+                    address: 'M Tower, 1003 E. 4th Place, Los Angeles, CA 90013',
+                    id: 1,
+                    name: 'Autonomous LA',
+                    image: '',
+                    placeAvailable: 100,
+                    policy: '',
+                }}
+            />
+
+            <Space height={25} />
+
             <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
             <Space height={25} />
             {/* <Button

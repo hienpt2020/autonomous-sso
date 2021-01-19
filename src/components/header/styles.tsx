@@ -10,6 +10,9 @@ export const styles = StyleSheet.create({
         width: '30%',
     },
     safeView: {
+        // backgroundColor: AppColor.WHITE,
+    },
+    headerSafeView: {
         backgroundColor: AppColor.WHITE,
     },
     withBack: {
