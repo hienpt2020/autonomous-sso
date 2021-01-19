@@ -2,6 +2,7 @@ import { RouteProps } from './routeProps';
 import { RouteName } from './routeName';
 import { BookingHistory } from 'src/models/BookingHistory';
 import WorkPlace from 'src/models/WorkPlace';
+import Device from '../models/Device';
 
 export type RootStackParams = {
     [RouteName.INTRO]: undefined;
@@ -21,7 +22,7 @@ export type RootStackParams = {
     [RouteName.PLACE_DETAIL]: { booking?: BookingHistory; place?: WorkPlace };
     [RouteName.SWITCH_WORKSPACE]: undefined;
     [RouteName.DEEPLINK_REGISTER]: undefined;
-    [RouteName.CONTROL]: undefined;
+    [RouteName.CONTROL]: { device?: Device };
 };
 export type RootStackParamType = keyof RootStackParams;
 

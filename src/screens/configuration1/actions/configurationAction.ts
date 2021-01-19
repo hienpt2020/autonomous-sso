@@ -36,7 +36,6 @@ export class ConfigStep1Actions {
 
     public connectToPeripheral = async (peripheralId: string): Promise<void> => {
         try {
-            await this.stopScan();
             await BleManager.connect(peripheralId);
             this.connectedPeripheralId = peripheralId;
             await this.handleAfterConnectedSuccessfully(peripheralId);
@@ -76,11 +75,11 @@ export class ConfigStep1Actions {
                     type: 'init',
                     ssid: wifiName, //wifiName, // Autonomous
                     pwd: wifiPassword, // '@11235813',
-                    device_id: 'c6azQNF7t',
+                    device_id: '52ynaexyt',
                     mqtt_server: '34.71.0.216', //this.mqttInfo.mqttServer, // '',
                     mqtt_port: this.mqttInfo.mqttPort,
-                    fd_channel: 'SmartDesk/f_d/1/c6azQNF7t', // `SmartDesk/f_d/${layoutId}/${deviceId}`
-                    fa_channel: 'SmartDesk/f_a/1/c6azQNF7t', // `SmartDesk/f_a/${layoutId}/${deviceId}`
+                    fd_channel: 'SmartDesk/f_d/1/52ynaexyt', // `SmartDesk/f_d/${layoutId}/${deviceId}`
+                    fa_channel: 'SmartDesk/f_a/1/52ynaexyt', // `SmartDesk/f_a/${layoutId}/${deviceId}`
                     mqtt_usr: this.mqttInfo.mqttUser, // 'autonomous'
                     mqtt_pwd: this.mqttInfo.mqttPassword, // '123'
                 }),

@@ -27,6 +27,26 @@ function getMqttInfo() {
     return _get('/master/set-up-hub-device');
 }
 
+function controlDown(hubId: string, workingLayoutId: string) {
+    return _put('/master/down', { hub_id: hubId, working_layout_id: workingLayoutId });
+}
+
+function controlUp(hubId: string, workingLayoutId: string) {
+    return _put('/master/up', { hub_id: hubId, working_layout_id: workingLayoutId });
+}
+
+function controlStop(hubId: string, workingLayoutId: string) {
+    return _put('/master/stop', { hub_id: hubId, working_layout_id: workingLayoutId });
+}
+
+function getDeviceInfo(hubId: string, workingLayoutId: string) {
+    return _get('/master/info', { hub_id: hubId, working_layout_id: workingLayoutId });
+}
+
 export const DeviceApi = {
     getMqttInfo,
+    controlDown,
+    controlUp,
+    controlStop,
+    getDeviceInfo,
 };

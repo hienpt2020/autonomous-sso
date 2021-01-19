@@ -1,7 +1,5 @@
-export interface Device {
-    image: string;
-    name: string;
-}
+import Device from '../../../models/Device';
+
 export interface Props {
     cardData: Device;
     onPress?: () => void;
