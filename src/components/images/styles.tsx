@@ -1,12 +1,13 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { AppFontSize, AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
-const imageHeight = 221
-const screenWidth = Dimensions.get('window').width
+const imageHeight = 264;
+const screenWidth = Dimensions.get('window').width;
 export const styles = StyleSheet.create({
     wrapper: {
         alignItems: 'center',
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     list: {
         flex: 1,
@@ -14,16 +15,23 @@ export const styles = StyleSheet.create({
     image: {
         height: imageHeight,
         width: screenWidth,
-    }, 
-    sliderTitle: {
-        fontSize: 10,
+    },
+    sliderTitleContainer: {
         position: 'absolute',
-        bottom: 16,
-        color: AppColor.WHITE,
-        end: 16,
+        right: AppSpacing.MEDIUM,
+        bottom: AppSpacing.MEDIUM,
+        height: 19,
+        backgroundColor: AppColor.ALPHA_40,
+        borderRadius: 10,
+        paddingHorizontal: 12,
+    },
+    sliderTitle: {
+        fontSize: AppFontSize.SIZE_11,
+        color: AppColor.GREY_2,
+        fontWeight: '500',
     },
     sliderContainer: {
-        height: imageHeight
+        height: imageHeight,
     },
     coverImage: {
         position: 'absolute',
@@ -33,6 +41,7 @@ export const styles = StyleSheet.create({
         bottom: 0,
         start: 0,
         end: 0,
+        backgroundColor: 'black',
+        opacity: 0.3,
     },
-
 });

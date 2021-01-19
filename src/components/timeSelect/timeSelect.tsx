@@ -14,6 +14,7 @@ import { TimeSelectProps } from './types';
 
 const TimeSelect: React.FC<TimeSelectProps> = ({
     style,
+    title = '',
     from,
     to,
     onPressFrom,
@@ -23,6 +24,7 @@ const TimeSelect: React.FC<TimeSelectProps> = ({
     const { t } = useTranslation();
     return (
         <View style={[styles.container, style]}>
+            {title ? <AppText style={styles.title}>{title}</AppText> : null}
             <TouchableOpacity onPress={onPressFrom} disabled={!isSelect}>
                 <AppView style={styles.itemContainer} horizontal alignItemsCenter spaceBetween>
                     <IcArrowRight width={15.5} height={15.5} />

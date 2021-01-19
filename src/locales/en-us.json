@@ -64,7 +64,9 @@
     "title": "Devices"
   },
   "place": {
-    "book_place": "book this place"
+    "book_place": "Book this seat",
+    "asset_title": "Assets contained",
+    "time_title":"Booking time"
   },
   "profile": {
     "title": "Profile"

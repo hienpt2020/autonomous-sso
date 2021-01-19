@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { AppColor, AppSpacing } from 'src/styles';
+import { AppColor, AppFontSize, AppSpacing } from 'src/styles';
 
 export const styles = StyleSheet.create({
     container: {
@@ -13,5 +13,11 @@ export const styles = StyleSheet.create({
     divider: {
         height: 1,
         backgroundColor: '#F2F2F2',
+    },
+    title: {
+        marginTop: AppSpacing.MEDIUM,
+        marginBottom: AppSpacing.TINY,
+        fontSize: AppFontSize.SIZE_20,
+        fontWeight: '500',
     },
 });

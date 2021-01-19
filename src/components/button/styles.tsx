@@ -1,6 +1,6 @@
 import { AppColor } from 'src/styles/colors';
 import { StyleSheet } from 'react-native';
-import { AppFontSize } from 'src/styles';
+import { AppFont, AppFontSize } from 'src/styles';
 
 export const styles = StyleSheet.create({
     button: {
@@ -12,10 +12,11 @@ export const styles = StyleSheet.create({
         borderRadius: 0,
     },
     title: {
-        fontWeight: 'bold',
+        fontWeight: '500',
         color: AppColor.WHITE,
         fontSize: AppFontSize.SIZE_16,
         marginBottom: 2,
+        fontFamily: AppFont.REGULAR,
     },
     buttonPrimary: {
         backgroundColor: AppColor.BLUE_1,
