@@ -8,10 +8,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader } from '../../components/header';
 import { Props } from './types';
 import Height from './height';
-import { DeviceApi } from '../../services/networking';
-import { ControlActions, IControlActions } from './actions/controlActions';
-import { useDispatch } from 'react-redux';
 import Device from '../../models/Device';
+import { Controller } from '../../services/control-device/controller';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -19,8 +17,6 @@ YellowBox.ignoreWarnings([
 
 const Control = (props: Props) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
-    const control: IControlActions = new ControlActions(dispatch);
     const [percent, setPercent] = useState<number>(30);
     const device: Device = props.route.params.device;
     return (
@@ -32,13 +28,13 @@ const Control = (props: Props) => {
             <View style={styles.controlPanel}>
                 <TouchableOpacity
                     style={styles.button}
-                    onPressIn={() => control.up(device.hubId, device.workingLayoutId)}
-                    onPressOut={() => control.stop(device.hubId, device.workingLayoutId)}
+                    onPressIn={() => Controller.up(device.hubId, device.workingLayoutId)}
+                    onPressOut={() => Controller.stop(device.hubId, device.workingLayoutId)}
                 />
                 <TouchableOpacity
                     style={styles.button}
-                    onPressIn={() => control.down(device.hubId, device.workingLayoutId)}
-                    onPressOut={() => control.stop(device.hubId, device.workingLayoutId)}
+                    onPressIn={() => Controller.down(device.hubId, device.workingLayoutId)}
+                    onPressOut={() => Controller.stop(device.hubId, device.workingLayoutId)}
                 />
             </View>
             <SafeAreaView style={styles.header}>
