@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>596944745396-0oq9fc14655j0n6g8i17r98308dliftd.apps.googleusercontent.com</string>
+	<string>952095476749-49s67pkr5gcqg5qmhssb1ktroql9u955.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.596944745396-0oq9fc14655j0n6g8i17r98308dliftd</string>
+	<string>com.googleusercontent.apps.952095476749-49s67pkr5gcqg5qmhssb1ktroql9u955</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCaYNpUScP7n86I-oYu5OkJlD6hro9DEDY</string>
+	<string>AIzaSyByn_BMt2-pW4PxXgSV2VxzfyQvUfwFMV0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>596944745396</string>
+	<string>952095476749</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>ai.autonomous.megapp.staging</string>
+	<string>ai.autonomous.megapp</string>
 	<key>PROJECT_ID</key>
-	<string>autonomous-firebase---staging</string>
+	<string>autonomous-firebase---prod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>autonomous-firebase---staging.appspot.com</string>
+	<string>autonomous-firebase---prod.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:596944745396:ios:4d34be10f4b483b72678e1</string>
+	<string>1:952095476749:ios:c727c9a12dda2e149d1944</string>
 </dict>
 </plist>

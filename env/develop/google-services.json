@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "725955680163",
+    "project_id": "avid-circle-284205",
+    "storage_bucket": "avid-circle-284205.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725955680163:android:71886b27653a2f3f0eac16",
+        "android_client_info": {
+          "package_name": "ai.autonomous.megapp.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "725955680163-lrdla1rocrtst4drnrnmiuot6td3posu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtSVr09s-CniJlk7D2oLN3RAln90B5PvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "725955680163-lrdla1rocrtst4drnrnmiuot6td3posu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "725955680163-6r95uc802rn3shk8ge60hua0d1d86k6g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ai.autonomous.megapp.dev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
