@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, ScrollView, View } from 'react-native';
+import Config from 'react-native-config';
 import { useDispatch, useSelector } from 'react-redux';
 import EditIcon from 'src/assets/images/ic_edit.svg';
 import Icon from 'src/assets/images/placeholder_avatar.svg';
@@ -10,6 +11,8 @@ import { AppText, AppView, Divider, Space } from 'src/components';
 import { IconButton } from 'src/components/button';
 import { Header } from 'src/components/header';
 import SectionItem from 'src/components/section-item';
+import { LinkingHelper } from 'src/helpers';
+import { Log } from 'src/helpers/logger';
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
@@ -35,10 +38,6 @@ const Profile = (props: Props) => {
     useEffect(() => {
         setWorkSpace(workspaceReducer.name);
     }, [workspaceReducer.name]);
-
-    function _onPressActivities() {
-        navigate(RouteName.ACTIVITIES, null);
-    }
 
     return (
         <View>
@@ -79,7 +78,7 @@ const Profile = (props: Props) => {
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
-                        <SectionItem title={t('profile.terms_and_policy')} />
+                        <SectionItem title={t('profile.terms_and_policy')} onPress={_onPressTerms} />
                         <Divider />
                         <SectionItem title={t('profile.contact_us')} />
                         <Divider />
@@ -96,6 +95,16 @@ const Profile = (props: Props) => {
             </ScrollView>
         </View>
     );
+    function _onPressTerms() {
+        try {
+            LinkingHelper.open(Config.LINK_TERM);
+        } catch (exception) {
+            Log.debug(exception);
+        }
+    }
+    function _onPressActivities() {
+        navigate(RouteName.ACTIVITIES, null);
+    }
     function navigateToSwithProfile() {
         props.navigation.navigate(RouteName.SWITCH_WORKSPACE);
     }
