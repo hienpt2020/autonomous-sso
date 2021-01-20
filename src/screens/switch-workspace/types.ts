@@ -1,6 +1,4 @@
-import { PropsBase } from 'src/types/propsBase'
-import { RouteName } from 'src/routers/routeName'
+import { PropsBase } from 'src/types/propsBase';
+import { RouteName } from 'src/routers/routeName';
 
-
-export interface Props extends PropsBase<RouteName.SWITCH_WORKSPACE> { }
-
+export interface Props extends PropsBase<RouteName.SWITCH_WORKSPACE> {}

@@ -1,1 +1,1 @@
-export { PrimaryButton, SecondaryButton } from './button'
+export { PrimaryButton, SecondaryButton, IconButton, SocialButton } from './button';

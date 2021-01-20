@@ -1,104 +1,121 @@
 {
-  "common": {
-    "login": "Log In", 
-    "password": "Password",
-    "email": "Email", 
-    "register": "Register" ,
-    "forgot_password": "Forgot Password", 
-    "reset_password": "Reset Password",
-    "reset": "Reset",
-    "logout": "Log out",
-    "join": "Join", 
-    "close": "Close", 
-    "assets": "Assets",
-    "policies": "Policies",
-    "code": "Activation code", 
-    "done": "Done", 
-    "error": "Something went wrong",
-    "available":"available",
-    "slot_available":"slots remains from your purchase",
-    "from":"From",
-    "until":"Until"
-  },
-  "button": {
-    "back": "Back",
-    "goToHome": "Go to home"
-  },
-  "login": {
-    "title": "Log in", 
-    "email_invalid": "Email is invalid",
-    "password_require": "Password is require"
-  },
-  "intro": {
-    "register": "Register",  
-    "login": "Log In"
-  }, 
-  "forgot_password": {
-    "forgot_success": "We're send you an email, Check your email and follow instructions included in the message",  
-    "login": "Log In"
-  }, 
-  "register": {
-    "confirm_password": "Confirm Password", 
-    "password_not_match": "Passwords do not match",
-    "term_condition1": "By signing up, you agree to Autonomous’s ", 
-    "term_condition2": "Terms of Service", 
-    "term_condition3": " and ", 
-    "term_condition4": " Privacy Policy. ", 
-    "verify_email":"Please check your email to verify your account"
-  },
-  "join":{
-    "content": "By Join, you agree to join ",
-    "join_workspace": "Join Workspace"
-  },
-  "home": {
-    "title": "Select a floor",
-    "sub_title": "start working with joy"
-  },
-  "office": {
-    "title": "Select",
-    "sub_title": "working time",
-    "view": "View",
-    "button_my_booking": "My Booking"
-  },
-  "controll": {
-    "title": "Devices"
-  },
-  "place": {
-    "book_place": "Book this seat",
-    "asset_title": "Assets contained",
-    "time_title":"Booking time",
-    "code_desc":"Access device with this code"
-  },
-  "profile": {
-    "title": "Profile"
-  },
-  "configuration": {
-    "wifi": "Wifi name",
-    "wifi_password": "Wifi password"
-  }, 
-  "booking": {
-    "title": "My Booking"
-  },
-  "booking_detail": {
-    "cancel_booking": "Cancel booking"
-  },
-  "switch_workspace": {
-    "title": "Switch Workspace"
-  },
-  "booking_results":{
-    "title": "Booking",
-    "success": "Successfully booked!",
-    "error": "Failure booked!",
-    "error_desc": "An error has occured in your\nbooking process. Please try again",
-    "desc": "Use the activation code below to unlock\nyour seat when checking in.",
-    "note": "Note: You can open this code again in your Booking\nHistory tab",
-    "book_again": "Book again"
-  },
-  "activities":{
-    "title":"Activities",
-    "upcoming":"Upcoming",
-    "hisotry":"History",
-    "checked_out":"Checked out",
-    "cancel":"Cancelled"
-  }
+    "common": {
+        "login": "Log In",
+        "password": "Password",
+        "email": "Email",
+        "register": "Register",
+        "forgot_password": "Forgot Password",
+        "reset_password": "Reset Password",
+        "reset": "Reset",
+        "logout": "Sign out",
+        "join": "Join",
+        "close": "Close",
+        "assets": "Assets",
+        "policies": "Policies",
+        "code": "Activation code",
+        "done": "Done",
+        "error": "Something went wrong",
+        "available": "available",
+        "slot_available": "slots remains from your purchase",
+        "from": "From",
+        "until": "Until",
+        "continue": "Continue",
+        "email_invalid": "This email does not exist. Please input again.",
+        "password_require": "Invalid password. Please try another password."
+    },
+    "button": {
+        "back": "Back",
+        "goToHome": "Go to home"
+    },
+    "login": {
+        "title": "Hi! Enter your account\ndetails to login",
+        "dont_have_account": "Don’t have an account? ",
+        "create_account": "Create Account",
+        "forgot_password": "Forgot Password?",
+        "password_require": "Password is require",
+        "or_log_in_instantly": "Or log in instantly",
+        "login_with_google": "Login with Google ",
+        "login_with_facebook": "Login with Facebook"
+    },
+    "intro": {
+        "register": "Register",
+        "login": "Log In"
+    },
+    "forgot_password": {
+        "forgot_success": "We're send you an email, Check your email and follow instructions included in the message",
+        "login": "Log In",
+        "send_me_an_email": "Send me an email"
+    },
+    "register": {
+        "title": "Set up your new\naccount",
+        "input_your_email": "Input your email",
+        "enter_new_password": "Enter new password",
+        "confirm_password": "Re-enter new password",
+        "password_not_match": "Passwords do not match",
+        "term_condition1": "By signing up, you agree to Autonomous’s ",
+        "term_condition2": "Terms of Service",
+        "term_condition3": " and ",
+        "term_condition4": " Privacy Policy. ",
+        "verify_email": "Please check your email to verify your account"
+    },
+    "join": {
+        "content": "By Join, you agree to join ",
+        "join_workspace": "Join Workspace"
+    },
+    "home": {
+        "title": "Select a floor",
+        "sub_title": "start working with joy"
+    },
+    "office": {
+        "title": "Select",
+        "sub_title": "working time",
+        "view": "View"
+    },
+    "controll": {
+        "title": "Devices"
+    },
+    "place": {
+        "asset_title": "Assets contained",
+        "time_title": "Booking time",
+        "book_place": "book this place",
+        "code_desc": "Access device with this code"
+    },
+    "profile": {
+        "title": "My Profile",
+        "workspace": "Workspace",
+        "add_login_method": "Add login method",
+        "activities": "Activities",
+        "terms_and_policy": "Terms and policy",
+        "contact_us": "Contact us",
+        "version_update": "Version Update"
+    },
+    "configuration": {
+        "wifi": "Wifi name",
+        "wifi_password": "Wifi password"
+    },
+    "booking": {
+        "title": "My Booking"
+    },
+    "booking_detail": {
+        "cancel_booking": "Cancel booking"
+    },
+    "switch_workspace": {
+        "title": "Switch Workspace"
+    },
+    "booking_results": {
+        "title": "Booking",
+        "success": "Successfully booked!",
+        "error": "Failure booked!",
+        "error_desc": "An error has occured in your\nbooking process. Please try again",
+        "desc": "Use the activation code below to unlock\nyour seat when checking in.",
+        "note": "Note: You can open this code again in your Booking\nHistory tab",
+        "book_again": "Book again"
+    },
+    "activities": {
+        "title": "Activities",
+        "upcoming": "Upcoming",
+        "hisotry": "History",
+        "checked_out": "Checked out",
+        "cancel": "Cancelled"
+    }
 }

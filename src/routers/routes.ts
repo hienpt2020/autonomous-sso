@@ -2,13 +2,14 @@ import { RouteProps } from './routeProps';
 import { RouteName } from './routeName';
 import { BookingHistory } from 'src/models/BookingHistory';
 import WorkPlace from 'src/models/WorkPlace';
+import Device from '../models/Device';
 import WorkLayout from 'src/models/WorkLayout';
 
 export type RootStackParams = {
+    [RouteName.LOGIN]: undefined;
     [RouteName.INTRO]: undefined;
     [RouteName.FORGOT_PASSWORD]: undefined;
     [RouteName.RESET_PASSWORD]: undefined;
-    [RouteName.LOGIN]: undefined;
     [RouteName.REGISTER]: undefined;
     [RouteName.JOINING]: { workspace: string };
     [RouteName.HOME]: undefined;
@@ -22,12 +23,16 @@ export type RootStackParams = {
     [RouteName.PLACE_DETAIL]: { booking?: BookingHistory; place?: WorkPlace };
     [RouteName.SWITCH_WORKSPACE]: undefined;
     [RouteName.DEEPLINK_REGISTER]: undefined;
-    [RouteName.DEEPLINK_REGISTER]: undefined;
     [RouteName.ACTIVITIES]: undefined;
+    [RouteName.CONTROL]: { device?: Device };
 };
 export type RootStackParamType = keyof RootStackParams;
 
 export const publicRoutes: RouteProps[] = [
+    {
+        name: RouteName.LOGIN,
+        component: require('src/screens/login').default,
+    },
     {
         name: RouteName.INTRO,
         component: require('src/screens/intro').default,
@@ -43,10 +48,6 @@ export const publicRoutes: RouteProps[] = [
     {
         name: RouteName.FORGOT_PASSWORD,
         component: require('src/screens/forgot-password').default,
-    },
-    {
-        name: RouteName.LOGIN,
-        component: require('src/screens/login').default,
     },
     {
         name: RouteName.REGISTER,
@@ -98,5 +99,9 @@ export const authenticatedRoutes: RouteProps[] = [
     {
         name: RouteName.ACTIVITIES,
         component: require('src/screens/activities').default,
+    },
+    {
+        name: RouteName.CONTROL,
+        component: require('src/screens/control').default,
     },
 ];

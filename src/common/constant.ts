@@ -12,3 +12,13 @@ export enum BookingStatus {
 
 // TODO
 export const DEFAULT_REQUEST_LIMIT = 100;
+
+export enum ROLES {
+    USER,
+    ADMIN,
+    MEMBER,
+}
+
+export const DEFAULT_IMAGES = {
+    DEVICE: 'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
+};

@@ -1,5 +1,4 @@
-import { PropsBase } from 'src/types/propsBase'
-import { RouteName } from 'src/routers/routeName'
+import { PropsBase } from 'src/types/propsBase';
+import { RouteName } from 'src/routers/routeName';
 
-export interface Props extends PropsBase<RouteName.CONFIGURATION_RESULT>{}
-
+export interface Props extends PropsBase<RouteName.CONFIGURATION_RESULT> {}

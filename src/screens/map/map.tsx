@@ -99,7 +99,7 @@ const Map = (props: Props) => {
 
     function onItemSelected(data: WorkPlace) {
         navigate(RouteName.PLACE_DETAIL, { place: data });
-        dispatch(setBookingDataAction(new Booking(dateFrom, dateTo)));
+        dispatch(setBookingDataAction(new Booking(dateFrom, dateTo, data.code)));
     }
 
     function setConsiderDate(date: Date) {

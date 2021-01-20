@@ -7,69 +7,67 @@ import { _delete as __delete, _get as __get, _post as __post, _put as __put } fr
  * @param url: string, required
  * @param params: string, optional
  */
-const baseURL = Config.ENDPOINT_SSO
+const baseURL = Config.ENDPOINT_SSO;
 function _get(url: string, params?: object) {
-    return __get(baseURL, url, authHeader(), params)
+    return __get(baseURL, url, authHeader(), params);
 }
 function _post(url: string, body?: object) {
-    return __post(baseURL, url, authHeader(), body ? body : {})
+    return __post(baseURL, url, authHeader(), body ? body : {});
 }
 function _delete(url: string, params?: object) {
-    return __delete(baseURL, url, authHeader(), params)
+    return __delete(baseURL, url, authHeader(), params);
 }
 function _put(url: string, body: object, params?: object) {
-    return __put(baseURL, url, authHeader(), body, params)
+    return __put(baseURL, url, authHeader(), body, params);
 }
-const CLIENT_ID = "vflozjmgtirdrppu"
+const CLIENT_ID = 'vflozjmgtirdrppu';
 /**List all API below */
 function login(email: string, password: string) {
-    return _post('/auth/login', { email, password, CLIENT_ID })
+    return _post('/auth/login', { email, password, CLIENT_ID });
 }
 function logout() {
-    return _get('/auth/logout')
+    return _get('/auth/logout');
 }
 function validateToken(token: string) {
-    return _post('/auth/introspect', { token, CLIENT_ID })
+    return _post('/auth/introspect', { token, CLIENT_ID });
 }
 function isActivated(token: string) {
-    return _post('/auth/introspect', { token, CLIENT_ID })
+    return _post('/auth/introspect', { token, CLIENT_ID });
 }
 function retrieveUserProfile() {
-    return _get('/me/profile')
+    return _get('/me/profile');
 }
 function activeAccount(token: string) {
-    return _post('/auth/activate', { token })
+    return _post('/auth/activate', { token });
 }
 
 function getCurrentWorkspace() {
-    return _get(`/me/current_workspace`)
+    return _get(`/me/current_workspace`);
 }
 function setCurrentWorkspace(workspaceId: number) {
-    return _post(`/me/current_workspace`, { workspace_id: workspaceId })
+    return _post(`/me/current_workspace`, { workspace_id: workspaceId });
 }
 
 function getMyWorkspaces() {
-    return _get(`workspaces`)
+    return _get(`workspaces`);
 }
 
 function forgotPassword(email: string) {
-    return _post(`/auth/forgot-password`, { email })
+    return _post(`/auth/forgot-password`, { email });
 }
 
 function resetPassword(token: string, password: string) {
-    return _post(`/auth/reset-forgot-password`, { token, password })
+    return _post(`/auth/reset-forgot-password`, { token, password });
 }
 
 function register(email: string, password: string, confirmPassword: string) {
-    reactotron.log(email, password, confirmPassword)
+    reactotron.log(email, password, confirmPassword);
     return _post('/auth/register', {
         email,
         password,
-        confirm_password: confirmPassword
-    })
+        confirm_password: confirmPassword,
+    });
 }
-
-
 
 export const SSOApi = {
     forgotPassword,
@@ -82,6 +80,5 @@ export const SSOApi = {
     getCurrentWorkspace,
     setCurrentWorkspace,
     resetPassword,
-    getMyWorkspaces, 
-}
-
+    getMyWorkspaces,
+};

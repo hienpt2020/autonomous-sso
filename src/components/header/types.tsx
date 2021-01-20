@@ -1,11 +1,11 @@
 export interface PropHeader {
-    title: string;
+    title?: string;
     style?: object;
 }
 
 export interface PropsLargeHeader extends PropHeader {
-    title: string;
-    subTitle: string;
+    title?: string;
+    subTitle?: string;
 }
 
 export interface PropsBackHeader extends PropHeader {

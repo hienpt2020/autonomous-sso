@@ -6,20 +6,20 @@ if [ "$1" == "--help" ] || [ -z "${1}" ] || [ $( echo "${1}" | egrep -c "^(andro
   echo $'\t\t- android'
   echo $'\t\t- ios'
   echo $'\t- Environment:'
-  echo $'\t\t- development'
+  echo $'\t\t- develop'
   echo $'\t\t- staging'
   echo $'\t\t- production'
   echo $'\t\t- demo'
   exit 0
 fi
 
-if [ -z "${2}" ] || [ $( echo "${2}" | egrep -c "^(development|staging|production|demo)$" ) -eq 0 ] ; then
+if [ -z "${2}" ] || [ $( echo "${2}" | egrep -c "^(develop|staging|production|demo)$" ) -eq 0 ] ; then
   echo "Usage: ./run.sh [Platform] [Environment]"
   echo $'\t- Platform:'
   echo $'\t\t- android'
   echo $'\t\t- ios'
   echo $'\t- Environment:'
-  echo $'\t\t- development'
+  echo $'\t\t- develop'
   echo $'\t\t- staging'
   echo $'\t\t- production'
   echo $'\t\t- demo'
@@ -39,7 +39,7 @@ if [[ ! -z "$BUILDTYPE"  ]]; then
 fi
 
 if [[ ${PLATFORM} = "android" ]]; then
-  ./tools/run-android.sh $ENV $3
+  ./tools/run-android.sh $ENV $BUILDTYPE 
 else
-  ./tools/run-ios.sh $ENV $3
+  ./tools/run-ios.sh $ENV $BUILDTYPE
 fi

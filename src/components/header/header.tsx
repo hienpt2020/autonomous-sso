@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import IconBack from 'src/assets/images/arrow_left.svg';
 import IconBackWhite from 'src/assets/images/ic_arrow_back_white.svg';
-import IconBack from 'src/assets/images/ic_arrow_back.svg';
 import { AppColor, AppFontSize } from 'src/styles';
 import { AppText, AppView } from '..';
 import { styles } from './styles';
 import { PropHeader, PropsBackHeader, PropsLargeHeader } from './types';
-
+const ICON_SIZE = 24;
 export const LargeHeader = (props: PropsLargeHeader) => {
     return (
         <View style={props.style}>
@@ -34,17 +34,6 @@ export const Header = (props: PropHeader) => {
     );
 };
 
-export const BackHeaderX = (props: PropsBackHeader) => {
-    return (
-        <View style={styles.container}>
-            <TouchableOpacity onPress={props.onPress}>
-                <IconBack width="25" height="24" />
-            </TouchableOpacity>
-            <Text style={[styles.titleX, styles.space]}>{props.title}</Text>
-        </View>
-    );
-};
-
 export const BackHeader = (props: PropsBackHeader) => {
     return (
         <SafeAreaView
@@ -58,9 +47,9 @@ export const BackHeader = (props: PropsBackHeader) => {
                 <AppView style={styles.buttonContainer}>
                     <TouchableOpacity onPress={props.onPress}>
                         {props.lightContent ? (
-                            <IconBackWhite width="14" height="14" />
+                            <IconBackWhite width={`${ICON_SIZE}`} height={`${ICON_SIZE}`} />
                         ) : (
-                            <IconBack width="14" height="14" />
+                            <IconBack width={`${ICON_SIZE}`} height={`${ICON_SIZE}`} />
                         )}
                     </TouchableOpacity>
                 </AppView>
@@ -72,5 +61,13 @@ export const BackHeader = (props: PropsBackHeader) => {
                 <AppView style={styles.buttonContainer}></AppView>
             </AppView>
         </SafeAreaView>
+    );
+};
+export const BackHeaderX = (props: PropsBackHeader) => {
+    return (
+        <>
+            <BackHeader style={styles.headerSafeView} onPress={props.onPress} />
+            <LargeHeader style={props.style} title={props.title} />
+        </>
     );
 };

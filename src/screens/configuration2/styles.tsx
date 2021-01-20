@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         bottom: 16,
         start: 16,
         end: 16,
-        position: 'absolute'
+        position: 'absolute',
     },
     title: {
         fontSize: 42,
@@ -33,5 +33,8 @@ export const styles = StyleSheet.create({
         marginEnd: 16,
         marginTop: 32,
         color: AppColor.PRIMARY,
-    }
+    },
+    header: {
+        position: 'absolute',
+    },
 });
