@@ -18,10 +18,12 @@ export type RootStackParams = {
     [RouteName.CONFIGURATION_STEP1]: undefined;
     [RouteName.CONFIGURATION_STEP2]: undefined;
     [RouteName.CONFIGURATION_RESULT]: undefined;
-    [RouteName.BOOKING_HISTORY]: undefined;
+    [RouteName.BOOKING_HISTORY]: { isUpcoming: boolean };
     [RouteName.PLACE_DETAIL]: { booking?: BookingHistory; place?: WorkPlace };
     [RouteName.SWITCH_WORKSPACE]: undefined;
     [RouteName.DEEPLINK_REGISTER]: undefined;
+    [RouteName.DEEPLINK_REGISTER]: undefined;
+    [RouteName.ACTIVITIES]: undefined;
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -92,5 +94,9 @@ export const authenticatedRoutes: RouteProps[] = [
     {
         name: RouteName.MAP,
         component: require('src/screens/map').default,
+    },
+    {
+        name: RouteName.ACTIVITIES,
+        component: require('src/screens/activities').default,
     },
 ];

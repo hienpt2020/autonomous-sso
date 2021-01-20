@@ -136,7 +136,12 @@ const BookingDetail = (props: Props) => {
 
                 <Space height={AppSpacing.SMALL} />
 
-                <TimeSelect title={t('place.time_title')} from={from} to={to} isSelect={false} />
+                <TimeSelect
+                    title={t('place.time_title')}
+                    from={bookingHistory ? bookingHistory.timeFrom : from}
+                    to={bookingHistory ? bookingHistory.timeTo : to}
+                    isSelect={false}
+                />
 
                 <Space height={AppSpacing.SMALL} />
 

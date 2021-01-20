@@ -92,5 +92,12 @@
     "desc": "Use the activation code below to unlock\nyour seat when checking in.",
     "note": "Note: You can open this code again in your Booking\nHistory tab",
     "book_again": "Book again"
+  },
+  "activities":{
+    "title":"Activities",
+    "upcoming":"Upcoming",
+    "hisotry":"History",
+    "checked_out":"Checked out",
+    "cancel":"Cancelled"
   }
 }
