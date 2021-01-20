@@ -20,13 +20,13 @@ const ConfigurationResult = (props: Props) => {
 
     useEffect(() => {}, []);
 
-    const goToScreen = () => navigate(RouteName.HOME_CONTROLL, null);
+    const gotoPlaceDetailScreen = () => navigate(RouteName.PLACE_DETAIL, null);
     return (
         <View style={styles.container}>
             <ImageSuccess width="152" height="152" style={styles.title} />
             <Text style={styles.title}>Successful setup!</Text>
             <Text style={styles.subTitle}>You have finished your setup for Smartdesk 4</Text>
-            <PrimaryButton wrapperContainer={styles.button} title={t('common.done')} onPress={goToScreen} />
+            <PrimaryButton wrapperContainer={styles.button} title={t('common.done')} onPress={gotoPlaceDetailScreen} />
         </View>
     );
 };

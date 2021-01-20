@@ -41,7 +41,7 @@ const Office = (props: Props) => {
     };
 
     const _onPressMyBooking = () => {
-        navigate(RouteName.CONFIGURATION_STEP1, null);
+        navigate(RouteName.BOOKING_HISTORY, null);
     };
 
     const _renderFloatingButton = () => {
