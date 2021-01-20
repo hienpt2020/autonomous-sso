@@ -27,6 +27,16 @@ export const styles = StyleSheet.create({
     marginStart: AppSpacing.LARGE,
     marginEnd: AppSpacing.LARGE,
   },
+  facebookButton: {
+    marginStart: AppSpacing.LARGE,
+    marginEnd: AppSpacing.LARGE,
+    backgroundColor: AppColor.BLUE_3B5998,
+  },
+  googleButton: {
+    marginStart: AppSpacing.LARGE,
+    marginEnd: AppSpacing.LARGE,
+    backgroundColor: AppColor.RED_DB4437,
+  },
   error: {
     color: AppColor.RED_7,
     marginStart: AppSpacing.LARGE,
@@ -34,5 +44,17 @@ export const styles = StyleSheet.create({
     fontSize: AppFontSize.SIZE_12,
     marginTop: AppSpacing.TINY,
     marginBottom: AppSpacing.TINY,
+  },
+  dividerContainer: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center' },
+  divider: {
+    flex: 1,
+    marginStart: AppSpacing.LARGE,
+    marginEnd: AppSpacing.LARGE,
+  },
+  dividerText: {
+    fontSize: AppFontSize.SIZE_12,
+    color: AppColor.GREY_1,
+    textAlign: "center",
+    alignContent: 'center'
   }
 });

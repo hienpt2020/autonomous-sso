@@ -15,8 +15,10 @@ export enum AppColor {
     BLUE_3 = '#3A84EE',
     BLUE_IN_ACTIVE = '#84B3E7',
     BLUE_IN_TAG = '#E1EDFF',
+    BLUE_3B5998 = '#3B5998',
 
     RED_7 = '#FA2B2B',
+    RED_DB4437 = '#DB4437',
     ORANGE_1 = '#FF9017',
     GREEN_1 = '#00BA8A',
 
