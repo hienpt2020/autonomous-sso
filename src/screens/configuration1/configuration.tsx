@@ -12,15 +12,14 @@ import { useDispatch } from 'react-redux';
 import { createRequestEndAction, createRequestErrorMessageAction } from '../../redux/request';
 import { BackHeader } from '../../components/header';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ConfigStep1Actions, IConfigStep1Actions } from './actions/configurationAction';
 import { Parser } from '../../helpers/parser';
 import i18next from 'i18next';
 import { useEffect, useState } from 'react';
+import { Bluetooth } from '../../services/bluetooth/bluetooth';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
 ]);
-
 const BleManagerModule = NativeModules.BleManager;
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
 
@@ -29,7 +28,6 @@ const ConfigurationStep1 = (props: any) => {
     const [list, setList] = useState<any[]>([]);
     const imageHeight = 221;
     const dispatch = useDispatch();
-    const configAction: IConfigStep1Actions = new ConfigStep1Actions(dispatch);
     let peripherals = new Map();
     let handlerDiscoverEmitter: any;
     let handlerStopScanEmitter: any;
@@ -65,8 +63,8 @@ const ConfigurationStep1 = (props: any) => {
             'BleManagerConnectPeripheral',
             handleConnectedPeripheral,
         );
-        await configAction.getMqttInfo();
-        configAction.checkPermission();
+        await Bluetooth.getMqttInfo();
+        Bluetooth.checkPermission();
     };
 
     const clearEvents = () => {
@@ -104,11 +102,7 @@ const ConfigurationStep1 = (props: any) => {
 
     const renderItem = (data: any) => {
         return (
-            <CardData
-                data={data}
-                onPress={() => configAction.connectToPeripheral(data.id)}
-                selectedId={data.connected}
-            />
+            <CardData data={data} onPress={() => Bluetooth.connectToPeripheral(data.id)} selectedId={data.connected} />
         );
     };
 

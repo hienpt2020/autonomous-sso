@@ -15,6 +15,7 @@ import Booking from '../../models/Booking';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/types';
 import WorkLayout from '../../models/WorkLayout';
+import { Bluetooth } from '../../services/bluetooth/bluetooth';
 
 //JUST disable this warning
 YellowBox.ignoreWarnings([
@@ -82,7 +83,7 @@ const ConfigurationStep2 = (props: Props) => {
             <PrimaryButton
                 wrapperContainer={styles.button}
                 title={t('seat.book_seat')}
-                onPress={() => bookingDevice(wifiName, wifiPassword, workLayout.id, booking.code)}
+                onPress={() => Bluetooth.bookingDevice(wifiName, wifiPassword, workLayout.id, booking.code)}
             />
             <SafeAreaView style={styles.header}>
                 <BackHeader title={''} lightContent onPress={() => handleBack()} />
