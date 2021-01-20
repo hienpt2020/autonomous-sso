@@ -18,7 +18,7 @@
         "available": "available",
         "slot_available": "slots remains from your purchase",
         "from": "From",
-        "until": "Until"
+        "until": "Until",
         "error": "Something went wrong"
     },
     "button": {
@@ -58,14 +58,13 @@
         "join_workspace": "Join Workspace"
     },
     "home": {
-
         "title": "Select a floor",
         "sub_title": "start working with joy"
     },
     "office": {
         "title": "Select",
         "sub_title": "working time",
-        "view": "View",
+        "view": "View"
     },
     "controll": {
         "title": "Devices"
