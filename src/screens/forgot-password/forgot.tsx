@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import { AppText, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
-import { BackHeaderX } from 'src/components/header';
+import { BackHeaderX, BackHeader } from 'src/components/header';
 import { PrimaryInput } from 'src/components/input';
 import { EmailValidator, Validator } from 'src/helpers/validators';
+import { AppSpacing } from 'src/styles';
 import { IRequestForgotPassword, RequestForgotPassword } from './actions/requestForgotPasswordAction';
 import { styles } from './styles';
 import { LoginProps } from './types';
@@ -23,7 +25,8 @@ const ForgotPassword = (props: LoginProps) => {
     return (
         <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-                <BackHeaderX title={t('common.forgot_password')} onPress={() => handleBack()} />
+                <BackHeaderX style={styles.title} title={t('common.forgot_password')} onPress={() => handleBack()} />
+                <Space height={AppSpacing.LARGE} />
                 <PrimaryInput
                     placeholder={t('common.email')}
                     onChangeText={(text) => {
@@ -31,15 +34,18 @@ const ForgotPassword = (props: LoginProps) => {
                         setEmailError('');
                     }}
                     keyboardType="email-address"
+                    renderErrorMessage={emailError !== ''}
                     autoCapitalize="none"
+                    style={styles.input}
                     errorMessage={emailError}
                 />
+                <AppText children={emailError} style={styles.error} />
+                <Space flex={1} />
                 <PrimaryButton
-                    title={t('common.forgot_password')}
-                    wrapperContainer={styles.button}
+                    title={t('forgot_password.send_me_an_email')}
+                    containerStyle={styles.button}
                     onPress={() => validateLogin()}
                 />
-                <View style={{ flex: 3 }} />
             </KeyboardAvoidingView>
         </SafeAreaView>
     );
@@ -50,7 +56,7 @@ const ForgotPassword = (props: LoginProps) => {
             validEmail = true;
             setEmailError(t(''));
         } else {
-            setEmailError(t('login.email_invalid'));
+            setEmailError(t('common.email_invalid'));
         }
 
         if (validEmail) {

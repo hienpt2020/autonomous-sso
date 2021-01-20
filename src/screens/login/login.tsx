@@ -9,6 +9,7 @@ import FacebookIcon from 'src/assets/images/icon_facebook_white.svg';
 import GoogleIcon from 'src/assets/images/icon_google_white.svg';
 import { AppText, Space } from 'src/components';
 import { IconButton, PrimaryButton } from 'src/components/button';
+import { LargeHeader } from 'src/components/header';
 import { PasswordInput, PrimaryInput } from 'src/components/input';
 import { Link } from 'src/components/link';
 import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
@@ -30,8 +31,8 @@ const Login = (props: LoginProps) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <AppText children={t('login.title')} style={styles.title} bold={true} size={AppFontSize.SIZE_28} />
-            <Space height={24} />
+            <LargeHeader title={t('login.title')} style={styles.title} />
+            <Space height={AppSpacing.LARGE} />
             <PrimaryInput
                 placeholder={t('common.email')}
                 renderErrorMessage={emailError !== ''}
@@ -43,8 +44,8 @@ const Login = (props: LoginProps) => {
                 keyboardType="email-address"
                 autoCapitalize="none"
                 errorMessage={emailError}
+                constainError={true}
             />
-            <AppText children={emailError} style={styles.error} />
             <PasswordInput
                 renderErrorMessage={passwordError !== ''}
                 style={styles.input}
@@ -54,8 +55,8 @@ const Login = (props: LoginProps) => {
                     setPassword(text);
                 }}
                 errorMessage={passwordError}
+                constainError={true}
             />
-            <AppText children={passwordError} style={styles.error} />
             <PrimaryButton title={t('common.login')} containerStyle={styles.button} onPress={() => validateLogin()} />
             <Space height={AppSpacing.MEDIUM} />
             <Link title={t('login.forgot_password')} onPress={() => handleForgotPassword()} style={styles.link} />
@@ -100,13 +101,13 @@ const Login = (props: LoginProps) => {
             validEmail = true;
             setEmailError(t(''));
         } else {
-            setEmailError(t('login.email_invalid'));
+            setEmailError(t('common.email_invalid'));
         }
         if (passwordValidator.isValid(password)) {
             validPassword = true;
             setPasswordError(t(''));
         } else {
-            setPasswordError(t('login.password_require'));
+            setPasswordError(t('common.password_require'));
         }
 
         if (validEmail && validPassword) {

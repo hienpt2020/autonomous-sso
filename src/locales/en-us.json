@@ -19,7 +19,9 @@
         "slot_available": "slots remains from your purchase",
         "from": "From",
         "until": "Until",
-        "error": "Something went wrong"
+        "continue": "Continue",
+        "email_invalid": "This email does not exist. Please input again.",
+        "password_require": "Invalid password. Please try another password."
     },
     "button": {
         "back": "Back",
@@ -29,7 +31,6 @@
         "title": "Hi! Enter your account\ndetails to login",
         "dont_have_account": "Don’t have an account? ",
         "create_account": "Create Account",
-        "email_invalid": "Email is invalid",
         "forgot_password": "Forgot Password?",
         "password_require": "Password is require",
         "or_log_in_instantly": "Or log in instantly",
@@ -42,10 +43,14 @@
     },
     "forgot_password": {
         "forgot_success": "We're send you an email, Check your email and follow instructions included in the message",
-        "login": "Log In"
+        "login": "Log In",
+        "send_me_an_email": "Send me an email"
     },
     "register": {
-        "confirm_password": "Confirm Password",
+        "title": "Set up your new\naccount",
+        "input_your_email": "Input your email",
+        "enter_new_password": "Enter new password",
+        "confirm_password": "Re-enter new password",
         "password_not_match": "Passwords do not match",
         "term_condition1": "By signing up, you agree to Autonomous’s ",
         "term_condition2": "Terms of Service",

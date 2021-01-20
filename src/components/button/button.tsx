@@ -2,8 +2,8 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { AppSpacing } from 'src/styles';
 import AppText from 'src/components/text';
+import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { AppButtonProps, AppIconButtonProps } from './types';
 export const PrimaryButton = (buttonProps: AppButtonProps) => {
@@ -12,6 +12,7 @@ export const PrimaryButton = (buttonProps: AppButtonProps) => {
             {...buttonProps}
             titleStyle={[styles.title, styles.titlePrimary]}
             buttonStyle={[styles.button, styles.buttonPrimary]}
+            disabledTitleStyle={styles.disableStyle}
             containerStyle={[buttonProps.containerStyle, styles.container]}
         />
     );

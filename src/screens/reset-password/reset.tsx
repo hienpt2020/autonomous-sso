@@ -70,7 +70,7 @@ const ResetPassword = (props: Props) => {
             validPassword = true;
             setPasswordError(t(''));
         } else {
-            setPasswordError(t('login.password_require'));
+            setPasswordError(t('common.password_require'));
         }
         //Confirm password
         if (passwordValidator.isValid(confirmPassword)) {
@@ -81,7 +81,7 @@ const ResetPassword = (props: Props) => {
                 setConfirmPasswordError(t('register.password_not_match'));
             }
         } else {
-            setConfirmPasswordError(t('login.password_require'));
+            setConfirmPasswordError(t('common.password_require'));
         }
 
         if (validPassword && validConfirmPassword) {

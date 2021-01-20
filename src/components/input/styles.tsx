@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
+import { AppFontSize, AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
-import { AppSpacing } from 'src/styles';
 
 export const styles = StyleSheet.create({
     input: {
@@ -17,5 +17,13 @@ export const styles = StyleSheet.create({
         height: 48,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    error: {
+        color: AppColor.RED_7,
+        marginStart: AppSpacing.LARGE,
+        marginEnd: AppSpacing.LARGE,
+        fontSize: AppFontSize.SIZE_12,
+        marginTop: AppSpacing.TINY,
+        marginBottom: AppSpacing.TINY,
     },
 });

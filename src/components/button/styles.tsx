@@ -20,6 +20,9 @@ export const styles = StyleSheet.create({
     buttonPrimary: {
         backgroundColor: AppColor.BLUE_1,
     },
+    disableStyle: {
+        color: AppColor.WHITE,
+    },
     buttonSecondary: {
         backgroundColor: AppColor.GREY_3,
     },
