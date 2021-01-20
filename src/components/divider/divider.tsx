@@ -3,8 +3,8 @@ import { View } from 'react-native';
 import { DividerProps } from './types';
 import { styles } from './styles';
 
-const Divider: React.FC<DividerProps> = ({ width = '100%', height = 1 }: DividerProps) => {
-    return <View style={[styles.divider, { width, height }]}></View>;
+const Divider: React.FC<DividerProps> = ({ height = 1, style }: DividerProps) => {
+    return <View style={[styles.divider, style, { height }]}></View>;
 };
 
 export default Divider;

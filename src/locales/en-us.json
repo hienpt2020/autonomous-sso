@@ -12,7 +12,7 @@
         "close": "Close",
         "assets": "Assets",
         "policies": "Policies",
-        "code": "Code",
+        "code": "Activation code",
         "done": "Done",
         "error": "Something went wrong",
         "available": "available",
@@ -77,7 +77,8 @@
     "place": {
         "asset_title": "Assets contained",
         "time_title": "Booking time",
-        "book_place": "book this place"
+        "book_place": "book this place",
+        "code_desc": "Access device with this code"
     },
     "profile": {
         "title": "My Profile",
@@ -109,5 +110,12 @@
         "desc": "Use the activation code below to unlock\nyour seat when checking in.",
         "note": "Note: You can open this code again in your Booking\nHistory tab",
         "book_again": "Book again"
+    },
+    "activities": {
+        "title": "Activities",
+        "upcoming": "Upcoming",
+        "hisotry": "History",
+        "checked_out": "Checked out",
+        "cancel": "Cancelled"
     }
 }

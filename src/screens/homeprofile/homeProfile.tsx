@@ -11,6 +11,9 @@ import { IconButton } from 'src/components/button';
 import { Header } from 'src/components/header';
 import SectionItem from 'src/components/section-item';
 import { RootState } from 'src/redux/types';
+import { createRequestLogoutAction } from 'src/redux/user';
+import { navigate } from 'src/routers/rootNavigation';
+import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { Props } from './types';
@@ -33,6 +36,10 @@ const Profile = (props: Props) => {
     useEffect(() => {
         setWorkSpace(workspaceReducer.name);
     }, [workspaceReducer.name]);
+
+    function _onPressActivities() {
+        navigate(RouteName.ACTIVITIES, null);
+    }
 
     return (
         <View>
@@ -65,7 +72,7 @@ const Profile = (props: Props) => {
                         <Divider />
                         <SectionItem title={t('profile.add_login_method')} value={'Email'} />
                         <Divider />
-                        <SectionItem title={t('profile.activities')} value={''} />
+                        <SectionItem title={t('profile.activities')} value={''} onPress={_onPressActivities} />
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
