@@ -5,13 +5,13 @@ import { WorkspaceState } from './workspace/workspaceType';
 export type { UserState };
 
 export interface BaseState {
-  isLoading: boolean;
-  error: string;
+    isLoading: boolean;
+    error: string;
 }
 
 export interface RootState {
-  requestReducer: RequestState;
-  userReducer: UserState;
-  booking: BookingState;
-  workspaceReducer: WorkspaceState;
+    requestReducer: RequestState;
+    userReducer: UserState;
+    booking: BookingState;
+    workspaceReducer: WorkspaceState;
 }

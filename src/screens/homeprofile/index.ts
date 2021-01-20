@@ -1,1 +1,1 @@
-export { default } from './homeProfile'
+export { default } from './homeProfile';

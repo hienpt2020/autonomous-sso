@@ -4,7 +4,7 @@ import { call, put } from 'redux-saga/effects';
 import {
     createRequestEndAction,
     createRequestErrorMessageAction,
-    createRequestStartAction
+    createRequestStartAction,
 } from 'src/redux/request/requestAction';
 import { NetworkingConfig } from 'src/services/networking';
 import { requestLogin } from './apiUser';

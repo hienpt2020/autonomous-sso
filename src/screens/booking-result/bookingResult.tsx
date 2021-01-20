@@ -10,22 +10,24 @@ import { styles } from './styles';
 import { Props } from './types';
 
 const BookingResult = (props: Props) => {
-  const bookingHistory: BookingHistory | undefined = props.route.params.booking;
+    const bookingHistory: BookingHistory | undefined = props.route.params.booking;
 
-  const { t } = useTranslation();
+    const { t } = useTranslation();
 
-  return (
-    <View style={styles.container}>
-      <ImageSuccess width="152" height="152" style={styles.title} />
-      <Text style={styles.title}>Successful!</Text>
-      <Text style={styles.subTitle}>You have booked the seat. Your unlock code below, use it to unlock your seat </Text>
-      <Text style={styles.code}>{bookingHistory.code}</Text>
-      <PrimaryButton wrapperContainer={styles.button} title={t('common.done')} onPress={() => handleDone()} />
-    </View>
-  );
-  function handleDone() {
-    props.navigation.navigate(RouteName.HOME);
-  }
+    return (
+        <View style={styles.container}>
+            <ImageSuccess width="152" height="152" style={styles.title} />
+            <Text style={styles.title}>Successful!</Text>
+            <Text style={styles.subTitle}>
+                You have booked the seat. Your unlock code below, use it to unlock your seat{' '}
+            </Text>
+            <Text style={styles.code}>{bookingHistory.code}</Text>
+            <PrimaryButton wrapperContainer={styles.button} title={t('common.done')} onPress={() => handleDone()} />
+        </View>
+    );
+    function handleDone() {
+        props.navigation.navigate(RouteName.HOME);
+    }
 };
 
 export default BookingResult;
