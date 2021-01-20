@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>596944745396-0oq9fc14655j0n6g8i17r98308dliftd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.596944745396-0oq9fc14655j0n6g8i17r98308dliftd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCaYNpUScP7n86I-oYu5OkJlD6hro9DEDY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>596944745396</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ai.autonomous.megapp.staging</string>
+	<key>PROJECT_ID</key>
+	<string>autonomous-firebase---staging</string>
+	<key>STORAGE_BUCKET</key>
+	<string>autonomous-firebase---staging.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:596944745396:ios:4d34be10f4b483b72678e1</string>
+</dict>
+</plist>

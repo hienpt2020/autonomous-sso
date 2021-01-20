@@ -1,6 +1,6 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
-
 import com.android.build.OutputFile
 
 /**
@@ -137,6 +137,7 @@ android {
         versionName project.env.get("APP_VERSION")
 
         resValue "string", "build_config_package", "ai.autonomous.rncodebase"
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -148,17 +149,18 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('autonomous-mobile.keystore')
-            storePassword 'autonomousdev2020'
-            keyAlias 'Autonomous Mobile'
-            keyPassword 'autonomousdev2020'
+            storeFile file("autonomous-mobile.keystore")
+            storePassword "autonomousdev2020"
+            keyAlias "Autonomous Mobile"
+            keyPassword "autonomousdev2020"
         }
         release {
-            storeFile file(project.storeFile)
-            storePassword project.password
-            keyAlias project.keyAlias
-            keyPassword project.password
+            storeFile project.hasProperty('storeFile') ? file(project.storeFile) : "autonomous-mobile.keystore"
+            storePassword project.hasProperty('password') ? project.password : "autonomousdev2020" 
+            keyAlias project.hasProperty('keyAlias') ? project.keyAlias : "Autonomous Mobile" 
+            keyPassword project.hasProperty('password') ? project.password : "autonomousdev2020" 
         }
+        
     }
     buildTypes {
         debug {
@@ -200,6 +202,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
