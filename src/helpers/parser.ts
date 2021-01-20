@@ -90,6 +90,7 @@ export class ParserImpl implements IParser {
             responseData.working_p_lace_images && responseData.working_p_lace_images.length > 0
                 ? responseData.working_p_lace_images[0].image_url
                 : '';
+        result.code = responseData.code;
         return result;
     }
     parseBookingHistory(responseData: any): BookingHistory {
