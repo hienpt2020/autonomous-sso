@@ -11,7 +11,7 @@ import { Link } from 'src/components/link';
 import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
 import { createRequestLoginAction } from 'src/redux/user/';
 import { RouteName } from 'src/routers/routeName';
-import { AppFontSize, AppSpacing } from 'src/styles';
+import { AppColor, AppFontSize, AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { LoginProps } from './types';
 
@@ -34,6 +34,7 @@ const Login = (props: LoginProps) => {
         <Space height={24} />
         <PrimaryInput
           placeholder={t('common.email')}
+          renderErrorMessage={emailError !== ''}
           style={styles.input}
           onChangeText={(text) => {
             setEmail(text);
@@ -43,8 +44,9 @@ const Login = (props: LoginProps) => {
           autoCapitalize="none"
           errorMessage={emailError}
         />
-        <Space height={AppSpacing.MEDIUM} />
+        <AppText children={emailError} style={styles.error} />
         <PrimaryInput
+          renderErrorMessage={passwordError !== ''}
           style={styles.input}
           placeholder={t('common.password')}
           onChangeText={(text) => {
@@ -54,7 +56,7 @@ const Login = (props: LoginProps) => {
           secureTextEntry={true}
           errorMessage={passwordError}
         />
-        <Space height={AppSpacing.MEDIUM} />
+        <AppText children={passwordError} style={styles.error} />
         <PrimaryButton title={t('common.login')} style={styles.button} onPress={() => validateLogin()} />
         <Space height={AppSpacing.MEDIUM} />
         <Link title={t('common.forgot_password')} onPress={() => handleForgotPassword()} style={styles.link} />
@@ -62,18 +64,17 @@ const Login = (props: LoginProps) => {
         <View style={{ flex: 3 }} />
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
           <AppText children={t('login.dont_have_account')} />
-          <Link title={t('login.create_account')} />
+          <Link title={t('login.create_account')} onPress={handleCreateAccount} />
         </View>
         <Space height={AppSpacing.EXTRA} />
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
-  function handleBack() {
-    props.navigation.goBack();
+  function handleCreateAccount() {
+    props.navigation.navigate(RouteName.REGISTER)
   }
   function validateLogin() {
-    let validEmail,
-      validPassword = false;
+    let validEmail, validPassword = false;
     if (emailValidator.isValid(email)) {
       validEmail = true;
       setEmailError(t(''));
