@@ -80,7 +80,7 @@ const Profile = (props: Props) => {
                     <View style={styles.sectionContainer}>
                         <SectionItem title={t('profile.terms_and_policy')} onPress={_onPressTerms} />
                         <Divider />
-                        <SectionItem title={t('profile.contact_us')} />
+                        <SectionItem title={t('profile.contact_us')} onPress={_onPressContactUs}/>
                         <Divider />
                         <SectionItem title={t('profile.version_update')} value={'Version 0.0.1'} />
                     </View>
@@ -95,6 +95,13 @@ const Profile = (props: Props) => {
             </ScrollView>
         </View>
     );
+    function _onPressContactUs() {
+        try {
+            LinkingHelper.open(Config.CONTACT_US);
+        } catch (exception) {
+            Log.debug(exception);
+        }
+    }
     function _onPressTerms() {
         try {
             LinkingHelper.open(Config.LINK_TERM);
