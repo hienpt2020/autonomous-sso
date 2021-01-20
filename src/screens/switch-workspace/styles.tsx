@@ -6,32 +6,30 @@ export const styles = StyleSheet.create({
         backgroundColor: AppColor.WHITE,
     },
     itemContainer: {
-        marginStart: 8, 
-        marginEnd: 8, 
+        marginStart: 8,
+        marginEnd: 8,
         marginTop: 4,
-        alignItems: 'center', 
+        alignItems: 'center',
         flexDirection: 'row',
-        marginBottom: 4, 
-
+        marginBottom: 4,
     },
     content: {
         fontSize: 16,
         margin: 16,
         color: AppColor.LIGHT,
-        
-    }, 
+    },
     divider: {
         height: 0.5,
-        width: "100%",
+        width: '100%',
         backgroundColor: AppColor.LIGHT,
     },
     chipIcon: {
         position: 'absolute',
         end: 16,
-    }, 
+    },
     buttonContainer: {
-        marginStart: 16, 
-        marginEnd: 16, 
-        marginBottom: 16, 
-    }
+        marginStart: 16,
+        marginEnd: 16,
+        marginBottom: 16,
+    },
 });

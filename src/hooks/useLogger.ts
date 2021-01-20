@@ -3,5 +3,5 @@ import { Logger } from 'src/helpers/logger';
 import { useInjection } from './useInjection';
 
 export function useLogger(): Logger {
-  return useInjection<Logger>(TYPES.Logger);
+    return useInjection<Logger>(TYPES.Logger);
 }

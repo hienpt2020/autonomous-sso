@@ -19,50 +19,50 @@ import { fetchWorkSpaces, setCurrentWorkSpaces } from './actions/switchWorkSpace
 import { styles } from './styles';
 import { Props } from './types';
 
-
 const SwitchWorkSpace = (props: Props) => {
+    const initialData: WorkSpace[] = [];
 
-    const initialData: WorkSpace[] = []
-
-    const { t } = useTranslation()
-    const dispatch = useDispatch()
-    const [workSpaceData, setWorkSpaceData] = useState(initialData)
-    const [selected, setSelected] = useState(-1)
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const [workSpaceData, setWorkSpaceData] = useState(initialData);
+    const [selected, setSelected] = useState(-1);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer)
+    const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer);
 
     useEffect(() => {
-        setIsLoading(true)
-        fetchWorkSpaces().then(data => {
-            setWorkSpaceData(data)
-        }).finally(() => {
-            setIsLoading(false)
-        })
-    }, [])
+        setIsLoading(true);
+        fetchWorkSpaces()
+            .then((data) => {
+                setWorkSpaceData(data);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, []);
     useEffect(() => {
-        setSelected(workSpaceData.findIndex(item => item.id === workspaceReducer.id))
-    }, [workSpaceData, workspaceReducer.id])
+        setSelected(workSpaceData.findIndex((item) => item.id === workspaceReducer.id));
+    }, [workSpaceData, workspaceReducer.id]);
 
     const flatListItemSeparator = () => {
-        return (
-            <View style={styles.divider}
-            />
-        );
-    }
+        return <View style={styles.divider} />;
+    };
 
     const renderItem = (data: WorkSpace, index: number) => {
         return (
-            <TouchableOpacity onPress={() => { setSelected(index) }}>
+            <TouchableOpacity
+                onPress={() => {
+                    setSelected(index);
+                }}
+            >
                 <View style={styles.itemContainer}>
                     <Icon width="16" height="16" />
                     <Text style={[styles.content]}>{data.name}</Text>
                     {index === selected ? <Check width="32" height="32" style={styles.chipIcon} /> : null}
-
                 </View>
             </TouchableOpacity>
-        )
-    }
+        );
+    };
 
     return (
         <View style={{ flex: 1 }}>
@@ -79,34 +79,41 @@ const SwitchWorkSpace = (props: Props) => {
                             ItemSeparatorComponent={flatListItemSeparator}
                             renderItem={({ item, index }) => renderItem(item, index)}
                         />
-                        <PrimaryButton containerStyle={styles.buttonContainer} title="Save" onPress={() => { requestUpdateCurrentWorkSpace() }} />
+                        <PrimaryButton
+                            containerStyle={styles.buttonContainer}
+                            title="Save"
+                            onPress={() => {
+                                requestUpdateCurrentWorkSpace();
+                            }}
+                        />
                     </>
                 ) : (
-                            <Empty />
-                        )}
+                    <Empty />
+                )}
             </SafeAreaView>
         </View>
-    )
+    );
 
     function requestUpdateCurrentWorkSpace() {
-        const cache = _.get(workSpaceData, selected)
+        const cache = _.get(workSpaceData, selected);
         if (cache && cache.id != workspaceReducer.id) {
-            setIsLoading(true)
-            setCurrentWorkSpaces(cache).then((data) =>
-                dispatch(createActionSetWorkSpace(cache))
-            ).catch((exception) => {
-                dispatch(createRequestErrorMessageAction(t('common.error')))
-            }).finally(() => {
-                setIsLoading(false)
-                props.navigation.goBack()
-            })
+            setIsLoading(true);
+            setCurrentWorkSpaces(cache)
+                .then((data) => dispatch(createActionSetWorkSpace(cache)))
+                .catch((exception) => {
+                    dispatch(createRequestErrorMessageAction(t('common.error')));
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                    props.navigation.goBack();
+                });
         } else {
-            props.navigation.goBack()
+            props.navigation.goBack();
         }
     }
 
     function handleBack() {
-        props.navigation.goBack()
+        props.navigation.goBack();
     }
 };
 

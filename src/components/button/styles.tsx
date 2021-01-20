@@ -35,6 +35,6 @@ export const styles = StyleSheet.create({
     iconButtonContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: AppColor.BLUE_1
-    }
+        backgroundColor: AppColor.BLUE_1,
+    },
 });

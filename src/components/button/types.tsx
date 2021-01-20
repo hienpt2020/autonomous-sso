@@ -1,8 +1,8 @@
 import { ViewStyle } from 'react-native';
-import { ButtonProps } from 'react-native-elements'
+import { ButtonProps } from 'react-native-elements';
 export interface AppButtonProps extends ButtonProps {
-    wrapperContainer?: ViewStyle
+    wrapperContainer?: ViewStyle;
 }
 export interface AppIconButtonProps extends AppButtonProps {
-    icon: any //SVG
+    icon: any; //SVG
 }

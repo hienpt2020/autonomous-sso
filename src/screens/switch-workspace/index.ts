@@ -1,1 +1,1 @@
-export { default } from './switchWorkSpace'
+export { default } from './switchWorkSpace';

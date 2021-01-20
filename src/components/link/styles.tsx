@@ -3,11 +3,10 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     wrapper: {
-        alignItems: 'center'
+        alignItems: 'center',
     },
     text: {
-        fontWeight: 'bold', 
-        color: AppColor.BLUE_1
-    }
-  
+        fontWeight: 'bold',
+        color: AppColor.BLUE_1,
+    },
 });

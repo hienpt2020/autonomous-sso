@@ -15,4 +15,4 @@ export const fetchWorkSpaces = async (): Promise<WorkSpace[]> => {
 export const setCurrentWorkSpaces = async (workspace: WorkSpace): Promise<void> => {
     await SSOApi.setCurrentWorkspace(workspace.id);
 };
-export const switchWorkSpaceActions = { fetchWorkSpaces, setCurrentWorkSpaces }
+export const switchWorkSpaceActions = { fetchWorkSpaces, setCurrentWorkSpaces };

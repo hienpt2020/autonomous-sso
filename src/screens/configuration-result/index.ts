@@ -1,1 +1,1 @@
-export { default } from './configurationResult'
+export { default } from './configurationResult';

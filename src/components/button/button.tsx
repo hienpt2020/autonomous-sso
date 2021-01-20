@@ -28,11 +28,8 @@ export const SecondaryButton = (buttonProps: AppButtonProps) => {
 };
 export const IconButton = (buttonProps: AppIconButtonProps) => {
     return (
-        <TouchableOpacity
-            style={[styles.iconButtonContainer, buttonProps.style, styles.button]}>
-            <View style={{ marginStart: AppSpacing.EXTRA, marginEnd: AppSpacing.EXTRA }}>
-                {buttonProps.icon}
-            </View>
+        <TouchableOpacity style={[styles.iconButtonContainer, buttonProps.style, styles.button]}>
+            <View style={{ marginStart: AppSpacing.EXTRA, marginEnd: AppSpacing.EXTRA }}>{buttonProps.icon}</View>
             <AppText style={styles.title} children={`${buttonProps.title}`} />
         </TouchableOpacity>
     );

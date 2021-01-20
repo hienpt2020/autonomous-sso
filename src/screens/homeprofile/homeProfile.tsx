@@ -14,51 +14,51 @@ import { RouteName } from 'src/routers/routeName';
 import { styles } from './styles';
 import { Props } from './types';
 
-
 const Profile = (props: Props) => {
-    const { t } = useTranslation()
-    const userReducer = useSelector((state: RootState) => state.userReducer)
-    const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer)
-    const dispatch = useDispatch()
-    const [email, setEmail] = useState("")
-    const [avatar, setAvatar] = useState("")
-    const [workspace, setWorkSpace] = useState("")
+    const { t } = useTranslation();
+    const userReducer = useSelector((state: RootState) => state.userReducer);
+    const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer);
+    const dispatch = useDispatch();
+    const [email, setEmail] = useState('');
+    const [avatar, setAvatar] = useState('');
+    const [workspace, setWorkSpace] = useState('');
 
     useEffect(() => {
-        setEmail(_.get(userReducer, "email", ""))
-        setAvatar(_.get(userReducer, "userAvatar", ""))
-        setWorkSpace(_.get(userReducer, "currentWorkspace", "Autonomous"))
-    }, [userReducer.email, userReducer.userAvatar])
+        setEmail(_.get(userReducer, 'email', ''));
+        setAvatar(_.get(userReducer, 'userAvatar', ''));
+        setWorkSpace(_.get(userReducer, 'currentWorkspace', 'Autonomous'));
+    }, [userReducer.email, userReducer.userAvatar]);
 
     useEffect(() => {
-        setWorkSpace(workspaceReducer.name)
-    }, [workspaceReducer.name])
-
+        setWorkSpace(workspaceReducer.name);
+    }, [workspaceReducer.name]);
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.avatarContainer}>
-                {avatar ?
+                {avatar ? (
                     <Image source={{ uri: avatar }} style={styles.avatar} />
-                    : <Icon width={128} height={128} style={styles.avatar} />
-                }
+                ) : (
+                    <Icon width={128} height={128} style={styles.avatar} />
+                )}
             </View>
 
             <Link title={email} />
-            {
-                workspace ?
-                    <PrimaryButton wrapperContainer={styles.containerButton}
-                        onPress={() => props.navigation.navigate(RouteName.SWITCH_WORKSPACE)}
-                        title={workspace} />
-                    : null
-            }
+            {workspace ? (
+                <PrimaryButton
+                    wrapperContainer={styles.containerButton}
+                    onPress={() => props.navigation.navigate(RouteName.SWITCH_WORKSPACE)}
+                    title={workspace}
+                />
+            ) : null}
 
-            <SecondaryButton wrapperContainer={styles.containerButton}
+            <SecondaryButton
+                wrapperContainer={styles.containerButton}
                 onPress={() => dispatch(createRequestLogoutAction())}
-                title={t('common.logout')} />
+                title={t('common.logout')}
+            />
         </SafeAreaView>
-    )
-
+    );
 };
 
 export default Profile;
