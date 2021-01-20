@@ -11,6 +11,7 @@ export enum AppFontSize {
     SIZE_24 = 24,
     SIZE_28 = 28,
     SIZE_32 = 32,
+    SIZE_36 = 36,
     SIZE_48 = 48,
 }
 

@@ -61,14 +61,14 @@ const BookingDetail = (props: Props) => {
     };
 
     const _onPressBookPlace = async () => {
-        try {
-            if (place) {
-                const bookingHistory: BookingHistory = await bookPlace(place.id, booking.from, booking.to);
-                if (bookingHistory) {
-                    navigate(RouteName.BOOKING_RESULT, { booking: bookingHistory });
-                }
+        if (place) {
+            const bookingHistory: BookingHistory = await bookPlace(place.id, booking.from, booking.to);
+            if (bookingHistory) {
+                navigate(RouteName.BOOKING_RESULT, { booking: bookingHistory });
+            } else {
+                navigate(RouteName.BOOKING_RESULT, { booking: undefined });
             }
-        } catch (error) {}
+        }
     };
 
     const _onPressDevice = (item: Asset) => {

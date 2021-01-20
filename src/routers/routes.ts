@@ -13,7 +13,7 @@ export type RootStackParams = {
     [RouteName.JOINING]: { workspace: string };
     [RouteName.HOME]: undefined;
     [RouteName.MAP]: { map: WorkLayout };
-    [RouteName.BOOKING_RESULT]: { booking: BookingHistory };
+    [RouteName.BOOKING_RESULT]: { booking?: BookingHistory; error?: string };
     [RouteName.SEAT_ADMIN]: undefined;
     [RouteName.CONFIGURATION_STEP1]: undefined;
     [RouteName.CONFIGURATION_STEP2]: undefined;
