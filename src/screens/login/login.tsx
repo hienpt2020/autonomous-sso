@@ -15,7 +15,7 @@ import { Link } from 'src/components/link';
 import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
 import { createRequestLoginAction } from 'src/redux/user/';
 import { RouteName } from 'src/routers/routeName';
-import { AppFontSize, AppSpacing } from 'src/styles';
+import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { LoginProps } from './types';
 
@@ -28,6 +28,7 @@ const Login = (props: LoginProps) => {
     const [passwordError, setPasswordError] = useState('');
     const emailValidator: Validator = new EmailValidator();
     const passwordValidator: Validator = new PasswordValidator();
+    const [isValidRequest, setIsValidRequest] = useState(false);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -40,6 +41,7 @@ const Login = (props: LoginProps) => {
                 onChangeText={(text) => {
                     setEmail(text);
                     setEmailError('');
+                    validateButtonLogin(text, password);
                 }}
                 keyboardType="email-address"
                 autoCapitalize="none"
@@ -53,11 +55,17 @@ const Login = (props: LoginProps) => {
                 onChangeText={(text) => {
                     setPasswordError('');
                     setPassword(text);
+                    validateButtonLogin(email, text);
                 }}
                 errorMessage={passwordError}
                 constainError={true}
             />
-            <PrimaryButton title={t('common.login')} containerStyle={styles.button} onPress={() => validateLogin()} />
+            <PrimaryButton
+                title={t('common.login')}
+                containerStyle={styles.button}
+                onPress={() => validateLogin()}
+                disabled={!isValidRequest}
+            />
             <Space height={AppSpacing.MEDIUM} />
             <Link title={t('login.forgot_password')} onPress={() => handleForgotPassword()} style={styles.link} />
             <Space height={AppSpacing.MEDIUM} />
@@ -91,6 +99,11 @@ const Login = (props: LoginProps) => {
             </View>
         </SafeAreaView>
     );
+    function validateButtonLogin(email: string, password: string) {
+        const validRequest = emailValidator.isValid(email) && passwordValidator.isValid(password);
+        setIsValidRequest(validRequest);
+    }
+
     function handleCreateAccount() {
         props.navigation.navigate(RouteName.REGISTER);
     }

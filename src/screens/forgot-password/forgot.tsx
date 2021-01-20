@@ -20,6 +20,7 @@ const ForgotPassword = (props: LoginProps) => {
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const emailValidator: Validator = new EmailValidator();
+    const [isValidRequest, setIsValidRequest] = useState(false);
     const requestForgotPassword: IRequestForgotPassword = new RequestForgotPassword(dispatch);
 
     return (
@@ -32,6 +33,7 @@ const ForgotPassword = (props: LoginProps) => {
                     onChangeText={(text) => {
                         setEmail(text);
                         setEmailError('');
+                        validateButtonContinue(text);
                     }}
                     keyboardType="email-address"
                     renderErrorMessage={emailError !== ''}
@@ -44,11 +46,16 @@ const ForgotPassword = (props: LoginProps) => {
                 <PrimaryButton
                     title={t('forgot_password.send_me_an_email')}
                     containerStyle={styles.button}
+                    disabled={!isValidRequest}
                     onPress={() => validateLogin()}
                 />
             </KeyboardAvoidingView>
         </SafeAreaView>
     );
+    function validateButtonContinue(email: string) {
+        const validRequest = emailValidator.isValid(email);
+        setIsValidRequest(validRequest);
+    }
 
     function validateLogin() {
         let validEmail = false;

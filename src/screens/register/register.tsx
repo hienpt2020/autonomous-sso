@@ -36,7 +36,6 @@ const Register = (props: Props) => {
                     placeholder={t('register.input_your_email')}
                     style={styles.input}
                     constainError={true}
-                    error={emailError}
                     onChangeText={(text) => {
                         setEmail(text);
                         setEmailError('');
@@ -51,7 +50,6 @@ const Register = (props: Props) => {
                     placeholder={t('register.enter_new_password')}
                     style={styles.input}
                     constainError={true}
-                    error={passwordError}
                     onBlur={() => handlePasswordLostFocus()}
                     onChangeText={(text) => {
                         setPasswordError('');
@@ -71,7 +69,6 @@ const Register = (props: Props) => {
                     }}
                     onBlur={() => handleConfirmPasswordLostFocus}
                     constainError={true}
-                    error={confirmPasswordError}
                     secureTextEntry={true}
                     errorMessage={confirmPasswordError}
                 />
