@@ -6,9 +6,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text: {
-        padding: 8,
         fontWeight: 'bold', 
-        textDecorationLine: 'underline'
+        color: AppColor.BLUE_1
     }
   
 });

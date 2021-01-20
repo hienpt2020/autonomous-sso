@@ -46,7 +46,7 @@ export function* validateUserToken(action: any) {
             yield put(createRequestErrorMessageAction(message));
         }
     } else {
-        navigate(RouteName.INTRO, {})
+        navigate(RouteName.LOGIN, {})
     }
     yield put(createRequestEndAction())
 };

@@ -1,16 +1,20 @@
 import { StyleSheet } from 'react-native';
 import { AppColor } from 'src/styles/colors';
+import { AppSpacing } from 'src/styles';
 
 export const styles = StyleSheet.create({
-    wrapper: {
-        marginStart: 8, 
-        marginEnd: 8, 
+    input: {
+        backgroundColor: AppColor.WHITE,
+        borderWidth: 1,
+        minHeight: 48,
+        paddingStart: AppSpacing.MEDIUM,
+        paddingEnd: AppSpacing.MEDIUM,
+        borderColor: AppColor.GREY_2,
     },
-    inputContainer: {
-        padding: 4,
-        borderWidth: 2,
-        borderBottomWidth: 2,
-        borderColor: AppColor.PRIMARY
-    },
-    input: { color: AppColor.PRIMARY }
+    visibleContainer: {
+        position: "absolute", end: AppSpacing.EXTRA,
+        height: 48,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 });

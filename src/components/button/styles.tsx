@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
         height: 48,
     },
     container: {
-        width: '100%',
         borderRadius: 0,
     },
     title: {
@@ -27,7 +26,15 @@ export const styles = StyleSheet.create({
     titlePrimary: {
         color: AppColor.WHITE,
     },
+    titleIcon: {
+        color: AppColor.WHITE,
+    },
     titleSecondary: {
         color: '#1174DC',
     },
+    iconButtonContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: AppColor.BLUE_1
+    }
 });
