@@ -40,7 +40,7 @@ export class ParserImpl implements IParser {
         result.status = _.get(responseData, 'status');
         result.members = _.get(responseData, 'members');
         result.roleByCurrentUser = _.get(responseData, 'role_by_current_user');
-        result.isAdmin = true;
+        result.isAdmin = ROLES.ADMIN == _.get(responseData, 'role_by_current_user');
 
         return result;
     }
@@ -90,6 +90,7 @@ export class ParserImpl implements IParser {
             responseData.working_p_lace_images && responseData.working_p_lace_images.length > 0
                 ? responseData.working_p_lace_images[0].image_url
                 : '';
+        result.code = responseData.code;
         return result;
     }
     parseBookingHistory(responseData: any): BookingHistory {
