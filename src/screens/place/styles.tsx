@@ -23,9 +23,36 @@ export const styles = StyleSheet.create({
         fontWeight: '500',
         marginBottom: 20,
     },
+    codeTitle: {
+        fontSize: AppFontSize.SIZE_20,
+        fontWeight: '500',
+        marginTop: AppSpacing.MEDIUM,
+    },
     policyContainer: {
         backgroundColor: AppColor.WHITE,
         padding: AppSpacing.LARGE,
     },
     sectionContent: {},
+    codeContainer: {
+        backgroundColor: AppColor.WHITE,
+        paddingHorizontal: AppSpacing.LARGE,
+    },
+    codeLineContainer: {
+        height: 56,
+    },
+    codeDesc: {
+        fontSize: AppFontSize.SIZE_12,
+        flex: 1,
+    },
+    codeNumberContainer: {
+        height: 24,
+        width: 24,
+        borderRadius: 4,
+        backgroundColor: '#F8F8F8',
+    },
+    code: {
+        fontWeight: '500',
+        fontSize: AppFontSize.SIZE_16,
+        color: '#555555',
+    },
 });

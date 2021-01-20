@@ -12,7 +12,7 @@ import { Loading } from 'src/components/loading/loading';
 import { BookingHistory } from 'src/models/BookingHistory';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
-import { AppColor, AppSpacing, AppStyle } from 'src/styles';
+import { AppSpacing } from 'src/styles';
 import { getBookingHistory } from './actions/bookingAction';
 import { styles } from './styles';
 import { Props } from './types';
@@ -124,7 +124,11 @@ const BookingScreen = (props: Props) => {
                     data={bookings}
                     keyExtractor={(item, index) => `${item.id}${index}`}
                     renderItem={({ item }) => renderItem(item)}
-                    ItemSeparatorComponent={() => <Divider style={styles.divider} />}
+                    ItemSeparatorComponent={() => (
+                        <AppView style={styles.dividerContainer} horizontal>
+                            <Divider style={styles.divider} />
+                        </AppView>
+                    )}
                     ListFooterComponent={() =>
                         isLoading ? (
                             <View style={{ height: 100 }}>

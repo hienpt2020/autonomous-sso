@@ -2,11 +2,8 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
-import { color } from 'react-native-reanimated';
 import { AppText } from 'src/components';
 import { BackHeader } from 'src/components/header';
-import { BookingHistory } from 'src/models/BookingHistory';
-import { AppColor, AppFont, AppFontSize } from 'src/styles';
 import BookingScreen from '../booking-history';
 import { styles } from './styles';
 import { Props } from './types';

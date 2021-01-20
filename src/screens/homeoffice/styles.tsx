@@ -7,12 +7,8 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: AppColor.BACKGROUND,
     },
-    header: {
-        paddingHorizontal: AppSpacing.LARGE,
-    },
-    info: {
-        marginHorizontal: AppSpacing.LARGE,
-    },
+    header: {},
+    info: {},
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',

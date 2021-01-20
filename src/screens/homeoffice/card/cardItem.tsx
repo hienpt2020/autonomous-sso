@@ -39,7 +39,7 @@ const CardItem = (props: Props) => {
                     </AppView>
                 </View>
 
-                <IconArrowRight width={7} height={12} />
+                <IconArrowRight width={24} height={24} />
             </AppView>
         </TouchableOpacity>
     );

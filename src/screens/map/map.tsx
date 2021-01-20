@@ -7,7 +7,7 @@ import DatePicker from 'react-native-date-picker';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
 import BottomSheet from 'reanimated-bottom-sheet';
-import { Space } from 'src/components';
+import { AppView, Space } from 'src/components';
 import { BackHeader, LargeHeader } from 'src/components/header';
 import LayoutInfo from 'src/components/layoutInfo';
 import { Link } from 'src/components/link';
@@ -138,47 +138,47 @@ const Map = (props: Props) => {
         <View style={styles.container}>
             <BackHeader title={map.name} onPress={() => handleBack()} />
 
-            <ScrollView>
-                <Space height={30} />
+            {isLoading ? (
+                <Loading />
+            ) : workPlaces.length > 0 ? (
+                <FlatList
+                    data={workPlaces}
+                    columnWrapperStyle={{
+                        justifyContent: 'space-between',
+                    }}
+                    contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24, flexGrow: 1 }}
+                    keyExtractor={(item, index) => `${item.id.toString()}${index}`}
+                    numColumns={NUM_COLUMNS}
+                    renderItem={({ item, index }) => renderItem(item, index)}
+                    // getItemLayout={(data, index) => getItemLayout(data, index)}
+                    ItemSeparatorComponent={() => <Space height={AppSpacing.MEDIUM} />}
+                    ListHeaderComponent={
+                        <AppView>
+                            <Space height={30} />
 
-                <LayoutInfo style={styles.layoutInfo} workLayout={map} />
+                            <LayoutInfo workLayout={map} />
 
-                <Space height={AppSpacing.LARGE} />
+                            <Space height={AppSpacing.LARGE} />
 
-                <LargeHeader style={styles.header} title={t('office.title')} subTitle={t('office.sub_title')} />
+                            <LargeHeader title={t('office.title')} subTitle={t('office.sub_title')} />
 
-                <Space height={AppSpacing.LARGE} />
+                            <Space height={AppSpacing.LARGE} />
 
-                <TimeSelect
-                    style={styles.timeSelect}
-                    from={dateFrom}
-                    to={dateTo}
-                    onPressFrom={() => switchFromDate()}
-                    onPressTo={() => switchToDate()}
+                            <TimeSelect
+                                style={styles.timeSelect}
+                                from={dateFrom}
+                                to={dateTo}
+                                onPressFrom={() => switchFromDate()}
+                                onPressTo={() => switchToDate()}
+                            />
+
+                            <Space height={AppSpacing.LARGE} />
+                        </AppView>
+                    }
                 />
-
-                <Space height={AppSpacing.LARGE} />
-
-                {isLoading ? (
-                    <Loading />
-                ) : workPlaces.length > 0 ? (
-                    <FlatList
-                        scrollEnabled={false}
-                        data={workPlaces}
-                        columnWrapperStyle={{
-                            justifyContent: 'space-between',
-                        }}
-                        contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24, flexGrow: 1 }}
-                        keyExtractor={(item, index) => `${item.id.toString()}${index}`}
-                        numColumns={NUM_COLUMNS}
-                        renderItem={({ item, index }) => renderItem(item, index)}
-                        // getItemLayout={(data, index) => getItemLayout(data, index)}
-                        ItemSeparatorComponent={() => <Space height={AppSpacing.MEDIUM} />}
-                    />
-                ) : (
-                    <Empty />
-                )}
-            </ScrollView>
+            ) : (
+                <Empty />
+            )}
 
             {isBottomSheetShow ? renderOverlay() : null}
 

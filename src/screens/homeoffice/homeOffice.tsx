@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { Space } from 'src/components';
+import { AppView, Space } from 'src/components';
 import { Header, LargeHeader } from 'src/components/header';
 import LayoutInfo from 'src/components/layoutInfo';
 import WorkLayout from 'src/models/WorkLayout';
@@ -57,24 +57,7 @@ const Office = (props: Props) => {
     return (
         <View style={styles.container}>
             <Header title={'Booking'} />
-            <Space height={25} />
 
-            <LayoutInfo
-                style={styles.info}
-                workLayout={{
-                    address: 'M Tower, 1003 E. 4th Place, Los Angeles, CA 90013',
-                    id: 1,
-                    name: 'Autonomous LA',
-                    image: '',
-                    placeAvailable: 100,
-                    policy: '',
-                }}
-            />
-
-            <Space height={25} />
-
-            <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
-            <Space height={25} />
             {/* <Button
                 title={'Test'}
                 onPress={() => {
@@ -106,6 +89,28 @@ const Office = (props: Props) => {
                     renderItem={({ item }) => renderItem(item)}
                     keyExtractor={(item) => item.id + ''}
                     ItemSeparatorComponent={() => <Space height={AppSpacing.LARGE} />}
+                    ListHeaderComponent={() => (
+                        <AppView>
+                            <Space height={25} />
+
+                            <LayoutInfo
+                                style={styles.info}
+                                workLayout={{
+                                    address: 'M Tower, 1003 E. 4th Place, Los Angeles, CA 90013',
+                                    id: 1,
+                                    name: 'Autonomous LA',
+                                    image: '',
+                                    placeAvailable: 100,
+                                    policy: '',
+                                }}
+                            />
+
+                            <Space height={25} />
+
+                            <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
+                            <Space height={25} />
+                        </AppView>
+                    )}
                 />
             ) : (
                 <Empty />

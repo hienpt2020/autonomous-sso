@@ -6,15 +6,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: AppColor.BACKGROUND,
     },
-    layoutInfo: {
-        marginHorizontal: AppSpacing.LARGE - 2,
-    },
-    header: {
-        paddingHorizontal: AppSpacing.LARGE,
-    },
-    timeSelect: {
-        marginHorizontal: AppSpacing.LARGE,
-    },
+    timeSelect: { width: '100%' },
     bottomSheetHeader: {
         width: '100%',
         alignItems: 'flex-end',

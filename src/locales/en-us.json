@@ -12,7 +12,7 @@
     "close": "Close", 
     "assets": "Assets",
     "policies": "Policies",
-    "code": "Code", 
+    "code": "Activation code", 
     "done": "Done", 
     "error": "Something went wrong",
     "available":"available",
@@ -66,7 +66,8 @@
   "place": {
     "book_place": "Book this seat",
     "asset_title": "Assets contained",
-    "time_title":"Booking time"
+    "time_title":"Booking time",
+    "code_desc":"Access device with this code"
   },
   "profile": {
     "title": "Profile"

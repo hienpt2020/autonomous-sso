@@ -4,7 +4,6 @@ import { AppColor } from 'src/styles/colors';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColor.BACKGROUND,
     },
     list: {
         paddingHorizontal: AppSpacing.LARGE,
@@ -13,6 +12,11 @@ export const styles = StyleSheet.create({
     itemContainer: {
         backgroundColor: AppColor.WHITE,
         padding: AppSpacing.MEDIUM,
+    },
+    dividerContainer: {
+        backgroundColor: AppColor.WHITE,
+        height: 1,
+        flex: 1,
     },
     divider: {
         marginHorizontal: AppSpacing.MEDIUM,
