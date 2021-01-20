@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StatusBar, Text, View, YellowBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useCode } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 import { AppText, AppView, Divider, Space } from 'src/components';
@@ -101,42 +102,53 @@ const BookingDetail = (props: Props) => {
                                 <Chip data={placeData.tags} />
                             </>
                         )}
+
+                        <Space height={AppSpacing.SMALL} />
                     </>
                 )}
 
                 {bookingHistory && (
                     <>
-                        <Text style={[styles.sectionTitle, { marginTop: 16 }]}>{t('common.code')}</Text>
+                        <AppView style={styles.codeContainer}>
+                            <Text style={[styles.codeTitle]}>{t('common.code')}</Text>
 
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Text
-                                style={{
-                                    borderRadius: 8,
-                                    borderWidth: 1,
-                                    borderColor: '#000',
-                                    padding: 8,
-                                    fontSize: 32,
-                                }}
-                            >
-                                {bookingHistory.code}
-                            </Text>
-                        </View>
+                            <AppView style={styles.codeLineContainer} horizontal alignItemsCenter>
+                                <AppText style={styles.codeDesc}>{t('place.code_desc')}</AppText>
+                                <Space width={AppSpacing.LARGE} />
+                                <AppView style={styles.codeNumberContainer} center horizontal>
+                                    <AppText style={styles.code}>{bookingHistory.code.toString()[0]}</AppText>
+                                </AppView>
+                                <Space width={4} />
+                                <AppView style={styles.codeNumberContainer} center horizontal>
+                                    <AppText style={styles.code}>{bookingHistory.code.toString()[1]}</AppText>
+                                </AppView>
+                                <Space width={4} />
+                                <AppView style={styles.codeNumberContainer} center horizontal>
+                                    <AppText style={styles.code}>{bookingHistory.code.toString()[2]}</AppText>
+                                </AppView>
+                            </AppView>
+                        </AppView>
+                        <Space height={AppSpacing.SMALL} />
                     </>
                 )}
 
-                <Space height={AppSpacing.SMALL} />
-
                 {placeData && placeData.devices.length > 0 && (
-                    <Device
-                        data={placeData.devices}
-                        isConfig={isAdmin && !bookingHistory}
-                        onPressDevice={_onPressDevice}
-                    />
+                    <>
+                        <Device
+                            data={placeData.devices}
+                            isConfig={isAdmin && !bookingHistory}
+                            onPressDevice={_onPressDevice}
+                        />
+                        <Space height={AppSpacing.SMALL} />
+                    </>
                 )}
 
-                <Space height={AppSpacing.SMALL} />
-
-                <TimeSelect title={t('place.time_title')} from={from} to={to} isSelect={false} />
+                <TimeSelect
+                    title={t('place.time_title')}
+                    from={bookingHistory ? bookingHistory.timeFrom : from}
+                    to={bookingHistory ? bookingHistory.timeTo : to}
+                    isSelect={false}
+                />
 
                 <Space height={AppSpacing.SMALL} />
 

@@ -1,53 +1,54 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { AppFontSize, AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColor.WHITE,
+    },
+    list: {
+        paddingHorizontal: AppSpacing.LARGE,
+        paddingVertical: AppSpacing.LARGE,
     },
     itemContainer: {
-        height: 74,
-        flex: 1,
         backgroundColor: AppColor.WHITE,
-        marginStart: 8,
-        marginEnd: 8,
-        marginTop: 4,
-        marginBottom: 4,
-        elevation: 4,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.5,
-        shadowRadius: 2,
-        borderRadius: 8,
+        padding: AppSpacing.MEDIUM,
+    },
+    dividerContainer: {
+        backgroundColor: AppColor.WHITE,
+        height: 1,
+        flex: 1,
+    },
+    divider: {
+        marginHorizontal: AppSpacing.MEDIUM,
+    },
+    icArrow: {
+        position: 'absolute',
+        right: AppSpacing.MEDIUM,
+        top: AppSpacing.MEDIUM,
+    },
+    status: {
+        fontWeight: '500',
+        fontSize: AppFontSize.SIZE_11,
+        color: AppColor.GREEN_1,
     },
     title: {
-        position: 'absolute',
-        top: 8,
-        start: 8,
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: AppColor.LIGHT5F,
+        fontWeight: '500',
+        fontSize: AppFontSize.SIZE_16,
     },
     subTitle: {
-        position: 'absolute',
-        bottom: 8,
-        start: 8,
-        color: AppColor.LIGHT,
-        fontSize: 12,
+        fontSize: AppFontSize.SIZE_14,
     },
     titleEnd: {
-        position: 'absolute',
-        top: 8,
-        end: 8,
-        color: AppColor.LIGHT,
-        fontSize: 12,
+        fontSize: AppFontSize.SIZE_11,
     },
     subTitleEnd: {
-        position: 'absolute',
-        fontWeight: 'bold',
-        bottom: 8,
-        end: 8,
-        fontSize: 14,
-        color: AppColor.LIGHT5F,
+        fontWeight: '500',
+        fontSize: AppFontSize.SIZE_14,
+    },
+    dateContainer: {
+        height: 24,
+        backgroundColor: '#F2F2F2',
+        borderRadius: 16,
+        paddingHorizontal: 10,
     },
 });

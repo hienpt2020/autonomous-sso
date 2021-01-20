@@ -1,17 +1,12 @@
 import * as React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import IconArrowRight from 'src/assets/images/ic_arrow_right.svg';
-import { AppColor, AppFontSize } from 'src/styles';
-import { AppText, Space } from '..';
+import { AppText } from '..';
 import AppView from '../view';
 import { styles } from './styles';
 import { SectionItemProps } from './types';
 
 const SectionItem = (props: SectionItemProps) => {
-    const { t } = useTranslation();
-
     return (
         <TouchableOpacity onPress={props.onPress}>
             <AppView horizontal style={styles.container}>
