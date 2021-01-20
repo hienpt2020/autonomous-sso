@@ -11,6 +11,7 @@ import { IconButton } from 'src/components/button';
 import { Header } from 'src/components/header';
 import SectionItem from 'src/components/section-item';
 import { RootState } from 'src/redux/types';
+import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { Props } from './types';
@@ -61,7 +62,7 @@ const Profile = (props: Props) => {
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
-                        <SectionItem title={t('profile.workspace')} value={workspace} />
+                        <SectionItem title={t('profile.workspace')} value={workspace} onPress={navigateToSwithProfile} />
                         <Divider />
                         <SectionItem title={t('profile.add_login_method')} value={'Email'} />
                         <Divider />
@@ -86,6 +87,9 @@ const Profile = (props: Props) => {
             </ScrollView>
         </View>
     );
+    function navigateToSwithProfile(){
+        props.navigation.navigate(RouteName.SWITCH_WORKSPACE)
+    }
 };
 
 export default Profile;
