@@ -1,6 +1,6 @@
 # Run Android DEBUG
 run-android-dev:
-	./tools/run.sh android development
+	./tools/run.sh android develop
 
 run-android-staging:
 	./tools/run.sh android staging
@@ -10,7 +10,7 @@ run-android-production:
 
 # Run IOS DEBUG
 run-ios-dev:
-	./tools/run.sh ios development
+	./tools/run.sh ios develop
 
 run-ios-staging:
 	./tools/run.sh ios staging
@@ -20,7 +20,7 @@ run-ios-production:
 
 # BUILD Android RELEASE
 build-android-dev:
-	./tools/run.sh android development release
+	./tools/run.sh android develop release
 
 build-android-staging:
 	./tools/run.sh android staging release
@@ -30,7 +30,7 @@ build-android-production:
 
 # Run IOS RELEASE
 build-ios-dev:
-	./tools/run.sh ios development release
+	./tools/run.sh ios develop release
 
 build-ios-staging:
 	./tools/run.sh ios staging release
