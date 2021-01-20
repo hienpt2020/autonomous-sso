@@ -62,7 +62,11 @@ const Profile = (props: Props) => {
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
-                        <SectionItem title={t('profile.workspace')} value={workspace} onPress={navigateToSwithProfile} />
+                        <SectionItem
+                            title={t('profile.workspace')}
+                            value={workspace}
+                            onPress={navigateToSwithProfile}
+                        />
                         <Divider />
                         <SectionItem title={t('profile.add_login_method')} value={'Email'} />
                         <Divider />
@@ -87,8 +91,8 @@ const Profile = (props: Props) => {
             </ScrollView>
         </View>
     );
-    function navigateToSwithProfile(){
-        props.navigation.navigate(RouteName.SWITCH_WORKSPACE)
+    function navigateToSwithProfile() {
+        props.navigation.navigate(RouteName.SWITCH_WORKSPACE);
     }
 };
 

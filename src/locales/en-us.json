@@ -21,7 +21,8 @@
         "until": "Until",
         "continue": "Continue",
         "email_invalid": "This email does not exist. Please input again.",
-        "password_require": "Invalid password. Please try another password."
+        "password_require": "Invalid password. Please try another password.",
+        "confirm": "Confirm"
     },
     "button": {
         "back": "Back",
