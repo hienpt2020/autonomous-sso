@@ -7,6 +7,8 @@ import { BookingHistory } from 'src/models/BookingHistory';
 import { parseMapAddress } from './locationHelper';
 import Asset from 'src/models/Asset';
 import moment from 'moment';
+import { DEFAULT_IMAGES, ROLES } from 'src/common/constant';
+import Device from '../models/Device';
 
 export class ParserImpl implements IParser {
     parseUser(responseData: any): User {
@@ -37,6 +39,9 @@ export class ParserImpl implements IParser {
         result.code = _.get(responseData, 'code');
         result.status = _.get(responseData, 'status');
         result.members = _.get(responseData, 'members');
+        result.roleByCurrentUser = _.get(responseData, 'role_by_current_user');
+        result.isAdmin = ROLES.ADMIN == _.get(responseData, 'role_by_current_user');
+
         return result;
     }
     parseWorkLayout(responseData: any): WorkLayout {
@@ -106,13 +111,50 @@ export class ParserImpl implements IParser {
         result.code = responseData.code;
         return result;
     }
+
+    parseStringToBytes(str: string) {
+        return str.split('').map(function (x: any) {
+            return x.charCodeAt(0);
+        });
+    }
+    parseBytesToString(bytes: any): string {
+        return bytes
+            .map(function (x: any) {
+                return String.fromCharCode(x);
+            })
+            .join('');
+    }
+    parseDevice(responseData: any): Device {
+        const result = new Device();
+        result.id = _.get(responseData, 'id');
+        result.createdAt = _.get(responseData, 'created_at');
+        result.updatedAt = _.get(responseData, 'updated_at');
+        result.deletedAt = _.get(responseData, 'deleted_at');
+        result.bookedBy = _.get(responseData, 'booked_by');
+        result.bookingId = _.get(responseData, 'booking_id');
+        result.code = _.get(responseData, 'code');
+        result.endTime = _.get(responseData, 'end_time');
+        result.hubId = _.get(responseData, 'hub_id');
+        result.id = _.get(responseData, 'id');
+        result.isCheckin = _.get(responseData, 'is_checkin');
+        result.isEnded = _.get(responseData, 'is_ended');
+        result.isSetPin = _.get(responseData, 'is_set_pin');
+        result.startTime = _.get(responseData, 'startTime');
+        result.userId = _.get(responseData, 'user_id');
+        result.workingLayoutId = _.get(responseData, 'working_layout_id');
+        result.image = _.get(responseData, 'image') || DEFAULT_IMAGES.DEVICE;
+        return result;
+    }
 }
 interface IParser {
     parseUser(responseData: any): User;
     parseWorkspace(responseData: any): WorkSpace;
+    parseBytesToString(bytes: any): String;
+    parseStringToBytes(str: string): any[];
     parseWorkPlace(responseData: any): WorkPlace;
     parseWorkLayout(responseData: any): WorkLayout;
     parseBookingHistory(responseData: any): BookingHistory;
+    parseDevice(responseData: any): Device;
 }
 
 export const Parser = new ParserImpl();
