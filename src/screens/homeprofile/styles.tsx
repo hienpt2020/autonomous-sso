@@ -1,27 +1,40 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { AppFontSize, AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        backgroundColor: AppColor.WHITE,
+        backgroundColor: AppColor.GREY_4,
     },
-    avatarContainer: {
-        width: 128,
-        height: 128,
-        borderRadius: 64,
-        alignSelf: 'center',
-        marginBottom: 64,
+    sectionContainer: {
         backgroundColor: AppColor.WHITE,
-        elevation: 2,
-        shadowOpacity: 0.5,
-        shadowColor: AppColor.PRIMARY,
-        shadowOffset: { width: 2, height: 2 },
-        shadowRadius: 2,
+        marginStart: AppSpacing.LARGE,
+        marginEnd: AppSpacing.LARGE,
+        paddingStart: AppSpacing.MEDIUM,
+        paddingEnd: AppSpacing.MEDIUM,
+        paddingTop: AppSpacing.SMALL,
+        paddingBottom: AppSpacing.SMALL,
+    },
+
+    titleLarge: {
+        color: AppColor.DARK_GREY_1,
+        fontSize: AppFontSize.SIZE_24,
+        textAlign: 'center',
+        fontWeight: '500',
+    },
+    iconButton: {
+        position: 'absolute',
+        end: 0,
+    },
+    content: {
+        color: AppColor.DARK_GREY_1,
+        fontSize: AppFontSize.SIZE_12,
+        textAlign: 'center',
     },
     avatar: {
         width: 128,
         height: 128,
+        alignSelf: 'center',
     },
     header: {
         fontSize: 24,

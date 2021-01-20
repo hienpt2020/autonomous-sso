@@ -1,6 +1,6 @@
 import { AppColor } from 'src/styles/colors';
 import { StyleSheet } from 'react-native';
-import { AppFont, AppFontSize } from 'src/styles';
+import { AppFont, AppFontSize, AppSpacing } from 'src/styles';
 
 export const styles = StyleSheet.create({
     button: {
@@ -39,5 +39,14 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: AppColor.BLUE_1,
+    },
+    iconContainer: {
+        marginStart: AppSpacing.EXTRA,
+        marginEnd: AppSpacing.EXTRA,
+    },
+    icon: {
+        minWidth: 24,
+        justifyContent: 'center',
+        minHeight: 24,
     },
 });

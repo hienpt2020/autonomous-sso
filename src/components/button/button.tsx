@@ -27,11 +27,18 @@ export const SecondaryButton = (buttonProps: AppButtonProps) => {
         />
     );
 };
-export const IconButton = (buttonProps: AppIconButtonProps) => {
+export const SocialButton = (buttonProps: AppIconButtonProps) => {
     return (
         <TouchableOpacity style={[styles.iconButtonContainer, buttonProps.style, styles.button]}>
-            <View style={{ marginStart: AppSpacing.EXTRA, marginEnd: AppSpacing.EXTRA }}>{buttonProps.icon}</View>
+            <View style={styles.iconContainer}>{buttonProps.icon}</View>
             <AppText style={styles.title} children={`${buttonProps.title}`} />
         </TouchableOpacity>
+    );
+};
+export const IconButton = (buttonProps: AppIconButtonProps) => {
+    return (
+        <View style={[buttonProps.style, styles.icon]}>
+            <TouchableOpacity>{buttonProps.icon}</TouchableOpacity>
+        </View>
     );
 };

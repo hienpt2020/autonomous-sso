@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import FacebookIcon from 'src/assets/images/icon_facebook_white.svg';
 import GoogleIcon from 'src/assets/images/icon_google_white.svg';
 import { AppText, Space } from 'src/components';
-import { IconButton, PrimaryButton } from 'src/components/button';
+import { SocialButton, PrimaryButton } from 'src/components/button';
 import { LargeHeader } from 'src/components/header';
 import { PasswordInput, PrimaryInput } from 'src/components/input';
 import { Link } from 'src/components/link';
@@ -77,14 +77,14 @@ const Login = (props: LoginProps) => {
                     <Divider style={styles.divider} />
                 </View>
                 <Space height={AppSpacing.MEDIUM} />
-                <IconButton
+                <SocialButton
                     icon={<GoogleIcon />}
                     title={t('login.login_with_google')}
                     style={styles.googleButton}
                     onPress={() => validateLogin()}
                 />
                 <Space height={AppSpacing.MEDIUM} />
-                <IconButton
+                <SocialButton
                     icon={<FacebookIcon />}
                     title={t('login.login_with_facebook')}
                     style={styles.facebookButton}

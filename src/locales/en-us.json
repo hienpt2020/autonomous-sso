@@ -7,7 +7,7 @@
         "forgot_password": "Forgot Password",
         "reset_password": "Reset Password",
         "reset": "Reset",
-        "logout": "Log out",
+        "logout": "Sign out",
         "join": "Join",
         "close": "Close",
         "assets": "Assets",
@@ -80,7 +80,13 @@
         "book_place": "book this place"
     },
     "profile": {
-        "title": "Profile"
+        "title": "My Profile",
+        "workspace": "Workspace",
+        "add_login_method": "Add login method",
+        "activities": "Activities",
+        "terms_and_policy": "Terms and policy",
+        "contact_us": "Contact us",
+        "version_update": "Version Update"
     },
     "configuration": {
         "wifi": "Wifi name",
