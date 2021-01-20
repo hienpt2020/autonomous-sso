@@ -11,6 +11,7 @@ const initialState: BookingState = {
     booking: {
         from: new Date(),
         to: new Date(),
+        code: '',
     },
     workLayout: new WorkLayout(),
 };

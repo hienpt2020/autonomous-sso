@@ -19,6 +19,7 @@
         "slot_available": "slots remains from your purchase",
         "from": "From",
         "until": "Until"
+        "error": "Something went wrong"
     },
     "button": {
         "back": "Back",
@@ -57,6 +58,7 @@
         "join_workspace": "Join Workspace"
     },
     "home": {
+
         "title": "Select a floor",
         "sub_title": "start working with joy"
     },
@@ -64,15 +66,14 @@
         "title": "Select",
         "sub_title": "working time",
         "view": "View",
-        "button_my_booking": "My Booking"
     },
     "controll": {
         "title": "Devices"
     },
     "place": {
-        "book_place": "Book this seat",
         "asset_title": "Assets contained",
-        "time_title": "Booking time"
+        "time_title": "Booking time",
+        "book_place": "book this place"
     },
     "profile": {
         "title": "Profile"

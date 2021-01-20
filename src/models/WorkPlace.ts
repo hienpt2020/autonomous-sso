@@ -1,4 +1,3 @@
-import { parseMapAddress } from './../helpers/locationHelper';
 import Asset from './Asset';
 
 export default class WorkPlace {
@@ -10,6 +9,7 @@ export default class WorkPlace {
     tags: string[];
     imageUrls: string[];
     thumbImageUrl: string;
+    code: string;
 
     constructor() {
         this.id = 0;
@@ -20,5 +20,6 @@ export default class WorkPlace {
         this.imageUrls = [];
         this.thumbImageUrl = '';
         this.tags = [];
+        this.code = '';
     }
 }

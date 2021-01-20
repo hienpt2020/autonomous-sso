@@ -11,6 +11,10 @@ import { ImageSlider } from 'src/components/images/images';
 import { PrimaryInput } from 'src/components/input';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackHeader } from '../../components/header';
+import Booking from '../../models/Booking';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/types';
+import WorkLayout from '../../models/WorkLayout';
 
 //JUST disable this warning
 YellowBox.ignoreWarnings([
@@ -25,6 +29,9 @@ const ConfigurationStep2 = (props: Props) => {
     const [wifiNameError, setWifiNameError] = useState('');
     const [wifiPassword, setWifiPassword] = useState('');
     const [wifiPasswordError, setWifiPasswordError] = useState('');
+    const booking: Booking = useSelector((state: RootState) => state.booking.booking);
+    const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
+
     const bookingDevice: any = props.route.params.bookingDevice;
     useEffect(() => {}, []);
 
@@ -75,7 +82,7 @@ const ConfigurationStep2 = (props: Props) => {
             <PrimaryButton
                 wrapperContainer={styles.button}
                 title={t('seat.book_seat')}
-                onPress={() => bookingDevice(wifiName, wifiPassword)}
+                onPress={() => bookingDevice(wifiName, wifiPassword, workLayout.id, booking.code)}
             />
             <SafeAreaView style={styles.header}>
                 <BackHeader title={''} lightContent onPress={() => handleBack()} />
