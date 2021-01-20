@@ -1,6 +1,8 @@
-import { PropsBase } from 'src/types/propsBase'
-import { RouteName } from 'src/routers/routeName'
-export interface Presenter {
+export interface Presenter {}
+export interface IState {
+    scanning: boolean;
+    peripherals: any;
+    appState: string;
+    peripheral: string;
+    selected: string;
 }
-export interface Props extends PropsBase<RouteName.CONFIGURATION_STEP1>{}
-

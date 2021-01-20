@@ -12,9 +12,10 @@ export const styles = StyleSheet.create({
         borderColor: AppColor.GREY_2,
     },
     visibleContainer: {
-        position: "absolute", end: AppSpacing.EXTRA,
+        position: 'absolute',
+        end: AppSpacing.EXTRA,
         height: 48,
         alignItems: 'center',
-        justifyContent: 'center'
-    }
+        justifyContent: 'center',
+    },
 });
