@@ -1,8 +1,8 @@
 export interface PropsHeader {
-  title: string;
+    title: string;
 }
 export interface PropsBackHeader extends PropsHeader {
-  onPress: () => void;
-  style?: object;
-  lightContent?: boolean;
+    onPress: () => void;
+    style?: object;
+    lightContent?: boolean;
 }

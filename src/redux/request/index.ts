@@ -1,7 +1,7 @@
 export {
     createRequestStartAction,
-    createRequestErrorAction, 
-    createRequestErrorMessageAction, 
+    createRequestErrorAction,
+    createRequestErrorMessageAction,
     createRequestSuccessAction,
-    createRequestEndAction
-} from './requestAction'
+    createRequestEndAction,
+} from './requestAction';

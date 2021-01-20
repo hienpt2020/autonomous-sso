@@ -6,15 +6,15 @@ import styles from './style';
 import { Props } from './types';
 
 export const Spinner = (props: Props) => {
-  const requestReducer = useSelector((state: RootState) => state.requestReducer);
+    const requestReducer = useSelector((state: RootState) => state.requestReducer);
 
-  if (!requestReducer.isLoading) {
-    return null;
-  }
+    if (!requestReducer.isLoading) {
+        return null;
+    }
 
-  return (
-    <View style={styles.container}>
-      <ActivityIndicator size="large" color="white" />
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <ActivityIndicator size="large" color="white" />
+        </View>
+    );
 };

@@ -1,2 +1,1 @@
-export const workspaceSaga = function* root() {
-};
+export const workspaceSaga = function* root() {};

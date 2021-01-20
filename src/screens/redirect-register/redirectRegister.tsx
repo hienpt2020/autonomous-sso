@@ -8,19 +8,19 @@ import { createRequestErrorMessageAction } from 'src/redux/request';
 import { requestValidateAccessTokenAction } from 'src/redux/user';
 import { Props } from './types';
 
-
 const Deeplink = (props: Props) => {
     const dispatch = useDispatch();
     useEffect(() => {
-        const token = _.get(props, 'route.params.token', "")
+        const token = _.get(props, 'route.params.token', '');
         if (token) {
-            Preference.saveAccessToken(token)
-                .then(() => { dispatch(requestValidateAccessTokenAction()) })
+            Preference.saveAccessToken(token).then(() => {
+                dispatch(requestValidateAccessTokenAction());
+            });
         } else {
-            dispatch(createRequestErrorMessageAction("Can not parse the token data"))
+            dispatch(createRequestErrorMessageAction('Can not parse the token data'));
         }
-    }, [])
-    return (<Loading />)
+    }, []);
+    return <Loading />;
 };
 
 export default Deeplink;

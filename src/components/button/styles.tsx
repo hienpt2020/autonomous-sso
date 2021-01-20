@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     },
     buttonSecondary: {
         borderColor: AppColor.PRIMARY,
-        borderWidth: 2
+        borderWidth: 2,
     },
     titlePrimary: {
         color: AppColor.WHITE,

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     wrapper: {
         alignItems: 'center',
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     list: {
         flexGrow: 0,
@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
     },
 
     chipContent: {
-        color: AppColor.WHITE
+        color: AppColor.WHITE,
     },
-
 });

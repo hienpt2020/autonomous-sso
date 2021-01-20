@@ -1,1 +1,1 @@
-export { default } from './redirectRegister'
+export { default } from './redirectRegister';

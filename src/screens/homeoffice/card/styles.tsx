@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { AppColor } from 'src/styles/colors';
 
-const imageWidth = (Dimensions.get('window').width - 32);
+const imageWidth = Dimensions.get('window').width - 32;
 export const styles = StyleSheet.create({
     itemContainer: {
         flex: 1,
@@ -38,5 +38,5 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         paddingBottom: 8,
         color: AppColor.WHITE,
-    }
+    },
 });

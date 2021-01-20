@@ -1,4 +1,4 @@
-import { StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { AppColor } from 'src/styles/colors';
 export const styles = StyleSheet.create({
     container: {
@@ -17,10 +17,9 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 2,
     },
-    icon: { position: 'absolute', start: 16 }, 
+    icon: { position: 'absolute', start: 16 },
     title: {
         fontSize: 16,
-        color: AppColor.WHITE
-    }
-    
+        color: AppColor.WHITE,
+    },
 });

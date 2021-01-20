@@ -3,25 +3,25 @@ import { AppColor } from 'src/styles/colors';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
+        justifyContent: 'center',
         backgroundColor: AppColor.WHITE,
     },
-    avatarContainer:{
-        width: 128, 
-        height: 128, 
-        borderRadius: 64, 
-        alignSelf: 'center', 
-        marginBottom: 64, 
+    avatarContainer: {
+        width: 128,
+        height: 128,
+        borderRadius: 64,
+        alignSelf: 'center',
+        marginBottom: 64,
         backgroundColor: AppColor.WHITE,
-        elevation: 2, 
+        elevation: 2,
         shadowOpacity: 0.5,
-        shadowColor: AppColor.PRIMARY, 
+        shadowColor: AppColor.PRIMARY,
         shadowOffset: { width: 2, height: 2 },
-        shadowRadius: 2
+        shadowRadius: 2,
     },
-    avatar:{
-        width: 128, 
-        height: 128, 
+    avatar: {
+        width: 128,
+        height: 128,
     },
     header: {
         fontSize: 24,
@@ -35,5 +35,5 @@ export const styles = StyleSheet.create({
         marginEnd: 16,
         marginTop: 8,
         marginBottom: 8,
-    }
+    },
 });
