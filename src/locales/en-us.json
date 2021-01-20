@@ -88,7 +88,8 @@
         "activities": "Activities",
         "terms_and_policy": "Terms and policy",
         "contact_us": "Contact us",
-        "version_update": "Version Update"
+        "version_update": "Version",
+        "version": "Version"
     },
     "configuration": {
         "wifi": "Wifi name",

@@ -14,6 +14,7 @@ import SectionItem from 'src/components/section-item';
 import { LinkingHelper } from 'src/helpers';
 import { Log } from 'src/helpers/logger';
 import { RootState } from 'src/redux/types';
+import { createRequestLogoutAction } from 'src/redux/user';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
@@ -58,7 +59,7 @@ const Profile = (props: Props) => {
                         <AppView horizontal style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <AppText style={styles.titleLarge} children={'Hitle'} />
 
-                            <IconButton style={styles.iconButton} icon={<EditIcon width={24} height={24} />} />
+                            <IconButton style={styles.iconButton} icon={<EditIcon width={18} height={18} />} />
                         </AppView>
                         <Space height={AppSpacing.SMALL} />
                         <AppText style={styles.content} children={email} />
@@ -82,19 +83,22 @@ const Profile = (props: Props) => {
                         <Divider />
                         <SectionItem title={t('profile.contact_us')} onPress={_onPressContactUs}/>
                         <Divider />
-                        <SectionItem title={t('profile.version_update')} value={'Version 0.0.1'} />
+                        <SectionItem title={t('profile.version_update')} value={`${Config.APP_VERSION}`} />
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
                         <SectionItem title={t('common.reset_password')} />
                         <Divider />
-                        <SectionItem title={t('common.logout')} />
+                        <SectionItem title={t('common.logout')} onPress={_handPressLogout}/>
                     </View>
                     <Space height={124} />
                 </View>
             </ScrollView>
         </View>
     );
+    function _handPressLogout() {
+        dispatch(createRequestLogoutAction())
+    }
     function _onPressContactUs() {
         try {
             LinkingHelper.open(Config.CONTACT_US);
