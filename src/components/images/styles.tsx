@@ -1,12 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { AppColor } from 'src/styles/colors';
-const imageHeight = 221
-const screenWidth = Dimensions.get('window').width
+const imageHeight = 221;
+const screenWidth = Dimensions.get('window').width;
 export const styles = StyleSheet.create({
     wrapper: {
         alignItems: 'center',
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     list: {
         flex: 1,
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     image: {
         height: imageHeight,
         width: screenWidth,
-    }, 
+    },
     sliderTitle: {
         fontSize: 10,
         position: 'absolute',
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         end: 16,
     },
     sliderContainer: {
-        height: imageHeight
+        height: imageHeight,
     },
     coverImage: {
         position: 'absolute',
@@ -34,5 +34,4 @@ export const styles = StyleSheet.create({
         start: 0,
         end: 0,
     },
-
 });

@@ -12,10 +12,7 @@ import { requestLogout } from './apiUser';
 export function* requestLogoutAction(action: any) {
     yield put(createRequestStartAction());
     try {
-        yield all([
-            call(requestLogout),
-            put(createClearUserProfileAction()),
-            call(Preference.saveAccessToken, '')]);
+        yield all([call(requestLogout), put(createClearUserProfileAction()), call(Preference.saveAccessToken, '')]);
         NetworkingConfig.putCommonHeaderWithToken('');
     } catch (error) {
         console.log(error);

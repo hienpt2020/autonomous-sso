@@ -1,2 +1,2 @@
-import { color } from "react-native-reanimated";
-export { AppColor } from "./colors";
+import { color } from 'react-native-reanimated';
+export { AppColor } from './colors';

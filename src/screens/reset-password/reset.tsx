@@ -14,88 +14,85 @@ import { styles } from './styles';
 import { Props } from './types';
 
 const ResetPassword = (props: Props) => {
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
 
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [passwordError, setPasswordError] = useState("")
-  const [confirmPasswordError, setConfirmPasswordError] = useState("")
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
-  const passwordValidator: Validator = new PasswordValidator()
+    const passwordValidator: Validator = new PasswordValidator();
 
-  const requestResetPassword: IRequestResetPassword = new RequestResetPassword(dispatch)
+    const requestResetPassword: IRequestResetPassword = new RequestResetPassword(dispatch);
 
-  return (
+    return (
+        <SafeAreaView style={styles.container}>
+            <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+                <BackHeaderX title={t('common.reset_password')} onPress={() => handleBack()} />
+                <PrimaryInput
+                    placeholder={t('common.password')}
+                    onChangeText={(text) => {
+                        setPasswordError('');
+                        setPassword(text);
+                    }}
+                    secureTextEntry={true}
+                    errorMessage={passwordError}
+                />
+                <PrimaryInput
+                    placeholder={t('register.confirm_password')}
+                    onChangeText={(text) => {
+                        setConfirmPasswordError('');
+                        setConfirmPassword(text);
+                    }}
+                    secureTextEntry={true}
+                    errorMessage={confirmPasswordError}
+                />
 
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-
-        <BackHeaderX title={t('common.reset_password')} onPress={() => handleBack()} />
-        <PrimaryInput
-          placeholder={t('common.password')}
-          onChangeText={text => {
-            setPasswordError('')
-            setPassword(text)
-          }}
-          secureTextEntry={true}
-          errorMessage={passwordError} />
-        <PrimaryInput
-          placeholder={t('register.confirm_password')}
-          onChangeText={text => {
-            setConfirmPasswordError('')
-            setConfirmPassword(text)
-          }}
-          secureTextEntry={true}
-          errorMessage={confirmPasswordError} />
-
-        <PrimaryButton
-          title={t('common.reset')}
-          wrapperContainer={styles.button}
-          onPress={() => validateReset()} />
-        <View style={{ flex: 3 }} />
-      </KeyboardAvoidingView>
-
-    </SafeAreaView>
-
-  )
-  function handleBack() {
-    props.navigation.goBack()
-  }
-  function validateReset() {
-    let validPassword, validConfirmPassword = false
-
-    //Password
-    if (passwordValidator.isValid(password)) {
-      validPassword = true
-      setPasswordError(t(''))
-    } else {
-      setPasswordError(t('login.password_require'))
+                <PrimaryButton
+                    title={t('common.reset')}
+                    wrapperContainer={styles.button}
+                    onPress={() => validateReset()}
+                />
+                <View style={{ flex: 3 }} />
+            </KeyboardAvoidingView>
+        </SafeAreaView>
+    );
+    function handleBack() {
+        props.navigation.goBack();
     }
-    //Confirm password
-    if (passwordValidator.isValid(confirmPassword)) {
-      if (password === confirmPassword) {
-        validConfirmPassword = true
-        setConfirmPasswordError(t(''))
-      } else {
-        setConfirmPasswordError(t('register.password_not_match'))
-      }
-    } else {
-      setConfirmPasswordError(t('login.password_require'))
+    function validateReset() {
+        let validPassword,
+            validConfirmPassword = false;
+
+        //Password
+        if (passwordValidator.isValid(password)) {
+            validPassword = true;
+            setPasswordError(t(''));
+        } else {
+            setPasswordError(t('login.password_require'));
+        }
+        //Confirm password
+        if (passwordValidator.isValid(confirmPassword)) {
+            if (password === confirmPassword) {
+                validConfirmPassword = true;
+                setConfirmPasswordError(t(''));
+            } else {
+                setConfirmPasswordError(t('register.password_not_match'));
+            }
+        } else {
+            setConfirmPasswordError(t('login.password_require'));
+        }
+
+        if (validPassword && validConfirmPassword) {
+            handleReset();
+        }
     }
 
-    if (validPassword && validConfirmPassword) {
-      handleReset()
+    function handleReset() {
+        const token = _.get(props, 'route.params.token', '');
+        requestResetPassword.resetPassword(token, password);
     }
-
-  }
-
-  function handleReset() {
-    const token = _.get(props, 'route.params.token', "")
-    requestResetPassword.resetPassword(token, password)
-  }
-
-
 };
 
 export default ResetPassword;

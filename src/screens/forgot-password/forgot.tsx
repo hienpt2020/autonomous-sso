@@ -12,64 +12,58 @@ import { IRequestForgotPassword, RequestForgotPassword } from './actions/request
 import { styles } from './styles';
 import { LoginProps } from './types';
 
-
 const ForgotPassword = (props: LoginProps) => {
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const [email, setEmail] = useState("")
-  const [emailError, setEmailError] = useState("")
-  const emailValidator: Validator = new EmailValidator()
-  const requestForgotPassword: IRequestForgotPassword = new RequestForgotPassword(dispatch)
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const emailValidator: Validator = new EmailValidator();
+    const requestForgotPassword: IRequestForgotPassword = new RequestForgotPassword(dispatch);
 
-  return (
+    return (
+        <SafeAreaView style={styles.container}>
+            <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+                <BackHeaderX title={t('common.forgot_password')} onPress={() => handleBack()} />
+                <PrimaryInput
+                    placeholder={t('common.email')}
+                    onChangeText={(text) => {
+                        setEmail(text);
+                        setEmailError('');
+                    }}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    errorMessage={emailError}
+                />
+                <PrimaryButton
+                    title={t('common.forgot_password')}
+                    wrapperContainer={styles.button}
+                    onPress={() => validateLogin()}
+                />
+                <View style={{ flex: 3 }} />
+            </KeyboardAvoidingView>
+        </SafeAreaView>
+    );
 
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+    function validateLogin() {
+        let validEmail = false;
+        if (emailValidator.isValid(email)) {
+            validEmail = true;
+            setEmailError(t(''));
+        } else {
+            setEmailError(t('login.email_invalid'));
+        }
 
-        <BackHeaderX title={t('common.forgot_password')} onPress={() => handleBack()} />
-        <PrimaryInput
-          placeholder={t('common.email')}
-          onChangeText={text => {
-            setEmail(text)
-            setEmailError('')
-          }}
-          keyboardType='email-address'
-          autoCapitalize="none"
-          errorMessage={emailError} />
-        <PrimaryButton
-          title={t('common.forgot_password')}
-          wrapperContainer={styles.button}
-          onPress={() => validateLogin()} />
-        <View style={{ flex: 3 }} />
-      </KeyboardAvoidingView>
-
-    </SafeAreaView>
-
-  )
-
-  function validateLogin() {
-    let validEmail = false
-    if (emailValidator.isValid(email)) {
-      validEmail = true
-      setEmailError(t(''))
-    } else {
-      setEmailError(t('login.email_invalid'))
+        if (validEmail) {
+            handleForgot();
+        }
     }
 
-    if (validEmail) {
-      handleForgot()
+    function handleBack() {
+        props.navigation.goBack();
     }
-
-  }
-
-  function handleBack() {
-    props.navigation.goBack()
-  }
-  function handleForgot() {
-    requestForgotPassword.forgotPasswrod(email)
-  }
-
-
+    function handleForgot() {
+        requestForgotPassword.forgotPasswrod(email);
+    }
 };
 
 export default ForgotPassword;

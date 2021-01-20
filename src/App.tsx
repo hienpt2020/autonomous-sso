@@ -13,20 +13,19 @@ import { MainStackNavigator } from './routers/mainStack';
 import { navigationRef } from './routers/rootNavigation';
 
 const App = () => {
-
-  return (
-    <Provider store={store}>
-      <SafeAreaProvider>
-        <NavigationContainer linking={linkNavigation.linking} ref={navigationRef} >
-          {/* Navigations */}
-          <MainStackNavigator />
-          {/* Global components */}
-          <Spinner />
-          <Popup />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </Provider>
-  );
+    return (
+        <Provider store={store}>
+            <SafeAreaProvider>
+                <NavigationContainer linking={linkNavigation.linking} ref={navigationRef}>
+                    {/* Navigations */}
+                    <MainStackNavigator />
+                    {/* Global components */}
+                    <Spinner />
+                    <Popup />
+                </NavigationContainer>
+            </SafeAreaProvider>
+        </Provider>
+    );
 };
 
 export default App;

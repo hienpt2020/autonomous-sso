@@ -23,117 +23,125 @@ import { styles } from './styles';
 import { Props } from './types';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
-  'VirtualizedLists should never be nested', // TODO: Remove when fixed
+    'VirtualizedLists should never be nested', // TODO: Remove when fixed
 ]);
 
 const BookingDetail = (props: Props) => {
-  const { t } = useTranslation();
-  const imageHeight = 221;
-  const bookingHistory: BookingHistory | undefined = props.route.params.booking;
-  const place: WorkPlace | undefined = props.route.params.place;
-  const booking: Booking = useSelector((state: RootState) => state.booking.booking);
-  const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
-  const isAdmin: boolean = useSelector((state: RootState) => state.workspaceReducer.isAdmin);
-  const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
+    const { t } = useTranslation();
+    const imageHeight = 221;
+    const bookingHistory: BookingHistory | undefined = props.route.params.booking;
+    const place: WorkPlace | undefined = props.route.params.place;
+    const booking: Booking = useSelector((state: RootState) => state.booking.booking);
+    const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
+    const isAdmin: boolean = useSelector((state: RootState) => state.workspaceReducer.isAdmin);
+    const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
 
-  useEffect(() => {
-    if (bookingHistory) {
-      _getData(bookingHistory.mapId, bookingHistory.placeId);
-    }
-    if (place) {
-      const shortcutPlaceData = new WorkPlace();
-      shortcutPlaceData.name = place.name;
-      shortcutPlaceData.imageUrls = place.imageUrls;
-      setPlaceData(shortcutPlaceData);
-      _getData(place.mapId, place.id);
-    }
-  }, []);
-
-  const _getData = async (mapId: number, placeId: number) => {
-    try {
-      setPlaceData(await getPlaceDetail(mapId, placeId));
-    } catch (error) {}
-  };
-
-  const _onPressBookPlace = async () => {
-    try {
-      if (place) {
-        const bookingHistory: BookingHistory = await bookPlace(place.id, booking.from, booking.to);
+    useEffect(() => {
         if (bookingHistory) {
-          navigate(RouteName.BOOKING_RESULT, { booking: bookingHistory });
+            _getData(bookingHistory.mapId, bookingHistory.placeId);
         }
-      }
-    } catch (error) {}
-  };
+        if (place) {
+            const shortcutPlaceData = new WorkPlace();
+            shortcutPlaceData.name = place.name;
+            shortcutPlaceData.imageUrls = place.imageUrls;
+            setPlaceData(shortcutPlaceData);
+            _getData(place.mapId, place.id);
+        }
+    }, []);
 
-  const _onPressDevice = (item: Asset) => {
-    navigate(RouteName.CONFIGURATION_STEP1, null);
-  };
+    const _getData = async (mapId: number, placeId: number) => {
+        try {
+            setPlaceData(await getPlaceDetail(mapId, placeId));
+        } catch (error) {}
+    };
 
-  return (
-    <View style={styles.container}>
-      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
-      <ScrollView style={styles.container}>
-        <ImageSlider
-          containerStyle={{ marginBottom: 16 }}
-          data={placeData ? placeData.imageUrls : []}
-          height={imageHeight}
-        />
+    const _onPressBookPlace = async () => {
+        try {
+            if (place) {
+                const bookingHistory: BookingHistory = await bookPlace(place.id, booking.from, booking.to);
+                if (bookingHistory) {
+                    navigate(RouteName.BOOKING_RESULT, { booking: bookingHistory });
+                }
+            }
+        } catch (error) {}
+    };
 
-        {placeData && (
-          <>
-            <Text style={styles.title}>{placeData.name}</Text>
-            <Text style={styles.subTitle}>{workLayout.address}</Text>
-            <Chip data={placeData.tags} containerStyle={styles.chip} />
-          </>
-        )}
+    const _onPressDevice = (item: Asset) => {
+        navigate(RouteName.CONFIGURATION_STEP1, null);
+    };
 
-        {bookingHistory && (
-          <>
-            <Text style={[styles.sectionTitle, { marginTop: 16 }]}>{t('common.code')}</Text>
+    return (
+        <View style={styles.container}>
+            <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+            <ScrollView style={styles.container}>
+                <ImageSlider
+                    containerStyle={{ marginBottom: 16 }}
+                    data={placeData ? placeData.imageUrls : []}
+                    height={imageHeight}
+                />
 
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ borderRadius: 8, borderWidth: 1, borderColor: '#000', padding: 8, fontSize: 32 }}>
-                {bookingHistory.code}
-              </Text>
-            </View>
-          </>
-        )}
+                {placeData && (
+                    <>
+                        <Text style={styles.title}>{placeData.name}</Text>
+                        <Text style={styles.subTitle}>{workLayout.address}</Text>
+                        <Chip data={placeData.tags} containerStyle={styles.chip} />
+                    </>
+                )}
 
-        {placeData && placeData.devices.length > 0 && (
-          <>
-            <Text style={styles.sectionTitle}>{t('common.assets')}</Text>
-            <Device
-              data={placeData.devices}
-              containerStyle={styles.list}
-              isConfig={isAdmin && !bookingHistory}
-              onPressDevice={_onPressDevice}
+                {bookingHistory && (
+                    <>
+                        <Text style={[styles.sectionTitle, { marginTop: 16 }]}>{t('common.code')}</Text>
+
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <Text
+                                style={{
+                                    borderRadius: 8,
+                                    borderWidth: 1,
+                                    borderColor: '#000',
+                                    padding: 8,
+                                    fontSize: 32,
+                                }}
+                            >
+                                {bookingHistory.code}
+                            </Text>
+                        </View>
+                    </>
+                )}
+
+                {placeData && placeData.devices.length > 0 && (
+                    <>
+                        <Text style={styles.sectionTitle}>{t('common.assets')}</Text>
+                        <Device
+                            data={placeData.devices}
+                            containerStyle={styles.list}
+                            isConfig={isAdmin && !bookingHistory}
+                            onPressDevice={_onPressDevice}
+                        />
+                    </>
+                )}
+
+                {workLayout && workLayout.policy ? (
+                    <>
+                        <Text style={styles.sectionTitle}>{t('common.policies')}</Text>
+                        <Text style={styles.sectionContent}>{workLayout.policy}</Text>
+                    </>
+                ) : null}
+            </ScrollView>
+            <PrimaryButton
+                onPress={_onPressBookPlace}
+                wrapperContainer={styles.button}
+                title={t(bookingHistory ? 'booking_detail.cancel_booking' : 'place.book_place')}
             />
-          </>
-        )}
 
-        {workLayout && workLayout.policy ? (
-          <>
-            <Text style={styles.sectionTitle}>{t('common.policies')}</Text>
-            <Text style={styles.sectionContent}>{workLayout.policy}</Text>
-          </>
-        ) : null}
-      </ScrollView>
-      <PrimaryButton
-        onPress={_onPressBookPlace}
-        wrapperContainer={styles.button}
-        title={t(bookingHistory ? 'booking_detail.cancel_booking' : 'place.book_place')}
-      />
+            <SafeAreaView style={styles.header}>
+                <BackHeader title={''} lightContent onPress={() => handleBack()} />
+            </SafeAreaView>
+        </View>
+    );
 
-      <SafeAreaView style={styles.header}>
-        <BackHeader title={''} lightContent onPress={() => handleBack()} />
-      </SafeAreaView>
-    </View>
-  );
-
-  function handleBack() {
-    props.navigation.goBack();
-  }
+    function handleBack() {
+        props.navigation.goBack();
+    }
 };
 
 export default BookingDetail;

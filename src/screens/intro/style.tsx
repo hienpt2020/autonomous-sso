@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { AppColor } from 'src/styles/colors'
+import { AppColor } from 'src/styles/colors';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -10,9 +10,10 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         start: 0,
         end: 0,
-        top: 0, bottom: 0,
+        top: 0,
+        bottom: 0,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     containerButton: {
         justifyContent: 'center',
@@ -22,15 +23,13 @@ export const styles = StyleSheet.create({
         bottom: 32,
         start: 16,
         end: 16,
-
     },
     wrapperButton: {
         flex: 1,
-        margin: 8
+        margin: 8,
     },
-    button: {
-    },
+    button: {},
     logo: {
-        flex: 1
-    }
-})
+        flex: 1,
+    },
+});

@@ -1,1 +1,1 @@
-export { ImageSlider } from './device'
+export { ImageSlider } from './device';

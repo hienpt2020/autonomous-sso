@@ -1,1 +1,1 @@
-export { Device } from './device'
+export { Device } from './device';
