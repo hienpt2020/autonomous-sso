@@ -11,7 +11,8 @@ export const styles = StyleSheet.create({
   title: {
     marginTop: 96,
     marginStart: AppSpacing.LARGE, marginEnd: AppSpacing.LARGE,
-    fontSize: 28
+    lineHeight: 38,
+    fontSize: 28,
   },
   link: {
     flexShrink: 1,

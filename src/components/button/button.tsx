@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AppSpacing } from 'src/styles';
-import AppText from '../text';
+import AppText from 'src/components/text';
 import { styles } from './styles';
 import { AppButtonProps, AppIconButtonProps } from './types';
 export const PrimaryButton = (buttonProps: AppButtonProps) => {

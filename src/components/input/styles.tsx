@@ -9,6 +9,12 @@ export const styles = StyleSheet.create({
         minHeight: 48,
         paddingStart: AppSpacing.MEDIUM,
         paddingEnd: AppSpacing.MEDIUM,
-        borderColor: AppColor.GREY_2
+        borderColor: AppColor.GREY_2,
+    },
+    visibleContainer: {
+        position: "absolute", end: AppSpacing.EXTRA,
+        height: 48,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });

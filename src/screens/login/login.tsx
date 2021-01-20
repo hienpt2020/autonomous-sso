@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, View } from 'react-native';
+import { View } from 'react-native';
+import { Divider } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import FacebookIcon from 'src/assets/images/icon_facebook_white.svg';
+import GoogleIcon from 'src/assets/images/icon_google_white.svg';
 import { AppText, Space } from 'src/components';
-import { PrimaryButton, IconButton } from 'src/components/button';
-import { PrimaryInput } from 'src/components/input';
+import { IconButton, PrimaryButton } from 'src/components/button';
+import { PasswordInput, PrimaryInput } from 'src/components/input';
 import { Link } from 'src/components/link';
 import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
 import { createRequestLoginAction } from 'src/redux/user/';
 import { RouteName } from 'src/routers/routeName';
-import { AppColor, AppFontSize, AppSpacing } from 'src/styles';
+import { AppFontSize, AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { LoginProps } from './types';
-import GoogleIcon from 'src/assets/images/icon_google_white.svg';
-import FacebookIcon from 'src/assets/images/icon_facebook_white.svg';
-import { Divider } from 'react-native-elements';
 
 const Login = (props: LoginProps) => {
   const { t } = useTranslation();
@@ -32,6 +32,7 @@ const Login = (props: LoginProps) => {
     <SafeAreaView style={styles.container}>
       <AppText children={t('login.title')}
         style={styles.title}
+        bold={true}
         size={AppFontSize.SIZE_28} />
       <Space height={24} />
       <PrimaryInput
@@ -47,7 +48,7 @@ const Login = (props: LoginProps) => {
         errorMessage={emailError}
       />
       <AppText children={emailError} style={styles.error} />
-      <PrimaryInput
+      <PasswordInput
         renderErrorMessage={passwordError !== ''}
         style={styles.input}
         placeholder={t('common.password')}
@@ -55,7 +56,6 @@ const Login = (props: LoginProps) => {
           setPasswordError('');
           setPassword(text);
         }}
-        secureTextEntry={true}
         errorMessage={passwordError}
       />
       <AppText children={passwordError} style={styles.error} />
