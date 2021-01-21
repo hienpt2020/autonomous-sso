@@ -31,7 +31,7 @@ const TimeSelect: React.FC<TimeSelectProps> = ({
                     <Text style={styles.date}>
                         <AppText>{t('common.from') + ': '}</AppText>
                         <AppText bold={isSelect} color={isSelect ? AppColor.BLUE_1 : AppColor.GREY_1}>
-                            {moment(from).format('MMM Do, YYYY | HH:ss A')}
+                            {moment(from).format('MMM Do, YYYY | HH:mm A')}
                         </AppText>
                     </Text>
                     {isSelect && <IcArrowDownBlue height={9.33} width={9.33} />}
@@ -46,7 +46,7 @@ const TimeSelect: React.FC<TimeSelectProps> = ({
                     <Text style={styles.date}>
                         <AppText>{t('common.until') + ': '}</AppText>
                         <AppText bold={isSelect} color={isSelect ? AppColor.BLUE_1 : AppColor.GREY_1}>
-                            {moment(to).format('MMM Do, YYYY | HH:ss A')}
+                            {moment(to).format('MMM Do, YYYY | HH:mm A')}
                         </AppText>
                     </Text>
                     {isSelect && <IcArrowDownBlue height={9.33} width={9.33} />}
