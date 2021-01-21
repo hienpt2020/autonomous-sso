@@ -4,3 +4,4 @@ export { userReducer } from './user/userReducer';
 export { workspaceReducer } from './workspace/workspaceReducer';
 export { booking } from './booking/bookingReducer';
 export { appReducer } from './app/appReducer';
+export { bookingHistoryReducer } from './booking-history/bookingHistoryReducer';

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { BookingStatus } from 'src/common/constant';
 
 export class BookingHistory {
@@ -11,6 +12,8 @@ export class BookingHistory {
     placeId: number;
     code: number;
     bookingStatus: number;
+    bookingStatusName: string;
+    placeName: string;
 
     constructor() {
         this.id = 0;
@@ -23,5 +26,11 @@ export class BookingHistory {
         this.mapId = 0;
         this.code = 0;
         this.bookingStatus = BookingStatus.COMFIRMED;
+        this.bookingStatusName = '';
+        this.placeName = '';
+    }
+
+    isUpcoming(bookingStatus: number) {
+        return bookingStatus == BookingStatus.BOOKED || bookingStatus == BookingStatus.COMFIRMED;
     }
 }

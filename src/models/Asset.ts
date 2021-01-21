@@ -9,6 +9,6 @@ export default class Asset {
 
         this.id = assetResponse.id;
         this.name = assetResponse.name;
-        this.isSmartDevice = advance_features.features && advance_features.features.length > 0;
+        this.isSmartDevice = advance_features && advance_features.features && advance_features.features.length > 0;
     }
 }

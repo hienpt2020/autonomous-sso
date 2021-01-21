@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
         backgroundColor: AppColor.WHITE,
         ...AppStyle.cardShadow,
         margin: 2,
+        marginHorizontal: AppSpacing.LARGE,
     },
     coverImage: {
         height: 169,

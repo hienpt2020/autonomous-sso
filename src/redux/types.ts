@@ -1,3 +1,4 @@
+import { BookingHistoryState } from './booking-history/bookingHisotryType';
 import { AppState } from './app/appType';
 import { BookingState } from './booking/bookingType';
 import { RequestState } from './request/requestType';
@@ -16,4 +17,5 @@ export interface RootState {
     userReducer: UserState;
     booking: BookingState;
     workspaceReducer: WorkspaceState;
+    bookingHistoryReducer: BookingHistoryState;
 }

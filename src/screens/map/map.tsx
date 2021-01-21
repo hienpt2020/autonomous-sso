@@ -12,6 +12,7 @@ import { BackHeader, LargeHeader } from 'src/components/header';
 import LayoutInfo from 'src/components/layoutInfo';
 import { Link } from 'src/components/link';
 import TimeSelect from 'src/components/timeSelect';
+import reactotron from 'src/config/configReactoron';
 import Booking from 'src/models/Booking';
 import WorkLayout from 'src/models/WorkLayout';
 import WorkPlace from 'src/models/WorkPlace';
@@ -75,7 +76,7 @@ const Map = (props: Props) => {
 
     const renderContent = () => (
         <View style={styles.bottomSheetContainer}>
-            <DatePicker date={date} onDateChange={(date) => setConsiderDate(date)} />
+            <DatePicker minuteInterval={30} date={date} onDateChange={(date) => setConsiderDate(date)} />
             <Link
                 style={styles.button}
                 size={16}
@@ -105,14 +106,23 @@ const Map = (props: Props) => {
     function setConsiderDate(date: Date) {
         let _dateFrom = dateFrom;
         let _dateTo = dateTo;
+
         if (isFrom) {
-            if (moment(_dateTo).diff(moment(_dateFrom), 'hours') > 2) {
-                _dateTo.setHours(date.getHours() + HOUR_GAP);
+            reactotron.log('dd');
+
+            if (moment(_dateTo).diff(moment(date), 'hours') < 2) {
+                _dateTo = moment(date).add(HOUR_GAP, 'hours').toDate();
             }
+
             setDateFrom(date);
             setDateTo(_dateTo);
         } else {
-            _dateFrom.setHours(date.getHours() - HOUR_GAP);
+            reactotron.log(moment(date).diff(moment(_dateFrom), 'hours'));
+
+            if (moment(date).diff(moment(_dateFrom), 'hours') < 2) {
+                _dateFrom = moment(date).subtract(HOUR_GAP, 'hours').toDate();
+            }
+
             setDateFrom(_dateFrom);
             setDateTo(date);
         }
@@ -138,47 +148,47 @@ const Map = (props: Props) => {
         <View style={styles.container}>
             <BackHeader title={map.name} onPress={() => handleBack()} />
 
-            {isLoading ? (
+            {/* {isLoading ? (
                 <Loading />
-            ) : workPlaces.length > 0 ? (
-                <FlatList
-                    data={workPlaces}
-                    columnWrapperStyle={{
-                        justifyContent: 'space-between',
-                    }}
-                    contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24, flexGrow: 1 }}
-                    keyExtractor={(item, index) => `${item.id.toString()}${index}`}
-                    numColumns={NUM_COLUMNS}
-                    renderItem={({ item, index }) => renderItem(item, index)}
-                    // getItemLayout={(data, index) => getItemLayout(data, index)}
-                    ItemSeparatorComponent={() => <Space height={AppSpacing.MEDIUM} />}
-                    ListHeaderComponent={
-                        <AppView>
-                            <Space height={30} />
+            ) : workPlaces.length > 0 ? ( */}
+            <FlatList
+                data={workPlaces}
+                columnWrapperStyle={{
+                    justifyContent: 'space-between',
+                }}
+                contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24, flexGrow: 1 }}
+                keyExtractor={(item, index) => `${item.id.toString()}${index}`}
+                numColumns={NUM_COLUMNS}
+                renderItem={({ item, index }) => renderItem(item, index)}
+                // getItemLayout={(data, index) => getItemLayout(data, index)}
+                ItemSeparatorComponent={() => <Space height={AppSpacing.MEDIUM} />}
+                ListHeaderComponent={
+                    <AppView>
+                        <Space height={30} />
 
-                            <LayoutInfo workLayout={map} />
+                        <LayoutInfo workLayout={map} />
 
-                            <Space height={AppSpacing.LARGE} />
+                        <Space height={AppSpacing.LARGE} />
 
-                            <LargeHeader title={t('office.title')} subTitle={t('office.sub_title')} />
+                        <LargeHeader title={t('office.title')} subTitle={t('office.sub_title')} />
 
-                            <Space height={AppSpacing.LARGE} />
+                        <Space height={AppSpacing.LARGE} />
 
-                            <TimeSelect
-                                style={styles.timeSelect}
-                                from={dateFrom}
-                                to={dateTo}
-                                onPressFrom={() => switchFromDate()}
-                                onPressTo={() => switchToDate()}
-                            />
+                        <TimeSelect
+                            style={styles.timeSelect}
+                            from={dateFrom}
+                            to={dateTo}
+                            onPressFrom={() => switchFromDate()}
+                            onPressTo={() => switchToDate()}
+                        />
 
-                            <Space height={AppSpacing.LARGE} />
-                        </AppView>
-                    }
-                />
-            ) : (
+                        <Space height={AppSpacing.LARGE} />
+                    </AppView>
+                }
+            />
+            {/* ) : (
                 <Empty />
-            )}
+            )} */}
 
             {isBottomSheetShow ? renderOverlay() : null}
 
