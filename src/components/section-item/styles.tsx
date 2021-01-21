@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontSize: AppFontSize.SIZE_12,
+        fontSize: AppFontSize.SIZE_14,
         color: AppColor.DARK_GREY_1,
         flexGrow: 1,
     },
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     },
     value: {
         marginEnd: AppSpacing.MEDIUM,
-        fontSize: AppFontSize.SIZE_14,
+        fontSize: AppFontSize.SIZE_16,
         color: AppColor.BLUE_2,
         fontWeight: '500',
     },

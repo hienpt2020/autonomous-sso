@@ -1,12 +1,11 @@
+import moment from 'moment';
 import {
-    GET_BOOKING_HISTORY,
-    GET_BOOKING_HISTORY_SUCCESS,
+    BookingHistoryState,
     GetBookingHistoryActionType,
     GetBookingHistorySucessActionType,
-    BookingHistoryState,
+    GET_BOOKING_HISTORY,
+    GET_BOOKING_HISTORY_SUCCESS,
 } from './bookingHisotryType';
-import moment from 'moment';
-import { BookingStatus } from 'src/common/constant';
 
 const initialState: BookingHistoryState = {
     bookings: {
@@ -42,7 +41,7 @@ export function bookingHistoryReducer(
 
         case GET_BOOKING_HISTORY_SUCCESS:
             const upComingBookingHistories = action.bookings.filter(
-                (booking) => moment(booking.timeFrom) > moment() && booking.bookingStatus == BookingStatus.COMFIRMED,
+                (booking) => moment(booking.timeFrom) > moment() && booking.isUpcoming(booking.bookingStatus),
             );
 
             return {

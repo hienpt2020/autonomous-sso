@@ -60,6 +60,10 @@ function resetPassword(token: string, password: string) {
     return _post(`/auth/reset-forgot-password`, { token, password });
 }
 
+function changePassword(password: string, newPassword: string) {
+    return _post(`/me/change-password`, { password: password, new_password: newPassword });
+}
+
 function register(email: string, password: string, confirmPassword: string) {
     reactotron.log(email, password, confirmPassword);
     return _post('/auth/register', {
@@ -81,4 +85,5 @@ export const SSOApi = {
     setCurrentWorkspace,
     resetPassword,
     getMyWorkspaces,
+    changePassword,
 };

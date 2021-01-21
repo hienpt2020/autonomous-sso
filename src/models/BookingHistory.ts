@@ -30,23 +30,7 @@ export class BookingHistory {
         this.placeName = '';
     }
 
-    getStatus(bookingStatus: number) {
-        const { t } = useTranslation();
-
-        let status = '';
-        switch (bookingStatus) {
-            case BookingStatus.CHECKED_IN:
-                status = t('activities.checked_out');
-                break;
-
-            case BookingStatus.CANCEL:
-                status = t('activities.cancel');
-                break;
-
-            default:
-                status = '';
-                break;
-        }
-        return status;
+    isUpcoming(bookingStatus: number) {
+        return bookingStatus == BookingStatus.BOOKED || bookingStatus == BookingStatus.COMFIRMED;
     }
 }

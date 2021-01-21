@@ -6,9 +6,8 @@ import { FlatList, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import IconArrowRight from 'src/assets/images/ic_arrow_right.svg';
 import IconArrowUntil from 'src/assets/images/ic_arrow_until.svg';
-import { BookingStatus, DEFAULT_REQUEST_LIMIT } from 'src/common/constant';
+import { BookingStatus } from 'src/common/constant';
 import { AppText, AppView, Divider, Space } from 'src/components';
-import { Empty } from 'src/components/empty';
 import { Loading } from 'src/components/loading/loading';
 import { BookingHistory } from 'src/models/BookingHistory';
 import { getBookingHistoryAction } from 'src/redux/booking-history/bookingHistoryAction';
@@ -16,7 +15,6 @@ import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
-import { getBookingHistory } from './actions/bookingAction';
 import { styles } from './styles';
 import { Props } from './types';
 
@@ -59,12 +57,16 @@ const BookingScreen = (props: Props) => {
     const renderItem = (data: BookingHistory) => {
         let status = '';
         switch (data.bookingStatus) {
-            case BookingStatus.CHECKED_IN:
-                status = t('activities.checked_out');
+            case BookingStatus.AVAILABLE || BookingStatus.CANCEL:
+                status = t('activities.cancel');
                 break;
 
-            case BookingStatus.CANCEL:
-                status = t('activities.cancel');
+            case BookingStatus.BOOKED || BookingStatus.COMFIRMED:
+                status = t('activities.upcoming');
+                break;
+
+            case BookingStatus.CHECKED_IN:
+                status = t('activities.checked_in');
                 break;
 
             default:
@@ -84,7 +86,7 @@ const BookingScreen = (props: Props) => {
                     <AppView horizontal>
                         <AppView style={styles.dateContainer} center>
                             <AppText style={styles.titleEnd}>
-                                {moment(data.timeFrom).format('MMM DD, YYYY | HH:ss A')}
+                                {moment(data.timeFrom).format('MMM DD, YYYY | HH:mm A')}
                             </AppText>
                         </AppView>
                         <Space width={AppSpacing.SMALL} />
@@ -92,7 +94,7 @@ const BookingScreen = (props: Props) => {
                         <Space width={AppSpacing.SMALL} />
                         <AppView style={styles.dateContainer} center>
                             <AppText style={styles.titleEnd}>
-                                {moment(data.timeTo).format('MMM DD, YYYY | HH:ss A')}
+                                {moment(data.timeTo).format('MMM DD, YYYY | HH:mm A')}
                             </AppText>
                         </AppView>
                     </AppView>

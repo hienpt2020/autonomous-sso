@@ -37,6 +37,7 @@ const ResetPassword = (props: Props) => {
                         setPassword(text);
                     }}
                     secureTextEntry={true}
+                    constainError={true}
                     errorMessage={passwordError}
                 />
                 <PrimaryInput
@@ -46,6 +47,7 @@ const ResetPassword = (props: Props) => {
                         setConfirmPassword(text);
                     }}
                     secureTextEntry={true}
+                    constainError={true}
                     errorMessage={confirmPasswordError}
                 />
 

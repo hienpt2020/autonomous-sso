@@ -1,7 +1,6 @@
-import _ from 'lodash';
 import { ParserImpl } from 'src/helpers/parser';
 import { BookingHistory } from 'src/models/BookingHistory';
-import { createRequestEndAction, createRequestErrorMessageAction, createRequestStartAction } from 'src/redux/request';
+import { createRequestEndAction, createRequestStartAction } from 'src/redux/request';
 import store from 'src/redux/store';
 import { HybridApi } from 'src/services/networking';
 

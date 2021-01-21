@@ -59,9 +59,7 @@ const BookingDetail = (props: Props) => {
     }, []);
 
     const _getData = async (mapId: number, placeId: number) => {
-        try {
-            setPlaceData(await getPlaceDetail(mapId, placeId));
-        } catch (error) {}
+        setPlaceData(await getPlaceDetail(mapId, placeId));
     };
 
     const _onPressBookPlace = async () => {

@@ -14,7 +14,7 @@ function* sagaFunction(action: GetBookingHistoryActionType) {
             const parser = new ParserImpl();
             return parser.parseBookingHistory(booking);
         });
-        yield put(getBookingHistorySuccessAction(bookingDatas));
+        yield put(getBookingHistorySuccessAction(bookingDatas.reverse()));
     } catch (error) {}
 }
 

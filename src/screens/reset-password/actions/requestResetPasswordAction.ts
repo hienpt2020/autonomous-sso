@@ -25,7 +25,7 @@ export class RequestResetPassword {
                 return this.dispatch(requestValidateAccessTokenAction());
             })
             .catch((exception) => {
-                const message = _.get(exception, 'errorMessrage', i18next.t('common.error'));
+                const message = _.get(exception, 'errorMessrage', i18next.t('common.error_message'));
                 this.dispatch(createRequestErrorMessageAction(message));
             })
             .finally(() => {

@@ -20,7 +20,7 @@ export function* requestRegisterAction(action: any) {
         const message = i18next.t('register.verify_email');
         yield put(createRequestErrorMessageAction(message));
     } else {
-        const message = _.get(error, 'errorMessage', i18next.t('common.error'));
+        const message = _.get(error, 'errorMessage', i18next.t('common.error_message'));
         yield put(createRequestErrorMessageAction(message));
     }
     yield put(createRequestEndAction());

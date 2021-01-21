@@ -14,7 +14,7 @@
         "policies": "Policies",
         "code": "Activation code",
         "done": "Done",
-        "error": "Something went wrong",
+        "error_message": "Something went wrong",
         "available": "available",
         "slot_available": "slots remains from your purchase",
         "from": "From",
@@ -25,6 +25,7 @@
         "confirm": "Confirm",
         "yes": "Yes",
         "no": "No",
+        "error": "Error",
         "ok": "Ok"
     },
     "button": {
@@ -91,7 +92,8 @@
         "workspace": "Workspace",
         "add_login_method": "Add login method",
         "activities": "Activities",
-        "terms_and_policy": "Terms and policy",
+        "terms_of_use": "Terms of use",
+        "privacy_policy": "Privacy Policy",
         "contact_us": "Contact us",
         "version_update": "Version",
         "version": "Version"
@@ -128,6 +130,15 @@
         "upcoming": "Upcoming",
         "hisotry": "History",
         "checked_out": "Checked out",
-        "cancel": "Cancelled"
+        "cancel": "Cancelled",
+        "checked_in":"Checked in"
+    },
+    "new_password": {
+        "title": "Set up your new password",
+        "enter_current_password": "Enter current password",
+        "enter_new_password": "Enter new password",
+        "re_enter_new_password": "Re-enter new password",
+        "you_ve_just_changed": "You’ve just changed your password",
+        "we_ve_just_updated": "We’ve just updated your new password"
     }
 }
