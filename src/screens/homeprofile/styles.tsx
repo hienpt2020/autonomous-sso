@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
 
     titleLarge: {
         color: AppColor.DARK_GREY_1,
-        fontSize: AppFontSize.SIZE_24,
+        fontSize: AppFontSize.SIZE_28,
         textAlign: 'center',
         fontWeight: '500',
     },
@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     },
     content: {
         color: AppColor.DARK_GREY_1,
-        fontSize: AppFontSize.SIZE_12,
+        fontSize: AppFontSize.SIZE_16,
         textAlign: 'center',
     },
     avatar: {
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     header: {
-        fontSize: 24,
+        fontSize: AppFontSize.SIZE_28,
         paddingStart: 16,
         paddingEnd: 16,
         paddingTop: 8,

@@ -24,7 +24,7 @@ export class RequestForgotPassword {
                 Log.debug(response);
             })
             .catch((exception) => {
-                const message = _.get(exception, 'errorMessage', i18next.t('common.error'));
+                const message = _.get(exception, 'errorMessage', i18next.t('common.error_message'));
                 this.dispatch(createRequestErrorMessageAction(message));
             })
             .finally(() => {

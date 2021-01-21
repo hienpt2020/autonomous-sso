@@ -118,7 +118,7 @@ const SwitchWorkSpace = (props: Props) => {
             setCurrentWorkSpaces(cache)
                 .then((data) => dispatch(createActionSetWorkSpace(cache)))
                 .catch((exception) => {
-                    dispatch(createRequestErrorMessageAction(t('common.error')));
+                    dispatch(createRequestErrorMessageAction(t('common.error_message')));
                 })
                 .finally(() => {
                     setIsLoading(false);

@@ -1,32 +1,27 @@
 import i18next from 'i18next';
 import _ from 'lodash';
-import { Preference } from 'src/common/preference';
-import {
-    createRequestEndAction,
-    createRequestErrorMessageAction,
-    createRequestStartAction,
-} from 'src/redux/request/requestAction';
-import { requestValidateAccessTokenAction } from 'src/redux/user';
+import { createRequestEndAction, createRequestStartAction } from 'src/redux/request/requestAction';
 import { SSOApi } from 'src/services/networking';
 export class RequestNewPassword {
     private dispatch: (params: any) => void;
+    private onSuccess?: () => void;
+    private onError?: (message: string) => void;
+    private t: any;
 
-    constructor(dispatch: (param: any) => void) {
+    constructor(dispatch: (param: any) => void, onSuccess: () => void, onError: (message: string) => void) {
         this.dispatch = dispatch;
+        this.onSuccess = onSuccess;
+        this.onError = onError;
     }
-    resetPassword(token: string, password: string) {
+    changePassword(password: string, newPassword: string) {
         this.dispatch(createRequestStartAction());
-        SSOApi.resetPassword(token, password)
+        SSOApi.changePassword(password, newPassword)
             .then((response) => {
-                const token = _.get(response, 'data.access_token');
-                return Preference.saveAccessToken(token);
-            })
-            .then(() => {
-                return this.dispatch(requestValidateAccessTokenAction());
+                if (response && this.onSuccess) this.onSuccess();
             })
             .catch((exception) => {
-                const message = _.get(exception, 'errorMessrage', i18next.t('common.error'));
-                this.dispatch(createRequestErrorMessageAction(message));
+                const message = _.get(exception, 'error.message', i18next.t('common.error_message'));
+                if (this.onError) this.onError(message);
             })
             .finally(() => {
                 this.dispatch(createRequestEndAction());
@@ -34,5 +29,5 @@ export class RequestNewPassword {
     }
 }
 export interface IRequestNewPassword {
-    resetPassword(token: string, password: string): void;
+    changePassword(password: string, newPassword: string): void;
 }

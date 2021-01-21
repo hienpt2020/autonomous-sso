@@ -14,7 +14,7 @@
         "policies": "Policies",
         "code": "Activation code",
         "done": "Done",
-        "error": "Something went wrong",
+        "error_message": "Something went wrong",
         "available": "available",
         "slot_available": "slots remains from your purchase",
         "from": "From",
@@ -22,7 +22,9 @@
         "continue": "Continue",
         "email_invalid": "This email does not exist. Please input again.",
         "password_require": "Invalid password. Please try another password.",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "error": "Error",
+        "ok": "Ok"
     },
     "button": {
         "back": "Back",
@@ -119,5 +121,13 @@
         "hisotry": "History",
         "checked_out": "Checked out",
         "cancel": "Cancelled"
+    },
+    "new_password": {
+        "title": "Set up your new password",
+        "enter_current_password": "Enter current password",
+        "enter_new_password": "Enter new password",
+        "re_enter_new_password": "Re-enter new password",
+        "you_ve_just_changed": "You’ve just changed your password",
+        "we_ve_just_updated": "We’ve just updated your new password"
     }
 }

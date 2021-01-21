@@ -67,12 +67,18 @@ const Profile = (props: Props) => {
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
-                        <SectionItem
-                            title={t('profile.workspace')}
-                            value={workspace}
-                            onPress={navigateToSwithProfile}
-                        />
-                        <Divider />
+                        {workspace ? (
+                            <>
+                                <SectionItem
+                                    title={t('profile.workspace')}
+                                    value={workspace}
+                                    onPress={navigateToSwithProfile}
+                                />
+
+                                <Divider />
+                            </>
+                        ) : null}
+
                         <SectionItem title={t('profile.add_login_method')} value={'Email'} />
                         <Divider />
                         <SectionItem title={t('profile.activities')} value={''} onPress={_onPressActivities} />
