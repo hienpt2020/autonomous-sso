@@ -4,18 +4,18 @@ import { FlatList, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppView, Space } from 'src/components';
 import { Header, LargeHeader } from 'src/components/header';
-import LayoutInfo from 'src/components/layoutInfo';
+import { BookingHistory } from 'src/models/BookingHistory';
 import WorkLayout from 'src/models/WorkLayout';
+import { getBookingHistoryAction } from 'src/redux/booking-history/bookingHistoryAction';
 import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
-import { Empty } from '../../components/empty';
-import { Loading } from '../../components/loading/loading';
 import { getWorkLayout } from './actions/homeAction';
 import { CardItem } from './card';
 import FloatingButton from './floatingButton';
+import ListUpcoming from './list-upcoming/listUpcoming';
 import { styles } from './styles';
 import { Props } from './types';
 
@@ -25,6 +25,15 @@ const Office = (props: Props) => {
     const [workLayouts, setWorkLayouts] = useState<WorkLayout[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const dispatch = useDispatch();
+    const workingSpaceId = useSelector((state: RootState) => state.workspaceReducer.id);
+    const inComingBookings: BookingHistory[] = useSelector(
+        (state: RootState) => state.bookingHistoryReducer.upComingBookings.items,
+    );
+
+    useEffect(() => {
+        // TODO: admin????
+        dispatch(getBookingHistoryAction(false, workingSpaceId, 0));
+    }, []);
 
     useEffect(() => {
         setIsLoading(true);
@@ -79,42 +88,29 @@ const Office = (props: Props) => {
                 }}
             /> */}
 
-            {isLoading ? (
+            {/* {isLoading ? (
                 <Loading />
-            ) : workLayouts.length > 0 ? (
-                <FlatList
-                    // style={styles.list}
-                    contentContainerStyle={styles.list}
-                    data={workLayouts}
-                    renderItem={({ item }) => renderItem(item)}
-                    keyExtractor={(item) => item.id + ''}
-                    ItemSeparatorComponent={() => <Space height={AppSpacing.LARGE} />}
-                    ListHeaderComponent={() => (
-                        <AppView>
-                            <Space height={25} />
+            ) : workLayouts.length > 0 ? ( */}
+            <FlatList
+                contentContainerStyle={styles.list}
+                data={workLayouts}
+                renderItem={({ item }) => renderItem(item)}
+                keyExtractor={(item) => item.id + ''}
+                ItemSeparatorComponent={() => <Space height={AppSpacing.LARGE} />}
+                ListHeaderComponent={() => (
+                    <AppView>
+                        <Space height={AppSpacing.LARGE} />
 
-                            <LayoutInfo
-                                style={styles.info}
-                                workLayout={{
-                                    address: 'M Tower, 1003 E. 4th Place, Los Angeles, CA 90013',
-                                    id: 1,
-                                    name: 'Autonomous LA',
-                                    image: '',
-                                    placeAvailable: 100,
-                                    policy: '',
-                                }}
-                            />
+                        {inComingBookings.length > 0 && <ListUpcoming data={inComingBookings} />}
 
-                            <Space height={25} />
-
-                            <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
-                            <Space height={25} />
-                        </AppView>
-                    )}
-                />
-            ) : (
+                        <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
+                        <Space height={AppSpacing.LARGE} />
+                    </AppView>
+                )}
+            />
+            {/* ) : (
                 <Empty />
-            )}
+            )} */}
             {/* {_renderFloatingButton()} */}
         </View>
     );

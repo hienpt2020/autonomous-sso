@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { BookingStatus } from 'src/common/constant';
 
 export class BookingHistory {
@@ -11,6 +12,8 @@ export class BookingHistory {
     placeId: number;
     code: number;
     bookingStatus: number;
+    bookingStatusName: string;
+    placeName: string;
 
     constructor() {
         this.id = 0;
@@ -23,5 +26,27 @@ export class BookingHistory {
         this.mapId = 0;
         this.code = 0;
         this.bookingStatus = BookingStatus.COMFIRMED;
+        this.bookingStatusName = '';
+        this.placeName = '';
+    }
+
+    getStatus(bookingStatus: number) {
+        const { t } = useTranslation();
+
+        let status = '';
+        switch (bookingStatus) {
+            case BookingStatus.CHECKED_IN:
+                status = t('activities.checked_out');
+                break;
+
+            case BookingStatus.CANCEL:
+                status = t('activities.cancel');
+                break;
+
+            default:
+                status = '';
+                break;
+        }
+        return status;
     }
 }

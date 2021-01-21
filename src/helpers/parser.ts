@@ -111,6 +111,8 @@ export class ParserImpl implements IParser {
         result.mapId = responseData.working_place.working_space_layout.id;
         result.code = responseData.code;
         result.bookingStatus = responseData.working_place_booking_status_id;
+        result.placeName =
+            responseData.working_place.working_place_types.type_name + ' ' + responseData.working_place.code;
         return result;
     }
 

@@ -26,9 +26,9 @@ export const styles = StyleSheet.create({
         marginStart: 16,
     },
     titleX: {
-        fontWeight: '700',
+        fontWeight: '500',
     },
     subTitle: {
-        fontWeight: '400',
+        fontWeight: '500',
     },
 });

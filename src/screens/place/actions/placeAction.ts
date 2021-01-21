@@ -33,3 +33,17 @@ export const bookPlace = async (workPlaceId: number, dateFrom: Date, dateTo: Dat
         return undefined;
     }
 };
+
+export const cancelBooking = async (bookId: number): Promise<any> => {
+    try {
+        store.dispatch(createRequestStartAction());
+        await HybridApi.cancelBooking(bookId);
+        store.dispatch(createRequestEndAction());
+        return true;
+    } catch (error) {
+        store.dispatch(createRequestEndAction());
+        // const message = _.get(error, 'debug', 'Something went wrong');
+        // store.dispatch(createRequestErrorMessageAction(message));
+        return false;
+    }
+};

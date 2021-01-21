@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StatusBar, Text, View, YellowBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useCode } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useSelector } from 'react-redux';
-import { AppText, AppView, Divider, Space } from 'src/components';
+import { useDispatch, useSelector } from 'react-redux';
+import { BookingStatus } from 'src/common/constant';
+import { AppText, AppView, Divider, showPopup, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { Chip } from 'src/components/chip';
 import { Device } from 'src/components/device';
@@ -18,11 +18,12 @@ import Booking from 'src/models/Booking';
 import { BookingHistory } from 'src/models/BookingHistory';
 import WorkLayout from 'src/models/WorkLayout';
 import WorkPlace from 'src/models/WorkPlace';
+import { getBookingHistoryAction } from 'src/redux/booking-history/bookingHistoryAction';
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { AppFontSize, AppSpacing } from 'src/styles';
-import { bookPlace, getPlaceDetail } from './actions/placeAction';
+import { bookPlace, cancelBooking, getPlaceDetail } from './actions/placeAction';
 import { styles } from './styles';
 import { Props } from './types';
 //JUST disable this warning
@@ -41,6 +42,8 @@ const BookingDetail = (props: Props) => {
     const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
     const isAdmin: boolean = useSelector((state: RootState) => state.workspaceReducer.isAdmin);
     const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
+    const workingSpaceId = useSelector((state: RootState) => state.workspaceReducer.id);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (bookingHistory) {
@@ -65,6 +68,7 @@ const BookingDetail = (props: Props) => {
         if (place) {
             const bookingHistory: BookingHistory = await bookPlace(place.id, booking.from, booking.to);
             if (bookingHistory) {
+                dispatch(getBookingHistoryAction(isAdmin, workingSpaceId, 0));
                 navigate(RouteName.BOOKING_RESULT, { booking: bookingHistory });
             } else {
                 navigate(RouteName.BOOKING_RESULT, { booking: undefined });
@@ -72,8 +76,65 @@ const BookingDetail = (props: Props) => {
         }
     };
 
+    const _onPressCancelBooking = async () => {
+        if (bookingHistory) {
+            showPopup(t('booking_detail.cancel_title'), t('booking_detail.cancel_desc'), null, [
+                {
+                    title: t('common.yes'),
+                    onPress: async () => {
+                        const cancelResult = await cancelBooking(bookingHistory.id);
+                        if (cancelResult) {
+                            dispatch(getBookingHistoryAction(isAdmin, workingSpaceId, 0));
+                            showPopup(t('booking_detail.cancelled'), t('booking_detail.cancelled_desc'), null, [
+                                {
+                                    title: t('common.ok'),
+                                    onPress: () => {
+                                        handleBack();
+                                    },
+                                },
+                            ]);
+                        }
+                    },
+                },
+                {
+                    title: t('common.no'),
+                    style: 'negative',
+                    onPress: () => {},
+                },
+            ]);
+        }
+    };
+
     const _onPressDevice = (item: Asset) => {
         navigate(RouteName.CONFIGURATION_STEP1, null);
+    };
+
+    const _renderBookingStatus = () => {
+        let status = '';
+        if (bookingHistory) {
+            switch (bookingHistory.bookingStatus) {
+                case BookingStatus.CHECKED_IN:
+                    status = t('activities.checked_out');
+                    break;
+
+                case BookingStatus.CANCEL:
+                    status = t('activities.cancel');
+                    break;
+
+                default:
+                    status = t('activities.upcoming');
+                    break;
+            }
+        }
+
+        return status ? (
+            <>
+                <Space width={AppSpacing.SMALL} />
+                <AppView style={styles.bookingStatusContainer} center>
+                    <AppText style={styles.bookingStatus}>{status}</AppText>
+                </AppView>
+            </>
+        ) : null;
     };
 
     return (
@@ -88,9 +149,14 @@ const BookingDetail = (props: Props) => {
                 {placeData && (
                     <>
                         <AppView style={styles.infoContainer}>
-                            <AppText bold size={AppFontSize.SIZE_28}>
-                                {placeData.name}
-                            </AppText>
+                            <AppView horizontal alignItemsCenter spaceBetween>
+                                <AppText style={styles.placeName} bold size={AppFontSize.SIZE_28}>
+                                    {placeData.name}
+                                </AppText>
+
+                                {_renderBookingStatus()}
+                            </AppView>
+
                             <Space height={3} />
                             <AppText>{'Autonomous HCM'}</AppText>
                             <Space height={3} />
@@ -161,8 +227,20 @@ const BookingDetail = (props: Props) => {
 
                 <PrimaryButton
                     style={styles.button}
-                    onPress={_onPressBookPlace}
-                    title={t(bookingHistory ? 'booking_detail.cancel_booking' : 'place.book_place')}
+                    onPress={
+                        !bookingHistory
+                            ? _onPressBookPlace
+                            : bookingHistory.bookingStatus == BookingStatus.COMFIRMED
+                            ? _onPressCancelBooking
+                            : handleBack
+                    }
+                    title={t(
+                        !bookingHistory
+                            ? 'place.book_place'
+                            : bookingHistory.bookingStatus == BookingStatus.COMFIRMED
+                            ? 'booking_detail.cancel_booking'
+                            : 'booking_detail.go_back',
+                    )}
                 />
             </ScrollView>
 

@@ -22,7 +22,10 @@
         "continue": "Continue",
         "email_invalid": "This email does not exist. Please input again.",
         "password_require": "Invalid password. Please try another password.",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "yes": "Yes",
+        "no": "No",
+        "ok": "Ok"
     },
     "button": {
         "back": "Back",
@@ -65,7 +68,9 @@
     },
     "home": {
         "title": "Select a floor",
-        "sub_title": "start working with joy"
+        "sub_title": "start working with joy",
+        "upcoming_title": "Your Upcoming",
+        "upcoming_sub_title": "booking"
     },
     "office": {
         "title": "Select",
@@ -99,7 +104,12 @@
         "title": "My Booking"
     },
     "booking_detail": {
-        "cancel_booking": "Cancel booking"
+        "cancel_booking": "Cancel booking",
+        "go_back": "Go back",
+        "cancel_title": "Request to cancel this slot",
+        "cancel_desc": "Do you want to cancel this booking?",
+        "cancelled": "cancelled!",
+        "cancelled_desc": "This slot has been cancelled"
     },
     "switch_workspace": {
         "title": "Switch Workspace"
