@@ -76,7 +76,7 @@ const Map = (props: Props) => {
 
     const renderContent = () => (
         <View style={styles.bottomSheetContainer}>
-            <DatePicker date={date} onDateChange={(date) => setConsiderDate(date)} />
+            <DatePicker minuteInterval={30} date={date} onDateChange={(date) => setConsiderDate(date)} />
             <Link
                 style={styles.button}
                 size={16}
