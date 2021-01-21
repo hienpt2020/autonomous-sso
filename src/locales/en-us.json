@@ -88,7 +88,8 @@
         "workspace": "Workspace",
         "add_login_method": "Add login method",
         "activities": "Activities",
-        "terms_and_policy": "Terms and policy",
+        "terms_of_use": "Terms of use",
+        "privacy_policy": "Privacy Policy",
         "contact_us": "Contact us",
         "version_update": "Version",
         "version": "Version"

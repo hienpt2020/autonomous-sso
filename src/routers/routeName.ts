@@ -23,4 +23,5 @@ export enum RouteName {
     ACTIVITIES = 'ACTIVITIES',
     CONTROL = 'CONTROL',
     NEW_PASSWORD = 'NEW_PASSWORD',
+    WEBPAGE = 'WEBPAGE',
 }

@@ -26,6 +26,7 @@ export type RootStackParams = {
     [RouteName.ACTIVITIES]: undefined;
     [RouteName.CONTROL]: { device?: Device };
     [RouteName.NEW_PASSWORD]: undefined;
+    [RouteName.WEBPAGE]: { url: string };
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -57,6 +58,10 @@ export const publicRoutes: RouteProps[] = [
     {
         name: RouteName.DEEPLINK_REGISTER,
         component: require('src/screens/redirect-register').default,
+    },
+    {
+        name: RouteName.WEBPAGE,
+        component: require('src/screens/webpage').default,
     },
 ];
 
@@ -108,5 +113,9 @@ export const authenticatedRoutes: RouteProps[] = [
     {
         name: RouteName.NEW_PASSWORD,
         component: require('src/screens/new-password').default,
+    },
+    {
+        name: RouteName.WEBPAGE,
+        component: require('src/screens/webpage').default,
     },
 ];

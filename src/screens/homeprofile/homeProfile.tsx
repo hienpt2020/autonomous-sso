@@ -57,7 +57,10 @@ const Profile = (props: Props) => {
                         <Divider />
                         <Space height={AppSpacing.MEDIUM} />
                         <AppView horizontal style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <AppText style={styles.titleLarge} children={'Hitle'} />
+                            <AppText
+                                style={styles.titleLarge}
+                                children={_.get(_.split(email, '@', 1), 0).toUpperCase()}
+                            />
 
                             <IconButton style={styles.iconButton} icon={<EditIcon width={18} height={18} />} />
                         </AppView>
@@ -85,7 +88,9 @@ const Profile = (props: Props) => {
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
-                        <SectionItem title={t('profile.terms_and_policy')} onPress={_onPressTerms} />
+                        <SectionItem title={t('profile.privacy_policy')} onPress={_onPressPrivacy} />
+                        <Divider />
+                        <SectionItem title={t('profile.terms_of_use')} onPress={_onPressTerms} />
                         <Divider />
                         <SectionItem title={t('profile.contact_us')} onPress={_onPressContactUs} />
                         <Divider />
@@ -113,11 +118,10 @@ const Profile = (props: Props) => {
         }
     }
     function _onPressTerms() {
-        try {
-            LinkingHelper.open(Config.LINK_TERM);
-        } catch (exception) {
-            Log.debug(exception);
-        }
+        navigate(RouteName.WEBPAGE, { url: Config.LINK_TERM });
+    }
+    function _onPressPrivacy() {
+        navigate(RouteName.WEBPAGE, { url: Config.LINK_PRIVARY });
     }
     function _onPressResetPassword() {
         navigate(RouteName.NEW_PASSWORD, null);
