@@ -15,11 +15,9 @@ const SectionItem = (props: SectionItemProps) => {
                 <AppText style={props.onPress !== undefined ? styles.value : styles.valueDisable}>
                     {props.value}
                 </AppText>
-                {props.onPress !== undefined ? (
+                {props.onPress !== undefined && !props.isWithoutArrow ? (
                     <IconArrowRight width={24} height={24} />
-                ) : (
-                    <Space width={24} height={24} />
-                )}
+                ) : null}
             </AppView>
         </TouchableOpacity>
     );

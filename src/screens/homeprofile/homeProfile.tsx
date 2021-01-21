@@ -81,15 +81,15 @@ const Profile = (props: Props) => {
                     <View style={styles.sectionContainer}>
                         <SectionItem title={t('profile.terms_and_policy')} onPress={_onPressTerms} />
                         <Divider />
-                        <SectionItem title={t('profile.contact_us')} onPress={_onPressContactUs}/>
+                        <SectionItem title={t('profile.contact_us')} onPress={_onPressContactUs} />
                         <Divider />
                         <SectionItem title={t('profile.version_update')} value={`${Config.APP_VERSION}`} />
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
-                        <SectionItem title={t('common.reset_password')} onPress={_onPressResetPassword}/>
+                        <SectionItem title={t('common.reset_password')} onPress={_onPressResetPassword} />
                         <Divider />
-                        <SectionItem title={t('common.logout')} onPress={_handPressLogout}/>
+                        <SectionItem title={t('common.logout')} onPress={_handPressLogout} isWithoutArrow={true} />
                     </View>
                     <Space height={124} />
                 </View>
@@ -97,7 +97,7 @@ const Profile = (props: Props) => {
         </View>
     );
     function _handPressLogout() {
-        dispatch(createRequestLogoutAction())
+        dispatch(createRequestLogoutAction());
     }
     function _onPressContactUs() {
         try {
