@@ -3,8 +3,7 @@ import { View, Text, StatusBar, FlatList, ScrollView, NativeModules, NativeEvent
 import { styles } from './styles';
 import { PrimaryButton } from 'src/components/button';
 import { YellowBox } from 'react-native';
-import { ImageSlider } from 'src/components/images/images';
-import CardData from './CardData';
+import Card from './card';
 import BleManager from 'react-native-ble-manager';
 import { navigate } from '../../routers/rootNavigation';
 import { RouteName } from '../../routers/routeName';
@@ -13,9 +12,10 @@ import { createRequestEndAction, createRequestErrorMessageAction } from '../../r
 import { BackHeader } from '../../components/header';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Parser } from '../../helpers/parser';
-import i18next from 'i18next';
 import { useEffect, useState } from 'react';
 import { Bluetooth } from '../../services/bluetooth/bluetooth';
+import { useTranslation } from 'react-i18next';
+import { Empty } from '../../components/empty';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -23,11 +23,11 @@ YellowBox.ignoreWarnings([
 const BleManagerModule = NativeModules.BleManager;
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
 
-const ConfigurationStep1 = (props: any) => {
+const ConfigurationStep1 = () => {
     const [appState, setAppState] = useState<any>('');
     const [list, setList] = useState<any[]>([]);
-    const imageHeight = 221;
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     let peripherals = new Map();
     let handlerDiscoverEmitter: any;
     let handlerStopScanEmitter: any;
@@ -96,14 +96,14 @@ const ConfigurationStep1 = (props: any) => {
         }
     };
 
-    const flatListItemSeparator = () => {
-        return <View style={styles.divider} />;
-    };
+    const flatListItemSeparator = () => (
+        <View style={styles.spacingContainer}>
+            <View style={styles.spacing} />
+        </View>
+    );
 
     const renderItem = (data: any) => {
-        return (
-            <CardData data={data} onPress={() => Bluetooth.connectToPeripheral(data.id)} selectedId={data.connected} />
-        );
+        return <Card data={data} onPress={() => Bluetooth.connectToPeripheral(data.id)} selectedId={data.connected} />;
     };
 
     const handleDisconnectedPeripheral = (data: any) => {
@@ -167,35 +167,23 @@ const ConfigurationStep1 = (props: any) => {
 
     return (
         <View style={styles.container}>
-            <StatusBar translucent backgroundColor="transparent" />
-            <ScrollView style={styles.container} nestedScrollEnabled={true}>
-                <ImageSlider
-                    data={[
-                        'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
-                        'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
-                        'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
-                        'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
-                        'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
-                    ]}
-                    height={imageHeight}
-                />
-                <Text style={styles.title}>Seat#1</Text>
-                <Text style={styles.subTitle}>Autonomous WorkSpace</Text>
-                <Text style={styles.subTitle}>Floor #3</Text>
-                <Text style={styles.subTitle}>Seat #1</Text>
-                <Text style={styles.sectionTitle}>Available assets</Text>
-                <FlatList
-                    nestedScrollEnabled={true}
-                    data={list}
-                    style={[styles.list]}
-                    keyExtractor={(item, index) => `${item}${index}`}
-                    ItemSeparatorComponent={flatListItemSeparator}
-                    renderItem={({ item }) => renderItem(item)}
-                />
-            </ScrollView>
-            <PrimaryButton wrapperContainer={styles.button} title={i18next.t('Scan')} onPress={() => startScan()} />
-            <SafeAreaView style={styles.header}>
-                <BackHeader title={''} lightContent onPress={handleBack} />
+            <BackHeader title={'Setup'} onPress={handleBack} />
+            {list.length > 0 ? (
+                <ScrollView style={styles.container} nestedScrollEnabled={true}>
+                    <FlatList
+                        nestedScrollEnabled={true}
+                        data={list}
+                        style={[styles.list]}
+                        keyExtractor={(item, index) => `${item}${index}`}
+                        ItemSeparatorComponent={flatListItemSeparator}
+                        renderItem={({ item }) => renderItem(item)}
+                    />
+                </ScrollView>
+            ) : (
+                <Empty />
+            )}
+            <SafeAreaView>
+                <PrimaryButton style={styles.button} onPress={startScan} title={t('Scan')} />
             </SafeAreaView>
         </View>
     );
