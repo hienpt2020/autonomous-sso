@@ -87,7 +87,7 @@ const Profile = (props: Props) => {
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
-                        <SectionItem title={t('common.reset_password')} />
+                        <SectionItem title={t('common.reset_password')} onPress={_onPressResetPassword}/>
                         <Divider />
                         <SectionItem title={t('common.logout')} onPress={_handPressLogout}/>
                     </View>
@@ -112,6 +112,9 @@ const Profile = (props: Props) => {
         } catch (exception) {
             Log.debug(exception);
         }
+    }
+    function _onPressResetPassword() {
+        navigate(RouteName.NEW_PASSWORD, null);
     }
     function _onPressActivities() {
         navigate(RouteName.ACTIVITIES, null);

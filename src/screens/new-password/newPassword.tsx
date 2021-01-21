@@ -5,15 +5,17 @@ import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import { Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
-import { BackHeaderX } from 'src/components/header';
+import { BackHeader } from 'src/components/header';
 import { PrimaryInput } from 'src/components/input';
 import { PasswordValidator, Validator } from 'src/helpers/validators';
-import { IRequestResetPassword, RequestResetPassword } from './actions/requestResetPasswordAction';
+import { AppSpacing } from 'src/styles';
+import { IRequestNewPassword, RequestNewPassword } from './actions/requestNewPasswordAction';
 import { styles } from './styles';
 import { Props } from './types';
 
-const ResetPassword = (props: Props) => {
+const NewPassword = (props: Props) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
@@ -24,12 +26,23 @@ const ResetPassword = (props: Props) => {
 
     const passwordValidator: Validator = new PasswordValidator();
 
-    const requestResetPassword: IRequestResetPassword = new RequestResetPassword(dispatch);
+    const NewPassword: IRequestNewPassword = new RequestNewPassword(dispatch);
 
     return (
-        <SafeAreaView style={styles.container}>
-            <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-                <BackHeaderX title={t('common.reset_password')} onPress={() => handleBack()} />
+        <View style={styles.container}>
+            <BackHeader title={t('common.reset_password')} onPress={() => handleBack()} />
+            <View  style={styles.contentContainer}>
+                <Space height={AppSpacing.LARGE} />
+                <PrimaryInput
+                    placeholder={t('common.password')}
+                    onChangeText={(text) => {
+                        setPasswordError('');
+                        setPassword(text);
+                    }}
+                    secureTextEntry={true}
+                    constainError={true}
+                    errorMessage={passwordError}
+                />
                 <PrimaryInput
                     placeholder={t('common.password')}
                     onChangeText={(text) => {
@@ -50,15 +63,16 @@ const ResetPassword = (props: Props) => {
                     constainError={true}
                     errorMessage={confirmPasswordError}
                 />
+                <Space flex={1} />
 
                 <PrimaryButton
                     title={t('common.reset')}
                     wrapperContainer={styles.button}
                     onPress={() => validateReset()}
                 />
-                <View style={{ flex: 3 }} />
-            </KeyboardAvoidingView>
-        </SafeAreaView>
+                <Space height={AppSpacing.EXTRA} />
+            </View>
+        </View>
     );
     function handleBack() {
         props.navigation.goBack();
@@ -93,8 +107,8 @@ const ResetPassword = (props: Props) => {
 
     function handleReset() {
         const token = _.get(props, 'route.params.token', '');
-        requestResetPassword.resetPassword(token, password);
+        RequestNewPassword.resetPassword(token, password);
     }
 };
 
-export default ResetPassword;
+export default NewPassword;

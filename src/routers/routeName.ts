@@ -22,4 +22,5 @@ export enum RouteName {
     PLACE_DETAIL = 'BOOKING_DETAIL',
     ACTIVITIES = 'ACTIVITIES',
     CONTROL = 'CONTROL',
+    NEW_PASSWORD = 'NEW_PASSWORD',
 }

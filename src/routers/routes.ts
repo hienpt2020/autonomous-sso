@@ -25,6 +25,7 @@ export type RootStackParams = {
     [RouteName.DEEPLINK_REGISTER]: undefined;
     [RouteName.ACTIVITIES]: undefined;
     [RouteName.CONTROL]: { device?: Device };
+    [RouteName.NEW_PASSWORD]: undefined;
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -103,5 +104,9 @@ export const authenticatedRoutes: RouteProps[] = [
     {
         name: RouteName.CONTROL,
         component: require('src/screens/control').default,
+    },
+    {
+        name: RouteName.NEW_PASSWORD,
+        component: require('src/screens/new-password').default,
     },
 ];
