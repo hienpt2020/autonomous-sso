@@ -1,18 +1,16 @@
-import React from 'react';
-import { View, ViewProps } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import { RouteProps } from 'src/routers/routeProps';
+import React from 'react';
+import IcTabBooking from 'src/assets/images/ic_tab_booking.svg';
+import IcTabBookingActive from 'src/assets/images/ic_tab_booking_active.svg';
+import IcTabControl from 'src/assets/images/ic_tab_control.svg';
+import IcTabControlActive from 'src/assets/images/ic_tab_control_active.svg';
+import IcTabProfile from 'src/assets/images/ic_tab_profile.svg';
+import IcTabProfileActive from 'src/assets/images/ic_tab_profile_active.svg';
+import { AppText } from 'src/components';
 import { RouteName } from 'src/routers/routeName';
+import { RouteProps } from 'src/routers/routeProps';
 import { styles } from './styles';
-
 import { Props } from './types';
-import Profile from 'src/assets/images/profile.svg';
-import Office from 'src/assets/images/office.svg';
-import Controll from 'src/assets/images/controll.svg';
-import ProfileWhite from 'src/assets/images/profile_white.svg';
-import OfficeWhite from 'src/assets/images/office_white.svg';
-import ControllWhite from 'src/assets/images/controll_white.svg';
 
 export const homeRoutes: RouteProps[] = [
     {
@@ -32,16 +30,41 @@ export const homeRoutes: RouteProps[] = [
 
 function renderTabBarIcon(routeName: String, focused: boolean) {
     let icon;
+    const iconSize = 20;
     if (routeName === RouteName.HOME_CONTROLL) {
-        icon = focused ? <ControllWhite width="40" height="40" /> : <Controll width="40" height="40" />;
+        icon = focused ? (
+            <IcTabControlActive width={iconSize} height={iconSize} />
+        ) : (
+            <IcTabControl width={iconSize} height={iconSize} />
+        );
     } else if (routeName === RouteName.HOME_OFFICE) {
-        icon = focused ? <OfficeWhite width="40" height="40" /> : <Office width="40" height="40" />;
+        icon = focused ? (
+            <IcTabBookingActive width={iconSize} height={iconSize} />
+        ) : (
+            <IcTabBooking width={iconSize} height={iconSize} />
+        );
     } else {
-        icon = focused ? <ProfileWhite width="40" height="40" /> : <Profile width="40" height="40" />;
+        icon = focused ? (
+            <IcTabProfileActive width={iconSize} height={iconSize} />
+        ) : (
+            <IcTabProfile width={iconSize} height={iconSize} />
+        );
     }
 
-    const view = focused ? <View style={styles.iconContainer}>{icon}</View> : icon;
-    return view;
+    return icon;
+}
+
+function renderTabBarLabel(routeName: String, focused: boolean) {
+    let label = '';
+    if (routeName === RouteName.HOME_CONTROLL) {
+        label = 'Control';
+    } else if (routeName === RouteName.HOME_OFFICE) {
+        label = 'Booking';
+    } else {
+        label = 'Profile';
+    }
+
+    return <AppText style={focused ? styles.labelActive : styles.label}>{label}</AppText>;
 }
 
 const Home = (props: Props) => {
@@ -52,10 +75,10 @@ const Home = (props: Props) => {
                 tabBarIcon: ({ focused, color, size }) => {
                     return renderTabBarIcon(route.name, focused);
                 },
+                tabBarLabel: ({ focused }) => {
+                    return renderTabBarLabel(route.name, focused);
+                },
             })}
-            tabBarOptions={{
-                showLabel: false,
-            }}
         >
             {homeRoutes.map((route) => (
                 <Tab.Screen key={route.name} name={route.name} component={route.component} options={route.options} />

@@ -1,27 +1,22 @@
 import { AppColor } from 'src/styles/colors';
 import { StyleSheet } from 'react-native';
+import { AppSpacing } from 'src/styles';
 
 export const styles = StyleSheet.create({
-    wrapper: {
-        alignItems: 'center',
-        flex: 1,
-        justifyContent: 'center',
+    container: {
+        height: 54,
+        backgroundColor: AppColor.WHITE,
     },
     list: {
         flexGrow: 0,
     },
     chipContainer: {
-        height: 24,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 4,
-        paddingStart: 16,
-        paddingEnd: 16,
-        backgroundColor: AppColor.PRIMARY,
-        borderRadius: 12,
+        height: 30,
+        paddingHorizontal: 12,
+        backgroundColor: AppColor.BLUE_IN_TAG,
+        borderRadius: 16,
     },
-
-    chipContent: {
-        color: AppColor.WHITE,
+    listContent: {
+        paddingHorizontal: AppSpacing.LARGE,
     },
 });

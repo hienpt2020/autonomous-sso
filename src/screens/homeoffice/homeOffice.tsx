@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlatList, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { Header } from 'src/components/header';
+import { AppView, Space } from 'src/components';
+import { Header, LargeHeader } from 'src/components/header';
+import LayoutInfo from 'src/components/layoutInfo';
 import WorkLayout from 'src/models/WorkLayout';
 import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
+import { AppSpacing } from 'src/styles';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
 import { getWorkLayout } from './actions/homeAction';
@@ -50,25 +52,71 @@ const Office = (props: Props) => {
 
     const _onItemSelected = (data: WorkLayout) => {
         dispatch(setWorkLayoutAction(data));
-        props.navigation.navigate(RouteName.MAP, { floorId: data.id, floorName: data.name });
+        props.navigation.navigate(RouteName.MAP, { map: data });
     };
     return (
-        <SafeAreaView style={styles.container}>
-            <Header title={t('office.title')} />
+        <View style={styles.container}>
+            <Header title={'Booking'} />
+
+            {/* <Button
+                title={'Test'}
+                onPress={() => {
+                    showPopup('Sucess', 'bbsdfasdfsdafaksfhsdkfhjksfhjksdhjkb', null, [
+                        {
+                            onPress: () => {
+                                reactotron.log('aa');
+                            },
+                            title: 'Ok',
+                        },rr
+                        {
+                            onPress: () => {
+                                reactotron.log('bb');
+                            },
+                            title: 'Cancel',
+                            style: 'negative',
+                        },
+                    ]);
+                }}
+            /> */}
 
             {isLoading ? (
                 <Loading />
             ) : workLayouts.length > 0 ? (
                 <FlatList
+                    // style={styles.list}
+                    contentContainerStyle={styles.list}
                     data={workLayouts}
                     renderItem={({ item }) => renderItem(item)}
                     keyExtractor={(item) => item.id + ''}
+                    ItemSeparatorComponent={() => <Space height={AppSpacing.LARGE} />}
+                    ListHeaderComponent={() => (
+                        <AppView>
+                            <Space height={25} />
+
+                            <LayoutInfo
+                                style={styles.info}
+                                workLayout={{
+                                    address: 'M Tower, 1003 E. 4th Place, Los Angeles, CA 90013',
+                                    id: 1,
+                                    name: 'Autonomous LA',
+                                    image: '',
+                                    placeAvailable: 100,
+                                    policy: '',
+                                }}
+                            />
+
+                            <Space height={25} />
+
+                            <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
+                            <Space height={25} />
+                        </AppView>
+                    )}
                 />
             ) : (
                 <Empty />
             )}
-            {_renderFloatingButton()}
-        </SafeAreaView>
+            {/* {_renderFloatingButton()} */}
+        </View>
     );
 };
 

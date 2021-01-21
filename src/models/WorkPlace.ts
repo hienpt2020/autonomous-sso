@@ -1,4 +1,3 @@
-import { parseMapAddress } from './../helpers/locationHelper';
 import Asset from './Asset';
 
 export default class WorkPlace {

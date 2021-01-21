@@ -1,56 +1,58 @@
 import { StyleSheet, Dimensions, StatusBar, Platform } from 'react-native';
+import { AppFontSize, AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColor.WHITE,
+        backgroundColor: AppColor.BACKGROUND,
     },
     header: {
         position: 'absolute',
     },
+    infoContainer: {
+        backgroundColor: AppColor.WHITE,
+        padding: AppSpacing.LARGE,
+    },
     button: {
-        bottom: 16,
-        start: 16,
-        end: 16,
-        position: 'absolute',
-    },
-    title: {
-        fontSize: 42,
-        marginStart: 16,
-        marginEnd: 16,
-        color: AppColor.PRIMARY,
-    },
-    subTitle: {
-        fontSize: 18,
-        marginStart: 16,
-        marginEnd: 16,
-        marginTop: 8,
-        color: AppColor.LIGHT,
+        marginVertical: 44,
+        marginHorizontal: AppSpacing.LARGE,
     },
     sectionTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginStart: 16,
-        marginEnd: 16,
-        marginTop: 8,
-        color: AppColor.PRIMARY,
+        fontSize: AppFontSize.SIZE_20,
+        fontWeight: '500',
+        marginBottom: 20,
     },
-    sectionContent: {
-        flexGrow: 1,
-        margin: 16,
-        color: AppColor.LIGHT,
+    codeTitle: {
+        fontSize: AppFontSize.SIZE_20,
+        fontWeight: '500',
+        marginTop: AppSpacing.MEDIUM,
     },
-
-    chip: {
-        marginTop: 16,
-        marginStart: 8,
-        marginEnd: 8,
+    policyContainer: {
+        backgroundColor: AppColor.WHITE,
+        padding: AppSpacing.LARGE,
     },
-    list: {
-        paddingStart: 8,
-        paddingEnd: 8,
-        flexGrow: 0,
-        marginTop: 16,
+    sectionContent: {},
+    codeContainer: {
+        backgroundColor: AppColor.WHITE,
+        paddingHorizontal: AppSpacing.LARGE,
+    },
+    codeLineContainer: {
+        height: 56,
+    },
+    codeDesc: {
+        fontSize: AppFontSize.SIZE_12,
+        flex: 1,
+    },
+    codeNumberContainer: {
+        height: 24,
+        width: 24,
+        borderRadius: 4,
+        backgroundColor: '#F8F8F8',
+    },
+    code: {
+        fontWeight: '500',
+        fontSize: AppFontSize.SIZE_16,
+        color: '#555555',
     },
 });
