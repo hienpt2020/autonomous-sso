@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, View } from 'react-native';
-import ImageSuccess from 'src/assets/images/image_success.svg';
+import { View } from 'react-native';
+import { AppText, AppView, Notice, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
+import { BackHeader } from 'src/components/header';
 import { BookingHistory } from 'src/models/BookingHistory';
 import { RouteName } from 'src/routers/routeName';
+import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { Props } from './types';
 
@@ -14,15 +15,51 @@ const BookingResult = (props: Props) => {
 
     const { t } = useTranslation();
 
+    function handleBack() {
+        props.navigation.goBack();
+    }
+
     return (
         <View style={styles.container}>
-            <ImageSuccess width="152" height="152" style={styles.title} />
-            <Text style={styles.title}>Successful!</Text>
-            <Text style={styles.subTitle}>
-                You have booked the seat. Your unlock code below, use it to unlock your seat{' '}
-            </Text>
-            <Text style={styles.code}>{bookingHistory.code}</Text>
-            <PrimaryButton wrapperContainer={styles.button} title={t('common.done')} onPress={() => handleDone()} />
+            <BackHeader title={t('booking_results.title')} onPress={() => handleBack()} />
+
+            <AppView style={styles.contentContainer} center>
+                <Notice
+                    title={bookingHistory ? t('booking_results.success') : t('booking_results.error')}
+                    description={bookingHistory ? t('booking_results.desc') : t('booking_results.error_desc')}
+                />
+
+                <Space height={AppSpacing.LARGE} />
+
+                {bookingHistory && (
+                    <AppView horizontal>
+                        <AppView center style={styles.codeContainer}>
+                            <AppText style={styles.code}>{bookingHistory.code.toString()[0]}</AppText>
+                        </AppView>
+                        <Space width={AppSpacing.SMALL} />
+                        <AppView center style={styles.codeContainer}>
+                            <AppText style={styles.code}>{bookingHistory.code.toString()[1]}</AppText>
+                        </AppView>
+                        <Space width={AppSpacing.SMALL} />
+                        <AppView center style={styles.codeContainer}>
+                            <AppText style={styles.code}>{bookingHistory.code.toString()[2]}</AppText>
+                        </AppView>
+                    </AppView>
+                )}
+
+                {bookingHistory && (
+                    <>
+                        <Space height={AppSpacing.LARGE} />
+                        <AppText style={styles.note}>{t('booking_results.note')}</AppText>
+                    </>
+                )}
+            </AppView>
+
+            <PrimaryButton
+                style={styles.button}
+                title={bookingHistory ? t('common.done') : t('booking_results.book_again')}
+                onPress={() => handleDone()}
+            />
         </View>
     );
     function handleDone() {

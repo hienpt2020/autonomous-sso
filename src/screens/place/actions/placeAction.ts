@@ -22,12 +22,14 @@ export const bookPlace = async (workPlaceId: number, dateFrom: Date, dateTo: Dat
         store.dispatch(createRequestStartAction());
         const response: any = await HybridApi.bookPlace(workPlaceId, dateFrom, dateTo);
         const bookingHistoryResponse = response.data;
+        const bookingHisotry = new BookingHistory();
+        bookingHisotry.code = bookingHistoryResponse.code;
         store.dispatch(createRequestEndAction());
-        return new BookingHistory(bookingHistoryResponse);
+        return bookingHisotry;
     } catch (error) {
-        const message = _.get(error, 'debug', 'Something went wrong');
-        store.dispatch(createRequestErrorMessageAction(message));
         store.dispatch(createRequestEndAction());
+        // const message = _.get(error, 'debug', 'Something went wrong');
+        // store.dispatch(createRequestErrorMessageAction(message));
         return undefined;
     }
 };

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { AppFontSize, AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 
 export const styles = StyleSheet.create({
@@ -11,7 +12,22 @@ export const styles = StyleSheet.create({
         flexShrink: 1,
     },
     button: {
-        marginStart: 16,
-        marginEnd: 16,
+        margin: AppSpacing.LARGE,
+    },
+    title: {
+        marginStart: AppSpacing.LARGE,
+        marginEnd: AppSpacing.LARGE,
+    },
+    error: {
+        color: AppColor.RED_7,
+        marginStart: AppSpacing.LARGE,
+        marginEnd: AppSpacing.LARGE,
+        fontSize: AppFontSize.SIZE_12,
+        marginTop: AppSpacing.TINY,
+        marginBottom: AppSpacing.TINY,
+    },
+    input: {
+        marginStart: AppSpacing.LARGE,
+        marginEnd: AppSpacing.LARGE,
     },
 });

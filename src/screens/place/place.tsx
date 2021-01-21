@@ -3,13 +3,16 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StatusBar, Text, View, YellowBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useCode } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
+import { AppText, AppView, Divider, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { Chip } from 'src/components/chip';
 import { Device } from 'src/components/device';
 import { BackHeader } from 'src/components/header';
 import { ImageSlider } from 'src/components/images/images';
+import TimeSelect from 'src/components/timeSelect';
 import Asset from 'src/models/Asset';
 import Booking from 'src/models/Booking';
 import { BookingHistory } from 'src/models/BookingHistory';
@@ -18,6 +21,7 @@ import WorkPlace from 'src/models/WorkPlace';
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
+import { AppFontSize, AppSpacing } from 'src/styles';
 import { bookPlace, getPlaceDetail } from './actions/placeAction';
 import { styles } from './styles';
 import { Props } from './types';
@@ -28,10 +32,12 @@ YellowBox.ignoreWarnings([
 
 const BookingDetail = (props: Props) => {
     const { t } = useTranslation();
-    const imageHeight = 221;
+    const imageHeight = 264;
     const bookingHistory: BookingHistory | undefined = props.route.params.booking;
     const place: WorkPlace | undefined = props.route.params.place;
     const booking: Booking = useSelector((state: RootState) => state.booking.booking);
+    const from: Date = useSelector((state: RootState) => state.booking.booking.from);
+    const to: Date = useSelector((state: RootState) => state.booking.booking.to);
     const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
     const isAdmin: boolean = useSelector((state: RootState) => state.workspaceReducer.isAdmin);
     const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
@@ -56,14 +62,14 @@ const BookingDetail = (props: Props) => {
     };
 
     const _onPressBookPlace = async () => {
-        try {
-            if (place) {
-                const bookingHistory: BookingHistory = await bookPlace(place.id, booking.from, booking.to);
-                if (bookingHistory) {
-                    navigate(RouteName.BOOKING_RESULT, { booking: bookingHistory });
-                }
+        if (place) {
+            const bookingHistory: BookingHistory = await bookPlace(place.id, booking.from, booking.to);
+            if (bookingHistory) {
+                navigate(RouteName.BOOKING_RESULT, { booking: bookingHistory });
+            } else {
+                navigate(RouteName.BOOKING_RESULT, { booking: undefined });
             }
-        } catch (error) {}
+        }
     };
 
     const _onPressDevice = (item: Asset) => {
@@ -73,65 +79,92 @@ const BookingDetail = (props: Props) => {
     return (
         <View style={styles.container}>
             <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
-            <ScrollView style={styles.container}>
-                <ImageSlider
-                    containerStyle={{ marginBottom: 16 }}
-                    data={placeData ? placeData.imageUrls : []}
-                    height={imageHeight}
-                />
 
+            <BackHeader style={styles.header} lightContent title={''} onPress={() => handleBack()} />
+
+            <ImageSlider data={placeData ? placeData.imageUrls : []} height={imageHeight} />
+
+            <ScrollView>
                 {placeData && (
                     <>
-                        <Text style={styles.title}>{placeData.name}</Text>
-                        <Text style={styles.subTitle}>{workLayout.address}</Text>
-                        <Chip data={placeData.tags} containerStyle={styles.chip} />
+                        <AppView style={styles.infoContainer}>
+                            <AppText bold size={AppFontSize.SIZE_28}>
+                                {placeData.name}
+                            </AppText>
+                            <Space height={3} />
+                            <AppText>{'Autonomous HCM'}</AppText>
+                            <Space height={3} />
+                            <AppText>{workLayout.address}</AppText>
+                        </AppView>
+                        {placeData.tags.length > 0 && (
+                            <>
+                                <Divider />
+                                <Chip data={placeData.tags} />
+                            </>
+                        )}
+
+                        <Space height={AppSpacing.SMALL} />
                     </>
                 )}
 
                 {bookingHistory && (
                     <>
-                        <Text style={[styles.sectionTitle, { marginTop: 16 }]}>{t('common.code')}</Text>
+                        <AppView style={styles.codeContainer}>
+                            <Text style={[styles.codeTitle]}>{t('common.code')}</Text>
 
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Text
-                                style={{
-                                    borderRadius: 8,
-                                    borderWidth: 1,
-                                    borderColor: '#000',
-                                    padding: 8,
-                                    fontSize: 32,
-                                }}
-                            >
-                                {bookingHistory.code}
-                            </Text>
-                        </View>
+                            <AppView style={styles.codeLineContainer} horizontal alignItemsCenter>
+                                <AppText style={styles.codeDesc}>{t('place.code_desc')}</AppText>
+                                <Space width={AppSpacing.LARGE} />
+                                <AppView style={styles.codeNumberContainer} center horizontal>
+                                    <AppText style={styles.code}>{bookingHistory.code.toString()[0]}</AppText>
+                                </AppView>
+                                <Space width={4} />
+                                <AppView style={styles.codeNumberContainer} center horizontal>
+                                    <AppText style={styles.code}>{bookingHistory.code.toString()[1]}</AppText>
+                                </AppView>
+                                <Space width={4} />
+                                <AppView style={styles.codeNumberContainer} center horizontal>
+                                    <AppText style={styles.code}>{bookingHistory.code.toString()[2]}</AppText>
+                                </AppView>
+                            </AppView>
+                        </AppView>
+                        <Space height={AppSpacing.SMALL} />
                     </>
                 )}
 
                 {placeData && placeData.devices.length > 0 && (
                     <>
-                        <Text style={styles.sectionTitle}>{t('common.assets')}</Text>
                         <Device
                             data={placeData.devices}
-                            containerStyle={styles.list}
                             isConfig={isAdmin && !bookingHistory}
                             onPressDevice={_onPressDevice}
                         />
+                        <Space height={AppSpacing.SMALL} />
                     </>
                 )}
 
+                <TimeSelect
+                    title={t('place.time_title')}
+                    from={bookingHistory ? bookingHistory.timeFrom : from}
+                    to={bookingHistory ? bookingHistory.timeTo : to}
+                    isSelect={false}
+                />
+
+                <Space height={AppSpacing.SMALL} />
+
                 {workLayout && workLayout.policy ? (
-                    <>
-                        <Text style={styles.sectionTitle}>{t('common.policies')}</Text>
-                        <Text style={styles.sectionContent}>{workLayout.policy}</Text>
-                    </>
+                    <AppView style={styles.policyContainer}>
+                        <AppText style={styles.sectionTitle}>{t('common.policies')}</AppText>
+                        <AppText style={styles.sectionContent}>{workLayout.policy}</AppText>
+                    </AppView>
                 ) : null}
+
+                <PrimaryButton
+                    style={styles.button}
+                    onPress={_onPressBookPlace}
+                    title={t(bookingHistory ? 'booking_detail.cancel_booking' : 'place.book_place')}
+                />
             </ScrollView>
-            <PrimaryButton
-                onPress={_onPressBookPlace}
-                wrapperContainer={styles.button}
-                title={t(bookingHistory ? 'booking_detail.cancel_booking' : 'place.book_place')}
-            />
 
             <SafeAreaView style={styles.header}>
                 <BackHeader title={''} lightContent onPress={() => handleBack()} />

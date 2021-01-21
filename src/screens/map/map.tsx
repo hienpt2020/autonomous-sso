@@ -4,23 +4,27 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, TouchableWithoutFeedback, View } from 'react-native';
 import DatePicker from 'react-native-date-picker';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
 import BottomSheet from 'reanimated-bottom-sheet';
-import { BackHeader } from 'src/components/header';
+import { AppView, Space } from 'src/components';
+import { BackHeader, LargeHeader } from 'src/components/header';
+import LayoutInfo from 'src/components/layoutInfo';
 import { Link } from 'src/components/link';
+import TimeSelect from 'src/components/timeSelect';
+import Booking from 'src/models/Booking';
+import WorkLayout from 'src/models/WorkLayout';
 import WorkPlace from 'src/models/WorkPlace';
+import { setBookingDataAction } from 'src/redux/booking/bookingAction';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
+import { AppSpacing } from 'src/styles';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
 import { getAvailableWorkPlace } from './actions/mapAction';
 import { CardItem } from './card';
-import { IconButton } from './iconbutton';
 import { styles } from './styles';
 import { Props } from './types';
-import { setBookingDataAction } from 'src/redux/booking/bookingAction';
-import Booking from 'src/models/Booking';
 
 const Map = (props: Props) => {
     const FIXED_ITEM_HEIGHT = 140;
@@ -33,6 +37,7 @@ const Map = (props: Props) => {
     const tomorrow = new Date(today);
     tomorrow.setHours(tomorrow.getHours() + HOUR_GAP);
 
+    const map: WorkLayout = props.route.params.map;
     const { t } = useTranslation();
     const [date, setDate] = useState(today);
     const [dateFrom, setDateFrom] = useState(today);
@@ -51,19 +56,13 @@ const Map = (props: Props) => {
     const _getData = async (from: Date, to: Date) => {
         setIsLoading(true);
         try {
-            setWorkPlaces(
-                await getAvailableWorkPlace(
-                    props.route.params.floorId,
-                    moment(from).toISOString(),
-                    moment(to).toISOString(),
-                ),
-            );
+            setWorkPlaces(await getAvailableWorkPlace(map.id, moment(from).toISOString(), moment(to).toISOString()));
         } catch (error) {}
         setIsLoading(false);
     };
 
-    const renderItem = (data: WorkPlace) => {
-        return <CardItem cardData={data} onPress={() => onItemSelected(data)} />;
+    const renderItem = (data: WorkPlace, index: number) => {
+        return <CardItem cardData={data} index={index} onPress={() => onItemSelected(data)} />;
     };
 
     const getItemLayout = (data: any, index: any) => {
@@ -136,29 +135,53 @@ const Map = (props: Props) => {
     }
 
     return (
-        <View style={{ flex: 1 }}>
-            <SafeAreaView style={styles.container}>
-                <BackHeader title={props.route.params.floorName} onPress={() => handleBack()} />
-                <View style={styles.buttonContainer}>
-                    <IconButton title={moment(dateFrom).format(timeFormatter)} onPress={() => switchFromDate()} />
-                    <IconButton title={moment(dateTo).format(timeFormatter)} onPress={() => switchToDate()} />
-                </View>
-                {isLoading ? (
-                    <Loading />
-                ) : workPlaces.length > 0 ? (
-                    <FlatList
-                        data={workPlaces}
-                        style={{ paddingStart: 8, paddingEnd: 8 }}
-                        keyExtractor={(item, index) => `${item.id.toString()}${index}`}
-                        numColumns={NUM_COLUMNS}
-                        renderItem={({ item }) => renderItem(item)}
-                        getItemLayout={(data, index) => getItemLayout(data, index)}
-                    />
-                ) : (
-                    <Empty />
-                )}
-            </SafeAreaView>
+        <View style={styles.container}>
+            <BackHeader title={map.name} onPress={() => handleBack()} />
+
+            {isLoading ? (
+                <Loading />
+            ) : workPlaces.length > 0 ? (
+                <FlatList
+                    data={workPlaces}
+                    columnWrapperStyle={{
+                        justifyContent: 'space-between',
+                    }}
+                    contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24, flexGrow: 1 }}
+                    keyExtractor={(item, index) => `${item.id.toString()}${index}`}
+                    numColumns={NUM_COLUMNS}
+                    renderItem={({ item, index }) => renderItem(item, index)}
+                    // getItemLayout={(data, index) => getItemLayout(data, index)}
+                    ItemSeparatorComponent={() => <Space height={AppSpacing.MEDIUM} />}
+                    ListHeaderComponent={
+                        <AppView>
+                            <Space height={30} />
+
+                            <LayoutInfo workLayout={map} />
+
+                            <Space height={AppSpacing.LARGE} />
+
+                            <LargeHeader title={t('office.title')} subTitle={t('office.sub_title')} />
+
+                            <Space height={AppSpacing.LARGE} />
+
+                            <TimeSelect
+                                style={styles.timeSelect}
+                                from={dateFrom}
+                                to={dateTo}
+                                onPressFrom={() => switchFromDate()}
+                                onPressTo={() => switchToDate()}
+                            />
+
+                            <Space height={AppSpacing.LARGE} />
+                        </AppView>
+                    }
+                />
+            ) : (
+                <Empty />
+            )}
+
             {isBottomSheetShow ? renderOverlay() : null}
+
             <BottomSheet
                 ref={sheetRef}
                 snapPoints={[FIXED_DATE_TIME, 0, 0]}

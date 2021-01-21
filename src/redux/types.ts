@@ -1,3 +1,4 @@
+import { AppState } from './app/appType';
 import { BookingState } from './booking/bookingType';
 import { RequestState } from './request/requestType';
 import { UserState } from './user/userType';
@@ -10,6 +11,7 @@ export interface BaseState {
 }
 
 export interface RootState {
+    appReducer: AppState;
     requestReducer: RequestState;
     userReducer: UserState;
     booking: BookingState;

@@ -1,1 +1,1 @@
-export { Header, BackHeader, BackHeaderX } from './header';
+export { LargeHeader, BackHeader, BackHeaderX, Header } from './header';

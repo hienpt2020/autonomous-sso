@@ -3,30 +3,38 @@ import { RouteName } from './routeName';
 import { BookingHistory } from 'src/models/BookingHistory';
 import WorkPlace from 'src/models/WorkPlace';
 import Device from '../models/Device';
+import WorkLayout from 'src/models/WorkLayout';
 
 export type RootStackParams = {
+    [RouteName.LOGIN]: undefined;
     [RouteName.INTRO]: undefined;
     [RouteName.FORGOT_PASSWORD]: undefined;
     [RouteName.RESET_PASSWORD]: undefined;
-    [RouteName.LOGIN]: undefined;
     [RouteName.REGISTER]: undefined;
     [RouteName.JOINING]: { workspace: string };
     [RouteName.HOME]: undefined;
-    [RouteName.MAP]: { floorId: number; floorName: string };
-    [RouteName.BOOKING_RESULT]: { booking: BookingHistory };
+    [RouteName.MAP]: { map: WorkLayout };
+    [RouteName.BOOKING_RESULT]: { booking?: BookingHistory; error?: string };
     [RouteName.SEAT_ADMIN]: undefined;
     [RouteName.CONFIGURATION_STEP1]: undefined;
     [RouteName.CONFIGURATION_STEP2]: undefined;
     [RouteName.CONFIGURATION_RESULT]: undefined;
-    [RouteName.BOOKING_HISTORY]: undefined;
+    [RouteName.BOOKING_HISTORY]: { isUpcoming: boolean };
     [RouteName.PLACE_DETAIL]: { booking?: BookingHistory; place?: WorkPlace };
     [RouteName.SWITCH_WORKSPACE]: undefined;
     [RouteName.DEEPLINK_REGISTER]: undefined;
+    [RouteName.ACTIVITIES]: undefined;
     [RouteName.CONTROL]: { device?: Device };
+    [RouteName.NEW_PASSWORD]: undefined;
+    [RouteName.WEBPAGE]: { url: string };
 };
 export type RootStackParamType = keyof RootStackParams;
 
 export const publicRoutes: RouteProps[] = [
+    {
+        name: RouteName.LOGIN,
+        component: require('src/screens/login').default,
+    },
     {
         name: RouteName.INTRO,
         component: require('src/screens/intro').default,
@@ -44,16 +52,16 @@ export const publicRoutes: RouteProps[] = [
         component: require('src/screens/forgot-password').default,
     },
     {
-        name: RouteName.LOGIN,
-        component: require('src/screens/login').default,
-    },
-    {
         name: RouteName.REGISTER,
         component: require('src/screens/register').default,
     },
     {
         name: RouteName.DEEPLINK_REGISTER,
         component: require('src/screens/redirect-register').default,
+    },
+    {
+        name: RouteName.WEBPAGE,
+        component: require('src/screens/webpage').default,
     },
 ];
 
@@ -95,7 +103,19 @@ export const authenticatedRoutes: RouteProps[] = [
         component: require('src/screens/map').default,
     },
     {
+        name: RouteName.ACTIVITIES,
+        component: require('src/screens/activities').default,
+    },
+    {
         name: RouteName.CONTROL,
         component: require('src/screens/control').default,
+    },
+    {
+        name: RouteName.NEW_PASSWORD,
+        component: require('src/screens/new-password').default,
+    },
+    {
+        name: RouteName.WEBPAGE,
+        component: require('src/screens/webpage').default,
     },
 ];

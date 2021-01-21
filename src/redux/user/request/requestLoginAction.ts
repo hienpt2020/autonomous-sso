@@ -18,7 +18,7 @@ export function* requestLoginAction(action: any) {
         NetworkingConfig.putCommonHeaderWithToken(token);
         yield call(fetchUserData);
     } else {
-        const message = _.get(error, 'errorMessage', i18next.t('common.error'));
+        const message = _.get(error, 'errorMessage', i18next.t('common.error_message'));
         yield put(createRequestErrorMessageAction(message));
     }
     yield put(createRequestEndAction());

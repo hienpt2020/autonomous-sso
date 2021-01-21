@@ -44,11 +44,11 @@ export function* validateUserToken(action: any) {
             NetworkingConfig.putCommonHeaderWithToken(token);
             yield call(fetchUserData);
         } else {
-            const message = i18next.t('common.error');
+            const message = i18next.t('common.error_message');
             yield put(createRequestErrorMessageAction(message));
         }
     } else {
-        navigate(RouteName.INTRO, {});
+        navigate(RouteName.LOGIN, {});
     }
     yield put(createRequestEndAction());
 }

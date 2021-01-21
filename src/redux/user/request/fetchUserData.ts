@@ -16,7 +16,7 @@ function* fetchUserProfile() {
         userProfile.isValidToken = true;
         yield put(createSetUserProfileAction(userProfile));
     } else {
-        const message = _.get(error, 'errorMessage', i18next.t('common.error'));
+        const message = _.get(error, 'errorMessage', i18next.t('common.error_message'));
         yield put(createRequestErrorMessageAction(message));
     }
 }
@@ -28,7 +28,7 @@ function* fetchUserWorkspace() {
         yield put(createActionSetWorkSpace(userWorkspace));
     } else {
         // TODO handle current user are'nt belong to any WS
-        const message = _.get(error, 'errorMessage', i18next.t('common.error'));
+        const message = _.get(error, 'errorMessage', i18next.t('common.error_message'));
         //yield put(createRequestErrorMessageAction(message));
     }
 }

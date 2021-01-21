@@ -5,6 +5,8 @@ import { styles } from './styles';
 import { Props } from './types';
 import FastImage from 'react-native-fast-image';
 import { getImage } from 'src/helpers/imageHelper';
+import AppView from '../view';
+import AppText from '../text';
 
 export const ImageSlider = (props: Props) => {
     const [index, setIndex] = useState(0);
@@ -43,7 +45,6 @@ export const ImageSlider = (props: Props) => {
         return (
             <View>
                 <FastImage style={styles.image} source={getImage(data)} resizeMode="cover" />
-                <Image style={styles.coverImage} source={require('src/assets/images/image-hover-background.png')} />
             </View>
         );
     };
@@ -65,10 +66,12 @@ export const ImageSlider = (props: Props) => {
                 renderItem('')
             )}
             {props.data.length > 0 && (
-                <Text style={styles.sliderTitle}>
-                    ({index + 1}/{props.data.length})
-                </Text>
+                <AppView style={styles.sliderTitleContainer} center>
+                    <AppText style={styles.sliderTitle}>{index + 1 + '/' + props.data.length}</AppText>
+                </AppView>
             )}
+            {/* <Image style={styles.coverImage} source={require('src/assets/images/image-hover-background.png')} /> */}
+            {/* <View style={styles.coverImage} /> */}
         </View>
     );
 };
