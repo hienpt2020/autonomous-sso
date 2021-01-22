@@ -39,7 +39,7 @@ export class ParserImpl implements IParser {
         result.status = _.get(responseData, 'status');
         result.members = _.get(responseData, 'members');
         result.roleByCurrentUser = _.get(responseData, 'role_by_current_user');
-        result.isAdmin = true;
+        result.isAdmin = ROLES.ADMIN == _.get(responseData, 'role_by_current_user');
 
         return result;
     }
