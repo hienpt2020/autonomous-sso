@@ -6,8 +6,8 @@ import WorkPlace from 'src/models/WorkPlace';
 import { BookingHistory } from 'src/models/BookingHistory';
 import { parseMapAddress } from './locationHelper';
 import Asset from 'src/models/Asset';
-import moment from 'moment';
-import Device from '../models/Device';
+import Device from 'src/models/Device';
+import { ROLES } from 'src/common/constant';
 
 export class ParserImpl implements IParser {
     parseUser(responseData: any): User {
