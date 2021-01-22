@@ -1,45 +1,23 @@
 import { StyleSheet } from 'react-native';
+import { AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 
 export default StyleSheet.create({
-    popup: {
+    container: {
         position: 'absolute',
-        flex: 1,
-        backgroundColor: AppColor.ALPHA_40,
-        width: '100%',
-        height: '100%',
+        left: 0,
+        bottom: 0,
+        top: 0,
+        right: 0,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: AppColor.ALPHA_40,
     },
-    text: {
-        color: AppColor.PRIMARY,
-    },
-    textButton: {
-        color: AppColor.WHITE,
-    },
-    container: {
+    popup: {
         backgroundColor: AppColor.WHITE,
-        margin: 20,
-        borderRadius: 20,
-        padding: 32,
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+        width: 311,
+        paddingHorizontal: AppSpacing.MEDIUM + 2,
+        paddingVertical: AppSpacing.LARGE,
     },
-    button: {
-        backgroundColor: AppColor.PRIMARY,
-        marginTop: 32,
-        borderRadius: 20,
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingStart: 16,
-        paddingEnd: 16,
-        elevation: 2,
-    },
+    buttonContainer: { width: '100%' },
 });

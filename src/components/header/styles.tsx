@@ -1,12 +1,22 @@
 import { StyleSheet } from 'react-native';
+import { AppColor } from 'src/styles';
 
 export const styles = StyleSheet.create({
     container: {
-        padding: 16,
+        height: 44,
+        paddingHorizontal: 20,
+    },
+    buttonContainer: {
+        width: '30%',
+    },
+    safeView: {
+        // backgroundColor: AppColor.WHITE,
+    },
+    headerSafeView: {
+        backgroundColor: AppColor.WHITE,
     },
     withBack: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     space: {
         marginTop: 16,
@@ -16,6 +26,9 @@ export const styles = StyleSheet.create({
         marginStart: 16,
     },
     titleX: {
-        fontSize: 48,
+        fontWeight: '500',
+    },
+    subTitle: {
+        fontWeight: '500',
     },
 });

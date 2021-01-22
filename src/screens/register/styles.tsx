@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 
 export const styles = StyleSheet.create({
@@ -8,20 +9,27 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     wrap: {
-        margin: 16,
+        margin: AppSpacing.MEDIUM,
     },
     term: {
         flexShrink: 1,
-        padding: 16,
+        padding: AppSpacing.MEDIUM,
     },
     link: {
         flexShrink: 1,
         fontWeight: 'bold',
         textDecorationLine: 'underline',
     },
+    title: {
+        marginStart: AppSpacing.LARGE,
+        marginEnd: AppSpacing.LARGE,
+    },
+    input: {
+        marginStart: AppSpacing.LARGE,
+        marginEnd: AppSpacing.LARGE,
+        color: AppColor.DARK_GREY_1,
+    },
     button: {
-        marginStart: 16,
-        backgroundColor: '#f00',
-        marginEnd: 16,
+        margin: AppSpacing.LARGE,
     },
 });

@@ -71,6 +71,10 @@ const bookPlace = (workPlaceId: number, dateFrom: Date, dateTo: Date) => {
     });
 };
 
+const cancelBooking = async (bookId: number) => {
+    return _put(baseURL + '/working-place-booking/cancel/' + bookId, {});
+};
+
 export const HybridApi = {
     getListWorkspace,
     getListWorkingLayout,
@@ -79,4 +83,5 @@ export const HybridApi = {
     getBookingHistory,
     getPlaceDetail,
     bookPlace,
+    cancelBooking,
 };

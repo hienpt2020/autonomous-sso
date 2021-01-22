@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 import com.android.build.OutputFile
 
@@ -155,7 +156,7 @@ android {
             keyPassword "autonomousdev2020"
         }
         release {
-            storeFile project.hasProperty('storeFile') ? file(project.storeFile) : "autonomous-mobile.keystore"
+            storeFile project.hasProperty('storeFile') ? file(project.storeFile) : file("autonomous-mobile.keystore")
             storePassword project.hasProperty('password') ? project.password : "autonomousdev2020" 
             keyAlias project.hasProperty('keyAlias') ? project.keyAlias : "Autonomous Mobile" 
             keyPassword project.hasProperty('password') ? project.password : "autonomousdev2020" 

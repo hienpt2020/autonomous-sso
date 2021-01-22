@@ -1,48 +1,34 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { AppFontSize, AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: AppColor.WHITE,
+        backgroundColor: AppColor.BACKGROUND,
+    },
+    contentContainer: {
+        flex: 1,
     },
     button: {
-        bottom: 16,
-        start: 16,
-        end: 16,
-        position: 'absolute',
+        marginHorizontal: AppSpacing.LARGE,
+        marginBottom: 44,
+        marginTop: AppSpacing.LARGE,
     },
-    title: {
-        fontSize: 42,
-        marginStart: 16,
-        marginEnd: 16,
-        marginTop: 16,
-        color: AppColor.PRIMARY,
-    },
-    subTitle: {
-        fontSize: 20,
-        marginStart: 32,
-        marginEnd: 32,
-        textAlign: 'center',
-        marginTop: 8,
-        color: AppColor.LIGHT,
+    codeContainer: {
+        width: 64,
+        height: 70,
+        backgroundColor: '#DDDDDD',
+        borderRadius: 16,
     },
     code: {
-        fontSize: 63,
-        marginStart: 32,
-        marginEnd: 32,
-        textAlign: 'center',
-        marginTop: 64,
-        color: AppColor.PRIMARY,
+        fontSize: AppFontSize.SIZE_36,
+        fontWeight: '500',
+        color: '#555555',
     },
-    sectionTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginStart: 16,
-        marginEnd: 16,
-        marginTop: 32,
-        color: AppColor.PRIMARY,
+    note: {
+        fontSize: AppFontSize.SIZE_11,
+        color: AppColor.ORANGE_1,
+        textAlign: 'center',
     },
 });

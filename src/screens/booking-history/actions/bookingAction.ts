@@ -12,7 +12,8 @@ export const getBookingHistory = async (isAdmin: boolean, workingSpaceId: number
             return parser.parseBookingHistory(booking);
         });
 
-        return bookingDatas;
+        // TODO
+        return bookingDatas.reverse();
     } catch (error) {
         return [];
     }

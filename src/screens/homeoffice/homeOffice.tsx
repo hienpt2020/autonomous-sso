@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlatList, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { Header } from 'src/components/header';
+import { AppView, Space } from 'src/components';
+import { Header, LargeHeader } from 'src/components/header';
+import { BookingHistory } from 'src/models/BookingHistory';
 import WorkLayout from 'src/models/WorkLayout';
+import { getBookingHistoryAction } from 'src/redux/booking-history/bookingHistoryAction';
 import { setWorkLayoutAction } from 'src/redux/booking/bookingAction';
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
-import { Empty } from '../../components/empty';
-import { Loading } from '../../components/loading/loading';
+import { AppSpacing } from 'src/styles';
 import { getWorkLayout } from './actions/homeAction';
 import { CardItem } from './card';
 import FloatingButton from './floatingButton';
+import ListUpcoming from './list-upcoming/listUpcoming';
 import { styles } from './styles';
 import { Props } from './types';
 
@@ -23,6 +25,15 @@ const Office = (props: Props) => {
     const [workLayouts, setWorkLayouts] = useState<WorkLayout[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const dispatch = useDispatch();
+    const workingSpaceId = useSelector((state: RootState) => state.workspaceReducer.id);
+    const inComingBookings: BookingHistory[] = useSelector(
+        (state: RootState) => state.bookingHistoryReducer.upComingBookings.items,
+    );
+
+    useEffect(() => {
+        // TODO: admin????
+        dispatch(getBookingHistoryAction(false, workingSpaceId, 0));
+    }, []);
 
     useEffect(() => {
         setIsLoading(true);
@@ -50,25 +61,58 @@ const Office = (props: Props) => {
 
     const _onItemSelected = (data: WorkLayout) => {
         dispatch(setWorkLayoutAction(data));
-        props.navigation.navigate(RouteName.MAP, { floorId: data.id, floorName: data.name });
+        props.navigation.navigate(RouteName.MAP, { map: data });
     };
     return (
-        <SafeAreaView style={styles.container}>
-            <Header title={t('office.title')} />
+        <View style={styles.container}>
+            <Header title={'Booking'} />
 
-            {isLoading ? (
+            {/* <Button
+                title={'Test'}
+                onPress={() => {
+                    showPopup('Sucess', 'bbsdfasdfsdafaksfhsdkfhjksfhjksdhjkb', null, [
+                        {
+                            onPress: () => {
+                                reactotron.log('aa');
+                            },
+                            title: 'Ok',
+                        },rr
+                        {
+                            onPress: () => {
+                                reactotron.log('bb');
+                            },
+                            title: 'Cancel',
+                            style: 'negative',
+                        },
+                    ]);
+                }}
+            /> */}
+
+            {/* {isLoading ? (
                 <Loading />
-            ) : workLayouts.length > 0 ? (
-                <FlatList
-                    data={workLayouts}
-                    renderItem={({ item }) => renderItem(item)}
-                    keyExtractor={(item) => item.id + ''}
-                />
-            ) : (
+            ) : workLayouts.length > 0 ? ( */}
+            <FlatList
+                contentContainerStyle={styles.list}
+                data={workLayouts}
+                renderItem={({ item }) => renderItem(item)}
+                keyExtractor={(item) => item.id + ''}
+                ItemSeparatorComponent={() => <Space height={AppSpacing.LARGE} />}
+                ListHeaderComponent={() => (
+                    <AppView>
+                        <Space height={AppSpacing.LARGE} />
+
+                        {inComingBookings.length > 0 && <ListUpcoming data={inComingBookings} />}
+
+                        <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
+                        <Space height={AppSpacing.LARGE} />
+                    </AppView>
+                )}
+            />
+            {/* ) : (
                 <Empty />
-            )}
-            {_renderFloatingButton()}
-        </SafeAreaView>
+            )} */}
+            {/* {_renderFloatingButton()} */}
+        </View>
     );
 };
 

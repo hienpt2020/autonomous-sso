@@ -4,6 +4,7 @@ export default class WorkLayout {
     address: string;
     image: string;
     policy: string;
+    placeAvailable: number;
 
     constructor() {
         this.id = 0;
@@ -11,5 +12,6 @@ export default class WorkLayout {
         this.address = '';
         this.image = '';
         this.policy = '';
+        this.placeAvailable = 100;
     }
 }

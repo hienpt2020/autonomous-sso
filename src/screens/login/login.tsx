@@ -1,19 +1,23 @@
 import * as React from 'react';
-import { View, KeyboardAvoidingView, Platform } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { PrimaryButton } from 'src/components/button';
-import { PrimaryInput } from 'src/components/input';
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
+import { Divider } from 'react-native-elements';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux';
+import FacebookIcon from 'src/assets/images/icon_facebook_white.svg';
+import GoogleIcon from 'src/assets/images/icon_google_white.svg';
+import { AppText, Space } from 'src/components';
+import { SocialButton, PrimaryButton } from 'src/components/button';
+import { LargeHeader } from 'src/components/header';
+import { PasswordInput, PrimaryInput } from 'src/components/input';
 import { Link } from 'src/components/link';
-import { BackHeaderX } from 'src/components/header';
+import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
 import { createRequestLoginAction } from 'src/redux/user/';
-import { LoginProps } from './types';
-import { Validator, EmailValidator, PasswordValidator } from 'src/helpers/validators';
-import { styles } from './styles';
 import { RouteName } from 'src/routers/routeName';
-import { navigate } from 'src/routers/rootNavigation';
+import { AppSpacing } from 'src/styles';
+import { styles } from './styles';
+import { LoginProps } from './types';
 
 const Login = (props: LoginProps) => {
     const { t } = useTranslation();
@@ -24,43 +28,84 @@ const Login = (props: LoginProps) => {
     const [passwordError, setPasswordError] = useState('');
     const emailValidator: Validator = new EmailValidator();
     const passwordValidator: Validator = new PasswordValidator();
+    const [isValidRequest, setIsValidRequest] = useState(false);
 
     return (
         <SafeAreaView style={styles.container}>
-            <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-                <BackHeaderX title={t('common.login')} onPress={() => handleBack()} />
-                <View style={{ flex: 1 }} />
-                <PrimaryInput
-                    placeholder={t('common.email')}
-                    onChangeText={(text) => {
-                        setEmail(text);
-                        setEmailError('');
-                    }}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    errorMessage={emailError}
-                />
-                <PrimaryInput
-                    placeholder={t('common.password')}
-                    onChangeText={(text) => {
-                        setPasswordError('');
-                        setPassword(text);
-                    }}
-                    secureTextEntry={true}
-                    errorMessage={passwordError}
-                />
-                <Link title={t('common.forgot_password')} onPress={() => handleForgotPassword()} style={styles.link} />
-                <PrimaryButton
-                    title={t('common.login')}
-                    wrapperContainer={styles.button}
+            <LargeHeader title={t('login.title')} style={styles.title} />
+            <Space height={AppSpacing.LARGE} />
+            <PrimaryInput
+                placeholder={t('common.email')}
+                renderErrorMessage={emailError !== ''}
+                style={styles.input}
+                onChangeText={(text) => {
+                    setEmail(text);
+                    setEmailError('');
+                    validateButtonLogin(text, password);
+                }}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                errorMessage={emailError}
+                constainError={true}
+            />
+            <PasswordInput
+                renderErrorMessage={passwordError !== ''}
+                style={styles.input}
+                placeholder={t('common.password')}
+                onChangeText={(text) => {
+                    setPasswordError('');
+                    setPassword(text);
+                    validateButtonLogin(email, text);
+                }}
+                errorMessage={passwordError}
+                constainError={true}
+            />
+            <PrimaryButton
+                title={t('common.login')}
+                containerStyle={styles.button}
+                onPress={() => validateLogin()}
+                disabled={!isValidRequest}
+            />
+            <Space height={AppSpacing.MEDIUM} />
+            <Link title={t('login.forgot_password')} onPress={() => handleForgotPassword()} style={styles.link} />
+            <Space height={AppSpacing.MEDIUM} />
+            <View style={{ flex: 1 }}>
+                <Space height={AppSpacing.MEDIUM} />
+                <View style={styles.dividerContainer}>
+                    <Divider style={styles.divider} />
+                    <AppText children={t('login.or_log_in_instantly')} style={styles.dividerText} />
+                    <Divider style={styles.divider} />
+                </View>
+                <Space height={AppSpacing.MEDIUM} />
+                <SocialButton
+                    icon={<GoogleIcon />}
+                    title={t('login.login_with_google')}
+                    style={styles.googleButton}
                     onPress={() => validateLogin()}
                 />
-                <View style={{ flex: 3 }} />
-            </KeyboardAvoidingView>
+                <Space height={AppSpacing.MEDIUM} />
+                <SocialButton
+                    icon={<FacebookIcon />}
+                    title={t('login.login_with_facebook')}
+                    style={styles.facebookButton}
+                    onPress={() => validateLogin()}
+                />
+                <Space flex={1} />
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <AppText children={t('login.dont_have_account')} />
+                    <Link title={t('login.create_account')} onPress={handleCreateAccount} />
+                </View>
+                <Space height={AppSpacing.LARGE} />
+            </View>
         </SafeAreaView>
     );
-    function handleBack() {
-        props.navigation.goBack();
+    function validateButtonLogin(email: string, password: string) {
+        const validRequest = emailValidator.isValid(email) && passwordValidator.isValid(password);
+        setIsValidRequest(validRequest);
+    }
+
+    function handleCreateAccount() {
+        props.navigation.navigate(RouteName.REGISTER);
     }
     function validateLogin() {
         let validEmail,
@@ -69,13 +114,13 @@ const Login = (props: LoginProps) => {
             validEmail = true;
             setEmailError(t(''));
         } else {
-            setEmailError(t('login.email_invalid'));
+            setEmailError(t('common.email_invalid'));
         }
         if (passwordValidator.isValid(password)) {
             validPassword = true;
             setPasswordError(t(''));
         } else {
-            setPasswordError(t('login.password_require'));
+            setPasswordError(t('common.password_require'));
         }
 
         if (validEmail && validPassword) {

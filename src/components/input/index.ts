@@ -1,1 +1,1 @@
-export { PrimaryInput } from './input';
+export { PrimaryInput, PasswordInput } from './input';

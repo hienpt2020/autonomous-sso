@@ -13,15 +13,31 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1EA4088FEECA46E98A25FC13 /* CentraNo2-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B977E5E7303243C98414B1B6 /* CentraNo2-Thin.ttf */; };
 		226C903025B39F7100012A41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 226C902F25B39F7100012A41 /* GoogleService-Info.plist */; };
+		2342CE448159474B89E80B09 /* CentraNo2-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D4501454D6342D3A13A56EB /* CentraNo2-Hairline.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* RNCodebaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RNCodebaseTests.m */; };
+		303423E781CC4C51BBBE2341 /* CentraNo2-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D974960FA91D4102A6D8C5D5 /* CentraNo2-BlackItalic.ttf */; };
+		303692DE24B2493F8C95954F /* CentraNo2-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5449FF78A3EB4FBC9B2A11F1 /* CentraNo2-HairlineItalic.ttf */; };
+		561AD41DB2384586AB889490 /* CentraNo2-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 372623B596684A95809030AB /* CentraNo2-ThinItalic.ttf */; };
+		61A1B4F1BDDF492EB4D91675 /* CentraNo2-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F7E7042411B456D92979B4B /* CentraNo2-BoldItalic.ttf */; };
+		6755267116774CECA208ED57 /* CentraNo2-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62FEB39E61EB41BC83D5DE6D /* CentraNo2-LightItalic.ttf */; };
 		67E380810363269300B4A3EB /* libPods-RNCodebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 825698C36D6DA2E81CD71EBA /* libPods-RNCodebase.a */; };
+		6D4F277649194741AC75ADBC /* CentraNo2-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 792CCB273A8540C79CD3FD4D /* CentraNo2-Light.ttf */; };
+		730C22F107BC4080ACEAA6F7 /* CentraNo2-Extrabold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCB6A72A8AE0424489C29620 /* CentraNo2-Extrabold.ttf */; };
 		7CC6D792C686D0EA728E4E83 /* libPods-RNCodebase-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B34A34C5399DB6DBE7DE41 /* libPods-RNCodebase-tvOS.a */; };
+		A2FFADB64A924CE98D022156 /* CentraNo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B4BFE1C945549A590BD1A16 /* CentraNo2-Bold.ttf */; };
 		A7F66218C3A5C7115A4CDC11 /* libPods-RNCodebase-RNCodebaseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF15ACE73121FCB02C546C6D /* libPods-RNCodebase-RNCodebaseTests.a */; };
 		AD9EAB1B25A3D663005F6E1C /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9EAB1A25A3D663005F6E1C /* libRNSVG.a */; };
+		AF34B7BC45984DAEBABD98DE /* CentraNo2-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 886B290B7634465894C82207 /* CentraNo2-MediumItalic.ttf */; };
+		BEF989D8101E404AB269C8E9 /* CentraNo2-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D5D3139620A45ECA0EEDBAD /* CentraNo2-Black.ttf */; };
+		CCFE8C44200A48F9807690FE /* CentraNo2-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A72E1996EB54358B25F2D9B /* CentraNo2-Book.ttf */; };
+		D84CB2BAFCFB4492865E5C87 /* CentraNo2-BookItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 502549B490A6482C8CD0A96E /* CentraNo2-BookItalic.ttf */; };
+		E888F7855B5E4FFFB6E0432D /* CentraNo2-ExtraboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5627C01E5279459EBF50E40B /* CentraNo2-ExtraboldItalic.ttf */; };
+		EEDA8FEA6906419DA3E1F500 /* CentraNo2-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8CE320008464196386BC6 /* CentraNo2-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +63,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* RNCodebaseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNCodebaseTests.m; sourceTree = "<group>"; };
 		01EDE435B8CD3FC0FFD45D66 /* Pods-RNCodebase-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-RNCodebase-tvOSTests/Pods-RNCodebase-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0D5D3139620A45ECA0EEDBAD /* CentraNo2-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Black.ttf"; path = "../src/assets/fonts/CentraNo2-Black.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* RNCodebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNCodebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = RNCodebase/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = RNCodebase/AppDelegate.m; sourceTree = "<group>"; };
@@ -56,18 +73,33 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RNCodebase/main.m; sourceTree = "<group>"; };
 		226C902F25B39F7100012A41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		274DB8A5836E177E1B4CA21E /* Pods-RNCodebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase.debug.xcconfig"; path = "Target Support Files/Pods-RNCodebase/Pods-RNCodebase.debug.xcconfig"; sourceTree = "<group>"; };
+		2B4BFE1C945549A590BD1A16 /* CentraNo2-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Bold.ttf"; path = "../src/assets/fonts/CentraNo2-Bold.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* RNCodebase-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RNCodebase-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* RNCodebase-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RNCodebase-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		372623B596684A95809030AB /* CentraNo2-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-ThinItalic.ttf"; path = "../src/assets/fonts/CentraNo2-ThinItalic.ttf"; sourceTree = "<group>"; };
+		3EC8CE320008464196386BC6 /* CentraNo2-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Medium.ttf"; path = "../src/assets/fonts/CentraNo2-Medium.ttf"; sourceTree = "<group>"; };
+		502549B490A6482C8CD0A96E /* CentraNo2-BookItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-BookItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BookItalic.ttf"; sourceTree = "<group>"; };
+		5449FF78A3EB4FBC9B2A11F1 /* CentraNo2-HairlineItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-HairlineItalic.ttf"; path = "../src/assets/fonts/CentraNo2-HairlineItalic.ttf"; sourceTree = "<group>"; };
+		5627C01E5279459EBF50E40B /* CentraNo2-ExtraboldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-ExtraboldItalic.ttf"; path = "../src/assets/fonts/CentraNo2-ExtraboldItalic.ttf"; sourceTree = "<group>"; };
+		62FEB39E61EB41BC83D5DE6D /* CentraNo2-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-LightItalic.ttf"; path = "../src/assets/fonts/CentraNo2-LightItalic.ttf"; sourceTree = "<group>"; };
+		6A72E1996EB54358B25F2D9B /* CentraNo2-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Book.ttf"; path = "../src/assets/fonts/CentraNo2-Book.ttf"; sourceTree = "<group>"; };
+		6D4501454D6342D3A13A56EB /* CentraNo2-Hairline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Hairline.ttf"; path = "../src/assets/fonts/CentraNo2-Hairline.ttf"; sourceTree = "<group>"; };
+		6F7E7042411B456D92979B4B /* CentraNo2-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-BoldItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BoldItalic.ttf"; sourceTree = "<group>"; };
+		792CCB273A8540C79CD3FD4D /* CentraNo2-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Light.ttf"; path = "../src/assets/fonts/CentraNo2-Light.ttf"; sourceTree = "<group>"; };
 		7A77C594247A80DD8A1DD9D3 /* Pods-RNCodebase-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-RNCodebase-tvOS/Pods-RNCodebase-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		825698C36D6DA2E81CD71EBA /* libPods-RNCodebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCodebase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		886B290B7634465894C82207 /* CentraNo2-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-MediumItalic.ttf"; path = "../src/assets/fonts/CentraNo2-MediumItalic.ttf"; sourceTree = "<group>"; };
 		8D73C595C7387FB95CB6E32E /* Pods-RNCodebase-RNCodebaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-RNCodebaseTests.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase-RNCodebaseTests/Pods-RNCodebase-RNCodebaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		9223E6F09CC0AE45680D13B2 /* Pods-RNCodebase-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-tvOS.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase-tvOS/Pods-RNCodebase-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		AD4B947D25AD1521001E78BE /* RNCodebase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = RNCodebase.entitlements; path = RNCodebase/RNCodebase.entitlements; sourceTree = "<group>"; };
 		AD9EAB1A25A3D663005F6E1C /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNSVG.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B977E5E7303243C98414B1B6 /* CentraNo2-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Thin.ttf"; path = "../src/assets/fonts/CentraNo2-Thin.ttf"; sourceTree = "<group>"; };
 		BA10D85B670632C3067AC600 /* Pods-RNCodebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase/Pods-RNCodebase.release.xcconfig"; sourceTree = "<group>"; };
 		BA8703EEC1FD20E461FCB41D /* Pods-RNCodebase-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase-tvOSTests/Pods-RNCodebase-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		BCB6A72A8AE0424489C29620 /* CentraNo2-Extrabold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Extrabold.ttf"; path = "../src/assets/fonts/CentraNo2-Extrabold.ttf"; sourceTree = "<group>"; };
 		BF15ACE73121FCB02C546C6D /* libPods-RNCodebase-RNCodebaseTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCodebase-RNCodebaseTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFA72B9CDE3A58ED9C9D7536 /* Pods-RNCodebase-RNCodebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-RNCodebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-RNCodebase-RNCodebaseTests/Pods-RNCodebase-RNCodebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D974960FA91D4102A6D8C5D5 /* CentraNo2-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-BlackItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BlackItalic.ttf"; sourceTree = "<group>"; };
 		E3C37004248811B34B32080B /* libPods-RNCodebase-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCodebase-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -189,6 +221,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				67F40AF5D60A0C3BB3CEF358 /* Pods */,
+				8FC8C756E060435DBAC451FE /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -204,6 +237,30 @@
 				2D02E4901E0B4A5D006451C7 /* RNCodebase-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8FC8C756E060435DBAC451FE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0D5D3139620A45ECA0EEDBAD /* CentraNo2-Black.ttf */,
+				D974960FA91D4102A6D8C5D5 /* CentraNo2-BlackItalic.ttf */,
+				2B4BFE1C945549A590BD1A16 /* CentraNo2-Bold.ttf */,
+				6F7E7042411B456D92979B4B /* CentraNo2-BoldItalic.ttf */,
+				6A72E1996EB54358B25F2D9B /* CentraNo2-Book.ttf */,
+				502549B490A6482C8CD0A96E /* CentraNo2-BookItalic.ttf */,
+				BCB6A72A8AE0424489C29620 /* CentraNo2-Extrabold.ttf */,
+				5627C01E5279459EBF50E40B /* CentraNo2-ExtraboldItalic.ttf */,
+				6D4501454D6342D3A13A56EB /* CentraNo2-Hairline.ttf */,
+				5449FF78A3EB4FBC9B2A11F1 /* CentraNo2-HairlineItalic.ttf */,
+				792CCB273A8540C79CD3FD4D /* CentraNo2-Light.ttf */,
+				62FEB39E61EB41BC83D5DE6D /* CentraNo2-LightItalic.ttf */,
+				3EC8CE320008464196386BC6 /* CentraNo2-Medium.ttf */,
+				886B290B7634465894C82207 /* CentraNo2-MediumItalic.ttf */,
+				B977E5E7303243C98414B1B6 /* CentraNo2-Thin.ttf */,
+				372623B596684A95809030AB /* CentraNo2-ThinItalic.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +298,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				34CBFCB2F11225D0892993F0 /* [CP] Copy Pods Resources */,
 				814A9A8D5C7281D22B172274 /* [CP-User] [RNFB] Core Configuration */,
+				FE396A62DAB54AE28E7DC6AE /* [CP-User] [RNFB] Crashlytics Configuration */,
 			);
 			buildRules = (
 			);
@@ -352,6 +410,22 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				226C903025B39F7100012A41 /* GoogleService-Info.plist in Resources */,
+				BEF989D8101E404AB269C8E9 /* CentraNo2-Black.ttf in Resources */,
+				303423E781CC4C51BBBE2341 /* CentraNo2-BlackItalic.ttf in Resources */,
+				A2FFADB64A924CE98D022156 /* CentraNo2-Bold.ttf in Resources */,
+				61A1B4F1BDDF492EB4D91675 /* CentraNo2-BoldItalic.ttf in Resources */,
+				CCFE8C44200A48F9807690FE /* CentraNo2-Book.ttf in Resources */,
+				D84CB2BAFCFB4492865E5C87 /* CentraNo2-BookItalic.ttf in Resources */,
+				730C22F107BC4080ACEAA6F7 /* CentraNo2-Extrabold.ttf in Resources */,
+				E888F7855B5E4FFFB6E0432D /* CentraNo2-ExtraboldItalic.ttf in Resources */,
+				2342CE448159474B89E80B09 /* CentraNo2-Hairline.ttf in Resources */,
+				303692DE24B2493F8C95954F /* CentraNo2-HairlineItalic.ttf in Resources */,
+				6D4F277649194741AC75ADBC /* CentraNo2-Light.ttf in Resources */,
+				6755267116774CECA208ED57 /* CentraNo2-LightItalic.ttf in Resources */,
+				EEDA8FEA6906419DA3E1F500 /* CentraNo2-Medium.ttf in Resources */,
+				AF34B7BC45984DAEBABD98DE /* CentraNo2-MediumItalic.ttf in Resources */,
+				1EA4088FEECA46E98A25FC13 /* CentraNo2-Thin.ttf in Resources */,
+				561AD41DB2384586AB889490 /* CentraNo2-ThinItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +706,20 @@
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		FE396A62DAB54AE28E7DC6AE /* [CP-User] [RNFB] Crashlytics Configuration */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "[CP-User] [RNFB] Crashlytics Configuration";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\nif [[ ${PODS_ROOT} ]]; then\n  echo \"info: Exec FirebaseCrashlytics Run from Pods\"\n  \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nelse\n  echo \"info: Exec FirebaseCrashlytics Run from framework\"\n  \"${PROJECT_DIR}/FirebaseCrashlytics.framework/run\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

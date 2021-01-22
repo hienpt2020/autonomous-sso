@@ -104,12 +104,15 @@ export class ParserImpl implements IParser {
             responseData.working_place.working_space_layout.state,
             responseData.working_place.working_space_layout.street.country,
         );
-        result.timeFrom = moment(responseData.from).format('DD MMM, YYYY');
-        result.timeTo = moment(responseData.to).format('DD MMM, YYYY');
+        result.timeFrom = responseData.from;
+        result.timeTo = responseData.to;
         result.workspace = responseData.working_place.working_space_layout.name;
         result.placeId = responseData.working_place.id;
         result.mapId = responseData.working_place.working_space_layout.id;
         result.code = responseData.code;
+        result.bookingStatus = responseData.working_place_booking_status_id;
+        result.placeName =
+            responseData.working_place.working_place_types.type_name + ' ' + responseData.working_place.code;
         return result;
     }
 
