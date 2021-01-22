@@ -15,7 +15,7 @@ export enum BookingStatus {
 export const DEFAULT_REQUEST_LIMIT = 100;
 
 export enum ROLES {
-    USER,
+    OWNER,
     ADMIN,
     MEMBER,
 }

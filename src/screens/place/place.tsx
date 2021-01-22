@@ -5,7 +5,7 @@ import { StatusBar, Text, View, YellowBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { BookingStatus } from 'src/common/constant';
+import { BookingStatus, ROLES } from 'src/common/constant';
 import { AppText, AppView, Divider, showPopup, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { Chip } from 'src/components/chip';
@@ -40,7 +40,11 @@ const BookingDetail = (props: Props) => {
     const from: Date = useSelector((state: RootState) => state.booking.booking.from);
     const to: Date = useSelector((state: RootState) => state.booking.booking.to);
     const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
-    const isAdmin: boolean = useSelector((state: RootState) => state.workspaceReducer.isAdmin);
+    const isAdmin: boolean = useSelector(
+        (state: RootState) =>
+            state.workspaceReducer.roleByCurrentUser == ROLES.OWNER ||
+            state.workspaceReducer.roleByCurrentUser == ROLES.ADMIN,
+    );
     const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
     const workingSpaceId = useSelector((state: RootState) => state.workspaceReducer.id);
     const dispatch = useDispatch();
@@ -66,7 +70,8 @@ const BookingDetail = (props: Props) => {
         if (place) {
             const bookingHistory: BookingHistory = await bookPlace(place.id, booking.from, booking.to);
             if (bookingHistory) {
-                dispatch(getBookingHistoryAction(isAdmin, workingSpaceId, 0));
+                // TODO
+                dispatch(getBookingHistoryAction(false, workingSpaceId, 0));
                 navigate(RouteName.BOOKING_RESULT, { booking: bookingHistory });
             } else {
                 navigate(RouteName.BOOKING_RESULT, { booking: undefined });
@@ -82,7 +87,8 @@ const BookingDetail = (props: Props) => {
                     onPress: async () => {
                         const cancelResult = await cancelBooking(bookingHistory.id);
                         if (cancelResult) {
-                            dispatch(getBookingHistoryAction(isAdmin, workingSpaceId, 0));
+                            // TODO
+                            dispatch(getBookingHistoryAction(false, workingSpaceId, 0));
                             showPopup(t('booking_detail.cancelled'), t('booking_detail.cancelled_desc'), null, [
                                 {
                                     title: t('common.ok'),
@@ -111,12 +117,16 @@ const BookingDetail = (props: Props) => {
         let status = '';
         if (bookingHistory) {
             switch (bookingHistory.bookingStatus) {
-                case BookingStatus.CHECKED_IN:
-                    status = t('activities.checked_out');
+                case BookingStatus.AVAILABLE || BookingStatus.CANCEL:
+                    status = t('activities.cancel');
                     break;
 
-                case BookingStatus.CANCEL:
-                    status = t('activities.cancel');
+                case BookingStatus.BOOKED || BookingStatus.COMFIRMED:
+                    status = t('activities.upcoming');
+                    break;
+
+                case BookingStatus.CHECKED_IN:
+                    status = t('activities.checked_in');
                     break;
 
                 default:
