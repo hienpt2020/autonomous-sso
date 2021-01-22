@@ -149,8 +149,6 @@ const BookingDetail = (props: Props) => {
         <View style={styles.container}>
             <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
-            <BackHeader style={styles.header} lightContent title={''} onPress={() => handleBack()} />
-
             <ImageSlider data={placeData ? placeData.imageUrls : []} height={imageHeight} />
 
             <ScrollView>
@@ -252,9 +250,7 @@ const BookingDetail = (props: Props) => {
                 />
             </ScrollView>
 
-            <SafeAreaView style={styles.header}>
-                <BackHeader title={''} lightContent onPress={() => handleBack()} />
-            </SafeAreaView>
+            <BackHeader style={styles.header} title={''} lightContent onPress={() => handleBack()} />
         </View>
     );
 

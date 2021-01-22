@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import 'reflect-metadata';
@@ -16,6 +17,8 @@ const App = () => {
     return (
         <Provider store={store}>
             <SafeAreaProvider>
+                <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+
                 <NavigationContainer linking={linkNavigation.linking} ref={navigationRef}>
                     {/* Navigations */}
                     <MainStackNavigator />
