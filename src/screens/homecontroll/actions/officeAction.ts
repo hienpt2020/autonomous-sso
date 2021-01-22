@@ -13,7 +13,7 @@ export class HomeControlActions {
         try {
             let res = await DeviceApi.getDevices();
             res = res.data.map((item: any) => Parser.parseDevice(item));
-            let listCheckin = res.filter((item: any) => !item.isCheckin);
+            let listCheckin = res.filter((item: any) => item.isCheckin);
             return listCheckin;
         } catch (e) {
             return [];
