@@ -1,3 +1,4 @@
+import SvgDefaultDesk from 'src/assets/images/desk_default.svg';
 export class Constant {
     public static DEFAULT_LANGUAGE = 'en';
 }
@@ -20,5 +21,5 @@ export enum ROLES {
 }
 
 export const DEFAULT_IMAGES = {
-    DEVICE: 'https://source.unsplash.com/wgivdx9dBdQ/1600x900',
+    DEVICE: require('src/assets/images/desk_default.png'),
 };

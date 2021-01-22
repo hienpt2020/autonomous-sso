@@ -1,10 +1,11 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { AppColor } from 'src/styles/colors';
+import { AppSpacing } from 'src/styles';
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppColor.WHITE,
+        backgroundColor: AppColor.BACKGROUND,
     },
     button: {
         paddingBottom: 16,
@@ -32,43 +33,24 @@ export const styles = StyleSheet.create({
         marginTop: 32,
         color: AppColor.PRIMARY,
     },
-    chipContent: {
-        color: AppColor.LIGHT,
-        marginStart: 16,
-        marginEnd: 16,
-    },
-    chipContainer: {
-        alignItems: 'center',
-        flexGrow: 1,
-        flexDirection: 'row',
-        flexBasis: 4,
-        margin: 8,
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingStart: 16,
-        paddingEnd: 16,
-    },
     divider: {
         height: 0.5,
         width: '100%',
         backgroundColor: AppColor.LIGHT,
     },
-    chip: {
-        marginTop: 16,
-        marginStart: 8,
-        marginEnd: 8,
-    },
     list: {
-        paddingStart: 8,
-        paddingEnd: 8,
-        flexGrow: 0,
-        margin: 16,
-    },
-    chipIcon: {
-        position: 'absolute',
-        end: 16,
+        marginHorizontal: AppSpacing.LARGE,
+        marginVertical: AppSpacing.LARGE,
     },
     header: {
         position: 'absolute',
+    },
+    spacingContainer: {
+        backgroundColor: AppColor.WHITE,
+    },
+    spacing: {
+        marginHorizontal: AppSpacing.MEDIUM,
+        height: 1,
+        backgroundColor: AppColor.GREY_3,
     },
 });
