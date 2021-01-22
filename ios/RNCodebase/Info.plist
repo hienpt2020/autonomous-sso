@@ -54,6 +54,11 @@
 	<string>The app needs access to Bluetooth?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+  <key>NSAppTransportSecurity</key>
+  <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+  </dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>CentraNo2-Black.ttf</string>
