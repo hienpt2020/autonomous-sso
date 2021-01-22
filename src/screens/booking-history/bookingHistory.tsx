@@ -8,6 +8,7 @@ import IconArrowRight from 'src/assets/images/ic_arrow_right.svg';
 import IconArrowUntil from 'src/assets/images/ic_arrow_until.svg';
 import { BookingStatus } from 'src/common/constant';
 import { AppText, AppView, Divider, Space } from 'src/components';
+import { Empty } from 'src/components/empty';
 import { Loading } from 'src/components/loading/loading';
 import { BookingHistory } from 'src/models/BookingHistory';
 import { getBookingHistoryAction } from 'src/redux/booking-history/bookingHistoryAction';
@@ -56,9 +57,11 @@ const BookingScreen = (props: Props) => {
 
     const renderItem = (data: BookingHistory) => {
         let status = '';
+        let statusStyle = styles.status;
         switch (data.bookingStatus) {
             case BookingStatus.AVAILABLE || BookingStatus.CANCEL:
                 status = t('activities.cancel');
+                statusStyle = { ...statusStyle, ...styles.statusInActive };
                 break;
 
             case BookingStatus.BOOKED || BookingStatus.COMFIRMED:
@@ -73,11 +76,12 @@ const BookingScreen = (props: Props) => {
                 status = t('activities.upcoming');
                 break;
         }
+
         return (
             <TouchableOpacity onPress={() => onItemSelected(data)}>
                 <View style={styles.itemContainer}>
                     <AppText style={styles.title}>{data.name}</AppText>
-                    {status ? <AppText style={styles.status}>{status}</AppText> : null}
+                    {status ? <AppText style={statusStyle}>{status}</AppText> : null}
                     <Space height={12} />
                     <AppText style={styles.subTitleEnd}>{data.workspace}</AppText>
                     <Space height={8} />
@@ -126,7 +130,7 @@ const BookingScreen = (props: Props) => {
                             <Loading />
                         </View>
                     ) : (
-                        <View></View>
+                        <Empty />
                     )
                 }
             />

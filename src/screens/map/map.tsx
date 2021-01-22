@@ -34,7 +34,13 @@ const Map = (props: Props) => {
     const HOUR_GAP = 2;
     const timeFormatter = 'hh:mm MMM DD';
     const today = new Date();
-    today.setHours(today.getHours() + 1, 0, 0, 0);
+    if (today.getMinutes() % 30 != 0) {
+        if (today.getMinutes() > 30) {
+            today.setHours(today.getHours() + 1, 0, 0, 0);
+        } else {
+            today.setMinutes(30, 0, 0);
+        }
+    }
     const tomorrow = new Date(today);
     tomorrow.setHours(tomorrow.getHours() + HOUR_GAP);
 
@@ -74,24 +80,39 @@ const Map = (props: Props) => {
         };
     };
 
-    const renderContent = () => (
-        <View style={styles.bottomSheetContainer}>
-            <DatePicker minuteInterval={30} date={date} onDateChange={(date) => setConsiderDate(date)} />
-            <Link
-                style={styles.button}
-                size={16}
-                title={t('common.close')}
-                onPress={() => {
-                    sheetRef.current?.snapTo(2);
-                }}
-            />
-        </View>
-    );
+    const renderContent = () => {
+        let minDate;
+        if (isFrom) {
+            minDate = today;
+        } else {
+            minDate = tomorrow;
+        }
+
+        return (
+            <View style={styles.bottomSheetContainer}>
+                <DatePicker
+                    minuteInterval={30}
+                    date={date}
+                    onDateChange={(date) => setConsiderDate(date)}
+                    minimumDate={minDate}
+                />
+                <Link
+                    style={styles.button}
+                    size={16}
+                    title={t('common.close')}
+                    onPress={() => {
+                        sheetRef.current?.snapTo(2);
+                    }}
+                />
+            </View>
+        );
+    };
     const renderOverlay = () => (
         <TouchableWithoutFeedback
             style={styles.overlay}
             onPress={() => {
                 sheetRef.current?.snapTo(2);
+                setIsBottomSheetShow(false);
             }}
         >
             <View style={styles.overlay} />
@@ -108,8 +129,6 @@ const Map = (props: Props) => {
         let _dateTo = dateTo;
 
         if (isFrom) {
-            reactotron.log('dd');
-
             if (moment(_dateTo).diff(moment(date), 'hours') < 2) {
                 _dateTo = moment(date).add(HOUR_GAP, 'hours').toDate();
             }

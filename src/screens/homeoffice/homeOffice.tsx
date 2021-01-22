@@ -36,15 +36,17 @@ const Office = (props: Props) => {
     }, []);
 
     useEffect(() => {
-        setIsLoading(true);
-        getWorkLayout(workspaceReducer.id)
-            .then((data) => {
-                setWorkLayouts(data);
-            })
-            .catch(() => {})
-            .finally(() => {
-                setIsLoading(false);
-            });
+        if (workingSpaceId >= 0) {
+            setIsLoading(true);
+            getWorkLayout(workspaceReducer.id)
+                .then((data) => {
+                    setWorkLayouts(data);
+                })
+                .catch(() => {})
+                .finally(() => {
+                    setIsLoading(false);
+                });
+        }
     }, [workspaceReducer.id]);
 
     const renderItem = (data: WorkLayout) => {
