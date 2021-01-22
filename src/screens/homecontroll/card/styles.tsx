@@ -1,40 +1,67 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { AppColor } from 'src/styles/colors';
+import { AppFontSize, AppSpacing } from '../../../styles';
 
-const FIXED_ITEM_WIDTH = (Dimensions.get('window').width - 16 * 3) / 2;
-const FIXED_ITEM_HEIGHT = 210;
 export const styles = StyleSheet.create({
-    itemContainer: {
+    container: {
         flex: 1,
-        height: FIXED_ITEM_HEIGHT,
-        // width: '100%',
-        backgroundColor: 'white',
+        backgroundColor: AppColor.WHITE,
         flexDirection: 'column',
         alignContent: 'center',
-        marginStart: 8,
-        marginEnd: 8,
-        marginTop: 8,
-        marginBottom: 8,
-        borderRadius: 8,
-        elevation: 4,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.5,
-        shadowRadius: 2,
+        marginHorizontal: AppSpacing.LARGE,
     },
     coverImage: {
-        height: 150,
+        height: 182,
         overflow: 'hidden',
-        borderRadius: 8,
     },
-    itemTitle: {
-        paddingStart: 16,
-        paddingEnd: 16,
+    titleText: {
         justifyContent: 'center',
         lineHeight: 25,
-        fontSize: 16,
+        fontSize: AppFontSize.SIZE_18,
         textAlignVertical: 'center',
         color: AppColor.PRIMARY,
     },
     label: { fontWeight: 'bold' },
+    content: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: AppSpacing.MEDIUM,
+        marginVertical: 20,
+    },
+    panel: { flexDirection: 'row' },
+    button: {
+        height: 40,
+        width: 40,
+        backgroundColor: AppColor.WHITE,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 20,
+        borderColor: AppColor.DARK_GREY_1,
+        borderWidth: 1,
+    },
+    timeContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: AppSpacing.MEDIUM,
+        borderTopColor: AppColor.GREY_3,
+        borderTopWidth: 1,
+        paddingVertical: 12,
+        alignItems: 'center',
+    },
+    timeText: {
+        fontSize: 11,
+        fontWeight: '400',
+        lineHeight: 20,
+        color: AppColor.DARK_GREY_1,
+    },
+    upBtn: {
+        marginHorizontal: 12,
+    },
+    titleContainer: {},
+    descriptionText: {
+        fontSize: AppFontSize.SIZE_12,
+        fontWeight: '400',
+        lineHeight: 20,
+    },
+    downBtn: {},
 });
