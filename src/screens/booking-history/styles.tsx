@@ -31,6 +31,9 @@ export const styles = StyleSheet.create({
         fontSize: AppFontSize.SIZE_11,
         color: AppColor.GREEN_1,
     },
+    statusInActive: {
+        color: AppColor.TEXT_LIGHT,
+    },
     title: {
         fontWeight: '500',
         fontSize: AppFontSize.SIZE_16,

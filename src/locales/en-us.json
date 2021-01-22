@@ -84,7 +84,7 @@
     "place": {
         "asset_title": "Assets contained",
         "time_title": "Booking time",
-        "book_place": "book this place",
+        "book_place": "Book this place",
         "code_desc": "Access device with this code"
     },
     "profile": {
