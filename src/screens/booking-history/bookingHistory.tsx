@@ -42,7 +42,9 @@ const BookingScreen = (props: Props) => {
     // }, [bookings]);
 
     const _getData = async () => {
-        dispatch(getBookingHistoryAction(isAdmin, workingSpaceId, page));
+        if (props.isUpComming) {
+            dispatch(getBookingHistoryAction(isAdmin, workingSpaceId, page));
+        }
     };
 
     const _onRefresh = () => {
@@ -129,8 +131,10 @@ const BookingScreen = (props: Props) => {
                         <View style={{ height: 100 }}>
                             <Loading />
                         </View>
-                    ) : (
+                    ) : items.length == 0 ? (
                         <Empty />
+                    ) : (
+                        <View></View>
                     )
                 }
             />

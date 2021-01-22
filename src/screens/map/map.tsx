@@ -181,6 +181,17 @@ const Map = (props: Props) => {
                 renderItem={({ item, index }) => renderItem(item, index)}
                 // getItemLayout={(data, index) => getItemLayout(data, index)}
                 ItemSeparatorComponent={() => <Space height={AppSpacing.MEDIUM} />}
+                ListFooterComponent={() =>
+                    isLoading ? (
+                        <View style={{ height: 100 }}>
+                            <Loading />
+                        </View>
+                    ) : workPlaces.length == 0 ? (
+                        <Empty />
+                    ) : (
+                        <View></View>
+                    )
+                }
                 ListHeaderComponent={
                     <AppView>
                         <Space height={30} />

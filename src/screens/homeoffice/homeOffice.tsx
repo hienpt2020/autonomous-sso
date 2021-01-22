@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { FlatList, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppView, Space } from 'src/components';
+import { Empty } from 'src/components/empty';
 import { Header, LargeHeader } from 'src/components/header';
+import { Loading } from 'src/components/loading';
 import { BookingHistory } from 'src/models/BookingHistory';
 import WorkLayout from 'src/models/WorkLayout';
 import { getBookingHistoryAction } from 'src/redux/booking-history/bookingHistoryAction';
@@ -90,29 +92,29 @@ const Office = (props: Props) => {
                 }}
             /> */}
 
-            {/* {isLoading ? (
+            {isLoading ? (
                 <Loading />
-            ) : workLayouts.length > 0 ? ( */}
-            <FlatList
-                contentContainerStyle={styles.list}
-                data={workLayouts}
-                renderItem={({ item }) => renderItem(item)}
-                keyExtractor={(item) => item.id + ''}
-                ItemSeparatorComponent={() => <Space height={AppSpacing.LARGE} />}
-                ListHeaderComponent={() => (
-                    <AppView>
-                        <Space height={AppSpacing.LARGE} />
+            ) : workLayouts.length > 0 ? (
+                <FlatList
+                    contentContainerStyle={styles.list}
+                    data={workLayouts}
+                    renderItem={({ item }) => renderItem(item)}
+                    keyExtractor={(item) => item.id + ''}
+                    ItemSeparatorComponent={() => <Space height={AppSpacing.LARGE} />}
+                    ListHeaderComponent={() => (
+                        <AppView>
+                            <Space height={AppSpacing.LARGE} />
 
-                        {inComingBookings.length > 0 && <ListUpcoming data={inComingBookings} />}
+                            {inComingBookings.length > 0 && <ListUpcoming data={inComingBookings} />}
 
-                        <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
-                        <Space height={AppSpacing.LARGE} />
-                    </AppView>
-                )}
-            />
-            {/* ) : (
+                            <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
+                            <Space height={AppSpacing.LARGE} />
+                        </AppView>
+                    )}
+                />
+            ) : (
                 <Empty />
-            )} */}
+            )}
             {/* {_renderFloatingButton()} */}
         </View>
     );
