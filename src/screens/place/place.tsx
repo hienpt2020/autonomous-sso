@@ -40,7 +40,11 @@ const BookingDetail = (props: Props) => {
     const from: Date = useSelector((state: RootState) => state.booking.booking.from);
     const to: Date = useSelector((state: RootState) => state.booking.booking.to);
     const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
-    const isAdmin: boolean = useSelector((state: RootState) => state.workspaceReducer.roleByCurrentUser == ROLES.ADMIN);
+    const isAdmin: boolean = useSelector(
+        (state: RootState) =>
+            state.workspaceReducer.roleByCurrentUser == ROLES.OWNER ||
+            state.workspaceReducer.roleByCurrentUser == ROLES.ADMIN,
+    );
     const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
     const workingSpaceId = useSelector((state: RootState) => state.workspaceReducer.id);
     const dispatch = useDispatch();
