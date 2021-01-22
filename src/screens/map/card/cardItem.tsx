@@ -14,7 +14,6 @@ const CardItem = (props: Props) => {
     const cardData = props.cardData;
     const { t } = useTranslation();
 
-    reactotron.log(cardData);
     return (
         <TouchableOpacity onPress={props.onPress}>
             <View style={[styles.itemContainer]}>

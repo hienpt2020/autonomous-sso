@@ -7,7 +7,9 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: AppColor.BACKGROUND,
     },
-    header: {},
+    header: {
+        paddingLeft: AppSpacing.LARGE,
+    },
     info: {},
     activityIndicator: {
         flex: 1,
@@ -15,7 +17,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     list: {
-        paddingHorizontal: AppSpacing.LARGE,
         paddingBottom: AppSpacing.LARGE,
     },
 });

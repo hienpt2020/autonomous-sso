@@ -18,6 +18,20 @@ export const styles = StyleSheet.create({
         marginVertical: 44,
         marginHorizontal: AppSpacing.LARGE,
     },
+    placeName: {
+        flex: 1,
+    },
+    bookingStatusContainer: {
+        height: 20,
+        backgroundColor: AppColor.DARK_GREY_1,
+        paddingHorizontal: AppSpacing.SMALL,
+        borderRadius: 16,
+    },
+    bookingStatus: {
+        fontSize: AppFontSize.SIZE_11,
+        color: AppColor.WHITE,
+        fontWeight: '500',
+    },
     sectionTitle: {
         fontSize: AppFontSize.SIZE_20,
         fontWeight: '500',
