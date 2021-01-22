@@ -54,14 +54,12 @@ export const styles = StyleSheet.create({
         lineHeight: 20,
         color: AppColor.DARK_GREY_1,
     },
-    upBtn: {
-        marginHorizontal: 12,
-    },
+    upBtn: {},
     titleContainer: {},
     descriptionText: {
         fontSize: AppFontSize.SIZE_12,
         fontWeight: '400',
         lineHeight: 20,
     },
-    downBtn: {},
+    downBtn: { marginHorizontal: 12 },
 });
