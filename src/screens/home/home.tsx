@@ -6,7 +6,7 @@ import IcTabControl from 'src/assets/images/ic_tab_control.svg';
 import IcTabControlActive from 'src/assets/images/ic_tab_control_active.svg';
 import IcTabProfile from 'src/assets/images/ic_tab_profile.svg';
 import IcTabProfileActive from 'src/assets/images/ic_tab_profile_active.svg';
-import { AppText } from 'src/components';
+import { AppText, AppView } from 'src/components';
 import { RouteName } from 'src/routers/routeName';
 import { RouteProps } from 'src/routers/routeProps';
 import { styles } from './styles';
@@ -51,7 +51,7 @@ function renderTabBarIcon(routeName: String, focused: boolean) {
         );
     }
 
-    return icon;
+    return <AppView style={styles.button}>{icon}</AppView>;
 }
 
 function renderTabBarLabel(routeName: String, focused: boolean) {

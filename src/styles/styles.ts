@@ -3,7 +3,7 @@ import { AppSpacing } from './spacing';
 
 export const AppStyle = {
     cardShadow: {
-        elevation: 4,
+        elevation: 1,
         shadowColor: AppColor.GREY_3,
         shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.5,
