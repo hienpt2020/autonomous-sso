@@ -19,7 +19,7 @@ plutil -replace CFBundleShortVersionString -string "${APP_VERSION}" "ios/RNCodeb
 plutil -replace CFBundleVersion -string "${APP_BUILD_NUMBER}" "ios/RNCodebase/Info.plist"
 
 plutil -replace CFBundleIdentifier -string "${APP_ID}" "ios/RNCodebase/Info.plist"
-sed -E -i '' "s/(PRODUCT_BUNDLE_IDENTIFIER = \"(.*)\")/PRODUCT_BUNDLE_IDENTIFIER = \"${APP_ID}\"/g" "ios/RNCodebase.xcodeproj/project.pbxproj"
+sed -i "" "s/\(PRODUCT_BUNDLE_IDENTIFIER = \).*\(;\)/\1${APP_ID}\2/" "ios/RNCodebase.xcodeproj/project.pbxproj"
 
 if [[ ${RELEASE} != "release" ]]; then
   ENVFILE=.env.${ENV} yarn ios
