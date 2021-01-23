@@ -1,37 +1,25 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { TouchableHighlight, View, Text } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from 'src/redux/types';
-import styles from './style';
-import { Props } from './types';
 import _ from 'lodash';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { createRequestErrorMessageAction } from 'src/redux/request';
+import { RootState } from 'src/redux/types';
+import { showPopup } from '..';
+import { Props } from './types';
 export const Popup = (props: Props) => {
     const requestReducer = useSelector((state: RootState) => state.requestReducer);
-    const [error, setError] = useState('');
     const dispatch = useDispatch();
+    const { t } = useTranslation();
 
     useEffect(() => {
-        setError(_.get(requestReducer, 'errorMessage', ''));
+        const errorMessage = _.get(requestReducer, 'errorMessage', '');
+        if (errorMessage)
+            showPopup(t('common.error'), errorMessage, null, [
+                {
+                    title: t('common.ok'),
+                    onPress: () => dispatch(createRequestErrorMessageAction('')),
+                },
+            ]);
     }, [requestReducer.errorMessage]);
-
-    if (error) {
-        return (
-            <View style={styles.popup}>
-                <View style={styles.container}>
-                    <Text style={styles.text}>{error}</Text>
-                    <TouchableHighlight
-                        style={styles.button}
-                        onPress={() => {
-                            dispatch(createRequestErrorMessageAction(''));
-                        }}
-                    >
-                        <Text style={styles.textButton}>Close</Text>
-                    </TouchableHighlight>
-                </View>
-            </View>
-        );
-    }
     return null;
 };
