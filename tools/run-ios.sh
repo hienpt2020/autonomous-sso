@@ -8,9 +8,11 @@ source .env.${ENV}
 set +a
 
 
-echo "Copy google json to ios folder env/${ENV}/GoogleService-Info.plist"
-
 cp -rf env/${ENV}/GoogleService-Info.plist ios/GoogleService-Info.plist
+echo "Overided GoogleService-Info to ios folder env/${ENV}/GoogleService-Info.plist"
+cp -rf .env.${ENV} .env
+echo "Overided .env.${ENV} folder"
+
 
 plutil -replace CFBundleDisplayName -string "${APP_NAME}" "ios/RNCodebase/Info.plist"
 plutil -replace CFBundleShortVersionString -string "${APP_VERSION}" "ios/RNCodebase/Info.plist"
