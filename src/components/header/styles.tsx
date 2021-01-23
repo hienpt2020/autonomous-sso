@@ -1,10 +1,11 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StatusBar, StyleSheet } from 'react-native';
 import { AppColor } from 'src/styles';
 
 export const styles = StyleSheet.create({
     container: {
         height: 44,
         paddingHorizontal: 20,
+        marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0,
     },
     buttonContainer: {
         width: '30%',

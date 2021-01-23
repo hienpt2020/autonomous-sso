@@ -804,7 +804,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase.app/RNCodebase";
 			};
@@ -824,7 +824,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase.app/RNCodebase";
 			};
@@ -853,9 +853,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = RNCodebase;
-				PROVISIONING_PROFILE_SPECIFIER = "Autonomous App Staging Provisioning";
+				PROVISIONING_PROFILE_SPECIFIER = "Autonomous App Develop Provisioning";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -880,9 +880,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = RNCodebase;
-				PROVISIONING_PROFILE_SPECIFIER = "Autonomous App Staging Provisioning";
+				PROVISIONING_PROFILE_SPECIFIER = "Autonomous App Develop Provisioning";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -908,7 +908,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -936,7 +936,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -963,7 +963,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase-tvOS.app/RNCodebase-tvOS";
@@ -990,7 +990,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase-tvOS.app/RNCodebase-tvOS";

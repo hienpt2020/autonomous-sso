@@ -22,6 +22,6 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    button: { position: 'absolute', end: 16, top: 8, fontSize: 16 },
+    button: { position: 'absolute', end: AppSpacing.LARGE, top: AppSpacing.LARGE - 5, fontSize: 16 },
     overlay: { backgroundColor: AppColor.ALPHA_40, position: 'absolute', top: 0, bottom: 0, start: 0, end: 0 },
 });

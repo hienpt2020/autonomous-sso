@@ -17,6 +17,8 @@ export const styles = StyleSheet.create({
         ...AppStyle.cardShadow,
         width: 270,
         marginRight: AppSpacing.SMALL,
+        ...AppStyle.cardShadow,
+        margin: 1,
     },
     list: { width: '100%', paddingLeft: AppSpacing.LARGE },
     infoContainer: {

@@ -1,4 +1,7 @@
-import { REQUEST_START, REQUEST_ERROR, REQUEST_SUCCESS, REQUEST_END } from './requestType';
+import i18next from 'i18next';
+import { hidePopupAction, showPopupAction } from '../app/appAction';
+import { HidePopupActionType, ShowPopupActionType, VisibilityPopupActionType } from '../app/appType';
+import { REQUEST_END, REQUEST_ERROR, REQUEST_START, REQUEST_SUCCESS } from './requestType';
 
 export interface RequestStartAction {
     type: typeof REQUEST_START;
@@ -29,12 +32,17 @@ export function createRequestErrorAction(payload: object): RequestErrorAction {
         payload,
     };
 }
-export function createRequestErrorMessageAction(message: string, payload?: object): RequestErrorAction {
-    return {
-        type: REQUEST_ERROR,
-        payload,
-        errorMessage: message,
-    };
+export function createRequestErrorMessageAction(message: string, payload?: object): VisibilityPopupActionType {
+    const isShow = message !== '';
+    const action: ShowPopupActionType | HidePopupActionType = isShow
+        ? showPopupAction(i18next.t('common.error'), message, null, [
+              {
+                  title: i18next.t('common.ok'),
+                  onPress: () => {},
+              },
+          ])
+        : hidePopupAction();
+    return action;
 }
 
 export function createRequestSuccessAction(payload: object): RequestSuccessAction {
