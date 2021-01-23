@@ -16,6 +16,8 @@ export interface HidePopupActionType {
     type: typeof HIDE_POPUP;
 }
 
+export type VisibilityPopupActionType = HidePopupActionType | ShowPopupActionType;
+
 export interface PopupButton {
     title: string;
     style?: typeof NEGATIVE | typeof POSITIVE;
