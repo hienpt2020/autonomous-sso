@@ -52,6 +52,8 @@
 	</dict>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>The app needs access to Bluetooth?</string>
+  <key>NSBluetoothPeripheralUsageDescription</key>
+  <string>Bluetooth is used to communicate with BLE devices.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIAppFonts</key>
