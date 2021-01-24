@@ -26,6 +26,7 @@
         "yes": "Yes",
         "no": "No",
         "error": "Error",
+        "cancel": "Cancel",
         "ok": "Ok"
     },
     "button": {
@@ -114,7 +115,10 @@
         "cancelled_desc": "This slot has been cancelled"
     },
     "switch_workspace": {
-        "title": "Switch Workspace"
+        "title": "Switch Workspace", 
+        "youve_just_changed_your_workspace": "You’ve just changed your workspace",
+        "switch_now":"Switch now", 
+        "switch_workspace_to": "Switch workspace to “{{workspace}}”? "
     },
     "booking_results": {
         "title": "Booking",
