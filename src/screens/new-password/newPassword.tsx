@@ -48,7 +48,7 @@ const NewPassword = (props: Props) => {
                         setPassword(text);
                         validateButtonContinue(text, newPassword, confirmNewPassword);
                     }}
-                    onBlur={() => _onPasswordBlur}
+                    onBlur={_onPasswordBlur}
                     secureTextEntry={true}
                     constainError={true}
                     errorMessage={passwordError}
@@ -60,7 +60,7 @@ const NewPassword = (props: Props) => {
                         setNewPassword(text);
                         validateButtonContinue(password, text, confirmNewPassword);
                     }}
-                    onBlur={() => _onNewPasswordBlur}
+                    onBlur={_onNewPasswordBlur}
                     secureTextEntry={true}
                     constainError={true}
                     errorMessage={newPasswordError}
@@ -72,7 +72,7 @@ const NewPassword = (props: Props) => {
                         setConfirmNewPassword(text);
                         validateButtonContinue(password, newPassword, text);
                     }}
-                    onBlur={() => _onConfirmNewPasswordBlur}
+                    onBlur={_onConfirmNewPasswordBlur}
                     secureTextEntry={true}
                     constainError={true}
                     errorMessage={confirmNewPasswordError}
@@ -99,7 +99,7 @@ const NewPassword = (props: Props) => {
         ]);
     }
     function _onChangePasswordSuccess() {
-        showPopup(t('new_password.you_ve_just_changed'), t('new_password.we_ve_just_updated'), SuccessIcon, [
+        showPopup(t('new_password.you_ve_just_changed'), t('new_password.we_ve_just_updated'), <SuccessIcon />, [
             {
                 onPress: () => {
                     props.navigation.goBack();
