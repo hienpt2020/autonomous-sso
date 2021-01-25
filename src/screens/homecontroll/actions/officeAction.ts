@@ -12,7 +12,9 @@ export class HomeControlActions {
     public getDevices = async (): Promise<Device[]> => {
         try {
             let res = await DeviceApi.getDevices();
-            return res.data.map((item: any) => Parser.parseDevice(item));
+            res = res.data.map((item: any) => Parser.parseDevice(item));
+            let listCheckin = res.filter((item: any) => item.isCheckin);
+            return listCheckin;
         } catch (e) {
             return [];
         }

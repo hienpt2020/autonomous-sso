@@ -51,7 +51,10 @@ export const PasswordInput = (props: Props) => {
             <TextInput
                 {...props}
                 onFocus={handleFocus}
-                onBlur={handleBlur}
+                onBlur={() => {
+                    handleBlur();
+                    if (props.onBlur) props.onBlur();
+                }}
                 style={[
                     styles.input,
                     props.style,

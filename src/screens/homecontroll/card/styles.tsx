@@ -61,7 +61,5 @@ export const styles = StyleSheet.create({
         fontWeight: '400',
         lineHeight: 20,
     },
-    downBtn: {
-        marginHorizontal: 12,
-    },
+    downBtn: { marginHorizontal: 12 },
 });

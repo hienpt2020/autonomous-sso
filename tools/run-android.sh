@@ -11,9 +11,10 @@ source .env.${ENV}
 set +a
 echo ENV: $ENV RELEASE: $RELEASE STOREFILE: $STOREFILE STOREALIAS: $STOREALIAS STOREPASSWORD: $STOREPASSWORD
 
-echo "Copy google json to android folder env/${ENV}/google-services.json"
-
 cp -rf env/${ENV}/google-services.json android/app/google-services.json
+echo "Overided google json to android folder env/${ENV}/google-services.json"
+cp -rf .env.${ENV} .env
+echo "Overided .env.${ENV} folder"
 
 cd android
 if [[ $RELEASE = 'release' ]]; then

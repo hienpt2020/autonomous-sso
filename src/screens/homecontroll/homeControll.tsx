@@ -17,39 +17,14 @@ import { RootState } from 'src/redux/types';
 import { DEFAULT_IMAGES } from 'src/common/constant';
 import { AppText } from 'src/components';
 import { Space } from '../../components';
-const data = [
-    {
-        id: 42,
-        code: '971',
-        hubId: '52ynaexyt',
-        layout_id: '1',
-        fa_channel: 'SmartDesk/f_a/1/52ynaexyt',
-        fd_channel: 'SmartDesk/f_d/1/52ynaexyt',
-        from_time: '2021-01-21T05:00:00Z',
-        to_time: '2021-01-21T06:30:00Z',
-        is_checkin: false,
-        image: DEFAULT_IMAGES.DEVICE,
-    },
-    {
-        id: 43,
-        code: '971',
-        hubId: '52ynaexyt',
-        layout_id: '1',
-        fa_channel: 'SmartDesk/f_a/1/52ynaexyt',
-        fd_channel: 'SmartDesk/f_d/1/52ynaexyt',
-        from_time: '2021-01-21T05:00:00Z',
-        to_time: '2021-01-21T06:30:00Z',
-        is_checkin: false,
-        image: DEFAULT_IMAGES.DEVICE,
-    },
-];
+
 const Control = (props: Props) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isRefresh, setIsRefresh] = useState<boolean>(false);
     const dispatch = useDispatch();
     const homeControl: IHomeControlActions = new HomeControlActions(dispatch);
-    const [devices, setDevices] = React.useState<Device[]>(data);
+    const [devices, setDevices] = React.useState<Device[]>([]);
     const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer);
 
     useEffect(() => {
@@ -60,7 +35,7 @@ const Control = (props: Props) => {
         homeControl
             .getDevices()
             .then((data) => {
-                // setDevices(data);
+                setDevices(data);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -84,7 +59,7 @@ const Control = (props: Props) => {
             <AppText style={styles.titleText}>Workspace Devices</AppText>
             {isLoading ? (
                 <Loading />
-            ) : devices.length > 0 ? (
+            ) : (
                 <FlatList
                     data={devices}
                     keyExtractor={(item, index) => index + ''}
@@ -92,9 +67,8 @@ const Control = (props: Props) => {
                     refreshing={isRefresh}
                     onRefresh={() => onRefresh()}
                     ItemSeparatorComponent={flatListItemSeparator}
+                    ListEmptyComponent={<Empty />}
                 />
-            ) : (
-                <Empty />
             )}
         </View>
     );

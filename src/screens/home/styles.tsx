@@ -5,12 +5,13 @@ export const styles = StyleSheet.create({
     label: {
         color: AppColor.GREY_1,
         fontSize: AppFontSize.SIZE_12,
-        marginTop: -5,
+        marginBottom: 5,
     },
     labelActive: {
         color: AppColor.BLUE_1,
         fontSize: AppFontSize.SIZE_12,
         fontWeight: '500',
-        marginTop: -5,
+        marginBottom: 5,
     },
+    button: { marginTop: 4 },
 });

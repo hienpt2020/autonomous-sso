@@ -63,7 +63,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* RNCodebaseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNCodebaseTests.m; sourceTree = "<group>"; };
 		01EDE435B8CD3FC0FFD45D66 /* Pods-RNCodebase-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-RNCodebase-tvOSTests/Pods-RNCodebase-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		0D5D3139620A45ECA0EEDBAD /* CentraNo2-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Black.ttf"; path = "../src/assets/fonts/CentraNo2-Black.ttf"; sourceTree = "<group>"; };
+		0D5D3139620A45ECA0EEDBAD /* CentraNo2-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Black.ttf"; path = "../src/assets/fonts/CentraNo2-Black.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* RNCodebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNCodebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = RNCodebase/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = RNCodebase/AppDelegate.m; sourceTree = "<group>"; };
@@ -73,33 +73,33 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RNCodebase/main.m; sourceTree = "<group>"; };
 		226C902F25B39F7100012A41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		274DB8A5836E177E1B4CA21E /* Pods-RNCodebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase.debug.xcconfig"; path = "Target Support Files/Pods-RNCodebase/Pods-RNCodebase.debug.xcconfig"; sourceTree = "<group>"; };
-		2B4BFE1C945549A590BD1A16 /* CentraNo2-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Bold.ttf"; path = "../src/assets/fonts/CentraNo2-Bold.ttf"; sourceTree = "<group>"; };
+		2B4BFE1C945549A590BD1A16 /* CentraNo2-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Bold.ttf"; path = "../src/assets/fonts/CentraNo2-Bold.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* RNCodebase-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RNCodebase-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* RNCodebase-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RNCodebase-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		372623B596684A95809030AB /* CentraNo2-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-ThinItalic.ttf"; path = "../src/assets/fonts/CentraNo2-ThinItalic.ttf"; sourceTree = "<group>"; };
-		3EC8CE320008464196386BC6 /* CentraNo2-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Medium.ttf"; path = "../src/assets/fonts/CentraNo2-Medium.ttf"; sourceTree = "<group>"; };
-		502549B490A6482C8CD0A96E /* CentraNo2-BookItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-BookItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BookItalic.ttf"; sourceTree = "<group>"; };
-		5449FF78A3EB4FBC9B2A11F1 /* CentraNo2-HairlineItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-HairlineItalic.ttf"; path = "../src/assets/fonts/CentraNo2-HairlineItalic.ttf"; sourceTree = "<group>"; };
-		5627C01E5279459EBF50E40B /* CentraNo2-ExtraboldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-ExtraboldItalic.ttf"; path = "../src/assets/fonts/CentraNo2-ExtraboldItalic.ttf"; sourceTree = "<group>"; };
-		62FEB39E61EB41BC83D5DE6D /* CentraNo2-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-LightItalic.ttf"; path = "../src/assets/fonts/CentraNo2-LightItalic.ttf"; sourceTree = "<group>"; };
-		6A72E1996EB54358B25F2D9B /* CentraNo2-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Book.ttf"; path = "../src/assets/fonts/CentraNo2-Book.ttf"; sourceTree = "<group>"; };
-		6D4501454D6342D3A13A56EB /* CentraNo2-Hairline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Hairline.ttf"; path = "../src/assets/fonts/CentraNo2-Hairline.ttf"; sourceTree = "<group>"; };
-		6F7E7042411B456D92979B4B /* CentraNo2-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-BoldItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BoldItalic.ttf"; sourceTree = "<group>"; };
-		792CCB273A8540C79CD3FD4D /* CentraNo2-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Light.ttf"; path = "../src/assets/fonts/CentraNo2-Light.ttf"; sourceTree = "<group>"; };
+		372623B596684A95809030AB /* CentraNo2-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-ThinItalic.ttf"; path = "../src/assets/fonts/CentraNo2-ThinItalic.ttf"; sourceTree = "<group>"; };
+		3EC8CE320008464196386BC6 /* CentraNo2-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Medium.ttf"; path = "../src/assets/fonts/CentraNo2-Medium.ttf"; sourceTree = "<group>"; };
+		502549B490A6482C8CD0A96E /* CentraNo2-BookItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-BookItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BookItalic.ttf"; sourceTree = "<group>"; };
+		5449FF78A3EB4FBC9B2A11F1 /* CentraNo2-HairlineItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-HairlineItalic.ttf"; path = "../src/assets/fonts/CentraNo2-HairlineItalic.ttf"; sourceTree = "<group>"; };
+		5627C01E5279459EBF50E40B /* CentraNo2-ExtraboldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-ExtraboldItalic.ttf"; path = "../src/assets/fonts/CentraNo2-ExtraboldItalic.ttf"; sourceTree = "<group>"; };
+		62FEB39E61EB41BC83D5DE6D /* CentraNo2-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-LightItalic.ttf"; path = "../src/assets/fonts/CentraNo2-LightItalic.ttf"; sourceTree = "<group>"; };
+		6A72E1996EB54358B25F2D9B /* CentraNo2-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Book.ttf"; path = "../src/assets/fonts/CentraNo2-Book.ttf"; sourceTree = "<group>"; };
+		6D4501454D6342D3A13A56EB /* CentraNo2-Hairline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Hairline.ttf"; path = "../src/assets/fonts/CentraNo2-Hairline.ttf"; sourceTree = "<group>"; };
+		6F7E7042411B456D92979B4B /* CentraNo2-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-BoldItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BoldItalic.ttf"; sourceTree = "<group>"; };
+		792CCB273A8540C79CD3FD4D /* CentraNo2-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Light.ttf"; path = "../src/assets/fonts/CentraNo2-Light.ttf"; sourceTree = "<group>"; };
 		7A77C594247A80DD8A1DD9D3 /* Pods-RNCodebase-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-RNCodebase-tvOS/Pods-RNCodebase-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		825698C36D6DA2E81CD71EBA /* libPods-RNCodebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCodebase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		886B290B7634465894C82207 /* CentraNo2-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-MediumItalic.ttf"; path = "../src/assets/fonts/CentraNo2-MediumItalic.ttf"; sourceTree = "<group>"; };
+		886B290B7634465894C82207 /* CentraNo2-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-MediumItalic.ttf"; path = "../src/assets/fonts/CentraNo2-MediumItalic.ttf"; sourceTree = "<group>"; };
 		8D73C595C7387FB95CB6E32E /* Pods-RNCodebase-RNCodebaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-RNCodebaseTests.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase-RNCodebaseTests/Pods-RNCodebase-RNCodebaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		9223E6F09CC0AE45680D13B2 /* Pods-RNCodebase-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-tvOS.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase-tvOS/Pods-RNCodebase-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		AD4B947D25AD1521001E78BE /* RNCodebase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = RNCodebase.entitlements; path = RNCodebase/RNCodebase.entitlements; sourceTree = "<group>"; };
 		AD9EAB1A25A3D663005F6E1C /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNSVG.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B977E5E7303243C98414B1B6 /* CentraNo2-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Thin.ttf"; path = "../src/assets/fonts/CentraNo2-Thin.ttf"; sourceTree = "<group>"; };
+		B977E5E7303243C98414B1B6 /* CentraNo2-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Thin.ttf"; path = "../src/assets/fonts/CentraNo2-Thin.ttf"; sourceTree = "<group>"; };
 		BA10D85B670632C3067AC600 /* Pods-RNCodebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase/Pods-RNCodebase.release.xcconfig"; sourceTree = "<group>"; };
 		BA8703EEC1FD20E461FCB41D /* Pods-RNCodebase-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-RNCodebase-tvOSTests/Pods-RNCodebase-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		BCB6A72A8AE0424489C29620 /* CentraNo2-Extrabold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Extrabold.ttf"; path = "../src/assets/fonts/CentraNo2-Extrabold.ttf"; sourceTree = "<group>"; };
+		BCB6A72A8AE0424489C29620 /* CentraNo2-Extrabold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-Extrabold.ttf"; path = "../src/assets/fonts/CentraNo2-Extrabold.ttf"; sourceTree = "<group>"; };
 		BF15ACE73121FCB02C546C6D /* libPods-RNCodebase-RNCodebaseTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCodebase-RNCodebaseTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFA72B9CDE3A58ED9C9D7536 /* Pods-RNCodebase-RNCodebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCodebase-RNCodebaseTests.debug.xcconfig"; path = "Target Support Files/Pods-RNCodebase-RNCodebaseTests/Pods-RNCodebase-RNCodebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D974960FA91D4102A6D8C5D5 /* CentraNo2-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-BlackItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BlackItalic.ttf"; sourceTree = "<group>"; };
+		D974960FA91D4102A6D8C5D5 /* CentraNo2-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CentraNo2-BlackItalic.ttf"; path = "../src/assets/fonts/CentraNo2-BlackItalic.ttf"; sourceTree = "<group>"; };
 		E3C37004248811B34B32080B /* libPods-RNCodebase-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCodebase-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -260,7 +260,6 @@
 				372623B596684A95809030AB /* CentraNo2-ThinItalic.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,7 +360,9 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 54DJVWMJCC;
 						LastSwiftMigration = 1120;
+						ProvisioningStyle = Manual;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -803,7 +804,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase.app/RNCodebase";
 			};
@@ -823,7 +824,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase.app/RNCodebase";
 			};
@@ -836,7 +837,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RNCodebase/RNCodebase.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 54DJVWMJCC;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -849,8 +853,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = RNCodebase;
+				PROVISIONING_PROFILE_SPECIFIER = "Autonomous App Develop Provisioning";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -864,7 +869,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RNCodebase/RNCodebase.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 54DJVWMJCC;
 				INFOPLIST_FILE = RNCodebase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -872,8 +880,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = RNCodebase;
+				PROVISIONING_PROFILE_SPECIFIER = "Autonomous App Develop Provisioning";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -899,7 +908,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -927,7 +936,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -954,7 +963,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase-tvOS.app/RNCodebase-tvOS";
@@ -981,7 +990,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.rncodebase.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase-tvOS.app/RNCodebase-tvOS";

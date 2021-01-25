@@ -15,11 +15,12 @@ export enum BookingStatus {
 export const DEFAULT_REQUEST_LIMIT = 100;
 
 export enum ROLES {
-    USER,
+    OWNER,
     ADMIN,
     MEMBER,
 }
 
 export const DEFAULT_IMAGES = {
     DEVICE: require('src/assets/images/desk_default.png'),
+    EMPTY: require('src/assets/images/bg_empty.png'),
 };

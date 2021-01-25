@@ -71,7 +71,7 @@ const Login = (props: LoginProps) => {
             <Space height={AppSpacing.MEDIUM} />
             <View style={{ flex: 1 }}>
                 <Space height={AppSpacing.MEDIUM} />
-                <View style={styles.dividerContainer}>
+                {/* <View style={styles.dividerContainer}>
                     <Divider style={styles.divider} />
                     <AppText children={t('login.or_log_in_instantly')} style={styles.dividerText} />
                     <Divider style={styles.divider} />
@@ -89,7 +89,7 @@ const Login = (props: LoginProps) => {
                     title={t('login.login_with_facebook')}
                     style={styles.facebookButton}
                     onPress={() => validateLogin()}
-                />
+                /> */}
                 <Space flex={1} />
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <AppText children={t('login.dont_have_account')} />

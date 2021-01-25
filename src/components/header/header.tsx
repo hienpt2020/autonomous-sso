@@ -3,8 +3,8 @@ import { SafeAreaView, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import IconBack from 'src/assets/images/arrow_left.svg';
 import IconBackWhite from 'src/assets/images/ic_arrow_back_white.svg';
-import { AppColor, AppFontSize } from 'src/styles';
-import { AppText, AppView } from '..';
+import { AppColor, AppFontSize, AppSpacing } from 'src/styles';
+import { AppText, AppView, Space } from '..';
 import { styles } from './styles';
 import { PropHeader, PropsBackHeader, PropsLargeHeader } from './types';
 const ICON_SIZE = 24;
@@ -67,6 +67,7 @@ export const BackHeaderX = (props: PropsBackHeader) => {
     return (
         <>
             <BackHeader style={styles.headerSafeView} onPress={props.onPress} />
+            <Space height={AppSpacing.LARGE} />
             <LargeHeader style={props.style} title={props.title} />
         </>
     );

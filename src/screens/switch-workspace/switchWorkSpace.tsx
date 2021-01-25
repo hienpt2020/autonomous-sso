@@ -6,7 +6,8 @@ import { FlatList, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import Check from 'src/assets/images/ic_check.svg';
 import Uncheck from 'src/assets/images/ic_check_none.svg';
-import { AppText, AppView, Space } from 'src/components';
+import SuccessIcon from 'src/assets/images/ic_check_success.svg';
+import { AppText, AppView, showPopup, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { Empty } from 'src/components/empty';
 import { BackHeader } from 'src/components/header';
@@ -26,6 +27,7 @@ const SwitchWorkSpace = (props: Props) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const [workSpaceData, setWorkSpaceData] = useState(initialData);
+    const [confirmEnable, setComfirmEnable] = useState(false);
     const [selected, setSelected] = useState(-1);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -53,7 +55,7 @@ const SwitchWorkSpace = (props: Props) => {
         return (
             <TouchableOpacity
                 onPress={() => {
-                    setSelected(index);
+                    _onItemPress(data, index)
                 }}
             >
                 <View>
@@ -99,8 +101,9 @@ const SwitchWorkSpace = (props: Props) => {
                     <PrimaryButton
                         containerStyle={styles.buttonContainer}
                         title={t('common.confirm')}
+                        disabled={!confirmEnable}
                         onPress={() => {
-                            requestUpdateCurrentWorkSpace();
+                            _onConfirmPress();
                         }}
                     />
                     <Space height={AppSpacing.EXTRA} />
@@ -110,23 +113,46 @@ const SwitchWorkSpace = (props: Props) => {
             )}
         </View>
     );
+    function _onItemPress(data: WorkSpace, index: number){
+        setComfirmEnable(data.id !== workspaceReducer.id)
+        setSelected(index);
 
-    function requestUpdateCurrentWorkSpace() {
+    }
+    function _onConfirmPress() {
         const cache = _.get(workSpaceData, selected);
         if (cache && cache.id != workspaceReducer.id) {
-            setIsLoading(true);
-            setCurrentWorkSpaces(cache)
-                .then((data) => dispatch(createActionSetWorkSpace(cache)))
-                .catch((exception) => {
-                    dispatch(createRequestErrorMessageAction(t('common.error_message')));
-                })
-                .finally(() => {
-                    setIsLoading(false);
-                    props.navigation.goBack();
-                });
-        } else {
-            props.navigation.goBack();
+            showPopup(
+                t('switch_workspace.youve_just_changed_your_workspace'),
+                t('switch_workspace.switch_workspace_to', { workspace: cache.name }),
+                <SuccessIcon />,
+                [
+                    {
+                        onPress: () => {
+                            requestUpdateCurrentWorkSpace(cache);
+                        },
+                        title: t('switch_workspace.switch_now'),
+                    },
+                    {
+                        onPress: () => {},
+                        style: 'negative',
+                        title: t('common.cancel'),
+                    },
+                ],
+            );
         }
+    }
+
+    function requestUpdateCurrentWorkSpace(cache: WorkSpace) {
+        setIsLoading(true);
+        setCurrentWorkSpaces(cache)
+            .then((data) => dispatch(createActionSetWorkSpace(cache)))
+            .catch((exception) => {
+                dispatch(createRequestErrorMessageAction(t('common.error_message')));
+            })
+            .finally(() => {
+                setIsLoading(false);
+                props.navigation.goBack();
+            });
     }
 
     function handleBack() {

@@ -71,7 +71,7 @@ export const ImageSlider = (props: Props) => {
                 </AppView>
             )}
             {/* <Image style={styles.coverImage} source={require('src/assets/images/image-hover-background.png')} /> */}
-            {/* <View style={styles.coverImage} /> */}
+            <View style={styles.coverImage} />
         </View>
     );
 };

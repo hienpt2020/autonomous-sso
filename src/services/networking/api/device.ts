@@ -43,12 +43,12 @@ function getDeviceInfo(hubId: string, workingLayoutId: string) {
     return _get('/master/info', { hub_id: hubId, working_layout_id: workingLayoutId });
 }
 
-function getDevices(isCheckin: number = 1, from?: string, to?: string) {
-    let query = `?is_checkin=${isCheckin}`;
-    if (from && to) {
-        query += `&from=${from}&to=${to}`;
-    }
-    return _get('/devices/filter' + query);
+function getDevices() {
+    // let query = `?is_checkin=${isCheckin}`;
+    // if (from && to) {
+    //     query += `&from=${from}&to=${to}`;
+    // }
+    return _get('/devices/control/now');
 }
 
 export const DeviceApi = {
