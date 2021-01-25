@@ -115,9 +115,9 @@
         "cancelled_desc": "This slot has been cancelled"
     },
     "switch_workspace": {
-        "title": "Switch Workspace", 
+        "title": "Switch Workspace",
         "youve_just_changed_your_workspace": "You’ve just changed your workspace",
-        "switch_now":"Switch now", 
+        "switch_now":"Switch now",
         "switch_workspace_to": "Switch workspace to “{{workspace}}”? "
     },
     "booking_results": {
@@ -144,5 +144,13 @@
         "re_enter_new_password": "Re-enter new password",
         "you_ve_just_changed": "You’ve just changed your password",
         "we_ve_just_updated": "We’ve just updated your new password"
+    },
+    "setup": {
+        "next": "Next",
+        "title": "Setup",
+        "intro1_label": "Bluetooth is required",
+        "intro1_description": "Turn on bluetooth on your smart phone or smart device.",
+        "intro2_label": "Pairing",
+        "intro2_description": "Press and hold 3 + M on your SmartDesk’s keypad until the digital display shows 3 digits."
     }
 }

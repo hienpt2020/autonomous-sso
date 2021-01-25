@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StatusBar, FlatList, ScrollView, NativeModules, NativeEventEmitter, AppState } from 'react-native';
+import { View, FlatList, ScrollView, NativeModules, NativeEventEmitter, AppState } from 'react-native';
 import { styles } from './styles';
 import { PrimaryButton } from 'src/components/button';
 import { YellowBox } from 'react-native';
@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import { Bluetooth } from '../../services/bluetooth/bluetooth';
 import { useTranslation } from 'react-i18next';
 import { Empty } from '../../components/empty';
+import { Props } from './types';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -23,7 +24,7 @@ YellowBox.ignoreWarnings([
 const BleManagerModule = NativeModules.BleManager;
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
 
-const ConfigurationStep1 = () => {
+const ConfigurationStep1 = (props: Props) => {
     const [appState, setAppState] = useState<any>('');
     const [list, setList] = useState<any[]>([]);
     const dispatch = useDispatch();
@@ -165,6 +166,10 @@ const ConfigurationStep1 = () => {
         }
     };
 
+    const handleBack = () => {
+        props.navigation.goBack();
+    };
+
     return (
         <View style={styles.container}>
             <BackHeader title={'Setup'} onPress={handleBack} />
@@ -187,10 +192,6 @@ const ConfigurationStep1 = () => {
             </SafeAreaView>
         </View>
     );
-
-    function handleBack() {
-        navigate(RouteName.PLACE_DETAIL, null);
-    }
 };
 
 export default ConfigurationStep1;

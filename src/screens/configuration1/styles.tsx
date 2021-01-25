@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
         backgroundColor: AppColor.BACKGROUND,
     },
     button: {
-        paddingBottom: 16,
         paddingHorizontal: 16,
     },
     title: {
