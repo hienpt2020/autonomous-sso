@@ -94,7 +94,10 @@ const Profile = (props: Props) => {
                         <Divider />
                         <SectionItem title={t('profile.contact_us')} onPress={_onPressContactUs} />
                         <Divider />
-                        <SectionItem title={t('profile.version_update')} value={`${Config.APP_VERSION}`} />
+                        <SectionItem
+                            title={t('profile.version_update')}
+                            value={`${Config.ENV}-${Config.APP_VERSION}`}
+                        />
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
