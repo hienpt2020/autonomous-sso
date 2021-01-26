@@ -18,8 +18,6 @@ import { useTranslation } from 'react-i18next';
 import { Empty } from 'src/components/empty';
 import { Props } from './types';
 import WifiForm from './wifi-form';
-import BleIntro from '../../components/ble-intro';
-import { AppText } from '../../components';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -41,6 +39,7 @@ const ConfigurationStep1 = (props: Props) => {
     let handlerConnectedPerEmitter: any;
     let connectedPeripheralId: string = '';
     const [isShowForm, setIsShowForm] = useState(false);
+    const isPersonalDevice: boolean = false;
     useEffect(() => {
         init();
         return () => {
@@ -156,7 +155,14 @@ const ConfigurationStep1 = (props: Props) => {
                 case 'init':
                     if (data.status === '1') {
                         dispatch(createRequestEndAction());
-                        navigate(RouteName.CONFIGURATION_RESULT, null);
+                        if (isPersonalDevice) {
+                            navigate(RouteName.HOME_CONTROLL, null);
+                        } else {
+                            // is workspace
+                            props.navigation.goBack();
+                            props.navigation.goBack();
+                            props.navigation.goBack();
+                        }
                     } else if (data.status === '-1') {
                         dispatch(createRequestEndAction());
                         dispatch(createRequestErrorMessageAction(data.message));
