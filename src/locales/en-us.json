@@ -143,7 +143,7 @@
     },
     "setup": {
         "next": "Next",
-        "title": "Setup",
+        "title": "Set Up",
         "intro1_label": "Bluetooth is required",
         "intro1_description": "Turn on bluetooth on your smart phone or smart device.",
         "intro2_label": "Pairing",
