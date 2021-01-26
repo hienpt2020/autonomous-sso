@@ -22,7 +22,9 @@ const ConfigurationIntro1 = (props: Props) => {
 
     useEffect(() => {}, []);
 
-    const gotoPlaceDetailScreen = () => navigate(RouteName.CONFIGURATION_INTRO2, null);
+    const gotoPlaceDetailScreen = () => {
+        navigate(RouteName.CONFIGURATION_INTRO2, null);
+    };
     const handleBack = () => {
         props.navigation.goBack();
     };
@@ -34,12 +36,8 @@ const ConfigurationIntro1 = (props: Props) => {
                 <AppText style={styles.labelText}>{t('setup.intro1_label')}</AppText>
                 <AppText style={styles.descriptionText}>{t('setup.intro1_description')}</AppText>
             </View>
-            <SafeAreaView style={{ marginHorizontal: 24 }}>
-                <PrimaryButton
-                    wrapperContainer={styles.button}
-                    title={t('setup.next')}
-                    onPress={gotoPlaceDetailScreen}
-                />
+            <SafeAreaView style={styles.bottom}>
+                <PrimaryButton title={t('setup.next')} onPress={gotoPlaceDetailScreen} />
             </SafeAreaView>
         </View>
     );

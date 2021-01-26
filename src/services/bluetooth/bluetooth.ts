@@ -4,8 +4,6 @@ import { PermissionsAndroid, Platform } from 'react-native';
 import { Mqtt } from '../../models/Mqtt';
 import store from '../../redux/store';
 import { createRequestEndAction, createRequestErrorMessageAction, createRequestStartAction } from '../../redux/request';
-import { RouteName } from '../../routers/routeName';
-import { navigate } from '../../routers/rootNavigation';
 import { Parser } from '../../helpers/parser';
 const IS_IOS = Platform.OS === 'ios';
 const PORT_WRITE = IS_IOS ? 1 : 5;
@@ -28,14 +26,18 @@ export class ConfigStep1Actions {
         }
     };
 
-    public connectToPeripheral = async (peripheralId: string): Promise<void> => {
+    public connectToPeripheral = async (peripheralId: string, callback?: () => void): Promise<void> => {
         try {
+            store.dispatch(createRequestStartAction());
             await BleManager.connect(peripheralId);
             this.connectedPeripheralId = peripheralId;
             await this.handleAfterConnectedSuccessfully(peripheralId);
+            callback && callback();
+            store.dispatch(createRequestEndAction());
         } catch (e) {
             this.connectedPeripheralId = '';
             console.log('Error connecting bluetooth', e);
+            store.dispatch(createRequestEndAction());
         }
     };
 
@@ -50,7 +52,6 @@ export class ConfigStep1Actions {
                 this.servicesInfo.characteristics[PORT_NOTIFY].service,
                 this.servicesInfo.characteristics[PORT_NOTIFY].characteristic,
             );
-            navigate(RouteName.CONFIGURATION_STEP2, { bookingDevice: this.bookingDevice });
             await this.stopScan();
         } catch (e) {
             console.log('Error - handleAfterConnectedSuccessfully:', e);
@@ -123,7 +124,7 @@ export class ConfigStep1Actions {
 
 export interface IConfigStep1Actions {
     getMqttInfo(): Promise<void>;
-    connectToPeripheral(peripheralId: string): Promise<void>;
+    connectToPeripheral(peripheralId: string, callback?: void): Promise<void>;
     checkPermission(): void;
     stopScan(): Promise<void>;
     bookingDevice(wifiName: string, wifiPassword: string, layoutId: number, deviceId: string): Promise<void>;

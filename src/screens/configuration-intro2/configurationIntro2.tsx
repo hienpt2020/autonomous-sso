@@ -34,12 +34,8 @@ const ConfigurationIntro2 = (props: Props) => {
                 <AppText style={styles.labelText}>{t('setup.intro2_label')}</AppText>
                 <AppText style={styles.descriptionText}>{t('setup.intro2_description')}</AppText>
             </View>
-            <SafeAreaView style={{ marginHorizontal: 24 }}>
-                <PrimaryButton
-                    wrapperContainer={styles.button}
-                    title={t('setup.next')}
-                    onPress={gotoPlaceDetailScreen}
-                />
+            <SafeAreaView style={styles.bottom}>
+                <PrimaryButton title={t('setup.next')} onPress={gotoPlaceDetailScreen} />
             </SafeAreaView>
         </View>
     );

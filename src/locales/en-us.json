@@ -99,10 +99,6 @@
         "version_update": "Version",
         "version": "Version"
     },
-    "configuration": {
-        "wifi": "Wifi name",
-        "wifi_password": "Wifi password"
-    },
     "booking": {
         "title": "My Booking"
     },
@@ -151,6 +147,10 @@
         "intro1_label": "Bluetooth is required",
         "intro1_description": "Turn on bluetooth on your smart phone or smart device.",
         "intro2_label": "Pairing",
-        "intro2_description": "Press and hold 3 + M on your SmartDesk’s keypad until the digital display shows 3 digits."
+        "intro2_description": "Press and hold 3 + M on your SmartDesk’s keypad until the digital display shows 3 digits.",
+        "btn_connect_device": "Connect",
+        "btn_cancel_device": "Cancel",
+        "wifi": "Wifi name",
+        "wifi_password": "Password"
     }
 }
