@@ -1,10 +1,10 @@
 import { DeviceApi } from 'src/services/networking';
 import BleManager from 'react-native-ble-manager';
 import { PermissionsAndroid, Platform } from 'react-native';
-import { Mqtt } from '../../models/Mqtt';
-import store from '../../redux/store';
+import { Mqtt } from 'src/models/Mqtt';
+import store from 'src/redux/store';
 import { createRequestEndAction, createRequestErrorMessageAction, createRequestStartAction } from '../../redux/request';
-import { Parser } from '../../helpers/parser';
+import { Parser } from 'src/helpers/parser';
 const IS_IOS = Platform.OS === 'ios';
 const PORT_WRITE = IS_IOS ? 1 : 5;
 const PORT_NOTIFY = IS_IOS ? 0 : 4;
