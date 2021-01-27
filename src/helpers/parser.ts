@@ -26,6 +26,7 @@ export class ParserImpl implements IParser {
         result.source = _.get(responseData, 'source');
         result.isVerifiedEmail = _.get(responseData, 'is_verified_email');
         result.accessToken = _.get(responseData, 'accessToken');
+        result.userId = _.get(responseData, 'id');
         return result;
     }
     parseWorkspace(responseData: any): WorkSpace {
