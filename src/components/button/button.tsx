@@ -10,10 +10,10 @@ export const PrimaryButton = (buttonProps: AppButtonProps) => {
     return (
         <Button
             {...buttonProps}
-            titleStyle={[styles.title, styles.titlePrimary]}
-            buttonStyle={[styles.button, styles.buttonPrimary]}
-            disabledTitleStyle={styles.disableStyle}
-            containerStyle={[buttonProps.containerStyle, styles.container]}
+            titleStyle={[styles.title, styles.titlePrimary, buttonProps.titleStyle]}
+            buttonStyle={[styles.button, styles.buttonPrimary, buttonProps.buttonStyle]}
+            disabledTitleStyle={[styles.disableStyle, buttonProps.disabledTitleStyle]}
+            containerStyle={[styles.container, buttonProps.containerStyle]}
         />
     );
 };

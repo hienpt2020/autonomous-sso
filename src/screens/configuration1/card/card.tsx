@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { styles } from './styles';
 import SvgICBleDisconnected from 'src/assets/images/ic_bluetooth_disconnected.svg';
 import SvgICBleConnected from 'src/assets/images/ic_bluetooth_connected.svg';
-import SvgICBleSignal0 from 'src/assets/images/ic_signal_ble_0.svg';
-import SvgICBleSignal3 from 'src/assets/images/ic_signal_ble_3.svg';
 import { AppText } from 'src/components';
+import { IcSignal } from 'src/assets/images/svg';
 
 const Card = (props: { data: any; onPress(): void }) => {
     return (
@@ -18,7 +17,7 @@ const Card = (props: { data: any; onPress(): void }) => {
             </View>
             <View style={styles.center}>
                 <AppText style={[styles.name]}>{props.data.name}</AppText>
-                {props.data.connected ? <SvgICBleSignal3 /> : <SvgICBleSignal0 />}
+                <WaveSignal rssi={props.data.rssi} />
             </View>
             <View style={styles.right}>
                 {props.data.connected ? (
@@ -29,6 +28,19 @@ const Card = (props: { data: any; onPress(): void }) => {
             </View>
         </TouchableOpacity>
     );
+};
+
+const WaveSignal = ({ rssi }: { rssi: number }) => {
+    if (rssi > -100 && rssi < -80) {
+        return <IcSignal isActiveSignal1 />;
+    }
+    if (rssi > -80 && rssi < -70) {
+        return <IcSignal isActiveSignal1 isActiveSignal2 />;
+    }
+    if (rssi > -70) {
+        return <IcSignal isActiveSignal1 isActiveSignal2 isActiveSignal3 />;
+    }
+    return <IcSignal />;
 };
 
 export default Card;
