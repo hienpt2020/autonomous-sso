@@ -7,6 +7,7 @@ import { createRequestEndAction, createRequestErrorMessageAction, createRequestS
 import { RouteName } from '../../routers/routeName';
 import { navigate } from '../../routers/rootNavigation';
 import { Parser } from '../../helpers/parser';
+import { Log } from 'src/helpers/logger';
 const IS_IOS = Platform.OS === 'ios';
 const PORT_WRITE = IS_IOS ? 1 : 5;
 const PORT_NOTIFY = IS_IOS ? 0 : 4;
@@ -119,6 +120,24 @@ export class ConfigStep1Actions {
             await BleManager.stopScan();
         } catch (e) {}
     };
+
+    createPersonalDevice = async (hubId: string, faChannel: string, fdChannel: string): Promise<void> => {
+        try {
+            let res = await DeviceApi.createPersonalDevice(hubId, faChannel, fdChannel);
+            Log.debug('@createPersonalDevice:', res);
+        } catch (e) {
+            Log.debug('@createPersonalDevice error:', e);
+        }
+    };
+
+    generatePersonalDeviceCode = async (): Promise<void> => {
+        try {
+            let res = await DeviceApi.generatePersonalDeviceCode();
+            Log.debug('@generatePersonalDeviceCode:', res);
+        } catch (e) {
+            Log.debug('@generatePersonalDeviceCode error:', e);
+        }
+    };
 }
 
 export interface IConfigStep1Actions {
@@ -127,5 +146,7 @@ export interface IConfigStep1Actions {
     checkPermission(): void;
     stopScan(): Promise<void>;
     bookingDevice(wifiName: string, wifiPassword: string, layoutId: number, deviceId: string): Promise<void>;
+    generatePersonalDeviceCode(): Promise<void>;
+    createPersonalDevice(hubId: string, faChannel: string, fdChannel: string): Promise<void>;
 }
 export const Bluetooth = new ConfigStep1Actions();
