@@ -65,7 +65,7 @@ const Office = (props: Props) => {
 
     const _onItemSelected = (data: WorkLayout) => {
         dispatch(setWorkLayoutAction(data));
-        props.navigation.navigate(RouteName.CONFIGURATION_STEP1, { map: data });
+        props.navigation.navigate(RouteName.MAP, { map: data });
     };
     return (
         <View style={styles.container}>
