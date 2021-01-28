@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Header } from 'src/components/header';
 import { useTranslation } from 'react-i18next';
 import { Props } from './types';
 import { styles } from './styles';
 import { Empty } from 'src/components/empty';
-import { View, FlatList } from 'react-native';
+import { View, SectionList } from 'react-native';
 import { Loading } from 'src/components/loading';
 import { CardItem } from './card';
 import { navigate } from 'src/routers/rootNavigation';
@@ -14,9 +13,10 @@ import Device from 'src/models/Device';
 import { useDispatch, useSelector } from 'react-redux';
 import { HomeControlActions, IHomeControlActions } from './actions/officeAction';
 import { RootState } from 'src/redux/types';
-import { DEFAULT_IMAGES } from 'src/common/constant';
-import { AppText } from 'src/components';
-import { Space } from '../../components';
+import { AppText, Space } from 'src/components';
+import { PrimaryButton } from 'src/components/button';
+import Bluetooth from '../../services/bluetooth';
+import { DEVICE_TYPES } from '../../common/constant';
 
 const Control = (props: Props) => {
     const { t } = useTranslation();
@@ -24,7 +24,7 @@ const Control = (props: Props) => {
     const [isRefresh, setIsRefresh] = useState<boolean>(false);
     const dispatch = useDispatch();
     const homeControl: IHomeControlActions = new HomeControlActions(dispatch);
-    const [devices, setDevices] = React.useState<Device[]>([]);
+    const [devices, setDevices] = React.useState<any[]>([]);
     const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer);
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const Control = (props: Props) => {
 
     const getDevices = () => {
         homeControl
-            .getDevices()
+            .getAllDevices()
             .then((data) => {
                 setDevices(data);
             })
@@ -52,24 +52,41 @@ const Control = (props: Props) => {
     };
 
     const flatListItemSeparator = () => <Space height={3} />;
-
+    const gotoSetupNewDevice = () => {
+        props.navigation.navigate(RouteName.CONFIGURATION_STEP1);
+        Bluetooth.deviceType = DEVICE_TYPES.PERSONAL;
+    };
     return (
         <View style={styles.container}>
-            <Header title={t('controll.title')} />
-            <AppText style={styles.titleText}>Workspace Devices</AppText>
+            {/*<AppText style={styles.titleText}>Workspace Devices</AppText>*/}
             {isLoading ? (
                 <Loading />
             ) : (
-                <FlatList
-                    data={devices}
+                <SectionList
+                    style={styles.list}
+                    sections={devices}
                     keyExtractor={(item, index) => index + ''}
                     renderItem={({ item }) => renderItem(item)}
                     refreshing={isRefresh}
                     onRefresh={() => onRefresh()}
                     ItemSeparatorComponent={flatListItemSeparator}
-                    ListEmptyComponent={<Empty />}
+                    ListEmptyComponent={
+                        <Empty
+                            containerStyles={styles.emptyContainer}
+                            title={t('setup.empty_title')}
+                            description={t('setup.empty_description')}
+                        />
+                    }
+                    renderSectionHeader={({ section: { title } }) => (
+                        <AppText style={styles.sectionText}>{title}</AppText>
+                    )}
                 />
             )}
+            <PrimaryButton
+                containerStyle={styles.setupBtnContainer}
+                title={t('control.button_add_new_device')}
+                onPress={gotoSetupNewDevice}
+            />
         </View>
     );
 };

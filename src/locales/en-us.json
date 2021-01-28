@@ -27,7 +27,8 @@
         "no": "No",
         "error": "Error",
         "cancel": "Cancel",
-        "ok": "Ok"
+        "ok": "Ok",
+        "empty_title_default": "No Data"
     },
     "button": {
         "back": "Back",
@@ -79,8 +80,9 @@
         "sub_title": "working time",
         "view": "View"
     },
-    "controll": {
-        "title": "Devices"
+    "control": {
+        "title": "My Devices",
+        "button_add_new_device": "Add New Device"
     },
     "place": {
         "asset_title": "Assets contained",
@@ -151,6 +153,8 @@
         "btn_connect_device": "Connect",
         "btn_cancel_device": "Cancel",
         "wifi": "Wifi name",
-        "wifi_password": "Password"
+        "wifi_password": "Password",
+        "empty_title": "No available device",
+        "empty_description": "Check your booking or add a new device to control."
     }
 }

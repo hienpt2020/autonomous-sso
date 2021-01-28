@@ -5,7 +5,7 @@ import { StatusBar, Text, View, YellowBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { BookingStatus, ROLES } from 'src/common/constant';
+import { BookingStatus, DEVICE_TYPES, ROLES } from 'src/common/constant';
 import { AppText, AppView, Divider, showPopup, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { Chip } from 'src/components/chip';
@@ -26,6 +26,7 @@ import { AppFontSize, AppSpacing } from 'src/styles';
 import { bookPlace, cancelBooking, getPlaceDetail } from './actions/placeAction';
 import { styles } from './styles';
 import { Props } from './types';
+import Bluetooth from 'src/services/bluetooth';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -111,6 +112,7 @@ const BookingDetail = (props: Props) => {
 
     const _onPressDevice = (item: Asset) => {
         navigate(RouteName.CONFIGURATION_STEP1, null);
+        Bluetooth.deviceType = DEVICE_TYPES.WORKSPACE;
     };
 
     const _renderBookingStatus = () => {

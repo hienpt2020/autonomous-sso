@@ -24,3 +24,8 @@ export const DEFAULT_IMAGES = {
     DEVICE: require('src/assets/images/desk_default.png'),
     EMPTY: require('src/assets/images/bg_empty.png'),
 };
+
+export enum DEVICE_TYPES {
+    WORKSPACE = 'WORKSPACE',
+    PERSONAL = 'PERSONAL',
+}

@@ -56,7 +56,7 @@ function getPersonalDevices() {
 }
 
 function createPersonalDevice(hubId: string, faChannel: string, fdChannel: string) {
-    return _post('/devices/personal', { HubID: hubId, FAChannel: faChannel, FDChannel: fdChannel });
+    return _post('/devices/personal', { hub_id: hubId, FAChannel: faChannel, FDChannel: fdChannel });
 }
 
 function generatePersonalDeviceCode() {

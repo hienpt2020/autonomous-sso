@@ -7,7 +7,7 @@ import Card from './card';
 import BleManager from 'react-native-ble-manager';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createRequestEndAction, createRequestErrorMessageAction } from '../../redux/request';
 import { BackHeader } from 'src/components/header';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,6 +18,8 @@ import { useTranslation } from 'react-i18next';
 import { Empty } from 'src/components/empty';
 import { Props } from './types';
 import WifiForm from './wifi-form';
+import { Log } from '../../helpers/logger';
+import { DeviceApi } from '../../services/networking';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -39,7 +41,7 @@ const ConfigurationStep1 = (props: Props) => {
     let handlerConnectedPerEmitter: any;
     let connectedPeripheralId: string = '';
     const [isShowForm, setIsShowForm] = useState(false);
-    const isPersonalDevice: boolean = false;
+    const isPersonalDevice: boolean = true;
     useEffect(() => {
         init();
         return () => {
@@ -68,6 +70,7 @@ const ConfigurationStep1 = (props: Props) => {
             handleConnectedPeripheral,
         );
         await Bluetooth.getMqttInfo();
+
         Bluetooth.checkPermission();
     };
 
@@ -167,6 +170,18 @@ const ConfigurationStep1 = (props: Props) => {
                         dispatch(createRequestEndAction());
                         dispatch(createRequestErrorMessageAction(data.message));
                     }
+                    break;
+                case 'get_device_id':
+                    // if (data.status === '1') {
+                    //     // check device id has existed? server lam?
+                    //     let hubId = await Bluetooth.generatePersonalDeviceCode();
+                    //     // if has
+                    //
+                    //     let test = await Bluetooth.createPersonalDevice(hubId);
+                    //     await Bluetooth.connectDeviceToServer(user.userId, hubId);
+                    // } else {
+                    //     dispatch(createRequestErrorMessageAction(data.message));
+                    // }
                     break;
                 default:
                     break;

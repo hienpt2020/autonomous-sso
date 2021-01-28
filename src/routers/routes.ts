@@ -29,6 +29,7 @@ export type RootStackParams = {
     [RouteName.WEBPAGE]: { url: string };
     [RouteName.CONFIGURATION_INTRO1]: undefined;
     [RouteName.CONFIGURATION_INTRO2]: undefined;
+    [RouteName.HOME_CONTROLL]: undefined;
 };
 export type RootStackParamType = keyof RootStackParams;
 

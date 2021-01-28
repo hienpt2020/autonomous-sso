@@ -5,21 +5,30 @@ import { Mqtt } from 'src/models/Mqtt';
 import store from 'src/redux/store';
 import { createRequestEndAction, createRequestErrorMessageAction, createRequestStartAction } from '../../redux/request';
 import { Parser } from 'src/helpers/parser';
+import { Log } from 'src/helpers/logger';
+import { SetupBase } from './setupBase';
+import { Helper } from './helper';
 const IS_IOS = Platform.OS === 'ios';
 const PORT_WRITE = IS_IOS ? 1 : 5;
 const PORT_NOTIFY = IS_IOS ? 0 : 4;
 
-export class ConfigStep1Actions {
-    private mqttInfo: any | null;
-    private connectedPeripheralId: string = '';
-    private servicesInfo: any;
+export class ConfigStep1Actions extends SetupBase {
+    private write = async (data: any): Promise<void> => {
+        await BleManager.write(
+            this._connectedPeripheralId,
+            this._servicesInfo.characteristics[PORT_WRITE].service,
+            this._servicesInfo.characteristics[PORT_WRITE].characteristic,
+            data,
+            500,
+        );
+    };
 
     public getMqttInfo = async (): Promise<void> => {
         try {
             store.dispatch(createRequestStartAction());
             const res: any = await DeviceApi.getMqttInfo();
-            this.mqttInfo = new Mqtt(res.data);
-            console.log('@masdmsdmsd:', this.mqttInfo);
+            this._mqttInfo = new Mqtt(res.data);
+            console.log('@getMqttInfo:', this._mqttInfo);
             store.dispatch(createRequestEndAction());
         } catch (error) {
             store.dispatch(createRequestEndAction());
@@ -30,12 +39,12 @@ export class ConfigStep1Actions {
         try {
             store.dispatch(createRequestStartAction());
             await BleManager.connect(peripheralId);
-            this.connectedPeripheralId = peripheralId;
+            this._connectedPeripheralId = peripheralId;
             await this.handleAfterConnectedSuccessfully(peripheralId);
             callback && callback();
             store.dispatch(createRequestEndAction());
         } catch (e) {
-            this.connectedPeripheralId = '';
+            this._connectedPeripheralId = '';
             console.log('Error connecting bluetooth', e);
             store.dispatch(createRequestEndAction());
         }
@@ -43,14 +52,14 @@ export class ConfigStep1Actions {
 
     private handleAfterConnectedSuccessfully = async (peripheralId: string) => {
         try {
-            this.servicesInfo = await BleManager.retrieveServices(peripheralId);
+            this._servicesInfo = await BleManager.retrieveServices(peripheralId);
             if (!IS_IOS) {
                 await BleManager.requestMTU(peripheralId, 512);
             }
             await BleManager.startNotification(
                 peripheralId,
-                this.servicesInfo.characteristics[PORT_NOTIFY].service,
-                this.servicesInfo.characteristics[PORT_NOTIFY].characteristic,
+                this._servicesInfo.characteristics[PORT_NOTIFY].service,
+                this._servicesInfo.characteristics[PORT_NOTIFY].characteristic,
             );
             await this.stopScan();
         } catch (e) {
@@ -58,36 +67,19 @@ export class ConfigStep1Actions {
         }
     };
 
-    public bookingDevice = async (
-        wifiName: string,
-        wifiPassword: string,
-        layoutId: number,
-        deviceId: string,
-    ): Promise<void> => {
+    public connectDeviceToServer = async (layoutId: number, deviceId: string): Promise<void> => {
         store.dispatch(createRequestStartAction());
+        let param: object;
         try {
-            let data = Parser.parseStringToBytes(
-                JSON.stringify({
-                    type: 'init',
-                    ssid: wifiName, // wifiName
-                    pwd: wifiPassword, // '@11235813',
-                    device_id: deviceId,
-                    mqtt_server: this.mqttInfo.mqttServer, // '34.71.0.216',
-                    mqtt_port: this.mqttInfo.mqttPort,
-                    fd_channel: this.mqttInfo.fdChannel + `/${layoutId}/${deviceId}`, // `SmartDesk/f_d/${layoutId}/${deviceId}`
-                    fa_channel: this.mqttInfo.faChannel + `/${layoutId}/${deviceId}`, // `SmartDesk/f_a/${layoutId}/${deviceId}`
-                    mqtt_usr: this.mqttInfo.mqttUser, // 'autonomous'
-                    mqtt_pwd: this.mqttInfo.mqttPassword, // '123'
-                }),
+            param = Helper.formatParamInitConnection(
+                this._mqttInfo,
+                this.wifi.name,
+                this.wifi.password,
+                layoutId,
+                deviceId,
             );
-            console.log('@asadsmasdmadsassdasd:', data);
-            await BleManager.write(
-                this.connectedPeripheralId,
-                this.servicesInfo.characteristics[PORT_WRITE].service,
-                this.servicesInfo.characteristics[PORT_WRITE].characteristic,
-                data,
-                500,
-            );
+            let data = Parser.parseStringToBytes(JSON.stringify(param));
+            await this.write(data);
         } catch (e) {
             store.dispatch(createRequestEndAction());
             store.dispatch(createRequestErrorMessageAction(e));
@@ -121,7 +113,11 @@ export class ConfigStep1Actions {
         } catch (e) {}
     };
 
-    createPersonalDevice = async (hubId: string, faChannel: string, fdChannel: string): Promise<void> => {
+    public createPersonalDevice = async (
+        hubId: string,
+        faChannel: string = '',
+        fdChannel: string = '',
+    ): Promise<void> => {
         try {
             let res = await DeviceApi.createPersonalDevice(hubId, faChannel, fdChannel);
             Log.debug('@createPersonalDevice:', res);
@@ -130,13 +126,19 @@ export class ConfigStep1Actions {
         }
     };
 
-    generatePersonalDeviceCode = async (): Promise<void> => {
+    public generatePersonalDeviceCode = async (): Promise<string> => {
         try {
             let res = await DeviceApi.generatePersonalDeviceCode();
-            Log.debug('@generatePersonalDeviceCode:', res);
+            return Promise.resolve(res.data);
         } catch (e) {
             Log.debug('@generatePersonalDeviceCode error:', e);
+            return Promise.resolve('');
         }
+    };
+
+    public getDeviceIdFromHardware = (): void => {
+        let data = Parser.parseStringToBytes(JSON.stringify({ type: 'get_device_id' }));
+        this.write(data);
     };
 }
 
@@ -145,8 +147,9 @@ export interface IConfigStep1Actions {
     connectToPeripheral(peripheralId: string, callback?: void): Promise<void>;
     checkPermission(): void;
     stopScan(): Promise<void>;
-    bookingDevice(wifiName: string, wifiPassword: string, layoutId: number, deviceId: string): Promise<void>;
+    connectDeviceToServer(layoutId: number, deviceId: string): Promise<void>;
     generatePersonalDeviceCode(): Promise<void>;
     createPersonalDevice(hubId: string, faChannel: string, fdChannel: string): Promise<void>;
+    getDeviceIdFromHardware(): void;
 }
 export const Bluetooth = new ConfigStep1Actions();

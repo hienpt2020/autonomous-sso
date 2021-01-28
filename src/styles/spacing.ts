@@ -4,4 +4,5 @@ export enum AppSpacing {
     MEDIUM = 16,
     LARGE = 24,
     EXTRA = 32,
+    EXTRA84 = 84,
 }

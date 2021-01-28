@@ -13,6 +13,7 @@ import { Bluetooth } from 'src/services/bluetooth/bluetooth';
 import { AppText } from 'src/components';
 import { Props } from './types';
 import { AppColor } from 'src/styles';
+import { DEVICE_TYPES } from 'src/common/constant';
 
 const WifiForm = ({ onCancel }: Props) => {
     const { t } = useTranslation();
@@ -22,8 +23,23 @@ const WifiForm = ({ onCancel }: Props) => {
     const [wifiPasswordError, setWifiPasswordError] = useState('');
     const booking: Booking = useSelector((state: RootState) => state.booking.booking);
     const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
+    const user = useSelector((state: RootState) => state.userReducer);
+    // const [hubId, setHubId] = useState('');
 
-    useEffect(() => {}, []);
+    const onConnect = async () => {
+        Bluetooth.wifi = {
+            password: wifiPassword,
+            name: wifiName,
+        };
+        if (Bluetooth.deviceType === DEVICE_TYPES.PERSONAL) {
+            let id = await Bluetooth.generatePersonalDeviceCode();
+            let test = await Bluetooth.createPersonalDevice(id);
+            await Bluetooth.connectDeviceToServer(user.userId, id);
+        } else {
+            // workspace device
+            await Bluetooth.connectDeviceToServer(workLayout.id, booking.code);
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -59,7 +75,7 @@ const WifiForm = ({ onCancel }: Props) => {
                         titleStyle={styles.textStyle}
                         containerStyle={[styles.btnContainerStyle, styles.connectBtn]}
                         title={t('setup.btn_connect_device')}
-                        onPress={() => Bluetooth.bookingDevice(wifiName, wifiPassword, workLayout.id, booking.code)}
+                        onPress={onConnect}
                         disabled={!wifiName && !wifiPassword}
                     />
                     <PrimaryButton
