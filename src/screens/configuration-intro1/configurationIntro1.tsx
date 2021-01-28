@@ -36,9 +36,7 @@ const ConfigurationIntro1 = (props: Props) => {
                 <AppText style={styles.labelText}>{t('setup.intro1_label')}</AppText>
                 <AppText style={styles.descriptionText}>{t('setup.intro1_description')}</AppText>
             </View>
-            <SafeAreaView style={styles.bottom}>
-                <PrimaryButton title={t('setup.next')} onPress={gotoPlaceDetailScreen} />
-            </SafeAreaView>
+            <PrimaryButton style={styles.button} title={t('setup.next')} onPress={gotoPlaceDetailScreen} />
         </View>
     );
 };

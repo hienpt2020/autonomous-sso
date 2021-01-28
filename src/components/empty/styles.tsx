@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 54,
         color: AppColor.DARK_GREY_1,
-        fontWeight: '400',
     },
     descriptionText: {
         fontSize: 14,

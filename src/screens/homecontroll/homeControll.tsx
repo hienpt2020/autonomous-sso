@@ -53,7 +53,7 @@ const Control = (props: Props) => {
 
     const flatListItemSeparator = () => <Space height={3} />;
     const gotoSetupNewDevice = () => {
-        props.navigation.navigate(RouteName.CONFIGURATION_STEP1);
+        props.navigation.navigate(RouteName.CONFIGURATION_INTRO1);
         Bluetooth.deviceType = DEVICE_TYPES.PERSONAL;
     };
     return (

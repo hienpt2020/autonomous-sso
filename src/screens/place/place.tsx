@@ -111,7 +111,7 @@ const BookingDetail = (props: Props) => {
     };
 
     const _onPressDevice = (item: Asset) => {
-        navigate(RouteName.CONFIGURATION_STEP1, null);
+        navigate(RouteName.CONFIGURATION_INTRO1, null);
         Bluetooth.deviceType = DEVICE_TYPES.WORKSPACE;
     };
 

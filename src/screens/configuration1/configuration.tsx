@@ -7,7 +7,7 @@ import Card from './card';
 import BleManager from 'react-native-ble-manager';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createRequestEndAction, createRequestErrorMessageAction } from '../../redux/request';
 import { BackHeader } from 'src/components/header';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,8 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { Empty } from 'src/components/empty';
 import { Props } from './types';
 import WifiForm from './wifi-form';
-import { Log } from '../../helpers/logger';
-import { DeviceApi } from '../../services/networking';
+import { DEVICE_TYPES } from 'src/common/constant';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -41,7 +40,7 @@ const ConfigurationStep1 = (props: Props) => {
     let handlerConnectedPerEmitter: any;
     let connectedPeripheralId: string = '';
     const [isShowForm, setIsShowForm] = useState(false);
-    const isPersonalDevice: boolean = true;
+    const isPersonalDevice: boolean = Bluetooth.deviceType === DEVICE_TYPES.PERSONAL;
     useEffect(() => {
         init();
         return () => {
@@ -214,10 +213,9 @@ const ConfigurationStep1 = (props: Props) => {
             ) : (
                 <Empty />
             )}
-            <SafeAreaView style={styles.bottom}>
-                <PrimaryButton loading={isScanning} onPress={startScan} title={t('Scan')} />
-            </SafeAreaView>
-            {isShowForm && <WifiForm onCancel={() => setIsShowForm(false)} />}
+            <PrimaryButton style={styles.button} loading={isScanning} onPress={startScan} title={t('Scan')} />
+
+            {/*{isShowForm && <WifiForm onCancel={() => setIsShowForm(false)} />}*/}
         </View>
     );
 };

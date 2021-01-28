@@ -16,5 +16,5 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
     },
     content: { flex: 1, alignItems: 'center', marginHorizontal: AppSpacing.LARGE, marginTop: 83 },
-    bottom: { marginHorizontal: AppSpacing.LARGE, marginBottom: AppSpacing.LARGE },
+    button: { marginHorizontal: AppSpacing.LARGE, marginBottom: 44 },
 });

@@ -19,6 +19,6 @@ export const styles = StyleSheet.create({
         height: 1,
         backgroundColor: AppColor.GREY_3,
     },
-    bottom: { marginHorizontal: AppSpacing.LARGE, marginBottom: AppSpacing.LARGE },
+    button: { marginHorizontal: AppSpacing.LARGE, marginBottom: 44 },
     content: { flex: 1, alignItems: 'center', marginHorizontal: AppSpacing.LARGE },
 });

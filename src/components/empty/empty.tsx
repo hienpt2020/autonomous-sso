@@ -5,6 +5,7 @@ import Icon from 'src/assets/images/empty.svg';
 import AppText from '../text';
 import { Props } from './types';
 import { useTranslation } from 'react-i18next';
+import { AppFontSize } from '../../styles';
 
 export const Empty = ({ iconWidth, iconHeight, description, title, containerStyles, children }: Props) => {
     const { t } = useTranslation();
@@ -14,7 +15,9 @@ export const Empty = ({ iconWidth, iconHeight, description, title, containerStyl
                 <Icon />
             </View>
             <View>
-                <AppText style={styles.titleText}>{title || t('common.empty_title_default')}</AppText>
+                <AppText size={AppFontSize.SIZE_18} style={styles.titleText}>
+                    {title || t('common.empty_title_default')}
+                </AppText>
                 <AppText style={styles.descriptionText}>{description}</AppText>
                 {children}
             </View>
