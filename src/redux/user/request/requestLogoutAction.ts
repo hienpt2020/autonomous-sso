@@ -1,3 +1,4 @@
+import { clearWorkSpaceAction } from './../../workspace/workspaceAction';
 import { call, put, all } from 'redux-saga/effects';
 import { Preference } from 'src/common/preference';
 import {
@@ -12,7 +13,12 @@ import { requestLogout } from './apiUser';
 export function* requestLogoutAction(action: any) {
     yield put(createRequestStartAction());
     try {
-        yield all([call(requestLogout), put(createClearUserProfileAction()), call(Preference.saveAccessToken, '')]);
+        yield all([
+            call(requestLogout),
+            put(createClearUserProfileAction()),
+            call(Preference.saveAccessToken, ''),
+            put(clearWorkSpaceAction()),
+        ]);
         NetworkingConfig.putCommonHeaderWithToken('');
     } catch (error) {
         console.log(error);

@@ -132,16 +132,14 @@ const Map = (props: Props) => {
             if (moment(_dateTo).diff(moment(date), 'hours') < 2) {
                 _dateTo = moment(date).add(HOUR_GAP, 'hours').toDate();
             }
-
+            _dateFrom = date;
             setDateFrom(date);
             setDateTo(_dateTo);
         } else {
-            reactotron.log(moment(date).diff(moment(_dateFrom), 'hours'));
-
             if (moment(date).diff(moment(_dateFrom), 'hours') < 2) {
                 _dateFrom = moment(date).subtract(HOUR_GAP, 'hours').toDate();
             }
-
+            _dateTo = date;
             setDateFrom(_dateFrom);
             setDateTo(date);
         }
