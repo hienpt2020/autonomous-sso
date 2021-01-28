@@ -215,7 +215,7 @@ const ConfigurationStep1 = (props: Props) => {
             )}
             <PrimaryButton style={styles.button} loading={isScanning} onPress={startScan} title={t('Scan')} />
 
-            {/*{isShowForm && <WifiForm onCancel={() => setIsShowForm(false)} />}*/}
+            {isShowForm && <WifiForm onCancel={() => setIsShowForm(false)} />}
         </View>
     );
 };
