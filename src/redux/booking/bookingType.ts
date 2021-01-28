@@ -17,4 +17,5 @@ export interface setWorkLayoutActionType {
 export interface BookingState {
     booking: Booking;
     workLayout: WorkLayout;
+    canBooking: boolean;
 }

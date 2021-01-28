@@ -5,7 +5,6 @@ export default class WorkLayout {
     image: string;
     policy: string;
     placeAvailable: number;
-
     constructor() {
         this.id = 0;
         this.name = '';

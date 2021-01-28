@@ -6,6 +6,7 @@ import { AppView, Space } from 'src/components';
 import { Empty } from 'src/components/empty';
 import { Header, LargeHeader } from 'src/components/header';
 import { Loading } from 'src/components/loading';
+import { Log } from 'src/helpers/logger';
 import { BookingHistory } from 'src/models/BookingHistory';
 import WorkLayout from 'src/models/WorkLayout';
 import { getBookingHistoryAction } from 'src/redux/booking-history/bookingHistoryAction';
@@ -37,9 +38,23 @@ const Office = (props: Props) => {
         dispatch(getBookingHistoryAction(false, workingSpaceId, 0));
     }, []);
 
+    React.useEffect(() => {
+        const unsubscribe = props.navigation.addListener('focus', () => {
+            _getListWorkLayout(false);
+        });
+
+        return unsubscribe;
+    }, [props.navigation]);
+
     useEffect(() => {
+        _getListWorkLayout(true);
+    }, [workspaceReducer.id]);
+
+    const _getListWorkLayout = (isSetLoading: boolean) => {
         if (workingSpaceId >= 0) {
-            setIsLoading(true);
+            if (isSetLoading) {
+                setIsLoading(true);
+            }
             getWorkLayout(workspaceReducer.id)
                 .then((data) => {
                     setWorkLayouts(data);
@@ -49,7 +64,7 @@ const Office = (props: Props) => {
                     setIsLoading(false);
                 });
         }
-    }, [workspaceReducer.id]);
+    };
 
     const renderItem = (data: WorkLayout) => {
         return <CardItem cardData={data} onPress={() => _onItemSelected(data)} />;
@@ -70,28 +85,6 @@ const Office = (props: Props) => {
     return (
         <View style={styles.container}>
             <Header title={'Booking'} />
-
-            {/* <Button
-                title={'Test'}
-                onPress={() => {
-                    showPopup('Sucess', 'bbsdfasdfsdafaksfhsdkfhjksfhjksdhjkb', null, [
-                        {
-                            onPress: () => {
-                                reactotron.log('aa');
-                            },
-                            title: 'Ok',
-                        },rr
-                        {
-                            onPress: () => {
-                                reactotron.log('bb');
-                            },
-                            title: 'Cancel',
-                            style: 'negative',
-                        },
-                    ]);
-                }}
-            /> */}
-
             {isLoading ? (
                 <Loading />
             ) : workLayouts.length > 0 ? (

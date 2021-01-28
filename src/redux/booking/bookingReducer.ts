@@ -14,6 +14,7 @@ const initialState: BookingState = {
         code: '',
     },
     workLayout: new WorkLayout(),
+    canBooking: true,
 };
 
 export function booking(

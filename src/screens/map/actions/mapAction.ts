@@ -27,3 +27,16 @@ export const getAvailableWorkPlace = async (workLayoutId: number, from: string, 
         return [];
     }
 };
+
+export const getBookingOfUser = async (form: string, to: string) => {
+    try {
+        const { data } = await HybridApi.getBookingHistory(false, null, 0, from, to);
+        const workPLaces: WorkPlace[] = data.items.map((placeResponse: any) => {
+            const parser = new ParserImpl();
+            return parser.parseWorkPlace(placeResponse);
+        });
+        return workPLaces;
+    } catch (e) {
+        return [];
+    }
+};
