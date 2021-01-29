@@ -27,7 +27,8 @@
         "no": "No",
         "error": "Error",
         "cancel": "Cancel",
-        "ok": "Ok"
+        "ok": "Ok",
+        "you_have_a_booking":"You have a booking in this time!"
     },
     "button": {
         "back": "Back",
