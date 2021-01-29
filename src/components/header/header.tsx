@@ -24,7 +24,7 @@ export const LargeHeader = (props: PropsLargeHeader) => {
 
 export const Header = (props: PropHeader) => {
     return (
-        <SafeAreaView style={styles.headerSafeView}>
+        <SafeAreaView style={[styles.headerSafeView, props.style]}>
             <AppView style={styles.container} center>
                 <AppText bold size={AppFontSize.SIZE_16}>
                     {props.title}
@@ -58,7 +58,7 @@ export const BackHeader = (props: PropsBackHeader) => {
                     {props.title}
                 </AppText>
 
-                <AppView style={styles.buttonContainer}></AppView>
+                <AppView style={styles.buttonContainer} />
             </AppView>
         </SafeAreaView>
     );

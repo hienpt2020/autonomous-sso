@@ -67,7 +67,6 @@ const ControlButton = (props: {
         props.onPressOut();
     };
     const _onPressIn = () => {
-        props.onPressIn();
         setIsPressed(true);
     };
 
@@ -75,6 +74,7 @@ const ControlButton = (props: {
         <TouchableOpacity
             onPressOut={_onPressOut}
             onPressIn={_onPressIn}
+            onLongPress={props.onPressIn}
             style={[
                 styles.button,
                 props.containerStyle,

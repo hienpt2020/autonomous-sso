@@ -1,21 +1,24 @@
 import * as React from 'react';
-import { View, Text, StatusBar, FlatList, ScrollView, NativeModules, NativeEventEmitter, AppState } from 'react-native';
+import { View, FlatList, ScrollView, NativeModules, NativeEventEmitter, AppState } from 'react-native';
 import { styles } from './styles';
 import { PrimaryButton } from 'src/components/button';
 import { YellowBox } from 'react-native';
 import Card from './card';
 import BleManager from 'react-native-ble-manager';
-import { navigate } from '../../routers/rootNavigation';
-import { RouteName } from '../../routers/routeName';
+import { navigate } from 'src/routers/rootNavigation';
+import { RouteName } from 'src/routers/routeName';
 import { useDispatch } from 'react-redux';
 import { createRequestEndAction, createRequestErrorMessageAction } from '../../redux/request';
-import { BackHeader } from '../../components/header';
+import { BackHeader } from 'src/components/header';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Parser } from '../../helpers/parser';
+import { Parser } from 'src/helpers/parser';
 import { useEffect, useState } from 'react';
-import { Bluetooth } from '../../services/bluetooth/bluetooth';
+import { Bluetooth } from 'src/services/bluetooth/bluetooth';
 import { useTranslation } from 'react-i18next';
-import { Empty } from '../../components/empty';
+import { Empty } from 'src/components/empty';
+import { Props } from './types';
+import WifiForm from './wifi-form';
+import { DEVICE_TYPES } from 'src/common/constant';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -23,9 +26,10 @@ YellowBox.ignoreWarnings([
 const BleManagerModule = NativeModules.BleManager;
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
 
-const ConfigurationStep1 = () => {
+const ConfigurationStep1 = (props: Props) => {
     const [appState, setAppState] = useState<any>('');
     const [list, setList] = useState<any[]>([]);
+    const [isScanning, setIsScanning] = useState<boolean>(false);
     const dispatch = useDispatch();
     const { t } = useTranslation();
     let peripherals = new Map();
@@ -35,7 +39,8 @@ const ConfigurationStep1 = () => {
     let handlerBleNotificationEmitter: any;
     let handlerConnectedPerEmitter: any;
     let connectedPeripheralId: string = '';
-
+    const [isShowForm, setIsShowForm] = useState(false);
+    const isPersonalDevice: boolean = Bluetooth.deviceType === DEVICE_TYPES.PERSONAL;
     useEffect(() => {
         init();
         return () => {
@@ -64,6 +69,7 @@ const ConfigurationStep1 = () => {
             handleConnectedPeripheral,
         );
         await Bluetooth.getMqttInfo();
+
         Bluetooth.checkPermission();
     };
 
@@ -72,11 +78,11 @@ const ConfigurationStep1 = () => {
             BleManager.disconnect(connectedPeripheralId);
         } catch (e) {}
         AppState.removeEventListener('change', handleAppStateChange);
-        handlerDiscoverEmitter.remove();
-        handlerStopScanEmitter.remove();
-        handlerDisconnectEmitter.remove();
-        handlerBleNotificationEmitter.remove();
-        handlerConnectedPerEmitter.remove();
+        handlerDiscoverEmitter && handlerDiscoverEmitter.remove();
+        handlerStopScanEmitter && handlerStopScanEmitter.remove();
+        handlerDisconnectEmitter && handlerDisconnectEmitter.remove();
+        handlerBleNotificationEmitter && handlerBleNotificationEmitter.remove();
+        handlerConnectedPerEmitter && handlerConnectedPerEmitter.remove();
     };
 
     const handleAppStateChange = (nextAppState: any) => {
@@ -103,7 +109,7 @@ const ConfigurationStep1 = () => {
     );
 
     const renderItem = (data: any) => {
-        return <Card data={data} onPress={() => Bluetooth.connectToPeripheral(data.id)} selectedId={data.connected} />;
+        return <Card data={data} onPress={() => Bluetooth.connectToPeripheral(data.id, () => setIsShowForm(true))} />;
     };
 
     const handleDisconnectedPeripheral = (data: any) => {
@@ -122,6 +128,7 @@ const ConfigurationStep1 = () => {
             peripherals = new Map();
             setList([]);
             await BleManager.scan([], 10, false);
+            setIsScanning(true);
         } catch (e) {
             console.log('@start scan failed: ', e);
         }
@@ -139,6 +146,7 @@ const ConfigurationStep1 = () => {
 
     const handleStopScan = () => {
         console.log('@handleStopScan');
+        setIsScanning(false);
     };
 
     const readBleNotification = async (res: any) => {
@@ -149,11 +157,30 @@ const ConfigurationStep1 = () => {
                 case 'init':
                     if (data.status === '1') {
                         dispatch(createRequestEndAction());
-                        navigate(RouteName.CONFIGURATION_RESULT, null);
+                        if (isPersonalDevice) {
+                            navigate(RouteName.HOME_CONTROLL, null);
+                        } else {
+                            // is workspace
+                            props.navigation.goBack();
+                            props.navigation.goBack();
+                            props.navigation.goBack();
+                        }
                     } else if (data.status === '-1') {
                         dispatch(createRequestEndAction());
                         dispatch(createRequestErrorMessageAction(data.message));
                     }
+                    break;
+                case 'get_device_id':
+                    // if (data.status === '1') {
+                    //     // check device id has existed? server lam?
+                    //     let hubId = await Bluetooth.generatePersonalDeviceCode();
+                    //     // if has
+                    //
+                    //     let test = await Bluetooth.createPersonalDevice(hubId);
+                    //     await Bluetooth.connectDeviceToServer(user.userId, hubId);
+                    // } else {
+                    //     dispatch(createRequestErrorMessageAction(data.message));
+                    // }
                     break;
                 default:
                     break;
@@ -163,6 +190,10 @@ const ConfigurationStep1 = () => {
                 console.log('Error....:', e);
             }
         }
+    };
+
+    const handleBack = () => {
+        props.navigation.goBack();
     };
 
     return (
@@ -182,15 +213,11 @@ const ConfigurationStep1 = () => {
             ) : (
                 <Empty />
             )}
-            <SafeAreaView>
-                <PrimaryButton style={styles.button} onPress={startScan} title={t('Scan')} />
-            </SafeAreaView>
+            <PrimaryButton style={styles.button} loading={isScanning} onPress={startScan} title={t('Scan')} />
+
+            {isShowForm && <WifiForm onCancel={() => setIsShowForm(false)} />}
         </View>
     );
-
-    function handleBack() {
-        navigate(RouteName.PLACE_DETAIL, null);
-    }
 };
 
 export default ConfigurationStep1;

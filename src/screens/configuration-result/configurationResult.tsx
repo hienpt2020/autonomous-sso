@@ -17,10 +17,19 @@ YellowBox.ignoreWarnings([
 
 const ConfigurationResult = (props: Props) => {
     const { t } = useTranslation();
-
+    const isPersonalDevice = false;
     useEffect(() => {}, []);
 
-    const gotoPlaceDetailScreen = () => navigate(RouteName.PLACE_DETAIL, null);
+    const gotoPlaceDetailScreen = () => {
+        if (isPersonalDevice) {
+            navigate(RouteName.HOME_CONTROLL, null);
+        } else {
+            props.navigation.goBack();
+            props.navigation.goBack();
+            props.navigation.goBack();
+            props.navigation.goBack();
+        }
+    };
     return (
         <View style={styles.container}>
             <ImageSuccess width="152" height="152" style={styles.title} />

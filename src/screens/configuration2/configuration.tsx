@@ -33,7 +33,6 @@ const ConfigurationStep2 = (props: Props) => {
     const booking: Booking = useSelector((state: RootState) => state.booking.booking);
     const workLayout: WorkLayout = useSelector((state: RootState) => state.booking.workLayout);
 
-    const bookingDevice: any = props.route.params.bookingDevice;
     useEffect(() => {}, []);
 
     return (

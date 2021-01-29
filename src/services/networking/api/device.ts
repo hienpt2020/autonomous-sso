@@ -51,6 +51,18 @@ function getDevices() {
     return _get('/devices/control/now');
 }
 
+function getPersonalDevices() {
+    return _get('/devices/personal');
+}
+
+function createPersonalDevice(hubId: string, faChannel: string, fdChannel: string) {
+    return _post('/devices/personal', { hub_id: hubId, FAChannel: faChannel, FDChannel: fdChannel });
+}
+
+function generatePersonalDeviceCode() {
+    return _get('/devices/code-generator?type=personal');
+}
+
 export const DeviceApi = {
     getMqttInfo,
     controlDown,
@@ -58,4 +70,7 @@ export const DeviceApi = {
     controlStop,
     getDeviceInfo,
     getDevices,
+    getPersonalDevices,
+    createPersonalDevice,
+    generatePersonalDeviceCode,
 };
