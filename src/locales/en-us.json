@@ -28,6 +28,7 @@
         "error": "Error",
         "cancel": "Cancel",
         "ok": "Ok",
+        "you_have_a_booking":"You have a booking in this time!",
         "empty_title_default": "No Data"
     },
     "button": {

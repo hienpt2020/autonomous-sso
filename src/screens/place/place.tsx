@@ -48,6 +48,7 @@ const BookingDetail = (props: Props) => {
     );
     const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
     const workingSpaceId = useSelector((state: RootState) => state.workspaceReducer.id);
+    const canBooking = useSelector((state: RootState) => state.booking.enable);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -72,7 +73,7 @@ const BookingDetail = (props: Props) => {
             const bookingHistory: BookingHistory = await bookPlace(place.id, booking.from, booking.to);
             if (bookingHistory) {
                 // TODO
-                dispatch(getBookingHistoryAction(false, workingSpaceId, 0));
+                dispatch(getBookingHistoryAction(false, workingSpaceId, 0, true));
                 navigate(RouteName.BOOKING_RESULT, { booking: bookingHistory });
             } else {
                 navigate(RouteName.BOOKING_RESULT, { booking: undefined });
@@ -89,7 +90,7 @@ const BookingDetail = (props: Props) => {
                         const cancelResult = await cancelBooking(bookingHistory.id);
                         if (cancelResult) {
                             // TODO
-                            dispatch(getBookingHistoryAction(false, workingSpaceId, 0));
+                            dispatch(getBookingHistoryAction(false, workingSpaceId, 0, true));
                             showPopup(t('booking_detail.cancelled'), t('booking_detail.cancelled_desc'), null, [
                                 {
                                     title: t('common.ok'),
@@ -234,6 +235,7 @@ const BookingDetail = (props: Props) => {
                 ) : null}
 
                 <PrimaryButton
+                    disabled={!canBooking && !bookingHistory}
                     style={styles.button}
                     onPress={
                         !bookingHistory

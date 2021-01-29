@@ -40,23 +40,24 @@ export function bookingHistoryReducer(
             };
 
         case GET_BOOKING_HISTORY_SUCCESS:
-            const upComingBookingHistories = action.bookings.filter(
-                (booking) => moment(booking.timeFrom) > moment() && booking.isUpcoming(booking.bookingStatus),
-            );
+            return action.isUpcoming
+                ? {
+                      ...state,
 
-            return {
-                ...state,
-                bookings: {
-                    page: state.bookings.page + 1,
-                    items: action.bookings,
-                    isLoading: false,
-                },
-                upComingBookings: {
-                    page: state.upComingBookings.page + 1,
-                    items: upComingBookingHistories,
-                    isLoading: false,
-                },
-            };
+                      upComingBookings: {
+                          page: state.upComingBookings.page + 1,
+                          items: action.bookings,
+                          isLoading: false,
+                      },
+                  }
+                : {
+                      ...state,
+                      bookings: {
+                          page: state.bookings.page + 1,
+                          items: action.bookings,
+                          isLoading: false,
+                      },
+                  };
 
         default:
             return state;

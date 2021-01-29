@@ -20,4 +20,9 @@ export const styles = StyleSheet.create({
         fontSize: AppFontSize.SIZE_20,
         fontWeight: '500',
     },
+    notice: {
+        fontSize: AppFontSize.SIZE_12,
+        color: AppColor.RED_7,
+        marginBottom: AppSpacing.MEDIUM,
+    },
 });

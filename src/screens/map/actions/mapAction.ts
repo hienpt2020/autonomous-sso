@@ -1,3 +1,4 @@
+import { ALL_WORK_SPACE_HISTORY } from 'src/common/constant';
 import WorkPlace from 'src/models/WorkPlace';
 import { HybridApi } from 'src/services/networking';
 import { ParserImpl } from './../../../helpers/parser';
@@ -23,6 +24,27 @@ export const getAvailableWorkPlace = async (workLayoutId: number, from: string, 
             return parser.parseWorkPlace(placeResponse);
         });
         return workPLaces;
+    } catch (e) {
+        return [];
+    }
+};
+
+export const getBookingOfUser = async (from: string, to: string) => {
+    try {
+        const res: any = await HybridApi.getBookingHistory({
+            isAdmin: false,
+            workingSpaceId: ALL_WORK_SPACE_HISTORY,
+            page: 0,
+            from: from,
+            to: to,
+        });
+
+        const bookings = res.data.items;
+        const bookingDatas = bookings.map((booking: any) => {
+            const parser = new ParserImpl();
+            return parser.parseBookingHistory(booking);
+        });
+        return bookingDatas;
     } catch (e) {
         return [];
     }

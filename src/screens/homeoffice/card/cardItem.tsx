@@ -30,7 +30,7 @@ const CardItem = (props: Props) => {
                         <Space width={5} />
 
                         <AppText color={AppColor.BLUE_1} bold size={AppFontSize.SIZE_13}>
-                            {'50+'}
+                            {cardData.placeAvailable.toString()}
                         </AppText>
 
                         <Space width={3} />

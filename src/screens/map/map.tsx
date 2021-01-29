@@ -14,7 +14,7 @@ import TimeSelect from 'src/components/timeSelect';
 import Booking from 'src/models/Booking';
 import WorkLayout from 'src/models/WorkLayout';
 import WorkPlace from 'src/models/WorkPlace';
-import { setBookingDataAction } from 'src/redux/booking/bookingAction';
+import { setBookingDataAction, setEnableBooking } from 'src/redux/booking/bookingAction';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
@@ -24,6 +24,8 @@ import { getAvailableWorkPlace } from './actions/mapAction';
 import { CardItem } from './card';
 import { styles } from './styles';
 import { Props } from './types';
+import { getBookingOfUser } from './actions/mapAction';
+import { BookingHistory } from 'src/models/BookingHistory';
 
 const Map = (props: Props) => {
     const FIXED_ITEM_HEIGHT = 140;
@@ -59,8 +61,19 @@ const Map = (props: Props) => {
 
     const _getData = async (from: Date, to: Date) => {
         setIsLoading(true);
+        setWorkPlaces([]);
         try {
-            setWorkPlaces(await getAvailableWorkPlace(map.id, moment(from).toISOString(), moment(to).toISOString()));
+            const workPlaces = await getAvailableWorkPlace(
+                map.id,
+                moment(from).toISOString(),
+                moment(to).toISOString(),
+            );
+            const bookings: BookingHistory[] = await getBookingOfUser(
+                moment(from).toISOString(),
+                moment(to).toISOString(),
+            );
+            dispatch(setEnableBooking(!(bookings.length > 0)));
+            setWorkPlaces(workPlaces);
         } catch (error) {}
         setIsLoading(false);
     };

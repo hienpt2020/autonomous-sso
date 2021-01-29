@@ -39,11 +39,25 @@ function getListWorkingPlaceByDate(layoutId: number, from: string, to: string) {
     return _get(`working-place-filter/filter-available-by-date/${layoutId}`, { from, to, layoutID: layoutId });
 }
 
-const getBookingHistory = (isAdmin: boolean, workingSpaceId: number, page: number) => {
+const getBookingHistory = ({
+    isAdmin,
+    workingSpaceId,
+    page,
+    from,
+    to,
+}: {
+    isAdmin: boolean;
+    workingSpaceId: number;
+    page: number;
+    from?: string;
+    to?: string;
+}) => {
     const resquestParam = {
         limit: DEFAULT_REQUEST_LIMIT * 2,
         page: page,
         workingSpaceId: workingSpaceId,
+        from,
+        to,
     };
 
     return isAdmin
