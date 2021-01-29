@@ -32,7 +32,6 @@ const Map = (props: Props) => {
     const FIXED_DATE_TIME = 300;
     const NUM_COLUMNS = 2;
     const HOUR_GAP = 2;
-    const timeFormatter = 'hh:mm MMM DD';
     const today = new Date();
     if (today.getMinutes() % 30 != 0) {
         if (today.getMinutes() > 30) {

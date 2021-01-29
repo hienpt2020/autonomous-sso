@@ -27,6 +27,9 @@ export type RootStackParams = {
     [RouteName.CONTROL]: { device?: Device };
     [RouteName.NEW_PASSWORD]: undefined;
     [RouteName.WEBPAGE]: { url: string };
+    [RouteName.CONFIGURATION_INTRO1]: undefined;
+    [RouteName.CONFIGURATION_INTRO2]: undefined;
+    [RouteName.HOME_CONTROLL]: undefined;
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -117,5 +120,13 @@ export const authenticatedRoutes: RouteProps[] = [
     {
         name: RouteName.WEBPAGE,
         component: require('src/screens/webpage').default,
+    },
+    {
+        name: RouteName.CONFIGURATION_INTRO1,
+        component: require('src/screens/configuration-intro1').default,
+    },
+    {
+        name: RouteName.CONFIGURATION_INTRO2,
+        component: require('src/screens/configuration-intro2').default,
     },
 ];

@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { AppColor } from 'src/styles/colors';
 import { AppFontSize, AppSpacing } from '../../styles';
 export const styles = StyleSheet.create({
@@ -7,17 +7,20 @@ export const styles = StyleSheet.create({
         backgroundColor: AppColor.MAIN_BACKGROUND,
     },
     header: {
-        fontSize: 24,
+        fontSize: AppFontSize.SIZE_24,
         paddingStart: 16,
         paddingEnd: 16,
         paddingTop: 8,
         paddingBottom: 8,
     },
-    titleText: {
+    sectionText: {
         fontSize: AppFontSize.SIZE_28,
         marginHorizontal: AppSpacing.LARGE,
         fontWeight: '500',
         lineHeight: 38,
-        marginVertical: AppSpacing.LARGE,
+        marginBottom: AppSpacing.LARGE,
     },
+    list: { marginTop: 68 },
+    emptyContainer: { marginTop: '15.27%' },
+    setupBtnContainer: { marginHorizontal: AppSpacing.EXTRA84, marginVertical: AppSpacing.LARGE },
 });

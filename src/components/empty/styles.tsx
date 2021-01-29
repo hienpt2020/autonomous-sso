@@ -7,4 +7,20 @@ export const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
+    titleText: {
+        fontSize: 18,
+        lineHeight: 28,
+        marginBottom: 4,
+        marginHorizontal: 48,
+        textAlign: 'center',
+        marginTop: 54,
+        color: AppColor.DARK_GREY_1,
+    },
+    descriptionText: {
+        fontSize: 14,
+        lineHeight: 24,
+        marginHorizontal: 24,
+        textAlign: 'center',
+        color: AppColor.TEXT_LIGHT,
+    },
 });

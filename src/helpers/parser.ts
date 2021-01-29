@@ -26,6 +26,7 @@ export class ParserImpl implements IParser {
         result.source = _.get(responseData, 'source');
         result.isVerifiedEmail = _.get(responseData, 'is_verified_email');
         result.accessToken = _.get(responseData, 'accessToken');
+        result.userId = _.get(responseData, 'id');
         return result;
     }
     parseWorkspace(responseData: any): WorkSpace {
@@ -39,7 +40,7 @@ export class ParserImpl implements IParser {
         result.status = _.get(responseData, 'status');
         result.members = _.get(responseData, 'members');
         result.roleByCurrentUser = _.get(responseData, 'role_by_current_user');
-        result.isAdmin = ROLES.ADMIN == _.get(responseData, 'role_by_current_user');
+        result.isAdmin = ROLES.OWNER == _.get(responseData, 'role_by_current_user');
 
         return result;
     }
