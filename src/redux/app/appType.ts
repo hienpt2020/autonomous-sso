@@ -21,7 +21,7 @@ export type VisibilityPopupActionType = HidePopupActionType | ShowPopupActionTyp
 export interface PopupButton {
     title: string;
     style?: typeof NEGATIVE | typeof POSITIVE;
-    onPress: () => void;
+    onPress?: () => void;
 }
 
 export interface PopupState {

@@ -6,6 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import IcArrowDownBlue from 'src/assets/images/ic_arrow_down_blue.svg';
 import IcArrowLeft from 'src/assets/images/ic_arrow_left_outline.svg';
 import IcArrowRight from 'src/assets/images/ic_arrow_right_outline.svg';
+import { formatAppDate } from 'src/helpers/dateTimeHelper';
 import { AppColor } from 'src/styles';
 import { AppView } from '..';
 import AppText from '../text';
@@ -31,7 +32,7 @@ const TimeSelect: React.FC<TimeSelectProps> = ({
                     <Text style={styles.date}>
                         <AppText>{t('common.from') + ': '}</AppText>
                         <AppText bold={isSelect} color={isSelect ? AppColor.BLUE_1 : AppColor.GREY_1}>
-                            {moment(from).format('MMM Do, YYYY | HH:mm A')}
+                            {formatAppDate(from)}
                         </AppText>
                     </Text>
                     {isSelect && <IcArrowDownBlue height={9.33} width={9.33} />}
@@ -46,7 +47,7 @@ const TimeSelect: React.FC<TimeSelectProps> = ({
                     <Text style={styles.date}>
                         <AppText>{t('common.until') + ': '}</AppText>
                         <AppText bold={isSelect} color={isSelect ? AppColor.BLUE_1 : AppColor.GREY_1}>
-                            {moment(to).format('MMM Do, YYYY | HH:mm A')}
+                            {formatAppDate(to)}
                         </AppText>
                     </Text>
                     {isSelect && <IcArrowDownBlue height={9.33} width={9.33} />}

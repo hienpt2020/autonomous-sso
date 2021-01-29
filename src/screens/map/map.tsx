@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, TouchableWithoutFeedback, View } from 'react-native';
 import DatePicker from 'react-native-date-picker';
-import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { AppView, Space } from 'src/components';
@@ -12,7 +11,6 @@ import { BackHeader, LargeHeader } from 'src/components/header';
 import LayoutInfo from 'src/components/layoutInfo';
 import { Link } from 'src/components/link';
 import TimeSelect from 'src/components/timeSelect';
-import reactotron from 'src/config/configReactoron';
 import Booking from 'src/models/Booking';
 import WorkLayout from 'src/models/WorkLayout';
 import WorkPlace from 'src/models/WorkPlace';
@@ -32,7 +30,6 @@ const Map = (props: Props) => {
     const FIXED_DATE_TIME = 300;
     const NUM_COLUMNS = 2;
     const HOUR_GAP = 2;
-    const timeFormatter = 'hh:mm MMM DD';
     const today = new Date();
     if (today.getMinutes() % 30 != 0) {
         if (today.getMinutes() > 30) {
@@ -132,16 +129,14 @@ const Map = (props: Props) => {
             if (moment(_dateTo).diff(moment(date), 'hours') < 2) {
                 _dateTo = moment(date).add(HOUR_GAP, 'hours').toDate();
             }
-
+            _dateFrom = date;
             setDateFrom(date);
             setDateTo(_dateTo);
         } else {
-            reactotron.log(moment(date).diff(moment(_dateFrom), 'hours'));
-
             if (moment(date).diff(moment(_dateFrom), 'hours') < 2) {
                 _dateFrom = moment(date).subtract(HOUR_GAP, 'hours').toDate();
             }
-
+            _dateTo = date;
             setDateFrom(_dateFrom);
             setDateTo(date);
         }
