@@ -42,9 +42,9 @@ const BookingScreen = (props: Props) => {
     // }, [bookings]);
 
     const _getData = async () => {
-        if (props.isUpComming) {
-            dispatch(getBookingHistoryAction(isAdmin, workingSpaceId, page));
-        }
+        dispatch(
+            getBookingHistoryAction(isAdmin, workingSpaceId, page, props.isUpComming || props.isUpComming != undefined),
+        );
     };
 
     const _onRefresh = () => {

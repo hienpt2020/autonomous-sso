@@ -10,18 +10,24 @@ export const getBookingHistoryAction = (
     isAdmin: boolean,
     workSpaceId: number,
     page: number,
+    isUpcoming: boolean,
 ): GetBookingHistoryActionType => {
     return {
         type: GET_BOOKING_HISTORY,
         isAdmin,
         workSpaceId,
         page,
+        isUpcoming,
     };
 };
 
-export const getBookingHistorySuccessAction = (bookings: BookingHistory[]): GetBookingHistorySucessActionType => {
+export const getBookingHistorySuccessAction = (
+    bookings: BookingHistory[],
+    isUpcoming: boolean,
+): GetBookingHistorySucessActionType => {
     return {
         type: GET_BOOKING_HISTORY_SUCCESS,
         bookings,
+        isUpcoming,
     };
 };

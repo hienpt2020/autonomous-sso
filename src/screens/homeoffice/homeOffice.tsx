@@ -33,11 +33,6 @@ const Office = (props: Props) => {
         (state: RootState) => state.bookingHistoryReducer.upComingBookings.items,
     );
 
-    useEffect(() => {
-        // TODO: admin????
-        dispatch(getBookingHistoryAction(false, workingSpaceId, 0));
-    }, []);
-
     React.useEffect(() => {
         const unsubscribe = props.navigation.addListener('focus', () => {
             _getListWorkLayout(false);
@@ -48,6 +43,7 @@ const Office = (props: Props) => {
 
     useEffect(() => {
         _getListWorkLayout(true);
+        dispatch(getBookingHistoryAction(false, workingSpaceId, 0, true));
     }, [workspaceReducer.id]);
 
     const _getListWorkLayout = (isSetLoading: boolean) => {

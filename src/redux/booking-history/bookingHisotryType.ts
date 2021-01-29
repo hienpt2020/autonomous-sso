@@ -8,11 +8,13 @@ export interface GetBookingHistoryActionType {
     isAdmin: boolean;
     workSpaceId: number;
     page: number;
+    isUpcoming: boolean;
 }
 
 export interface GetBookingHistorySucessActionType {
     type: typeof GET_BOOKING_HISTORY_SUCCESS;
     bookings: BookingHistory[];
+    isUpcoming: boolean;
 }
 
 export interface BookingHistoryState {

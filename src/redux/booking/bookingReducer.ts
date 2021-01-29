@@ -5,6 +5,8 @@ import {
     BookingState,
     setWorkLayoutActionType,
     SET_WORK_LAYOUT,
+    SET_ENABLE_BOOKING,
+    SetEnableBookingActionType,
 } from './bookingType';
 
 const initialState: BookingState = {
@@ -14,18 +16,24 @@ const initialState: BookingState = {
         code: '',
     },
     workLayout: new WorkLayout(),
-    canBooking: true,
+    enable: true,
 };
 
 export function booking(
     state = initialState,
-    action: SetBookingDataActionType | setWorkLayoutActionType,
+    action: SetBookingDataActionType | setWorkLayoutActionType | SetEnableBookingActionType,
 ): BookingState {
     switch (action.type) {
         case SET_BOOKING_DATA:
             return {
                 ...state,
                 booking: action.booking,
+            };
+
+        case SET_ENABLE_BOOKING:
+            return {
+                ...state,
+                enable: action.enable,
             };
 
         case SET_WORK_LAYOUT:
