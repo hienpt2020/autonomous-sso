@@ -1,4 +1,4 @@
-import { AppState, HidePopupActionType, HIDE_POPUP, ShowPopupActionType, SHOW_POPUP } from './appType';
+import { AppState, HIDE_POPUP, SET_APP_INITIAL_ACTION, AppActionType, SHOW_POPUP } from './appType';
 
 const initialState: AppState = {
     popup: {
@@ -8,9 +8,10 @@ const initialState: AppState = {
         icon: undefined,
         buttons: [],
     },
+    initial: false,
 };
 
-export function appReducer(state = initialState, action: ShowPopupActionType | HidePopupActionType): AppState {
+export function appReducer(state = initialState, action: AppActionType): AppState {
     switch (action.type) {
         case SHOW_POPUP:
             return {
@@ -29,6 +30,11 @@ export function appReducer(state = initialState, action: ShowPopupActionType | H
             return {
                 ...state,
                 popup: initialState.popup,
+            };
+        case SET_APP_INITIAL_ACTION:
+            return {
+                ...state,
+                initial: true,
             };
 
         default:

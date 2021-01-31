@@ -12,23 +12,23 @@ export class LoggerImpl implements Logger {
     private instance?: Console = __DEV__ ? reactotron : undefined;
 
     public debug(message?: any, ...optionalParams: any[]): void {
-        this.instance?.debug(message, this.buildMetaData(optionalParams));
+        this.instance?.debug(`${message}: ${this.buildMetaData(optionalParams)}`);
     }
 
     public verbose(message?: any, ...optionalParams: any[]): void {
-        this.debug(message, message);
+        this.debug(message, this.buildMetaData(optionalParams));
     }
 
     public info(message?: any, ...optionalParams: any[]): void {
-        this.instance?.info(message, this.buildMetaData(optionalParams));
+        this.instance?.info(`${message}: ${this.buildMetaData(optionalParams)}`);
     }
 
     public warn(message?: any, ...optionalParams: any[]): void {
-        this.instance?.warn(message, this.buildMetaData(optionalParams));
+        this.instance?.warn(`${message}: ${this.buildMetaData(optionalParams)}`);
     }
 
     public error(message?: any, ...optionalParams: any[]): void {
-        this.instance?.error(message, this.buildMetaData(optionalParams));
+        this.instance?.error(`${message}: ${this.buildMetaData(optionalParams)}`);
     }
 
     private buildMetaData(metaData: any): any[] {
