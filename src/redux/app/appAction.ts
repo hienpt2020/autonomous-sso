@@ -1,4 +1,5 @@
-import { HidePopupActionType, HIDE_POPUP, ShowPopupActionType, SHOW_POPUP, PopupButton } from './appType';
+import { HidePopupActionType, HIDE_POPUP, ShowPopupActionType, SHOW_POPUP } from './appType';
+import { PopupButton } from 'src/components/popup/types';
 
 export const showPopupAction = (
     title: string,
