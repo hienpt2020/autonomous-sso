@@ -14,9 +14,9 @@ export const useForceUpdate = (): [() => JSX.Element, boolean] => {
 
     const onUpdate = useCallback(() => {
         if (Platform.OS === 'android') {
-            Linking.canOpenURL(Config.LINK_GG_PLAY)
+            Linking.canOpenURL(Config.LINK_GG_PLAY + Config.APP_ID)
                 .then(() => {
-                    Linking.openURL(Config.LINK_GG_PLAY);
+                    Linking.openURL(Config.LINK_GG_PLAY + Config.APP_ID);
                 })
                 .catch();
         } else if (Platform.OS === 'ios') {
