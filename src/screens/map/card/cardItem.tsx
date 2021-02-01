@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import IconAdd from 'src/assets/images/ic_add.svg';
+import { DEFAULT_IMAGES } from 'src/common/constant';
 import { AppText, AppView, Space } from 'src/components';
 import reactotron from 'src/config/configReactoron';
 import { getImage } from 'src/helpers/imageHelper';
@@ -17,7 +18,11 @@ const CardItem = (props: Props) => {
     return (
         <TouchableOpacity onPress={props.onPress}>
             <View style={[styles.itemContainer]}>
-                <FastImage style={styles.coverImage} source={getImage(cardData.thumbImageUrl)} resizeMode="cover" />
+                <FastImage
+                    style={styles.coverImage}
+                    source={getImage(cardData.thumbImageUrl, DEFAULT_IMAGES.PLACE_THUMBNAIL)}
+                    resizeMode="cover"
+                />
                 <AppView style={styles.infoContainer} horizontal alignItemsCenter>
                     <AppText
                         style={styles.itemTitle}

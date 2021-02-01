@@ -1,7 +1,8 @@
 export enum AppColor {
     PRIMARY = '#000000',
-    BACKGROUND = '#F2F2F2',
+    BACKGROUND = '#F8F8F8',
     TEXT_LIGHT = '#9C9C9C',
+    TEXT_GREY = '#555555',
     LIGHT5F = '#5F5F5F',
     GREY_8D = '#8D8D8D',
     GREY_3A = '#3A3A3A',

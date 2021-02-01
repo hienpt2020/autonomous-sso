@@ -3,8 +3,6 @@ import { AppFontSize, AppSpacing, AppStyle } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 
 const FIXED_ITEM_WIDTH = (Dimensions.get('window').width - AppSpacing.MEDIUM - AppSpacing.LARGE * 2) / 2;
-const FIXED_ITEM_HEIGHT = 207;
-const FIXED_IMAGE_HEIGHT = 159;
 
 export const styles = StyleSheet.create({
     container: {
@@ -15,6 +13,8 @@ export const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: AppFontSize.SIZE_20,
         padding: AppSpacing.LARGE,
+        paddingTop: 16,
+        paddingBottom: 18,
     },
     list: {
         width: '100%',
@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
     },
     chipContainer: {
         width: FIXED_ITEM_WIDTH,
-        height: FIXED_ITEM_HEIGHT,
         ...AppStyle.cardShadow,
         backgroundColor: AppColor.WHITE,
     },
@@ -35,10 +34,11 @@ export const styles = StyleSheet.create({
     },
     image: {
         width: FIXED_ITEM_WIDTH,
-        height: FIXED_IMAGE_HEIGHT,
+        height: FIXED_ITEM_WIDTH,
     },
     chipContent: {
         flex: 1,
         paddingHorizontal: AppSpacing.SMALL,
+        height: 48,
     },
 });

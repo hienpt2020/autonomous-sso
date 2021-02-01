@@ -1,10 +1,10 @@
 import { AppColor } from 'src/styles/colors';
 import { StyleSheet } from 'react-native';
-import { AppSpacing } from 'src/styles';
+import { AppFont, AppFontSize, AppSpacing } from 'src/styles';
 
 export const styles = StyleSheet.create({
     container: {
-        height: 54,
+        height: 82,
         backgroundColor: AppColor.WHITE,
     },
     list: {
@@ -13,10 +13,15 @@ export const styles = StyleSheet.create({
     chipContainer: {
         height: 30,
         paddingHorizontal: 12,
-        backgroundColor: AppColor.BLUE_IN_TAG,
+        backgroundColor: AppColor.GREY_F5,
         borderRadius: 16,
     },
     listContent: {
         paddingHorizontal: AppSpacing.LARGE,
+    },
+    chipLabel: {
+        fontSize: AppFontSize.SIZE_12,
+        fontWeight: '500',
+        color: AppColor.TEXT_GREY,
     },
 });

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import IcEmpty from 'src/assets/images/ic_empty_booking.svg';
 import { AppView, Space } from 'src/components';
 import { Empty } from 'src/components/empty';
 import { Header, LargeHeader } from 'src/components/header';
@@ -24,7 +25,6 @@ import { Props } from './types';
 
 const Office = (props: Props) => {
     const { t } = useTranslation();
-    const workspaceReducer = useSelector((state: RootState) => state.workspaceReducer);
     const [workLayouts, setWorkLayouts] = useState<WorkLayout[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const dispatch = useDispatch();
@@ -35,23 +35,25 @@ const Office = (props: Props) => {
 
     React.useEffect(() => {
         const unsubscribe = props.navigation.addListener('focus', () => {
-            _getListWorkLayout(false);
+            _getListWorkLayout(false, workingSpaceId);
+            dispatch(getBookingHistoryAction(false, workingSpaceId, 0, true));
         });
 
         return unsubscribe;
-    }, [props.navigation]);
+    }, [props.navigation, workingSpaceId]);
 
     useEffect(() => {
-        _getListWorkLayout(true);
+        _getListWorkLayout(true, workingSpaceId);
         dispatch(getBookingHistoryAction(false, workingSpaceId, 0, true));
-    }, [workspaceReducer.id]);
+    }, [workingSpaceId]);
 
-    const _getListWorkLayout = (isSetLoading: boolean) => {
+    const _getListWorkLayout = (isSetLoading: boolean, workingSpaceId: number) => {
         if (workingSpaceId >= 0) {
             if (isSetLoading) {
                 setIsLoading(true);
             }
-            getWorkLayout(workspaceReducer.id)
+            Log.debug('dddd' + workingSpaceId);
+            getWorkLayout(workingSpaceId)
                 .then((data) => {
                     setWorkLayouts(data);
                 })
@@ -81,30 +83,53 @@ const Office = (props: Props) => {
     return (
         <View style={styles.container}>
             <Header title={'Booking'} />
-            {isLoading ? (
-                <Loading />
-            ) : workLayouts.length > 0 ? (
-                <FlatList
-                    contentContainerStyle={styles.list}
-                    data={workLayouts}
-                    renderItem={({ item }) => renderItem(item)}
-                    keyExtractor={(item) => item.id + ''}
-                    ItemSeparatorComponent={() => <Space height={AppSpacing.LARGE} />}
-                    ListHeaderComponent={() => (
-                        <AppView>
-                            <Space height={AppSpacing.LARGE} />
 
-                            {inComingBookings.length > 0 && <ListUpcoming data={inComingBookings} />}
+            <FlatList
+                contentContainerStyle={styles.list}
+                data={workLayouts}
+                renderItem={({ item }) => renderItem(item)}
+                keyExtractor={(item) => item.id + ''}
+                ItemSeparatorComponent={() => <Space height={AppSpacing.LARGE} />}
+                ListEmptyComponent={() => {
+                    return isLoading ? (
+                        <View></View>
+                    ) : (
+                        <Empty
+                            icon={<IcEmpty />}
+                            iconHeight={145}
+                            iconWidth={228}
+                            title={t('home.empty_title')}
+                            description={t('home.empty_desc')}
+                        />
+                    );
+                }}
+                ListFooterComponent={() =>
+                    isLoading ? (
+                        <View style={{ flex: 1 }}>
+                            <Loading />
+                        </View>
+                    ) : (
+                        <View></View>
+                    )
+                }
+                ListHeaderComponent={() => (
+                    <AppView>
+                        <Space height={AppSpacing.LARGE} />
 
+                        {inComingBookings.length > 0 && (
+                            <>
+                                <ListUpcoming data={inComingBookings} />
+                            </>
+                        )}
+
+                        {workLayouts.length > 0 && (
                             <LargeHeader style={styles.header} title={t('home.title')} subTitle={t('home.sub_title')} />
-                            <Space height={AppSpacing.LARGE} />
-                        </AppView>
-                    )}
-                />
-            ) : (
-                <Empty />
-            )}
-            {/* {_renderFloatingButton()} */}
+                        )}
+
+                        <Space height={AppSpacing.LARGE} />
+                    </AppView>
+                )}
+            />
         </View>
     );
 };

@@ -7,7 +7,6 @@ import IcTabControlActive from 'src/assets/images/ic_tab_control_active.svg';
 import IcTabProfile from 'src/assets/images/ic_tab_profile.svg';
 import IcTabProfileActive from 'src/assets/images/ic_tab_profile_active.svg';
 import { AppText, AppView } from 'src/components';
-import { Log } from 'src/helpers/logger';
 import { RouteName } from 'src/routers/routeName';
 import { RouteProps } from 'src/routers/routeProps';
 import { styles } from './styles';

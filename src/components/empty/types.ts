@@ -1,7 +1,8 @@
 import React from 'react';
 export interface Props {
-    iconWidth?: 182;
-    iconHeight?: 182;
+    icon?: any;
+    iconWidth?: number;
+    iconHeight?: number;
     style?: {};
     containerStyles?: {};
     title?: string;

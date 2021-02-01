@@ -32,14 +32,14 @@ const TimeSelect: React.FC<TimeSelectProps> = ({
             {title ? <AppText style={styles.title}>{title}</AppText> : null}
             <TouchableOpacity onPress={onPressFrom} disabled={!isSelect}>
                 <AppView style={styles.itemContainer} horizontal alignItemsCenter spaceBetween>
-                    <IcArrowRight width={15.5} height={15.5} />
+                    <IcArrowRight width={24} height={24} />
                     <Text style={styles.date}>
                         <AppText>{t('common.from') + ': '}</AppText>
                         <AppText bold={isSelect} color={isSelect ? AppColor.BLUE_1 : AppColor.GREY_1}>
                             {formatAppDate(from)}
                         </AppText>
                     </Text>
-                    {isSelect && <IcArrowDownBlue height={9.33} width={9.33} />}
+                    {isSelect && <IcArrowDownBlue height={24} width={24} />}
                 </AppView>
             </TouchableOpacity>
 
@@ -47,14 +47,14 @@ const TimeSelect: React.FC<TimeSelectProps> = ({
 
             <TouchableOpacity onPress={onPressTo} disabled={!isSelect}>
                 <AppView style={styles.itemContainer} horizontal alignItemsCenter spaceBetween>
-                    <IcArrowLeft width={15.5} height={15.5} />
+                    <IcArrowLeft width={24} height={24} />
                     <Text style={styles.date}>
                         <AppText>{t('common.until') + ': '}</AppText>
                         <AppText bold={isSelect} color={isSelect ? AppColor.BLUE_1 : AppColor.GREY_1}>
                             {formatAppDate(to)}
                         </AppText>
                     </Text>
-                    {isSelect && <IcArrowDownBlue height={9.33} width={9.33} />}
+                    {isSelect && <IcArrowDownBlue height={24} width={24} />}
                 </AppView>
             </TouchableOpacity>
 

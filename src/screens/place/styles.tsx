@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions, StatusBar, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { AppFontSize, AppSpacing } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 
@@ -20,6 +20,15 @@ export const styles = StyleSheet.create({
     },
     placeName: {
         flex: 1,
+    },
+    workSpaceName: {
+        color: AppColor.TEXT_GREY,
+        fontWeight: '500',
+        fontSize: AppFontSize.SIZE_16,
+        lineHeight: 26,
+    },
+    address: {
+        lineHeight: 24,
     },
     bookingStatusContainer: {
         height: 20,
@@ -44,7 +53,8 @@ export const styles = StyleSheet.create({
     },
     policyContainer: {
         backgroundColor: AppColor.WHITE,
-        padding: AppSpacing.LARGE,
+        paddingHorizontal: AppSpacing.LARGE,
+        paddingVertical: 16,
     },
     sectionContent: {},
     codeContainer: {

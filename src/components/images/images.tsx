@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { useEffect, useCallback, useState, useRef } from 'react';
-import { View, Dimensions, FlatList, Text, Image } from 'react-native';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { FlatList, View } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import { DEFAULT_IMAGES } from 'src/common/constant';
+import { getImage } from 'src/helpers/imageHelper';
+import AppText from '../text';
+import AppView from '../view';
 import { styles } from './styles';
 import { Props } from './types';
-import FastImage from 'react-native-fast-image';
-import { getImage } from 'src/helpers/imageHelper';
-import AppView from '../view';
-import AppText from '../text';
 
 export const ImageSlider = (props: Props) => {
     const [index, setIndex] = useState(0);
@@ -44,13 +45,13 @@ export const ImageSlider = (props: Props) => {
     const renderItem = (data: string) => {
         return (
             <View>
-                <FastImage style={styles.image} source={getImage(data)} resizeMode="cover" />
+                <FastImage style={styles.image} source={getImage(data, DEFAULT_IMAGES.PLACE)} resizeMode="cover" />
             </View>
         );
     };
 
     return (
-        <View style={[styles.sliderContainer, props.containerStyle]}>
+        <View style={[styles.sliderContainer, props.containerStyle, { height: props.height }]}>
             {props.data.length > 0 ? (
                 <FlatList
                     data={props.data}
@@ -65,13 +66,24 @@ export const ImageSlider = (props: Props) => {
             ) : (
                 renderItem('')
             )}
+
+            <FastImage
+                style={styles.imageOverlay}
+                source={require('src/assets/images/image_overlay.png')}
+                resizeMode="cover"
+            />
+
+            <FastImage
+                style={styles.imageOverlayTop}
+                source={require('src/assets/images/image_overlay_top.png')}
+                resizeMode="cover"
+            />
+
             {props.data.length > 0 && (
                 <AppView style={styles.sliderTitleContainer} center>
                     <AppText style={styles.sliderTitle}>{index + 1 + '/' + props.data.length}</AppText>
                 </AppView>
             )}
-            {/* <Image style={styles.coverImage} source={require('src/assets/images/image-hover-background.png')} /> */}
-            <View style={styles.coverImage} />
         </View>
     );
 };
