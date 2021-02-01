@@ -18,7 +18,7 @@ const AppPopup = (props: Props) => {
     const dispatch = useDispatch();
 
     function _onPressOverlay() {
-        dispatch(hidePopupAction());
+        // dispatch(hidePopupAction());
     }
 
     function _onPressButton(button: PopupButton) {
@@ -40,7 +40,9 @@ const AppPopup = (props: Props) => {
                     {title}
                 </AppText>
                 <Space height={12} />
-                <AppText color={AppColor.GREY_8D}>{message}</AppText>
+                <AppText center color={AppColor.GREY_8D}>
+                    {message}
+                </AppText>
                 <Space height={24} />
                 <FlatList
                     style={styles.buttonContainer}
