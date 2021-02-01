@@ -4,10 +4,9 @@ import Config from 'react-native-config';
 import { View, Platform, Linking } from 'react-native';
 import { Loading } from 'src/components/loading';
 import { showPopupForceUpdate, showPopupRecommendedUpdate } from './actions';
+import { Log } from 'src/helpers/logger';
 
 const EXPIRATION_DURATION_SECONDS = 10;
-const LINK_APP_ANDROID = `market://details?id=${1}`;
-const LINK_APP_IOS = `itms-apps://itunes.apple.com/us/app/apple-store/${'id1485216306'}`;
 
 export const useForceUpdate = (): [() => JSX.Element, boolean] => {
     const [isChecking, setIsChecking] = useState(true);
@@ -15,14 +14,14 @@ export const useForceUpdate = (): [() => JSX.Element, boolean] => {
 
     const onUpdate = useCallback(() => {
         if (Platform.OS === 'android') {
-            Linking.canOpenURL(LINK_APP_ANDROID)
+            Linking.canOpenURL(Config.LINK_GG_PLAY)
                 .then(() => {
-                    Linking.openURL(LINK_APP_ANDROID);
+                    Linking.openURL(Config.LINK_GG_PLAY);
                 })
                 .catch();
         } else if (Platform.OS === 'ios') {
-            Linking.canOpenURL(LINK_APP_IOS)
-                .then(() => Linking.openURL(LINK_APP_IOS))
+            Linking.canOpenURL(Config.LINK_APP_STORE)
+                .then(() => Linking.openURL(Config.LINK_APP_STORE))
                 .catch();
         }
     }, []);
@@ -38,7 +37,7 @@ export const useForceUpdate = (): [() => JSX.Element, boolean] => {
             let recommendVersionCode: number = remoteConfig().getValue('recommendVersionCode').asNumber();
             let currentVersionCode: number = parseInt(Config.APP_BUILD_NUMBER);
 
-            console.log(
+            Log.debug(
                 '@info version:' +
                     JSON.stringify({
                         minimumVersionCode,
@@ -62,8 +61,8 @@ export const useForceUpdate = (): [() => JSX.Element, boolean] => {
     const fetchRemoteConfig = async () => {
         try {
             await remoteConfig().setDefaults({
-                minimumVersionCode: parseInt(Config.APP_BUILD_NUMBER),
-                recommendVersionCode: parseInt(Config.APP_BUILD_NUMBER),
+                minimumVersionCode: 1,
+                recommendVersionCode: 1,
             });
             await remoteConfig().setConfigSettings({
                 fetchTimeMillis: 30000,
@@ -75,7 +74,9 @@ export const useForceUpdate = (): [() => JSX.Element, boolean] => {
             } else {
                 setIsChecking(false);
             }
-        } catch (e) {}
+        } catch (e) {
+            Log.error(e);
+        }
     };
 
     const renderViewUpdate = () => (

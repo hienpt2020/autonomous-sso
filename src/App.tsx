@@ -14,15 +14,15 @@ import { navigationRef } from './routers/rootNavigation';
 import useForceUpdate from './hooks/useForceUpdate';
 
 const App = () => {
-    const [Progressing, isCheking] = useForceUpdate();
+    const [] = useForceUpdate();
     return (
         <Provider store={store}>
             <SafeAreaProvider>
                 <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-                <Progressing />
+                {/*<Progressing />*/}
                 <NavigationContainer linking={linkNavigation.linking} ref={navigationRef}>
                     {/* Navigations */}
-                    {!isCheking && <MainStackNavigator />}
+                    <MainStackNavigator />
                     {/* Global components */}
                     <Spinner />
                     <AppPopup />
