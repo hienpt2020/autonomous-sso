@@ -64,6 +64,7 @@ export class ParserImpl implements IParser {
         result.address = address;
         result.policy = policy;
         result.image = image;
+        result.placeAvailable = responseData.available_workingplace;
         return result;
     }
     parseWorkPlace(responseData: any): WorkPlace {

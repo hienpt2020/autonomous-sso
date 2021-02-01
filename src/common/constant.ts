@@ -14,6 +14,8 @@ export enum BookingStatus {
 // TODO
 export const DEFAULT_REQUEST_LIMIT = 100;
 
+export const ALL_WORK_SPACE_HISTORY = -1;
+
 export enum ROLES {
     OWNER,
     ADMIN,

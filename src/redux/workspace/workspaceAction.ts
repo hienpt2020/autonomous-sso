@@ -13,7 +13,7 @@ export const createActionSetWorkSpace = (workspace: WorkSpace): SetWorkspaceActi
     };
 };
 
-export const createActionWorkspaceSuccess = (data: any): ClearWorkspaceActionType => {
+export const clearWorkSpaceAction = (): ClearWorkspaceActionType => {
     return {
         type: ACTION_CLEAR_WORKSPACE,
     };

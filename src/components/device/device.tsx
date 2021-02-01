@@ -32,8 +32,9 @@ export const Device = (props: Props) => {
                 <FastImage
                     style={styles.image}
                     source={{
-                        uri:
-                            'https://image.shopmoment.com/general/product/_800x800_crop_center-center_82_none/Moment-Autonomous-SmartDesk2Premium-thumbnail.jpg?mtime=20200407162750&focal=none&tmtime=20201022122734',
+                        uri: data.thumbImage
+                            ? data.thumbImage
+                            : 'https://image.shopmoment.com/general/product/_800x800_crop_center-center_82_none/Moment-Autonomous-SmartDesk2Premium-thumbnail.jpg?mtime=20200407162750&focal=none&tmtime=20201022122734',
                     }}
                     resizeMode="cover"
                 />

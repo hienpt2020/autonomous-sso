@@ -11,6 +11,5 @@ export interface SetWorkspaceActionType {
 }
 export interface ClearWorkspaceActionType {
     type: typeof ACTION_CLEAR_WORKSPACE;
-    payload?: Workspace;
 }
 export type WorkspaceActionType = SetWorkspaceActionType | ClearWorkspaceActionType;

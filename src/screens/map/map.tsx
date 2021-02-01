@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, TouchableWithoutFeedback, View } from 'react-native';
 import DatePicker from 'react-native-date-picker';
-import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { AppView, Space } from 'src/components';
@@ -12,11 +11,10 @@ import { BackHeader, LargeHeader } from 'src/components/header';
 import LayoutInfo from 'src/components/layoutInfo';
 import { Link } from 'src/components/link';
 import TimeSelect from 'src/components/timeSelect';
-import reactotron from 'src/config/configReactoron';
 import Booking from 'src/models/Booking';
 import WorkLayout from 'src/models/WorkLayout';
 import WorkPlace from 'src/models/WorkPlace';
-import { setBookingDataAction } from 'src/redux/booking/bookingAction';
+import { setBookingDataAction, setEnableBooking } from 'src/redux/booking/bookingAction';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
@@ -26,13 +24,14 @@ import { getAvailableWorkPlace } from './actions/mapAction';
 import { CardItem } from './card';
 import { styles } from './styles';
 import { Props } from './types';
+import { getBookingOfUser } from './actions/mapAction';
+import { BookingHistory } from 'src/models/BookingHistory';
 
 const Map = (props: Props) => {
     const FIXED_ITEM_HEIGHT = 140;
     const FIXED_DATE_TIME = 300;
     const NUM_COLUMNS = 2;
     const HOUR_GAP = 2;
-    const timeFormatter = 'hh:mm MMM DD';
     const today = new Date();
     if (today.getMinutes() % 30 != 0) {
         if (today.getMinutes() > 30) {
@@ -62,8 +61,19 @@ const Map = (props: Props) => {
 
     const _getData = async (from: Date, to: Date) => {
         setIsLoading(true);
+        setWorkPlaces([]);
         try {
-            setWorkPlaces(await getAvailableWorkPlace(map.id, moment(from).toISOString(), moment(to).toISOString()));
+            const workPlaces = await getAvailableWorkPlace(
+                map.id,
+                moment(from).toISOString(),
+                moment(to).toISOString(),
+            );
+            const bookings: BookingHistory[] = await getBookingOfUser(
+                moment(from).toISOString(),
+                moment(to).toISOString(),
+            );
+            dispatch(setEnableBooking(!(bookings.length > 0)));
+            setWorkPlaces(workPlaces);
         } catch (error) {}
         setIsLoading(false);
     };
@@ -132,16 +142,14 @@ const Map = (props: Props) => {
             if (moment(_dateTo).diff(moment(date), 'hours') < 2) {
                 _dateTo = moment(date).add(HOUR_GAP, 'hours').toDate();
             }
-
+            _dateFrom = date;
             setDateFrom(date);
             setDateTo(_dateTo);
         } else {
-            reactotron.log(moment(date).diff(moment(_dateFrom), 'hours'));
-
             if (moment(date).diff(moment(_dateFrom), 'hours') < 2) {
                 _dateFrom = moment(date).subtract(HOUR_GAP, 'hours').toDate();
             }
-
+            _dateTo = date;
             setDateFrom(_dateFrom);
             setDateTo(date);
         }

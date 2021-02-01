@@ -28,6 +28,7 @@
         "error": "Error",
         "cancel": "Cancel",
         "ok": "Ok",
+        "you_have_a_booking":"You have a booking in this time!",
         "empty_title_default": "No Data"
     },
     "button": {
@@ -63,7 +64,8 @@
         "term_condition2": "Terms of Service",
         "term_condition3": " and ",
         "term_condition4": " Privacy Policy. ",
-        "verify_email": "Please check your email to verify your account"
+        "verify_email": "Please check your email to verify your account",
+        "register_success":"Register Success"
     },
     "join": {
         "content": "By Join, you agree to join ",

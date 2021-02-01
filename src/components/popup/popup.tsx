@@ -22,7 +22,9 @@ const AppPopup = (props: Props) => {
     }
 
     function _onPressButton(button: PopupButton) {
-        button.onPress();
+        if (button.onPress) {
+            button.onPress();
+        }
         dispatch(hidePopupAction());
     }
 

@@ -30,7 +30,7 @@ export const Chip = (props: Props) => {
             <FlatList
                 style={styles.list}
                 contentContainerStyle={styles.listContent}
-                data={[...props.data, ...props.data, ...props.data]}
+                data={props.data}
                 showsHorizontalScrollIndicator={false}
                 horizontal
                 keyExtractor={(item, index) => `${item}${index}`}

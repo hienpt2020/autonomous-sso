@@ -10,6 +10,7 @@ import { BookingStatus } from 'src/common/constant';
 import { AppText, AppView, Divider, Space } from 'src/components';
 import { Empty } from 'src/components/empty';
 import { Loading } from 'src/components/loading/loading';
+import { formatAppDate } from 'src/helpers/dateTimeHelper';
 import { BookingHistory } from 'src/models/BookingHistory';
 import { getBookingHistoryAction } from 'src/redux/booking-history/bookingHistoryAction';
 import { RootState } from 'src/redux/types';
@@ -42,9 +43,9 @@ const BookingScreen = (props: Props) => {
     // }, [bookings]);
 
     const _getData = async () => {
-        if (props.isUpComming) {
-            dispatch(getBookingHistoryAction(isAdmin, workingSpaceId, page));
-        }
+        dispatch(
+            getBookingHistoryAction(isAdmin, workingSpaceId, page, props.isUpComming || props.isUpComming != undefined),
+        );
     };
 
     const _onRefresh = () => {
@@ -91,17 +92,13 @@ const BookingScreen = (props: Props) => {
                     <Space height={12} />
                     <AppView horizontal>
                         <AppView style={styles.dateContainer} center>
-                            <AppText style={styles.titleEnd}>
-                                {moment(data.timeFrom).format('MMM DD, YYYY | HH:mm A')}
-                            </AppText>
+                            <AppText style={styles.titleEnd}>{formatAppDate(data.timeFrom)}</AppText>
                         </AppView>
                         <Space width={AppSpacing.SMALL} />
                         <IconArrowUntil width={13} height={24} />
                         <Space width={AppSpacing.SMALL} />
                         <AppView style={styles.dateContainer} center>
-                            <AppText style={styles.titleEnd}>
-                                {moment(data.timeTo).format('MMM DD, YYYY | HH:mm A')}
-                            </AppText>
+                            <AppText style={styles.titleEnd}>{formatAppDate(data.timeTo)}</AppText>
                         </AppView>
                     </AppView>
                     <IconArrowRight style={styles.icArrow} width={24} height={24} />

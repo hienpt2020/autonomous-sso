@@ -7,14 +7,20 @@ import { getBookingHistorySuccessAction } from './bookingHistoryAction';
 
 function* sagaFunction(action: GetBookingHistoryActionType) {
     try {
-        const res: any = yield HybridApi.getBookingHistory(action.isAdmin, action.workSpaceId, action.page);
+        const today = new Date();
+        const res: any = yield HybridApi.getBookingHistory({
+            isAdmin: action.isAdmin,
+            workingSpaceId: action.workSpaceId,
+            page: action.page,
+            from: action.isUpcoming ? today.toISOString() : undefined,
+        });
 
         const bookings = res.data.items;
         const bookingDatas = bookings.map((booking: any) => {
             const parser = new ParserImpl();
             return parser.parseBookingHistory(booking);
         });
-        yield put(getBookingHistorySuccessAction(bookingDatas));
+        yield put(getBookingHistorySuccessAction(bookingDatas, action.isUpcoming));
     } catch (error) {}
 }
 
