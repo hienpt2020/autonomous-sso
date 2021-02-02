@@ -163,6 +163,9 @@
         "title": "My Profile",
         "popup_title_successfully": "Your Profile Changed",
         "popup_description_successfully": "We've changed your profile!",
-        "button_update_label": "Update"
+        "button_update_label": "Update",
+        "popup_request_update_title": "Request to change you profile",
+        "popup_request_update_description": "Do you want to change your profile information?",
+
     }
 }

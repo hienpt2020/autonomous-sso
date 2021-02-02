@@ -1,6 +1,11 @@
 import { SSOApi } from 'src/services/networking';
 import store from 'src/redux/store';
-import { createRequestEndAction, createRequestStartAction } from 'src/redux/request';
+import {
+    createRequestEndAction,
+    createRequestErrorAction,
+    createRequestErrorMessageAction,
+    createRequestStartAction,
+} from 'src/redux/request';
 import { fetchUserProfileAction } from 'src/redux/user/userSaga';
 import { Log } from 'src/helpers/logger';
 import { showPopup } from 'src/components';
@@ -16,9 +21,12 @@ export const updateProfile = async (fullName: string, phone: string): Promise<vo
 
         if (data.status > 0) {
             store.dispatch(fetchUserProfileAction());
+            goBack();
         } else {
+            store.dispatch(createRequestErrorMessageAction(data.message));
         }
     } catch (e) {
+        store.dispatch(createRequestErrorMessageAction(i18next.t('common.error_message')));
         Log.error('[updateProfile]:' + e);
     } finally {
         store.dispatch(createRequestEndAction());

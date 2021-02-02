@@ -12,6 +12,7 @@ import { AppSpacing } from 'src/styles';
 import { Space } from 'src/components';
 import { updateProfileActions } from './actions/updateProfileAction';
 import { RootState } from 'src/redux/types';
+import { showPopupWarning } from './actions/showPopup';
 
 const UpdateProfile = (props: Props) => {
     const { t } = useTranslation();
@@ -58,7 +59,7 @@ const UpdateProfile = (props: Props) => {
                     disabled={!isValidRequest}
                     onPress={() => {
                         Keyboard.dismiss();
-                        updateProfileActions.updateProfile(fullName, phone);
+                        showPopupWarning(() => updateProfileActions.updateProfile(fullName, phone));
                     }}
                 />
                 <Space height={AppSpacing.LARGE} />
