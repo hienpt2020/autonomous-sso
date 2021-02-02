@@ -158,5 +158,11 @@
         "wifi_password": "Password",
         "empty_title": "No available device",
         "empty_description": "Check your booking or add a new device to control."
+    },
+    "update_profile": {
+        "title": "My Profile",
+        "popup_title_successfully": "Your Profile Changed",
+        "popup_description_successfully": "We've changed your profile!",
+        "button_update_label": "Update"
     }
 }
