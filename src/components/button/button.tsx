@@ -21,9 +21,9 @@ export const SecondaryButton = (buttonProps: AppButtonProps) => {
     return (
         <Button
             {...buttonProps}
-            titleStyle={[styles.title, styles.titleSecondary]}
-            buttonStyle={[styles.button, styles.buttonSecondary]}
-            containerStyle={styles.container}
+            titleStyle={[styles.title, styles.titleSecondary, buttonProps.titleStyle]}
+            buttonStyle={[styles.button, styles.buttonSecondary, buttonProps.buttonStyle]}
+            containerStyle={[styles.container, buttonProps.containerStyle]}
         />
     );
 };
@@ -38,7 +38,7 @@ export const SocialButton = (buttonProps: AppIconButtonProps) => {
 export const IconButton = (buttonProps: AppIconButtonProps) => {
     return (
         <View style={[buttonProps.style, styles.icon]}>
-            <TouchableOpacity>{buttonProps.icon}</TouchableOpacity>
+            <TouchableOpacity onPress={buttonProps.onPress}>{buttonProps.icon}</TouchableOpacity>
         </View>
     );
 };

@@ -52,7 +52,12 @@ const AppPopup = (props: Props) => {
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) => {
                         return item.style || item.style == 'negative' ? (
-                            <SecondaryButton title={item.title} onPress={() => _onPressButton(item)} />
+                            <SecondaryButton
+                                buttonStyle={styles.secondaryButtonStyle}
+                                title={item.title}
+                                titleStyle={styles.secondaryButtonTitle}
+                                onPress={() => _onPressButton(item)}
+                            />
                         ) : (
                             <PrimaryButton title={item.title} onPress={() => _onPressButton(item)} />
                         );
