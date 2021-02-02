@@ -1,0 +1,22 @@
+import remoteConfig from '@react-native-firebase/remote-config';
+import Config from 'react-native-config';
+import { IVersionCodeModel } from '../types';
+import { showPopupForceUpdate, showPopupRecommendedUpdate } from './showPopup';
+
+export const checkVersionCode = (
+    onUpdate: () => void,
+    onCancel: () => void,
+    onChecking: (isChecking: boolean) => void,
+): void => {
+    let strVersionCode: string = remoteConfig().getValue('version_code').asString();
+    let currentVersionCode: number = parseInt(Config.APP_BUILD_NUMBER);
+    let newVersionCode: IVersionCodeModel = JSON.parse(strVersionCode);
+
+    if (currentVersionCode < newVersionCode.minimum) {
+        showPopupForceUpdate(onUpdate);
+    } else if (currentVersionCode >= newVersionCode.minimum && currentVersionCode < newVersionCode.recommend) {
+        showPopupRecommendedUpdate(onUpdate, onCancel);
+    } else {
+        onChecking(false);
+    }
+};

@@ -18,7 +18,7 @@ const AppPopup = (props: Props) => {
     const dispatch = useDispatch();
 
     function _onPressOverlay() {
-        dispatch(hidePopupAction());
+        // dispatch(hidePopupAction());
     }
 
     function _onPressButton(button: PopupButton) {
