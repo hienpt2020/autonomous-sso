@@ -24,6 +24,7 @@ export const styles = StyleSheet.create({
         width: FIXED_ITEM_WIDTH,
         ...AppStyle.cardShadow,
         backgroundColor: AppColor.WHITE,
+        marginBottom: 4,
     },
     deviceName: {
         flex: 1,

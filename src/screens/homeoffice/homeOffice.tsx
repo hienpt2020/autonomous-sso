@@ -36,7 +36,6 @@ const Office = (props: Props) => {
     React.useEffect(() => {
         const unsubscribe = props.navigation.addListener('focus', () => {
             _getListWorkLayout(false, workingSpaceId);
-            dispatch(getBookingHistoryAction(false, workingSpaceId, 0, true));
         });
 
         return unsubscribe;
@@ -52,7 +51,6 @@ const Office = (props: Props) => {
             if (isSetLoading) {
                 setIsLoading(true);
             }
-            Log.debug('dddd' + workingSpaceId);
             getWorkLayout(workingSpaceId)
                 .then((data) => {
                     setWorkLayouts(data);
@@ -70,10 +68,6 @@ const Office = (props: Props) => {
 
     const _onPressMyBooking = () => {
         navigate(RouteName.BOOKING_HISTORY, null);
-    };
-
-    const _renderFloatingButton = () => {
-        return <FloatingButton onPress={_onPressMyBooking} />;
     };
 
     const _onItemSelected = (data: WorkLayout) => {

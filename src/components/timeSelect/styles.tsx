@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { AppColor, AppFontSize, AppSpacing } from 'src/styles';
+import { AppColor, AppFontSize, AppSpacing, AppStyle } from 'src/styles';
 
 export const styles = StyleSheet.create({
     container: {
         paddingHorizontal: AppSpacing.MEDIUM,
         backgroundColor: AppColor.WHITE,
+        ...AppStyle.cardShadow,
     },
     itemContainer: {
         height: 61,

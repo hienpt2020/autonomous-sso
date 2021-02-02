@@ -31,7 +31,7 @@ const CardItem = (props: Props) => {
                         <AppText style={styles.seatTitle}>{t('home.total') + ' '}</AppText>
 
                         <AppText style={styles.seatNumber}>
-                            {cardData.placeAvailable.toString() + ' ' + t('home.seats')}
+                            {cardData.totalPlace.toString() + ' ' + t('home.seats')}
                         </AppText>
                         <Space width={AppSpacing.SMALL} />
 
@@ -42,7 +42,7 @@ const CardItem = (props: Props) => {
                         <AppText style={styles.seatTitle}>{t('home.booked') + ' '}</AppText>
 
                         <AppText style={styles.seatNumber}>
-                            {cardData.placeAvailable.toString() + ' ' + t('home.seats')}
+                            {cardData.bookedPlace.toString() + ' ' + t('home.seats')}
                         </AppText>
                     </AppView>
                 </View>

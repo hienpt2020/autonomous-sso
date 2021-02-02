@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     header: {
         paddingLeft: AppSpacing.LARGE,
     },
-    info: {},
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',
