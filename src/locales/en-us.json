@@ -29,7 +29,7 @@
         "cancel": "Cancel",
         "ok": "Ok",
         "you_have_a_booking":"You have a booking in this time!",
-        "empty_title_default": "No Data"
+        "empty_title_default": "No Data",
     },
     "button": {
         "back": "Back",
@@ -158,5 +158,10 @@
         "wifi_password": "Password",
         "empty_title": "No available device",
         "empty_description": "Check your booking or add a new device to control."
+    },
+    "force_update": {
+        "popup_title": "Update Available",
+        "popup_message1": "An update to $1 is available. Would you like to update?",
+        "popup_message2": "An update to $1 is required to continue."
     }
 }

@@ -1,25 +1,35 @@
 import { showPopup } from 'src/components';
 import Config from 'react-native-config';
-
+import i18next from 'i18next';
 export const showPopupForceUpdate = (onUpdate: () => void) => {
-    showPopup('Update Available', `An update to ${Config.APP_NAME} is required to continue`, null, [
-        {
-            onPress: () => onUpdate(),
-            title: 'Update',
-        },
-    ]);
+    showPopup(
+        i18next.t('force_update.popup_title'),
+        i18next.t('force_update.popup_message2').replace('$1', Config.APP_NAME),
+        null,
+        [
+            {
+                onPress: () => onUpdate(),
+                title: 'Update',
+            },
+        ],
+    );
 };
 
 export const showPopupRecommendedUpdate = (onUpdate: () => void, onCancel: () => void) => {
-    showPopup('Update Available', `An update to ${Config.APP_NAME} is available. Would you like to update?`, null, [
-        {
-            onPress: onUpdate,
-            title: 'Update',
-        },
-        {
-            onPress: onCancel,
-            title: 'Not Now',
-            style: 'negative',
-        },
-    ]);
+    showPopup(
+        i18next.t('force_update.popup_title'),
+        i18next.t('force_update.popup_message1').replace('$1', Config.APP_NAME),
+        null,
+        [
+            {
+                onPress: onUpdate,
+                title: 'Update',
+            },
+            {
+                onPress: onCancel,
+                title: 'Not Now',
+                style: 'negative',
+            },
+        ],
+    );
 };
