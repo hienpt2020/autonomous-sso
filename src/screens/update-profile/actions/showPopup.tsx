@@ -4,7 +4,7 @@ import { goBack } from 'src/routers/rootNavigation';
 import * as React from 'react';
 import { showPopup } from 'src/components';
 
-export const showPopupSuccess = () =>
+export function showPopupSuccess(): void {
     showPopup(
         i18next.t('update_profile.popup_title_successfully'),
         i18next.t('update_profile.popup_description_successfully'),
@@ -16,8 +16,9 @@ export const showPopupSuccess = () =>
             },
         ],
     );
+}
 
-export const showPopupWarning = (onConfirm: () => void) =>
+export function showPopupWarning(onConfirm: () => void): void {
     showPopup(
         i18next.t('update_profile.popup_request_update_title'),
         i18next.t('update_profile.popup_request_update_description'),
@@ -34,3 +35,4 @@ export const showPopupWarning = (onConfirm: () => void) =>
             },
         ],
     );
+}
