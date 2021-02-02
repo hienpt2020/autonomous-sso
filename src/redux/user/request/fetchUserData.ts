@@ -7,7 +7,7 @@ import { createActionSetWorkSpace } from 'src/redux/workspace/workspaceAction';
 import { createSetUserProfileAction } from '../userAction';
 import { retrieveUserProfile, retrieveUserWorkspace } from './apiUser';
 
-function* fetchUserProfile() {
+export function* fetchUserProfile() {
     // Get user profile
     const { userProfile, error } = yield call(retrieveUserProfile);
     if (userProfile) {
