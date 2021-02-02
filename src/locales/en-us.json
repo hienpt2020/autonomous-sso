@@ -162,6 +162,8 @@
     "force_update": {
         "popup_title": "Update Available",
         "popup_message1": "An update to $1 is available. Would you like to update?",
-        "popup_message2": "An update to $1 is required to continue."
+        "popup_message2": "An update to $1 is required to continue.",
+        "button_update_label": "Update",
+        "button_cancel_label": "Not Now"
     }
 }

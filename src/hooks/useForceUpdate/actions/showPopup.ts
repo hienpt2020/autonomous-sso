@@ -9,7 +9,7 @@ export const showPopupForceUpdate = (onUpdate: () => void) => {
         [
             {
                 onPress: () => onUpdate(),
-                title: 'Update',
+                title: i18next.t('force_update.button_update_label'),
             },
         ],
     );
@@ -23,11 +23,11 @@ export const showPopupRecommendedUpdate = (onUpdate: () => void, onCancel: () =>
         [
             {
                 onPress: onUpdate,
-                title: 'Update',
+                title: i18next.t('force_update.button_update_label'),
             },
             {
                 onPress: onCancel,
-                title: 'Not Now',
+                title: i18next.t('force_update.button_cancel_label'),
                 style: 'negative',
             },
         ],
