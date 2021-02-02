@@ -4,7 +4,7 @@ import i18next from 'i18next';
 export const showPopupForceUpdate = (onUpdate: () => void) => {
     showPopup(
         i18next.t('force_update.popup_title'),
-        i18next.t('force_update.popup_message2').replace('$1', Config.APP_NAME),
+        i18next.t('force_update.popup_message2', { appName: Config.APP_NAME }),
         null,
         [
             {
@@ -18,7 +18,7 @@ export const showPopupForceUpdate = (onUpdate: () => void) => {
 export const showPopupRecommendedUpdate = (onUpdate: () => void, onCancel: () => void) => {
     showPopup(
         i18next.t('force_update.popup_title'),
-        i18next.t('force_update.popup_message1').replace('$1', Config.APP_NAME),
+        i18next.t('force_update.popup_message1', { appName: Config.APP_NAME }),
         null,
         [
             {
