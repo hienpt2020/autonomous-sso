@@ -7,7 +7,16 @@ import { AppColor, AppFontSize, AppSpacing } from 'src/styles';
 import { AppText, AppView, Space } from '..';
 import { styles } from './styles';
 import { PropHeader, PropsBackHeader, PropsLargeHeader } from './types';
-const ICON_SIZE = 24;
+
+const ICON_SIZE = AppSpacing.ICON_SIZE;
+
+const BUTTON_HITSLOP = {
+    top: AppSpacing.MEDIUM,
+    left: AppSpacing.MEDIUM,
+    right: AppSpacing.MEDIUM,
+    bottom: AppSpacing.MEDIUM,
+};
+
 export const LargeHeader = (props: PropsLargeHeader) => {
     return (
         <View style={props.style}>
@@ -45,7 +54,7 @@ export const BackHeader = (props: PropsBackHeader) => {
         >
             <AppView style={[styles.container, styles.withBack]} alignItemsCenter horizontal>
                 <AppView style={styles.buttonContainer}>
-                    <TouchableOpacity onPress={props.onPress}>
+                    <TouchableOpacity onPress={props.onPress} hitSlop={BUTTON_HITSLOP} activeOpacity={1}>
                         {props.lightContent ? (
                             <IconBackWhite width={`${ICON_SIZE}`} height={`${ICON_SIZE}`} />
                         ) : (

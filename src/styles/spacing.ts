@@ -5,4 +5,8 @@ export enum AppSpacing {
     LARGE = 24,
     EXTRA = 32,
     EXTRA84 = 84,
+
+    // Specific spacing
+    SHADOW_SPACING = 4,
+    ICON_SIZE = 24,
 }

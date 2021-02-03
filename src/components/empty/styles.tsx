@@ -1,25 +1,24 @@
 import { AppColor } from 'src/styles/colors';
 import { StyleSheet } from 'react-native';
+import { AppFontSize, AppSpacing } from 'src/styles';
 
 export const styles = StyleSheet.create({
     wrapper: {
-        alignItems: 'center',
         flex: 1,
-        justifyContent: 'center',
+        paddingHorizontal: 48,
     },
     titleText: {
-        fontSize: 18,
-        lineHeight: 28,
+        fontSize: AppFontSize.SIZE_18,
+        lineHeight: 40,
         marginBottom: 4,
-        marginHorizontal: 48,
+        fontWeight: '500',
         textAlign: 'center',
-        marginTop: 54,
         color: AppColor.DARK_GREY_1,
+        paddingHorizontal: AppSpacing.MEDIUM,
     },
     descriptionText: {
         fontSize: 14,
         lineHeight: 24,
-        marginHorizontal: 24,
         textAlign: 'center',
         color: AppColor.TEXT_LIGHT,
     },

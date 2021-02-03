@@ -16,7 +16,7 @@ const CardItem = (props: Props) => {
     const cardData = props.cardData;
 
     return (
-        <TouchableOpacity disabled={true} style={styles.container} onPress={props.onPress}>
+        <TouchableOpacity disabled={true} style={styles.container} onPress={props.onPress} activeOpacity={1}>
             <FastImage
                 style={styles.coverImage}
                 source={getImage(cardData.image, DEFAULT_IMAGES.DEVICE)}

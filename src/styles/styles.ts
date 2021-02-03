@@ -4,10 +4,10 @@ import { AppSpacing } from './spacing';
 export const AppStyle = {
     cardShadow: {
         elevation: 1,
-        shadowColor: AppColor.GREY_3,
+        shadowColor: AppColor.GREY_1,
         shadowOffset: { width: 2, height: 2 },
-        shadowOpacity: 0.5,
-        shadowRadius: 2,
+        shadowOpacity: 0.1,
+        shadowRadius: AppSpacing.SHADOW_SPACING,
     },
     sectionContainer: {
         backgroundColor: AppColor.WHITE,

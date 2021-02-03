@@ -55,8 +55,9 @@ const SwitchWorkSpace = (props: Props) => {
         return (
             <TouchableOpacity
                 onPress={() => {
-                    _onItemPress(data, index)
+                    _onItemPress(data, index);
                 }}
+                activeOpacity={1}
             >
                 <View>
                     <Space height={AppSpacing.MEDIUM} />
@@ -113,10 +114,9 @@ const SwitchWorkSpace = (props: Props) => {
             )}
         </View>
     );
-    function _onItemPress(data: WorkSpace, index: number){
-        setComfirmEnable(data.id !== workspaceReducer.id)
+    function _onItemPress(data: WorkSpace, index: number) {
+        setComfirmEnable(data.id !== workspaceReducer.id);
         setSelected(index);
-
     }
     function _onConfirmPress() {
         const cache = _.get(workSpaceData, selected);

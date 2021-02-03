@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StatusBar, Text, View, YellowBox } from 'react-native';
+import { Dimensions, StatusBar, Text, View, YellowBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { BookingStatus, DEVICE_TYPES, ROLES } from 'src/common/constant';
 import { AppText, AppView, Divider, showPopup, Space } from 'src/components';
@@ -22,11 +21,11 @@ import { getBookingHistoryAction } from 'src/redux/booking-history/bookingHistor
 import { RootState } from 'src/redux/types';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
+import Bluetooth from 'src/services/bluetooth';
 import { AppFontSize, AppSpacing } from 'src/styles';
 import { bookPlace, cancelBooking, getPlaceDetail } from './actions/placeAction';
 import { styles } from './styles';
 import { Props } from './types';
-import Bluetooth from 'src/services/bluetooth';
 //JUST disable this warning
 YellowBox.ignoreWarnings([
     'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -34,7 +33,7 @@ YellowBox.ignoreWarnings([
 
 const BookingDetail = (props: Props) => {
     const { t } = useTranslation();
-    const imageHeight = 264;
+    const imageHeight = Dimensions.get('window').width / 1.42;
     const bookingHistory: BookingHistory | undefined = props.route.params.booking;
     const place: WorkPlace | undefined = props.route.params.place;
     const booking: Booking = useSelector((state: RootState) => state.booking.booking);
@@ -49,6 +48,7 @@ const BookingDetail = (props: Props) => {
     const [placeData, setPlaceData] = useState<WorkPlace | undefined>(undefined);
     const workingSpaceId = useSelector((state: RootState) => state.workspaceReducer.id);
     const canBooking = useSelector((state: RootState) => state.booking.enable);
+    const workSpaceName = useSelector((state: RootState) => state.workspaceReducer.name);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -166,10 +166,13 @@ const BookingDetail = (props: Props) => {
                                 {_renderBookingStatus()}
                             </AppView>
 
-                            <Space height={3} />
-                            <AppText>{'Autonomous HCM'}</AppText>
-                            <Space height={3} />
-                            <AppText>{workLayout.address}</AppText>
+                            <Space height={AppSpacing.SMALL} />
+
+                            <AppText style={styles.workSpaceName}>{workSpaceName}</AppText>
+
+                            <Space height={AppSpacing.SMALL} />
+
+                            <AppText style={styles.address}>{workLayout.name + ', ' + workLayout.address}</AppText>
                         </AppView>
                         {placeData.tags.length > 0 && (
                             <>
@@ -178,7 +181,7 @@ const BookingDetail = (props: Props) => {
                             </>
                         )}
 
-                        <Space height={AppSpacing.SMALL} />
+                        <Space height={AppSpacing.MEDIUM + 2} />
                     </>
                 )}
 

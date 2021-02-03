@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import IcTabBooking from 'src/assets/images/ic_tab_booking.svg';
 import IcTabBookingActive from 'src/assets/images/ic_tab_booking_active.svg';
 import IcTabControl from 'src/assets/images/ic_tab_control.svg';
@@ -7,7 +8,7 @@ import IcTabControlActive from 'src/assets/images/ic_tab_control_active.svg';
 import IcTabProfile from 'src/assets/images/ic_tab_profile.svg';
 import IcTabProfileActive from 'src/assets/images/ic_tab_profile_active.svg';
 import { AppText, AppView } from 'src/components';
-import { Log } from 'src/helpers/logger';
+import { RootState } from 'src/redux/types';
 import { RouteName } from 'src/routers/routeName';
 import { RouteProps } from 'src/routers/routeProps';
 import { styles } from './styles';
@@ -69,6 +70,17 @@ function renderTabBarLabel(routeName: String, focused: boolean) {
 }
 
 const Home = (props: Props) => {
+    const workingSpaceId = useSelector((state: RootState) => state.workspaceReducer.id);
+    const [routes, setRoutes] = useState(homeRoutes);
+
+    useEffect(() => {
+        if (workingSpaceId > 0) {
+            setRoutes(homeRoutes);
+        } else {
+            setRoutes([homeRoutes[1], homeRoutes[2]]);
+        }
+    }, [workingSpaceId]);
+
     const Tab = createBottomTabNavigator();
     return (
         <Tab.Navigator
@@ -81,7 +93,7 @@ const Home = (props: Props) => {
                 },
             })}
         >
-            {homeRoutes.map((route) => (
+            {routes.map((route) => (
                 <Tab.Screen key={route.name} name={route.name} component={route.component} options={route.options} />
             ))}
         </Tab.Navigator>

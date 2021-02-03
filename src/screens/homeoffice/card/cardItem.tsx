@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import IconTicket from 'src/assets/images/ic_ticket.svg';
 import IconArrowRight from 'src/assets/images/ic_arrow_right.svg';
 import { AppText, AppView, Space } from 'src/components';
 import { getImage } from 'src/helpers/imageHelper';
-import { AppColor, AppFontSize } from 'src/styles';
+import { AppColor, AppFontSize, AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { Props } from './types';
+import { DEFAULT_IMAGES } from 'src/common/constant';
 
 const CardItem = (props: Props) => {
     const { t } = useTranslation();
@@ -16,26 +17,33 @@ const CardItem = (props: Props) => {
     const cardData = props.cardData;
 
     return (
-        <TouchableOpacity style={styles.itemContainer} onPress={props.onPress}>
-            <FastImage style={styles.coverImage} source={getImage(cardData.image)} />
+        <TouchableOpacity style={styles.itemContainer} onPress={props.onPress} activeOpacity={1}>
+            <FastImage style={styles.coverImage} source={getImage(cardData.image, DEFAULT_IMAGES.LAYOUT)} />
             <AppView style={styles.infoContainer} horizontal alignItemsCenter>
                 <View style={styles.leftContainer}>
-                    <AppText style={styles.itemSubTitle} size={AppFontSize.SIZE_18} bold lineHeight={24}>
+                    <AppText style={styles.name} size={AppFontSize.SIZE_18} bold lineHeight={24}>
                         {cardData.name}
                     </AppText>
 
+                    <Space height={AppSpacing.TINY} />
+
                     <AppView style={styles.ticketContainer} horizontal alignItemsCenter>
-                        <IconTicket style={styles.iconTicket} width={20} height={20} />
+                        <AppText style={styles.seatTitle}>{t('home.total') + ' '}</AppText>
 
-                        <Space width={5} />
-
-                        <AppText color={AppColor.BLUE_1} bold size={AppFontSize.SIZE_13}>
-                            {cardData.placeAvailable.toString()}
+                        <AppText style={styles.seatNumber}>
+                            {cardData.totalPlace.toString() + ' ' + t('home.seats')}
                         </AppText>
+                        <Space width={AppSpacing.SMALL} />
 
-                        <Space width={3} />
+                        <View style={styles.divider} />
 
-                        <AppText size={AppFontSize.SIZE_13}>{t('common.available')}</AppText>
+                        <Space width={AppSpacing.SMALL} />
+
+                        <AppText style={styles.seatTitle}>{t('home.booked') + ' '}</AppText>
+
+                        <AppText style={styles.seatNumber}>
+                            {cardData.bookedPlace.toString() + ' ' + t('home.seats')}
+                        </AppText>
                     </AppView>
                 </View>
 

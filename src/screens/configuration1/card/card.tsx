@@ -9,7 +9,7 @@ import { IcSignal } from 'src/assets/images/svg';
 
 const Card = (props: { data: any; onPress(): void }) => {
     return (
-        <TouchableOpacity style={styles.container} onPress={props.onPress} activeOpacity={0.8}>
+        <TouchableOpacity style={styles.container} onPress={props.onPress} activeOpacity={1}>
             <View style={styles.left}>
                 <View style={styles.bleIcon}>
                     {props.data.connected ? <SvgICBleConnected /> : <SvgICBleDisconnected />}

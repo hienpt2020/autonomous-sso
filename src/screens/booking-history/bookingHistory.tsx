@@ -19,6 +19,7 @@ import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { Props } from './types';
+import IcEmpty from 'src/assets/images/ic_empty_booking.svg';
 
 const BookingScreen = (props: Props) => {
     const { t } = useTranslation();
@@ -81,7 +82,7 @@ const BookingScreen = (props: Props) => {
         }
 
         return (
-            <TouchableOpacity onPress={() => onItemSelected(data)}>
+            <TouchableOpacity onPress={() => onItemSelected(data)} activeOpacity={1}>
                 <View style={styles.itemContainer}>
                     <AppText style={styles.title}>{data.name}</AppText>
                     {status ? <AppText style={statusStyle}>{status}</AppText> : null}
@@ -123,13 +124,24 @@ const BookingScreen = (props: Props) => {
                         <Divider style={styles.divider} />
                     </AppView>
                 )}
+                ListEmptyComponent={() => {
+                    return isLoading ? (
+                        <View></View>
+                    ) : (
+                        <Empty
+                            icon={<IcEmpty />}
+                            iconHeight={145}
+                            iconWidth={228}
+                            title={props.isUpComming ? t('booking.empty_upcoming_title') : t('booking.empty_title')}
+                            description={props.isUpComming ? t('booking.empty_upcoming_desc') : t('booking.empty_desc')}
+                        />
+                    );
+                }}
                 ListFooterComponent={() =>
                     isLoading ? (
                         <View style={{ height: 100 }}>
                             <Loading />
                         </View>
-                    ) : items.length == 0 ? (
-                        <Empty />
                     ) : (
                         <View></View>
                     )

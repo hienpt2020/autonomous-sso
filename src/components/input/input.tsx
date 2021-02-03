@@ -69,7 +69,7 @@ export const PasswordInput = (props: Props) => {
                 secureTextEntry={isVisibilityPassword}
                 placeholderTextColor={AppColor.LIGHT_9C}
             />
-            <TouchableOpacity style={styles.visibleContainer} onPress={togglePasswordVisible}>
+            <TouchableOpacity style={styles.visibleContainer} onPress={togglePasswordVisible} activeOpacity={1}>
                 {isVisibilityPassword ? <Invisible width={20} height={16} /> : <Visible width={20} height={17.78} />}
             </TouchableOpacity>
             {props.constainError ? <AppText children={props.errorMessage} style={styles.error} /> : null}
