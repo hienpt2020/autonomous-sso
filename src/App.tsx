@@ -11,13 +11,15 @@ import store from './redux/store';
 import { linkNavigation } from './routers/linkNavigation';
 import { MainStackNavigator } from './routers/mainStack';
 import { navigationRef } from './routers/rootNavigation';
+import useForceUpdate from './hooks/useForceUpdate';
 
 const App = () => {
+    const [] = useForceUpdate();
     return (
         <Provider store={store}>
             <SafeAreaProvider>
                 <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
+                {/*<Progressing />*/}
                 <NavigationContainer linking={linkNavigation.linking} ref={navigationRef}>
                     {/* Navigations */}
                     <MainStackNavigator />

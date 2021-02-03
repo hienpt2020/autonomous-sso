@@ -59,10 +59,14 @@ const Profile = (props: Props) => {
                         <AppView horizontal style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <AppText
                                 style={styles.titleLarge}
-                                children={_.get(_.split(email, '@', 1), 0).toUpperCase()}
+                                children={userReducer.fullName.toUpperCase()}
+                                numberOfLines={1}
                             />
-
-                            <IconButton style={styles.iconButton} icon={<EditIcon width={18} height={18} />} />
+                            <IconButton
+                                style={styles.iconButton}
+                                icon={<EditIcon width={18} height={18} />}
+                                onPress={_navigateToUpdateProfile}
+                            />
                         </AppView>
                         <Space height={AppSpacing.SMALL} />
                         <AppText style={styles.content} children={email} />
@@ -134,6 +138,9 @@ const Profile = (props: Props) => {
     }
     function navigateToSwithProfile() {
         props.navigation.navigate(RouteName.SWITCH_WORKSPACE);
+    }
+    function _navigateToUpdateProfile() {
+        props.navigation.navigate(RouteName.UPDATE_PROFILE);
     }
 };
 

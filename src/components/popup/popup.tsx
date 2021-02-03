@@ -18,7 +18,7 @@ const AppPopup = (props: Props) => {
     const dispatch = useDispatch();
 
     function _onPressOverlay() {
-        dispatch(hidePopupAction());
+        // dispatch(hidePopupAction());
     }
 
     function _onPressButton(button: PopupButton) {
@@ -42,7 +42,9 @@ const AppPopup = (props: Props) => {
                     {title}
                 </AppText>
                 <Space height={12} />
-                <AppText color={AppColor.GREY_8D}>{message}</AppText>
+                <AppText center color={AppColor.GREY_8D}>
+                    {message}
+                </AppText>
                 <Space height={24} />
                 <FlatList
                     style={styles.buttonContainer}
@@ -50,7 +52,12 @@ const AppPopup = (props: Props) => {
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) => {
                         return item.style || item.style == 'negative' ? (
-                            <SecondaryButton title={item.title} onPress={() => _onPressButton(item)} />
+                            <SecondaryButton
+                                buttonStyle={styles.secondaryButtonStyle}
+                                title={item.title}
+                                titleStyle={styles.secondaryButtonTitle}
+                                onPress={() => _onPressButton(item)}
+                            />
                         ) : (
                             <PrimaryButton title={item.title} onPress={() => _onPressButton(item)} />
                         );

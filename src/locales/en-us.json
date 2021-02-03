@@ -29,7 +29,7 @@
         "cancel": "Cancel",
         "ok": "Ok",
         "you_have_a_booking":"You have a booking in this time!",
-        "empty_title_default": "No Data"
+        "empty_title_default": "No Data",
     },
     "button": {
         "back": "Back",
@@ -158,5 +158,21 @@
         "wifi_password": "Password",
         "empty_title": "No available device",
         "empty_description": "Check your booking or add a new device to control."
+    },
+    "update_profile": {
+        "title": "My Profile",
+        "popup_title_successfully": "Your Profile Changed",
+        "popup_description_successfully": "We've changed your profile!",
+        "button_update_label": "Update",
+        "popup_request_update_title": "Request to change you profile",
+        "popup_request_update_description": "Do you want to change your profile information?",
+
+    },
+    "force_update": {
+        "popup_title": "Update Available",
+        "popup_message1": "An update to {{appName}} is available. Would you like to update?",
+        "popup_message2": "An update to {{appName}} is required to continue.",
+        "button_update_label": "Update",
+        "button_cancel_label": "Not Now"
     }
 }
