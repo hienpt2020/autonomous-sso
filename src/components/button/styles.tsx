@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         borderRadius: 0,
     },
     title: {
-        fontWeight: '500',
+        fontWeight: '400',
         color: AppColor.WHITE,
         fontSize: AppFontSize.SIZE_16,
         marginBottom: 2,

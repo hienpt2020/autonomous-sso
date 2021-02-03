@@ -42,26 +42,26 @@ function activeAccount(token: string) {
 }
 
 function getCurrentWorkspace() {
-    return _get(`/me/current_workspace`);
+    return _get('/me/current_workspace');
 }
 function setCurrentWorkspace(workspaceId: number) {
-    return _post(`/me/current_workspace`, { workspace_id: workspaceId });
+    return _post('/me/current_workspace', { workspace_id: workspaceId });
 }
 
 function getMyWorkspaces() {
-    return _get(`workspaces`);
+    return _get('workspaces');
 }
 
 function forgotPassword(email: string) {
-    return _post(`/auth/forgot-password`, { email });
+    return _post('/auth/forgot-password', { email });
 }
 
 function resetPassword(token: string, password: string) {
-    return _post(`/auth/reset-forgot-password`, { token, password });
+    return _post('/auth/reset-forgot-password', { token, password });
 }
 
 function changePassword(password: string, newPassword: string) {
-    return _post(`/me/change-password`, { password: password, new_password: newPassword });
+    return _post('/me/change-password', { password: password, new_password: newPassword });
 }
 
 function register(email: string, password: string, confirmPassword: string) {
@@ -71,6 +71,10 @@ function register(email: string, password: string, confirmPassword: string) {
         password,
         confirm_password: confirmPassword,
     });
+}
+
+function updateUserProfile(fullName: string, phone: string) {
+    return _put('/me/profile', { full_name: fullName, phone });
 }
 
 export const SSOApi = {
@@ -86,4 +90,5 @@ export const SSOApi = {
     resetPassword,
     getMyWorkspaces,
     changePassword,
+    updateUserProfile,
 };

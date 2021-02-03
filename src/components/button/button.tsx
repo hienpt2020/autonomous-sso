@@ -23,9 +23,9 @@ export const SecondaryButton = (buttonProps: AppButtonProps) => {
         <Button
             activeOpacity={1}
             {...buttonProps}
-            titleStyle={[styles.title, styles.titleSecondary]}
-            buttonStyle={[styles.button, styles.buttonSecondary]}
-            containerStyle={styles.container}
+            titleStyle={[styles.title, styles.titleSecondary, buttonProps.titleStyle]}
+            buttonStyle={[styles.button, styles.buttonSecondary, buttonProps.buttonStyle]}
+            containerStyle={[styles.container, buttonProps.containerStyle]}
         />
     );
 };

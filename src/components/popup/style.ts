@@ -20,4 +20,10 @@ export default StyleSheet.create({
         paddingVertical: AppSpacing.LARGE,
     },
     buttonContainer: { width: '100%' },
+    secondaryButtonStyle: {
+        borderWidth: 1,
+        borderColor: AppColor.DARK_GREY_1,
+        backgroundColor: AppColor.WHITE,
+    },
+    secondaryButtonTitle: { color: AppColor.DARK_GREY_1 },
 });
