@@ -18,6 +18,7 @@ import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { LoginProps } from './types';
+import { SocialService } from '../../services/login-social/socialService';
 
 const Login = (props: LoginProps) => {
     const { t } = useTranslation();
@@ -29,6 +30,10 @@ const Login = (props: LoginProps) => {
     const emailValidator: Validator = new EmailValidator();
     const passwordValidator: Validator = new PasswordValidator();
     const [isValidRequest, setIsValidRequest] = useState(false);
+
+    React.useEffect(() => {
+        SocialService.configure();
+    });
 
     return (
         <SafeAreaView style={styles.container}>
@@ -71,7 +76,7 @@ const Login = (props: LoginProps) => {
             <Space height={AppSpacing.MEDIUM} />
             <View style={{ flex: 1 }}>
                 <Space height={AppSpacing.MEDIUM} />
-                {/* <View style={styles.dividerContainer}>
+                <View style={styles.dividerContainer}>
                     <Divider style={styles.divider} />
                     <AppText children={t('login.or_log_in_instantly')} style={styles.dividerText} />
                     <Divider style={styles.divider} />
@@ -81,15 +86,15 @@ const Login = (props: LoginProps) => {
                     icon={<GoogleIcon />}
                     title={t('login.login_with_google')}
                     style={styles.googleButton}
-                    onPress={() => validateLogin()}
+                    onPress={() => SocialService.loginGoogle()}
                 />
                 <Space height={AppSpacing.MEDIUM} />
-                <SocialButton
-                    icon={<FacebookIcon />}
-                    title={t('login.login_with_facebook')}
-                    style={styles.facebookButton}
-                    onPress={() => validateLogin()}
-                /> */}
+                {/*<SocialButton*/}
+                {/*    icon={<FacebookIcon />}*/}
+                {/*    title={t('login.login_with_facebook')}*/}
+                {/*    style={styles.facebookButton}*/}
+                {/*    onPress={() => validateLogin()}*/}
+                {/*/>*/}
                 <Space flex={1} />
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <AppText children={t('login.dont_have_account')} />

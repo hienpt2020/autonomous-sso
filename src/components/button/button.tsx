@@ -29,7 +29,10 @@ export const SecondaryButton = (buttonProps: AppButtonProps) => {
 };
 export const SocialButton = (buttonProps: AppIconButtonProps) => {
     return (
-        <TouchableOpacity style={[styles.iconButtonContainer, buttonProps.style, styles.button]}>
+        <TouchableOpacity
+            style={[styles.iconButtonContainer, buttonProps.style, styles.button]}
+            onPress={buttonProps.onPress}
+        >
             <View style={styles.iconContainer}>{buttonProps.icon}</View>
             <AppText style={styles.title} children={`${buttonProps.title}`} />
         </TouchableOpacity>
