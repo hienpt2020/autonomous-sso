@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: AppFontSize.SIZE_20,
         padding: AppSpacing.LARGE,
-        paddingTop: 16,
-        paddingBottom: 18,
+        paddingTop: AppSpacing.MEDIUM,
+        paddingBottom: AppSpacing.MEDIUM + 2,
     },
     list: {
         width: '100%',
@@ -24,13 +24,13 @@ export const styles = StyleSheet.create({
         width: FIXED_ITEM_WIDTH,
         ...AppStyle.cardShadow,
         backgroundColor: AppColor.WHITE,
-        marginBottom: 4,
+        marginBottom: AppSpacing.SHADOW_SPACING,
     },
     deviceName: {
         flex: 1,
     },
     contentContainer: {
-        paddingHorizontal: 24,
+        paddingHorizontal: AppSpacing.LARGE,
         flexGrow: 1,
     },
     image: {

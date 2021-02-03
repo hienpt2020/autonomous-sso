@@ -7,7 +7,7 @@ export const AppStyle = {
         shadowColor: AppColor.GREY_1,
         shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.1,
-        shadowRadius: 4,
+        shadowRadius: AppSpacing.SHADOW_SPACING,
     },
     sectionContainer: {
         backgroundColor: AppColor.WHITE,

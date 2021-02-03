@@ -30,7 +30,7 @@ const TimeSelect: React.FC<TimeSelectProps> = ({
     return (
         <View style={[styles.container, style]}>
             {title ? <AppText style={styles.title}>{title}</AppText> : null}
-            <TouchableOpacity onPress={onPressFrom} disabled={!isSelect}>
+            <TouchableOpacity onPress={onPressFrom} disabled={!isSelect} activeOpacity={1}>
                 <AppView style={styles.itemContainer} horizontal alignItemsCenter spaceBetween>
                     <IcArrowRight width={24} height={24} />
                     <Text style={styles.date}>
@@ -45,7 +45,7 @@ const TimeSelect: React.FC<TimeSelectProps> = ({
 
             <View style={styles.divider}></View>
 
-            <TouchableOpacity onPress={onPressTo} disabled={!isSelect}>
+            <TouchableOpacity onPress={onPressTo} disabled={!isSelect} activeOpacity={1}>
                 <AppView style={styles.itemContainer} horizontal alignItemsCenter spaceBetween>
                     <IcArrowLeft width={24} height={24} />
                     <Text style={styles.date}>

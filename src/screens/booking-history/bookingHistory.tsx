@@ -82,7 +82,7 @@ const BookingScreen = (props: Props) => {
         }
 
         return (
-            <TouchableOpacity onPress={() => onItemSelected(data)}>
+            <TouchableOpacity onPress={() => onItemSelected(data)} activeOpacity={1}>
                 <View style={styles.itemContainer}>
                     <AppText style={styles.title}>{data.name}</AppText>
                     {status ? <AppText style={statusStyle}>{status}</AppText> : null}

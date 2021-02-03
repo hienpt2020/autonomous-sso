@@ -29,6 +29,7 @@ export const Device = (props: Props) => {
                 style={styles.chipContainer}
                 onPress={() => _onPressItem(data)}
                 disabled={!props.isConfig || !data.isSmartDevice}
+                activeOpacity={1}
             >
                 <FastImage
                     style={styles.image}

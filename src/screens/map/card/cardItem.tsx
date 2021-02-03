@@ -16,7 +16,7 @@ const CardItem = (props: Props) => {
     const { t } = useTranslation();
 
     return (
-        <TouchableOpacity onPress={props.onPress}>
+        <TouchableOpacity onPress={props.onPress} activeOpacity={1}>
             <View style={[styles.itemContainer]}>
                 <FastImage
                     style={styles.coverImage}

@@ -17,7 +17,7 @@ const CardItem = (props: Props) => {
     const cardData = props.cardData;
 
     return (
-        <TouchableOpacity style={styles.itemContainer} onPress={props.onPress}>
+        <TouchableOpacity style={styles.itemContainer} onPress={props.onPress} activeOpacity={1}>
             <FastImage style={styles.coverImage} source={getImage(cardData.image, DEFAULT_IMAGES.LAYOUT)} />
             <AppView style={styles.infoContainer} horizontal alignItemsCenter>
                 <View style={styles.leftContainer}>
