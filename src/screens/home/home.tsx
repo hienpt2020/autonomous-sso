@@ -77,7 +77,7 @@ const Home = (props: Props) => {
         if (workingSpaceId > 0) {
             setRoutes(homeRoutes);
         } else {
-            setRoutes([homeRoutes[2]]);
+            setRoutes([homeRoutes[1], homeRoutes[2]]);
         }
     }, [workingSpaceId]);
 
