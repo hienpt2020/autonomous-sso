@@ -40,7 +40,9 @@ export const SocialButton = (buttonProps: AppIconButtonProps) => {
 export const IconButton = (buttonProps: AppIconButtonProps) => {
     return (
         <View style={[buttonProps.style, styles.icon]}>
-            <TouchableOpacity activeOpacity={1}>{buttonProps.icon}</TouchableOpacity>
+            <TouchableOpacity activeOpacity={1} onPress={buttonProps.onPress}>
+                {buttonProps.icon}
+            </TouchableOpacity>
         </View>
     );
 };
