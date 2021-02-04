@@ -7,7 +7,7 @@ import { Props } from './types';
 import { AppText } from 'src/components';
 import { AppColor } from 'src/styles';
 import SvgIcRight from 'src/assets/images/ic_chevron_right.svg';
-import { IcDown, IcUp } from 'src/assets/images/svg';
+import { IcDown, IcUp, IcStand, IcSit } from 'src/assets/images/svg';
 import { Controller } from 'src/services/control-device/controller';
 import moment from 'moment';
 import { getImage } from 'src/helpers/imageHelper';
@@ -22,34 +22,50 @@ const CardItem = (props: Props) => {
                 source={getImage(cardData.image, DEFAULT_IMAGES.DEVICE)}
                 resizeMode="cover"
             />
-            <View style={styles.content}>
-                <View style={styles.titleContainer}>
+            <View style={[styles.content, !!cardData.fromTime && { marginBottom: 4 }]}>
+                <View style={{ flex: 1 }}>
                     <AppText style={styles.titleText} numberOfLines={1} ellipsizeMode="tail">
                         Smart Desk 4
                     </AppText>
+                </View>
+                <View style={styles.descriptionContainer}>
                     <AppText style={styles.descriptionText} numberOfLines={1} ellipsizeMode="tail">
-                        {`DeviceId: ${cardData.hubId}`}
+                        {`ID: ${cardData.hubId}`}
                     </AppText>
                 </View>
-                <View style={styles.panel}>
-                    <ControlButton
-                        containerStyle={styles.downBtn}
-                        Icon={(props: object) => <IcUp width={17.44} height={9.47} {...props} />}
-                        onPressIn={() => Controller.up(cardData.hubId, cardData.layoutId)}
-                        onPressOut={() => Controller.stop(cardData.hubId, cardData.layoutId)}
-                    />
-                    <ControlButton
-                        containerStyle={styles.upBtn}
-                        Icon={(props: object) => <IcDown width={17.44} height={9.47} {...props} />}
-                        onPressIn={() => Controller.down(cardData.hubId, cardData.layoutId)}
-                        onPressOut={() => Controller.stop(cardData.hubId, cardData.layoutId)}
-                    />
-                </View>
             </View>
-            <View style={styles.timeContainer}>
-                <AppText style={styles.timeText}>{moment(cardData.fromTime).format('MMM DD YYYY | HH:mm')}</AppText>
-                <SvgIcRight width={13} height={24} />
-                <AppText style={styles.timeText}>{moment(cardData.toTime).format('MMM DD YYYY | HH:mm')}</AppText>
+            {cardData.fromTime && (
+                <View style={styles.timeContainer}>
+                    <AppText size={11} style={styles.timeText}>
+                        {moment(cardData.fromTime).format('MMM DD YYYY | HH:mm')}
+                    </AppText>
+                    <SvgIcRight width={13} height={24} />
+                    <AppText size={11} style={styles.timeText}>
+                        {moment(cardData.toTime).format('MMM DD YYYY | HH:mm')}
+                    </AppText>
+                </View>
+            )}
+            <View style={styles.panel}>
+                <ControlButton
+                    Icon={(props: object) => <IcUp width={17.44} height={9.47} {...props} />}
+                    onPressIn={() => Controller.up(cardData.hubId, cardData.layoutId)}
+                    onPressOut={() => Controller.stop(cardData.hubId, cardData.layoutId)}
+                />
+                <ControlButton
+                    Icon={(props: object) => <IcDown width={17.44} height={9.47} {...props} />}
+                    onPressIn={() => Controller.down(cardData.hubId, cardData.layoutId)}
+                    onPressOut={() => Controller.stop(cardData.hubId, cardData.layoutId)}
+                />
+                <ControlButton
+                    Icon={(props: object) => <IcStand {...props} />}
+                    onPressIn={() => Controller.stand(cardData.hubId, cardData.layoutId)}
+                    onPressOut={() => {}}
+                />
+                <ControlButton
+                    Icon={(props: object) => <IcSit {...props} />}
+                    onPressIn={() => Controller.sit(cardData.hubId, cardData.layoutId)}
+                    onPressOut={() => {}}
+                />
             </View>
         </TouchableOpacity>
     );
@@ -68,13 +84,13 @@ const ControlButton = (props: {
     };
     const _onPressIn = () => {
         setIsPressed(true);
+        props.onPressIn();
     };
 
     return (
         <TouchableOpacity
             onPressOut={_onPressOut}
             onPressIn={_onPressIn}
-            onLongPress={props.onPressIn}
             style={[
                 styles.button,
                 props.containerStyle,
