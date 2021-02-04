@@ -31,7 +31,7 @@ const BookingResult = (props: Props) => {
 
                 <Space height={AppSpacing.LARGE} />
 
-                {bookingHistory && (
+                {/* {bookingHistory && (
                     <AppView horizontal>
                         <AppView center style={styles.codeContainer}>
                             <AppText style={styles.code}>{bookingHistory.code.toString()[0]}</AppText>
@@ -45,14 +45,14 @@ const BookingResult = (props: Props) => {
                             <AppText style={styles.code}>{bookingHistory.code.toString()[2]}</AppText>
                         </AppView>
                     </AppView>
-                )}
+                )} */}
 
-                {bookingHistory && (
+                {/* {bookingHistory && (
                     <>
                         <Space height={AppSpacing.LARGE} />
                         <AppText style={styles.note}>{t('booking_results.note')}</AppText>
                     </>
-                )}
+                )} */}
             </AppView>
 
             <PrimaryButton

@@ -25,6 +25,7 @@ import { CardItem } from './card';
 import { styles } from './styles';
 import { Props } from './types';
 import IcEmpty from 'src/assets/images/ic_empty_booking.svg';
+import { BookingStatus } from 'src/common/constant';
 
 const Map = (props: Props) => {
     const FIXED_ITEM_HEIGHT = 140;
@@ -67,10 +68,14 @@ const Map = (props: Props) => {
                 moment(from).toISOString(),
                 moment(to).toISOString(),
             );
-            const bookings: BookingHistory[] = await getBookingOfUser(
+            let bookings: BookingHistory[] = await getBookingOfUser(
                 moment(from).toISOString(),
                 moment(to).toISOString(),
             );
+
+            // TODO: hard filter
+            bookings = bookings.filter((booking) => booking.bookingStatus == BookingStatus.COMFIRMED);
+
             dispatch(setEnableBooking(!(bookings.length > 0)));
             setWorkPlaces(workPlaces);
         } catch (error) {}

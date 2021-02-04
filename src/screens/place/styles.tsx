@@ -14,9 +14,18 @@ export const styles = StyleSheet.create({
         backgroundColor: AppColor.WHITE,
         padding: AppSpacing.LARGE,
     },
-    button: {
+    buttonContainer: {
         marginVertical: 44,
+        flex: 1,
+    },
+    button: {
         marginHorizontal: AppSpacing.LARGE,
+        flexGrow: 1,
+    },
+    secondaryButtonStyle: {
+        borderWidth: 1,
+        borderColor: AppColor.DARK_GREY_1,
+        backgroundColor: AppColor.WHITE,
     },
     placeName: {
         flex: 1,
