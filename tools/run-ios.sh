@@ -17,6 +17,7 @@ echo "Overided .env.${ENV} folder"
 plutil -replace CFBundleDisplayName -string "${APP_NAME}" "ios/RNCodebase/Info.plist"
 plutil -replace CFBundleShortVersionString -string "${APP_VERSION}" "ios/RNCodebase/Info.plist"
 plutil -replace CFBundleVersion -string "${APP_BUILD_NUMBER}" "ios/RNCodebase/Info.plist"
+plutil -replace CFBundleIdentifier -string "${APP_ID}" "ios/RNCodebase/Info.plist"
 
 echo "Extract Reverse Client ID and add to Schema for sign in google"
 REVERSED_CLIENT_ID=$(/usr/libexec/PlistBuddy -c "Print:REVERSED_CLIENT_ID" "ios/GoogleService-Info.plist")
