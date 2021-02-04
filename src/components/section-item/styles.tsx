@@ -5,13 +5,22 @@ import { AppFontSize, AppSpacing, AppStyle } from 'src/styles';
 export const styles = StyleSheet.create({
     container: {
         minHeight: 48,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     title: {
         fontSize: AppFontSize.SIZE_14,
         color: AppColor.DARK_GREY_1,
-        flexGrow: 1,
+    },
+    space: {
+        flex: 1,
+    },
+    notification: {
+        position: 'absolute',
+        top: 2,
+        right: -7,
+        width: 4,
+        height: 4,
+        borderRadius: 2,
+        backgroundColor: AppColor.BLUE_1,
     },
     infoContainer: {
         flex: 1,

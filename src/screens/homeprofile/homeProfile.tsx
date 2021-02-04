@@ -13,6 +13,7 @@ import { Header } from 'src/components/header';
 import SectionItem from 'src/components/section-item';
 import { LinkingHelper } from 'src/helpers';
 import { Log } from 'src/helpers/logger';
+import { setNotificationCheckinAction } from 'src/redux/app/appAction';
 import { RootState } from 'src/redux/types';
 import { createRequestLogoutAction } from 'src/redux/user';
 import { navigate } from 'src/routers/rootNavigation';
@@ -29,6 +30,7 @@ const Profile = (props: Props) => {
     const [email, setEmail] = useState('');
     const [avatar, setAvatar] = useState('');
     const [workspace, setWorkSpace] = useState('');
+    const { hasCheckinNotification } = useSelector((state: RootState) => state.appReducer.notification);
 
     useEffect(() => {
         setEmail(_.get(userReducer, 'email', ''));
@@ -88,7 +90,12 @@ const Profile = (props: Props) => {
 
                         <SectionItem title={t('profile.add_login_method')} value={'Email'} />
                         <Divider />
-                        <SectionItem title={t('profile.activities')} value={''} onPress={_onPressActivities} />
+                        <SectionItem
+                            title={t('profile.activities')}
+                            hasNotification={hasCheckinNotification}
+                            value={''}
+                            onPress={_onPressActivities}
+                        />
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
@@ -134,6 +141,7 @@ const Profile = (props: Props) => {
         navigate(RouteName.NEW_PASSWORD, null);
     }
     function _onPressActivities() {
+        dispatch(setNotificationCheckinAction(false));
         navigate(RouteName.ACTIVITIES, null);
     }
     function navigateToSwithProfile() {

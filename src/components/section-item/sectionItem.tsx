@@ -9,8 +9,12 @@ import { SectionItemProps } from './types';
 const SectionItem = (props: SectionItemProps) => {
     return (
         <TouchableOpacity onPress={props.onPress} activeOpacity={1}>
-            <AppView horizontal style={styles.container}>
-                <AppText style={styles.title}>{props.title}</AppText>
+            <AppView horizontal style={styles.container} alignItemsCenter>
+                <AppView>
+                    <AppText style={styles.title}>{props.title}</AppText>
+                    {props.hasNotification && <AppView style={styles.notification} />}
+                </AppView>
+                <AppView style={styles.space}></AppView>
                 <AppText style={props.onPress !== undefined ? styles.value : styles.valueDisable}>
                     {props.value}
                 </AppText>

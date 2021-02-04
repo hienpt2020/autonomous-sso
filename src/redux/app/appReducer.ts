@@ -1,4 +1,12 @@
-import { AppState, HidePopupActionType, HIDE_POPUP, ShowPopupActionType, SHOW_POPUP } from './appType';
+import {
+    AppState,
+    HidePopupActionType,
+    HIDE_POPUP,
+    ShowPopupActionType,
+    SHOW_POPUP,
+    SET_NOTIFICATION_CHECKIN,
+    SetNotificationCheckinActionType,
+} from './appType';
 
 const initialState: AppState = {
     popup: {
@@ -8,9 +16,15 @@ const initialState: AppState = {
         icon: undefined,
         buttons: [],
     },
+    notification: {
+        hasCheckinNotification: false,
+    },
 };
 
-export function appReducer(state = initialState, action: ShowPopupActionType | HidePopupActionType): AppState {
+export function appReducer(
+    state = initialState,
+    action: ShowPopupActionType | HidePopupActionType | SetNotificationCheckinActionType,
+): AppState {
     switch (action.type) {
         case SHOW_POPUP:
             return {
@@ -29,6 +43,15 @@ export function appReducer(state = initialState, action: ShowPopupActionType | H
             return {
                 ...state,
                 popup: initialState.popup,
+            };
+
+        case SET_NOTIFICATION_CHECKIN:
+            return {
+                ...state,
+                notification: {
+                    ...state.notification,
+                    hasCheckinNotification: action.hasCheckinNotification,
+                },
             };
 
         default:

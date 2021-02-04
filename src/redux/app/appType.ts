@@ -1,6 +1,8 @@
 export const SHOW_POPUP = 'SHOW_POPUP';
 export const HIDE_POPUP = 'HIDE_POPUP';
 
+export const SET_NOTIFICATION_CHECKIN = 'SET_NOTIFICATION_CHECKIN';
+
 const NEGATIVE = 'negative';
 const POSITIVE = 'positive';
 
@@ -14,6 +16,11 @@ export interface ShowPopupActionType {
 
 export interface HidePopupActionType {
     type: typeof HIDE_POPUP;
+}
+
+export interface SetNotificationCheckinActionType {
+    type: typeof SET_NOTIFICATION_CHECKIN;
+    hasCheckinNotification: boolean;
 }
 
 export type VisibilityPopupActionType = HidePopupActionType | ShowPopupActionType;
@@ -32,6 +39,11 @@ export interface PopupState {
     buttons: PopupButton[];
 }
 
+export interface NotificationState {
+    hasCheckinNotification: boolean;
+}
+
 export interface AppState {
     popup: PopupState;
+    notification: NotificationState;
 }

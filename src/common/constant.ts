@@ -16,6 +16,12 @@ export const DEFAULT_REQUEST_LIMIT = 100;
 
 export const ALL_WORK_SPACE_HISTORY = -1;
 
+export const FCM_TOPIC = 'booking_notication_user_id_';
+
+export enum NotificationType {
+    CHECK_IN = 'checkin',
+}
+
 export enum ROLES {
     OWNER,
     ADMIN,

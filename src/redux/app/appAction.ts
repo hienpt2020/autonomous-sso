@@ -1,4 +1,12 @@
-import { HidePopupActionType, HIDE_POPUP, ShowPopupActionType, SHOW_POPUP, PopupButton } from './appType';
+import {
+    HidePopupActionType,
+    HIDE_POPUP,
+    ShowPopupActionType,
+    SHOW_POPUP,
+    PopupButton,
+    SetNotificationCheckinActionType,
+    SET_NOTIFICATION_CHECKIN,
+} from './appType';
 
 export const showPopupAction = (
     title: string,
@@ -18,5 +26,12 @@ export const showPopupAction = (
 export const hidePopupAction = (): HidePopupActionType => {
     return {
         type: HIDE_POPUP,
+    };
+};
+
+export const setNotificationCheckinAction = (hasCheckinNotification: boolean): SetNotificationCheckinActionType => {
+    return {
+        type: SET_NOTIFICATION_CHECKIN,
+        hasCheckinNotification,
     };
 };
