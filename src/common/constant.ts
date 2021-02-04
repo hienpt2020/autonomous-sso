@@ -31,3 +31,8 @@ export enum DEVICE_TYPES {
     WORKSPACE = 'WORKSPACE',
     PERSONAL = 'PERSONAL',
 }
+
+export enum LOGIN_SOCIAL_TYPES {
+    FACEBOOK,
+    GOOGLE,
+}

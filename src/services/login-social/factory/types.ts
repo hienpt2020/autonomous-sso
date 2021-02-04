@@ -15,6 +15,7 @@ export interface IResponse {
     email: string;
     name: string;
     image: string;
+    clientId: string;
 }
 
 export class Helper {
@@ -24,6 +25,7 @@ export class Helper {
             email: response.user?.email,
             name: response.user?.name,
             image: response.user?.photo,
+            clientId: response.user?.id,
         };
     }
 }

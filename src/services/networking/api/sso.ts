@@ -77,6 +77,16 @@ function updateUserProfile(fullName: string, phone: string) {
     return _put('/me/profile', { full_name: fullName, phone });
 }
 
+function loginSocial(accessToken: string, clientId: string, customerSource: string, source: number = -1) {
+    return _post('/me/profile', {
+        access_token: accessToken,
+        client_id: clientId,
+        customer_source: '',
+        source,
+        customerSource,
+    });
+}
+
 export const SSOApi = {
     forgotPassword,
     login,
@@ -91,4 +101,5 @@ export const SSOApi = {
     getMyWorkspaces,
     changePassword,
     updateUserProfile,
+    loginSocial,
 };

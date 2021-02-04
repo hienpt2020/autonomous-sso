@@ -14,6 +14,7 @@ export class Google implements ISocialFactory {
     async login(): Promise<any> {
         try {
             await GoogleSignin.hasPlayServices();
+            await GoogleSignin.signOut();
             const response = await GoogleSignin.signIn();
             return Promise.resolve(Helper.parseResponseGoogle(response));
         } catch (e) {

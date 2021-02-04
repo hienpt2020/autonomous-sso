@@ -18,7 +18,7 @@ import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { LoginProps } from './types';
-import { SocialService } from '../../services/login-social/socialService';
+import { SocialService } from 'src/services/login-social/socialService';
 
 const Login = (props: LoginProps) => {
     const { t } = useTranslation();

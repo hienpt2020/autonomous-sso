@@ -54,4 +54,17 @@ async function requestRegister(email: string, password: string, confirmPassword:
         return { error };
     }
 }
-export { requestLogin, retrieveUserProfile, requestLogout, requestRegister, retrieveUserWorkspace };
+
+async function requestLoginSocial(accessToken: string, clientId: string, customerSource: string, source: number = -1) {
+    try {
+        const response = await SSOApi.loginSocial(accessToken, clientId, customerSource, source);
+        const { access_token } = response.data;
+        if (access_token) {
+            Preference.saveAccessToken(access_token);
+        }
+        return { response };
+    } catch (error) {
+        return { error };
+    }
+}
+export { requestLogin, retrieveUserProfile, requestLogout, requestRegister, retrieveUserWorkspace, requestLoginSocial };
