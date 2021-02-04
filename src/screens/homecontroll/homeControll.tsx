@@ -15,8 +15,9 @@ import { HomeControlActions, IHomeControlActions } from './actions/officeAction'
 import { RootState } from 'src/redux/types';
 import { AppText, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
-import Bluetooth from '../../services/bluetooth';
-import { DEVICE_TYPES } from '../../common/constant';
+import Bluetooth from 'src/services/bluetooth';
+import { DEVICE_TYPES } from 'src/common/constant';
+import IcPlus from 'src/assets/images/plus.svg';
 
 const Control = (props: Props) => {
     const { t } = useTranslation();
@@ -86,6 +87,11 @@ const Control = (props: Props) => {
                 containerStyle={styles.setupBtnContainer}
                 title={t('control.button_add_new_device')}
                 onPress={gotoSetupNewDevice}
+                icon={
+                    <View style={styles.setupIcon}>
+                        <IcPlus />
+                    </View>
+                }
             />
         </View>
     );
