@@ -75,12 +75,19 @@
         "title": "Select a floor",
         "sub_title": "start working with joy",
         "upcoming_title": "Your Upcoming",
-        "upcoming_sub_title": "booking"
+        "upcoming_sub_title": "booking",
+        "total": "Total",
+        "seats": "seats",
+        "booked": "Booked",
+        "empty_title":"Problem viewing page",
+        "empty_desc":"We’ve encountered an issue for this page. Please contact our Help Center to have more information."
     },
     "office": {
-        "title": "Select",
-        "sub_title": "working time",
-        "view": "View"
+        "title": "Select your booking",
+        "sub_title": "timeline",
+        "view": "View",
+        "empty_title":"Problem viewing page",
+        "empty_desc":"We’ve encountered an issue for this page. Please try again or select another booking time."
     },
     "control": {
         "title": "My Devices",
@@ -104,7 +111,11 @@
         "version": "Version"
     },
     "booking": {
-        "title": "My Booking"
+        "title": "My Booking",
+        "empty_upcoming_title":"No upcoming bookings",
+        "empty_upcoming_desc":"You don’t have any upcoming bookings. Time to set up a seat for your plan.",
+        "empty_title":"No booking history",
+        "empty_desc":"You haven’t made any booking yet."
     },
     "booking_detail": {
         "cancel_booking": "Cancel booking",

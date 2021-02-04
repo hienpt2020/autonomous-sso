@@ -8,8 +8,9 @@ import { AppText, AppView, Space } from '..';
 import { styles } from './styles';
 import { Props } from './types';
 import IconBluetooh from 'src/assets/images/ic_bluetooth.svg';
+import { getImage } from 'src/helpers/imageHelper';
+import { DEFAULT_IMAGES } from 'src/common/constant';
 
-const imageWidth = Dimensions.get('window').width;
 export const Device = (props: Props) => {
     const NUM_COLUMNS = 2;
     const FIXED_ITEM_HEIGHT = 40;
@@ -28,14 +29,11 @@ export const Device = (props: Props) => {
                 style={styles.chipContainer}
                 onPress={() => _onPressItem(data)}
                 disabled={!props.isConfig || !data.isSmartDevice}
+                activeOpacity={1}
             >
                 <FastImage
                     style={styles.image}
-                    source={{
-                        uri: data.thumbImage
-                            ? data.thumbImage
-                            : 'https://image.shopmoment.com/general/product/_800x800_crop_center-center_82_none/Moment-Autonomous-SmartDesk2Premium-thumbnail.jpg?mtime=20200407162750&focal=none&tmtime=20201022122734',
-                    }}
+                    source={getImage(data.thumbImage, DEFAULT_IMAGES.PLACE_THUMBNAIL)}
                     resizeMode="cover"
                 />
                 <AppView style={styles.chipContent} horizontal alignItemsCenter>
@@ -43,7 +41,7 @@ export const Device = (props: Props) => {
                         {data.name}
                     </AppText>
 
-                    {data.isSmartDevice && <IconBluetooh width={15} height={15} />}
+                    {data.isSmartDevice && <IconBluetooh width={24} height={24} />}
                 </AppView>
             </TouchableOpacity>
         );

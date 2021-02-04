@@ -8,24 +8,23 @@ import { useDispatch } from 'react-redux';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { AppView, Space } from 'src/components';
 import { BackHeader, LargeHeader } from 'src/components/header';
-import LayoutInfo from 'src/components/layoutInfo';
 import { Link } from 'src/components/link';
 import TimeSelect from 'src/components/timeSelect';
 import Booking from 'src/models/Booking';
+import { BookingHistory } from 'src/models/BookingHistory';
 import WorkLayout from 'src/models/WorkLayout';
 import WorkPlace from 'src/models/WorkPlace';
 import { setBookingDataAction, setEnableBooking } from 'src/redux/booking/bookingAction';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
-import { AppSpacing } from 'src/styles';
+import { AppSpacing, AppStyle } from 'src/styles';
 import { Empty } from '../../components/empty';
 import { Loading } from '../../components/loading/loading';
-import { getAvailableWorkPlace } from './actions/mapAction';
+import { getAvailableWorkPlace, getBookingOfUser } from './actions/mapAction';
 import { CardItem } from './card';
 import { styles } from './styles';
 import { Props } from './types';
-import { getBookingOfUser } from './actions/mapAction';
-import { BookingHistory } from 'src/models/BookingHistory';
+import IcEmpty from 'src/assets/images/ic_empty_booking.svg';
 
 const Map = (props: Props) => {
     const FIXED_ITEM_HEIGHT = 140;
@@ -175,9 +174,6 @@ const Map = (props: Props) => {
         <View style={styles.container}>
             <BackHeader title={map.name} onPress={() => handleBack()} />
 
-            {/* {isLoading ? (
-                <Loading />
-            ) : workPlaces.length > 0 ? ( */}
             <FlatList
                 data={workPlaces}
                 columnWrapperStyle={{
@@ -194,17 +190,31 @@ const Map = (props: Props) => {
                         <View style={{ height: 100 }}>
                             <Loading />
                         </View>
-                    ) : workPlaces.length == 0 ? (
-                        <Empty />
                     ) : (
-                        <View></View>
+                        <View />
                     )
                 }
+                ListEmptyComponent={() => {
+                    return isLoading ? (
+                        <View></View>
+                    ) : (
+                        <View>
+                            <Space height={AppSpacing.MEDIUM} />
+                            <Empty
+                                icon={<IcEmpty />}
+                                iconHeight={145}
+                                iconWidth={228}
+                                title={t('home.empty_title')}
+                                description={t('home.empty_desc')}
+                            />
+                        </View>
+                    );
+                }}
                 ListHeaderComponent={
                     <AppView>
-                        <Space height={30} />
+                        {/* <Space height={30} /> */}
 
-                        <LayoutInfo workLayout={map} />
+                        {/* <LayoutInfo workLayout={map} /> */}
 
                         <Space height={AppSpacing.LARGE} />
 
@@ -224,9 +234,6 @@ const Map = (props: Props) => {
                     </AppView>
                 }
             />
-            {/* ) : (
-                <Empty />
-            )} */}
 
             {isBottomSheetShow ? renderOverlay() : null}
 

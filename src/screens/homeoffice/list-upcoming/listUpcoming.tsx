@@ -30,7 +30,7 @@ const ListUpcoming = ({ data }: Props) => {
     const renderItem = (data: BookingHistory) => {
         let status = t('activities.upcoming');
         return (
-            <TouchableOpacity onPress={() => onItemSelected(data)}>
+            <TouchableOpacity onPress={() => onItemSelected(data)} activeOpacity={1}>
                 <AppView style={styles.itemContainer}>
                     <AppView horizontal>
                         <AppText style={styles.placeName} numberOfLines={1}>

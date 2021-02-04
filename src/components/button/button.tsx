@@ -9,6 +9,7 @@ import { AppButtonProps, AppIconButtonProps } from './types';
 export const PrimaryButton = (buttonProps: AppButtonProps) => {
     return (
         <Button
+            activeOpacity={1}
             {...buttonProps}
             titleStyle={[styles.title, styles.titlePrimary, buttonProps.titleStyle]}
             buttonStyle={[styles.button, styles.buttonPrimary, buttonProps.buttonStyle]}
@@ -20,6 +21,7 @@ export const PrimaryButton = (buttonProps: AppButtonProps) => {
 export const SecondaryButton = (buttonProps: AppButtonProps) => {
     return (
         <Button
+            activeOpacity={1}
             {...buttonProps}
             titleStyle={[styles.title, styles.titleSecondary, buttonProps.titleStyle]}
             buttonStyle={[styles.button, styles.buttonSecondary, buttonProps.buttonStyle]}
@@ -32,6 +34,7 @@ export const SocialButton = (buttonProps: AppIconButtonProps) => {
         <TouchableOpacity
             style={[styles.iconButtonContainer, buttonProps.style, styles.button]}
             onPress={buttonProps.onPress}
+            activeOpacity={1}
         >
             <View style={styles.iconContainer}>{buttonProps.icon}</View>
             <AppText style={styles.title} children={`${buttonProps.title}`} />
@@ -41,7 +44,9 @@ export const SocialButton = (buttonProps: AppIconButtonProps) => {
 export const IconButton = (buttonProps: AppIconButtonProps) => {
     return (
         <View style={[buttonProps.style, styles.icon]}>
-            <TouchableOpacity onPress={buttonProps.onPress}>{buttonProps.icon}</TouchableOpacity>
+            <TouchableOpacity activeOpacity={1} onPress={buttonProps.onPress}>
+                {buttonProps.icon}
+            </TouchableOpacity>
         </View>
     );
 };

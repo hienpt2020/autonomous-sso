@@ -30,11 +30,13 @@ const Control = (props: Props) => {
                     style={styles.button}
                     onPressIn={() => Controller.up(device.hubId, device.workingLayoutId)}
                     onPressOut={() => Controller.stop(device.hubId, device.workingLayoutId)}
+                    activeOpacity={1}
                 />
                 <TouchableOpacity
                     style={styles.button}
                     onPressIn={() => Controller.down(device.hubId, device.workingLayoutId)}
                     onPressOut={() => Controller.stop(device.hubId, device.workingLayoutId)}
+                    activeOpacity={1}
                 />
             </View>
             <SafeAreaView style={styles.header}>

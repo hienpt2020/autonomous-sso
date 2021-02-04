@@ -5,7 +5,6 @@ import { ParserImpl } from './../../../helpers/parser';
 export const getWorkLayout = async (id: number): Promise<WorkLayout[]> => {
     try {
         const { data } = await HybridApi.getListWorkingLayout(id);
-
         return data.items.map((item: any) => {
             const parser = new ParserImpl();
             return parser.parseWorkLayout(item);
