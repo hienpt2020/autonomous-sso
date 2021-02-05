@@ -85,7 +85,7 @@ const Control = (props: Props) => {
             )}
             <PrimaryButton
                 containerStyle={styles.setupBtnContainer}
-                title={t('control.button_add_new_device')}
+                title={t('device.button_add_new_device')}
                 onPress={gotoSetupNewDevice}
                 icon={
                     <View style={styles.setupIcon}>

@@ -1,5 +1,9 @@
 import { API_CONTROLLER, BLE_CONTROLLER } from './types';
 import { ControllerFactory } from './factory';
+import { DeviceApi } from '../networking';
+import i18next from 'i18next';
+import store from 'src/redux/store';
+import { createRequestErrorMessageAction } from 'src/redux/request';
 
 export class Controller {
     private static isNetworking: boolean = true;
@@ -66,6 +70,16 @@ export class Controller {
             let res = await controller.gotoHeight(height, hubId, workingLayoutId);
             return Promise.resolve(res);
         } catch (e) {
+            return Promise.reject(e);
+        }
+    }
+
+    public static async removeDevice(hubId: string): Promise<any> {
+        try {
+            let res = await DeviceApi.removeDevice(hubId);
+            return Promise.resolve(res);
+        } catch (e) {
+            store.dispatch(createRequestErrorMessageAction(i18next.t('common.error_message')));
             return Promise.reject(e);
         }
     }

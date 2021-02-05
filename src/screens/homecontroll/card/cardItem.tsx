@@ -12,11 +12,17 @@ import { Controller } from 'src/services/control-device/controller';
 import moment from 'moment';
 import { getImage } from 'src/helpers/imageHelper';
 import { DEFAULT_IMAGES } from 'src/common/constant';
+import { showPopupWarning } from '../actions/showPopup';
 const CardItem = (props: Props) => {
     const cardData = props.cardData;
 
     return (
-        <TouchableOpacity disabled={true} style={styles.container} onPress={props.onPress} activeOpacity={1}>
+        <TouchableOpacity
+            style={styles.container}
+            // onPress={props.onPress}
+            activeOpacity={1}
+            onLongPress={() => showPopupWarning(() => Controller.removeDevice(cardData.hubId))}
+        >
             <FastImage
                 style={styles.coverImage}
                 source={getImage(cardData.image, DEFAULT_IMAGES.DEVICE)}

@@ -77,6 +77,10 @@ function gotoHeight(height: number, hubId: string, workingLayoutId: string) {
     });
 }
 
+function removeDevice(hubId: string) {
+    return _delete(`/personal/${hubId}`);
+}
+
 export const DeviceApi = {
     getMqttInfo,
     controlDown,
@@ -90,4 +94,5 @@ export const DeviceApi = {
     controlStand,
     controlSit,
     gotoHeight,
+    removeDevice,
 };
