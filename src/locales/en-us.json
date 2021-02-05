@@ -89,9 +89,11 @@
         "empty_title":"Problem viewing page",
         "empty_desc":"We’ve encountered an issue for this page. Please try again or select another booking time."
     },
-    "control": {
+    "device": {
         "title": "My Devices",
-        "button_add_new_device": "Add New Device"
+        "button_add_new_device": "Add New Device",
+        "popup_warning_title": "Are you sure?",
+        "popup_warning_message": "Do you really want to delete this device? This process cannot be undone."
     },
     "place": {
         "asset_title": "Assets contained",
