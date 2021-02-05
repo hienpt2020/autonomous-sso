@@ -3,8 +3,9 @@ import { ControllerFactory } from './factory';
 import { DeviceApi } from '../networking';
 import i18next from 'i18next';
 import store from 'src/redux/store';
-import { createRequestErrorMessageAction } from 'src/redux/request';
+import { createRequestEndAction, createRequestErrorMessageAction, createRequestStartAction } from 'src/redux/request';
 import { Log } from 'src/helpers/logger';
+import { createRequestRemoveDevice } from 'src/redux/device/deviceAction';
 
 export class Controller {
     private static isNetworking: boolean = true;
@@ -70,7 +71,10 @@ export class Controller {
 
     public static async removeDevice(hubId: string): Promise<void> {
         try {
+            store.dispatch(createRequestStartAction());
             let res = await DeviceApi.removeDevice(hubId);
+            store.dispatch(createRequestRemoveDevice(hubId));
+            store.dispatch(createRequestEndAction());
         } catch (e) {
             store.dispatch(createRequestErrorMessageAction(i18next.t('common.error_message')));
             Log.error(e);
