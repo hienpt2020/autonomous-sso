@@ -22,6 +22,7 @@ export interface PopupButton {
     title: string;
     style?: typeof NEGATIVE | typeof POSITIVE;
     onPress?: () => void;
+    isAutoClose?: boolean;
 }
 
 export interface PopupState {
