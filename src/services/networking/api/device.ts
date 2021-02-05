@@ -63,11 +63,11 @@ function generatePersonalDeviceCode() {
 }
 
 function controlStand(hubId: string, workingLayoutId: string) {
-    return _put('/devices/modes/stand', { hub_id: hubId, working_layout_id: workingLayoutId });
+    return _put('/master/stand', { hub_id: hubId, working_layout_id: workingLayoutId });
 }
 
 function controlSit(hubId: string, workingLayoutId: string) {
-    return _put('/devices/modes/sit', { hub_id: hubId, working_layout_id: workingLayoutId });
+    return _put('/master/sit', { hub_id: hubId, working_layout_id: workingLayoutId });
 }
 
 function gotoHeight(height: number, hubId: string, workingLayoutId: string) {
@@ -78,7 +78,7 @@ function gotoHeight(height: number, hubId: string, workingLayoutId: string) {
 }
 
 function removeDevice(hubId: string) {
-    return _delete(`/personal/${hubId}`);
+    return _delete(`/devices/personal/${hubId}`);
 }
 
 export const DeviceApi = {

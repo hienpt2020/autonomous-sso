@@ -74,10 +74,11 @@ export class Controller {
             store.dispatch(createRequestStartAction());
             let res = await DeviceApi.removeDevice(hubId);
             store.dispatch(createRequestRemoveDevice(hubId));
-            store.dispatch(createRequestEndAction());
         } catch (e) {
             store.dispatch(createRequestErrorMessageAction(i18next.t('common.error_message')));
             Log.error(e);
+        } finally {
+            store.dispatch(createRequestEndAction());
         }
     }
 }
