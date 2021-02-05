@@ -2,17 +2,18 @@ import { put, takeEvery } from 'redux-saga/effects';
 import { ParserImpl } from 'src/helpers/parser';
 import { HybridApi } from 'src/services/networking';
 import { GET_BOOKING_HISTORY, GetBookingHistoryActionType } from './bookingHisotryType';
+import moment from 'moment';
 
 import { getBookingHistorySuccessAction } from './bookingHistoryAction';
 
 function* sagaFunction(action: GetBookingHistoryActionType) {
     try {
-        const today = new Date();
+        const from = moment().subtract(15, 'minutes');
         const res: any = yield HybridApi.getBookingHistory({
             isAdmin: action.isAdmin,
             workingSpaceId: action.workSpaceId,
             page: action.page,
-            from: action.isUpcoming ? today.toISOString() : undefined,
+            from: action.isUpcoming ? from.toISOString() : undefined,
         });
 
         const bookings = res.data.items;
