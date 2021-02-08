@@ -1,3 +1,4 @@
+import { BookingStatus } from 'src/common/constant';
 import moment from 'moment';
 import {
     BookingHistoryState,
@@ -40,13 +41,15 @@ export function bookingHistoryReducer(
             };
 
         case GET_BOOKING_HISTORY_SUCCESS:
+            // TODO: hard filter
             return action.isUpcoming
                 ? {
                       ...state,
 
                       upComingBookings: {
                           page: state.upComingBookings.page + 1,
-                          items: action.bookings,
+                          //   items: action.bookings,
+                          items: action.bookings.filter((booking) => booking.bookingStatus == BookingStatus.COMFIRMED),
                           isLoading: false,
                       },
                   }

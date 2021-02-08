@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, StatusBar, Text, View, YellowBox } from 'react-native';
+import { Dimensions, StatusBar, View, YellowBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { BookingStatus, DEVICE_TYPES, ROLES } from 'src/common/constant';
 import { AppText, AppView, Divider, showPopup, Space } from 'src/components';
-import { PrimaryButton } from 'src/components/button';
+import { PrimaryButton, SecondaryButton } from 'src/components/button';
 import { Chip } from 'src/components/chip';
 import { Device } from 'src/components/device';
 import { BackHeader } from 'src/components/header';
@@ -23,7 +23,7 @@ import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import Bluetooth from 'src/services/bluetooth';
 import { AppFontSize, AppSpacing } from 'src/styles';
-import { bookPlace, cancelBooking, getPlaceDetail } from './actions/placeAction';
+import { bookPlace, cancelBooking, checkInBooking, getPlaceDetail } from './actions/placeAction';
 import { styles } from './styles';
 import { Props } from './types';
 //JUST disable this warning
@@ -111,6 +111,24 @@ const BookingDetail = (props: Props) => {
         }
     };
 
+    const _onPressCheckInBooking = async () => {
+        if (bookingHistory) {
+            const cancelResult = await checkInBooking(bookingHistory.id);
+            if (cancelResult) {
+                // TODO
+                dispatch(getBookingHistoryAction(false, workingSpaceId, 0, true));
+                showPopup(t('booking_detail.checked_in'), t('booking_detail.checked_in_desc'), null, [
+                    {
+                        title: t('common.ok'),
+                        onPress: () => {
+                            handleBack();
+                        },
+                    },
+                ]);
+            }
+        }
+    };
+
     const _onPressDevice = (item: Asset) => {
         navigate(RouteName.CONFIGURATION_INTRO1, null);
         Bluetooth.deviceType = DEVICE_TYPES.WORKSPACE;
@@ -185,31 +203,6 @@ const BookingDetail = (props: Props) => {
                     </>
                 )}
 
-                {bookingHistory && (
-                    <>
-                        <AppView style={styles.codeContainer}>
-                            <Text style={[styles.codeTitle]}>{t('common.code')}</Text>
-
-                            <AppView style={styles.codeLineContainer} horizontal alignItemsCenter>
-                                <AppText style={styles.codeDesc}>{t('place.code_desc')}</AppText>
-                                <Space width={AppSpacing.LARGE} />
-                                <AppView style={styles.codeNumberContainer} center horizontal>
-                                    <AppText style={styles.code}>{bookingHistory.code.toString()[0]}</AppText>
-                                </AppView>
-                                <Space width={4} />
-                                <AppView style={styles.codeNumberContainer} center horizontal>
-                                    <AppText style={styles.code}>{bookingHistory.code.toString()[1]}</AppText>
-                                </AppView>
-                                <Space width={4} />
-                                <AppView style={styles.codeNumberContainer} center horizontal>
-                                    <AppText style={styles.code}>{bookingHistory.code.toString()[2]}</AppText>
-                                </AppView>
-                            </AppView>
-                        </AppView>
-                        <Space height={AppSpacing.SMALL} />
-                    </>
-                )}
-
                 {placeData && placeData.devices.length > 0 && (
                     <>
                         <Device
@@ -237,24 +230,43 @@ const BookingDetail = (props: Props) => {
                     </AppView>
                 ) : null}
 
-                <PrimaryButton
-                    disabled={!canBooking && !bookingHistory}
-                    style={styles.button}
-                    onPress={
-                        !bookingHistory
-                            ? _onPressBookPlace
-                            : bookingHistory.bookingStatus == BookingStatus.COMFIRMED
-                            ? _onPressCancelBooking
-                            : handleBack
-                    }
-                    title={t(
-                        !bookingHistory
-                            ? 'place.book_place'
-                            : bookingHistory.bookingStatus == BookingStatus.COMFIRMED
-                            ? 'booking_detail.cancel_booking'
-                            : 'booking_detail.go_back',
+                <View style={styles.buttonContainer}>
+                    {!bookingHistory && (
+                        <PrimaryButton
+                            disabled={!canBooking}
+                            containerStyle={styles.button}
+                            onPress={_onPressBookPlace}
+                            title={t('place.book_place')}
+                        />
                     )}
-                />
+
+                    {bookingHistory && bookingHistory.bookingStatus == BookingStatus.COMFIRMED && (
+                        <>
+                            <PrimaryButton
+                                containerStyle={styles.button}
+                                onPress={_onPressCheckInBooking}
+                                title={t('booking_detail.check_in')}
+                            />
+                            <Space height={AppSpacing.LARGE} />
+                        </>
+                    )}
+
+                    {bookingHistory && bookingHistory.bookingStatus == BookingStatus.COMFIRMED && (
+                        <SecondaryButton
+                            containerStyle={[styles.button, styles.secondaryButtonStyle]}
+                            onPress={_onPressCancelBooking}
+                            title={t('booking_detail.cancel_booking')}
+                        />
+                    )}
+
+                    {bookingHistory && bookingHistory.bookingStatus != BookingStatus.COMFIRMED && (
+                        <PrimaryButton
+                            containerStyle={styles.button}
+                            onPress={handleBack}
+                            title={t('booking_detail.go_back')}
+                        />
+                    )}
+                </View>
             </ScrollView>
 
             <BackHeader style={styles.header} title={''} lightContent onPress={() => handleBack()} />

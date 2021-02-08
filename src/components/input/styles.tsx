@@ -10,6 +10,8 @@ export const styles = StyleSheet.create({
         paddingStart: AppSpacing.MEDIUM,
         paddingEnd: AppSpacing.MEDIUM,
         borderColor: AppColor.GREY_2,
+        color: AppColor.DARK_GREY_1,
+        fontSize: AppFontSize.SIZE_16,
     },
     visibleContainer: {
         position: 'absolute',
