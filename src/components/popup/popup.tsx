@@ -11,8 +11,6 @@ import { PrimaryButton, SecondaryButton } from '../button';
 import styles from './style';
 import { Props } from './types';
 
-const DefaultButtonProps: PopupButton = { title: '', isAutoClose: true };
-
 const AppPopup = (props: Props) => {
     const { visible, message, icon, buttons, title }: PopupState = useSelector(
         (state: RootState) => state.appReducer.popup,
@@ -23,11 +21,9 @@ const AppPopup = (props: Props) => {
         // dispatch(hidePopupAction());
     }
 
-    function _onPressButton(button: PopupButton = DefaultButtonProps) {
-        if (button.onPress) {
-            button.onPress();
-        }
-        button.isAutoClose && dispatch(hidePopupAction());
+    function _onPressButton({ onPress, isAutoClose = true }: PopupButton) {
+        onPress && onPress();
+        isAutoClose && dispatch(hidePopupAction());
     }
 
     return visible ? (
