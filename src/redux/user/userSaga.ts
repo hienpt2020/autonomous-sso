@@ -46,7 +46,7 @@ export function createRequestLogoutAction(): object {
         type: REQUEST_LOGOUT_ACTION,
     };
 }
-export function requestValidateAccessTokenAction(): object {
+export function requestValidateAccessTokenAction(): any {
     return {
         type: REQUEST_VALIDATE_ACCESS_TOKEN,
     };
