@@ -2,17 +2,21 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { AppSpacing, AppStyle } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 
-const imageWidth = Dimensions.get('window').width - 32;
+const imageWidth = Dimensions.get('window').width - AppSpacing.LARGE * 2;
+const imageHeight = imageWidth / 1.8;
+
 export const styles = StyleSheet.create({
     itemContainer: {
-        height: 240,
         backgroundColor: AppColor.WHITE,
         ...AppStyle.cardShadow,
         margin: 2,
         marginHorizontal: AppSpacing.LARGE,
     },
+    name: {
+        lineHeight: 24,
+    },
     coverImage: {
-        height: 169,
+        height: imageHeight,
     },
     infoContainer: {
         height: '100%',
@@ -21,10 +25,20 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     leftContainer: { flex: 1 },
-    ticketContainer: { marginTop: AppSpacing.SMALL },
+    ticketContainer: {
+        height: 20,
+    },
     iconTicket: {
         marginBottom: 1,
     },
-    itemSubTitle: {},
-    itemTitle: {},
+    seatTitle: {
+        fontWeight: '400',
+        color: AppColor.TEXT_GREY,
+    },
+    seatNumber: { fontWeight: '500', color: AppColor.TEXT_GREY },
+    divider: {
+        backgroundColor: AppColor.GREY_2,
+        width: 1,
+        height: 16,
+    },
 });

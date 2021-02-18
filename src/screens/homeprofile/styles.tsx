@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
         fontSize: AppFontSize.SIZE_28,
         textAlign: 'center',
         fontWeight: '500',
+        marginHorizontal: AppSpacing.EXTRA,
     },
     iconButton: {
         position: 'absolute',

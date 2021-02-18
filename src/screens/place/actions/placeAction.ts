@@ -46,3 +46,15 @@ export const cancelBooking = async (bookId: number): Promise<any> => {
         return false;
     }
 };
+
+export const checkInBooking = async (bookId: number): Promise<any> => {
+    try {
+        store.dispatch(createRequestStartAction());
+        await HybridApi.checkInBooking(bookId);
+        store.dispatch(createRequestEndAction());
+        return true;
+    } catch (error) {
+        store.dispatch(createRequestEndAction());
+        return false;
+    }
+};

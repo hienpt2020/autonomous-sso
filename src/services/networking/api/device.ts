@@ -1,7 +1,6 @@
 import Config from 'react-native-config';
 import { authHeader } from '../header';
 import { _delete as __delete, _get as __get, _post as __post, _put as __put } from '../request';
-import { DEFAULT_REQUEST_LIMIT } from './../../../common/constant';
 
 /**
  * @param url: string, required
@@ -63,6 +62,25 @@ function generatePersonalDeviceCode() {
     return _get('/devices/code-generator?type=personal');
 }
 
+function controlStand(hubId: string, workingLayoutId: string) {
+    return _put('/master/stand', { hub_id: hubId, working_layout_id: workingLayoutId });
+}
+
+function controlSit(hubId: string, workingLayoutId: string) {
+    return _put('/master/sit', { hub_id: hubId, working_layout_id: workingLayoutId });
+}
+
+function gotoHeight(height: number, hubId: string, workingLayoutId: string) {
+    return _put('/master/goto-height', {
+        device: { hub_id: hubId, working_layout_id: workingLayoutId },
+        height: `${height}`,
+    });
+}
+
+function removeDevice(hubId: string) {
+    return _delete(`/devices/personal/${hubId}`);
+}
+
 export const DeviceApi = {
     getMqttInfo,
     controlDown,
@@ -73,4 +91,8 @@ export const DeviceApi = {
     getPersonalDevices,
     createPersonalDevice,
     generatePersonalDeviceCode,
+    controlStand,
+    controlSit,
+    gotoHeight,
+    removeDevice,
 };

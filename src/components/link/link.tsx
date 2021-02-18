@@ -9,7 +9,7 @@ import { AppFontSize } from 'src/styles';
 export const Link = (props: Props) => {
     return (
         <View style={styles.wrapper} {...props.style}>
-            <TouchableOpacity onPress={props.onPress}>
+            <TouchableOpacity onPress={props.onPress} activeOpacity={1}>
                 <AppText size={AppFontSize.SIZE_14} style={[styles.text, { fontSize: props.size }]}>
                     {props.title}
                 </AppText>

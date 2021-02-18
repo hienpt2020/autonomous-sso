@@ -10,9 +10,7 @@ export const Chip = (props: Props) => {
     const renderItem = (data: string) => {
         return (
             <AppView style={styles.chipContainer} center>
-                <AppText bold color={AppColor.BLUE_3} size={AppFontSize.SIZE_12}>
-                    {data}
-                </AppText>
+                <AppText style={styles.chipLabel}>{data}</AppText>
             </AppView>
         );
     };

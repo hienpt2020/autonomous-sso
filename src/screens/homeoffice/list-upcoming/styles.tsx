@@ -5,7 +5,7 @@ import { AppColor } from 'src/styles/colors';
 export const styles = StyleSheet.create({
     container: {
         width: '100%',
-        paddingBottom: 56,
+        paddingBottom: 52,
     },
     header: {
         height: 84,
@@ -17,10 +17,10 @@ export const styles = StyleSheet.create({
         ...AppStyle.cardShadow,
         width: 270,
         marginRight: AppSpacing.SMALL,
-        ...AppStyle.cardShadow,
         margin: 1,
+        ...AppStyle.cardShadow,
     },
-    list: { width: '100%', paddingLeft: AppSpacing.LARGE },
+    list: { width: '100%', paddingLeft: AppSpacing.LARGE, paddingBottom: 4 },
     infoContainer: {
         flex: 1,
     },
