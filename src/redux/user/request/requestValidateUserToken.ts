@@ -1,13 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18next from 'i18next';
 import { call, put } from 'redux-saga/effects';
-import {
-    createRequestEndAction,
-    createRequestErrorMessageAction,
-    createRequestStartAction,
-} from 'src/redux/request/requestAction';
-import { navigate } from 'src/routers/rootNavigation';
-import { RouteName } from 'src/routers/routeName';
+import { createRequestErrorMessageAction } from 'src/redux/request/requestAction';
 import { NetworkingConfig, SSOApi } from 'src/services/networking';
 import { fetchUserData } from './fetchUserData';
 
@@ -33,12 +27,11 @@ async function retrieveUserToken() {
     }
 }
 
-export function* validateUserToken(action: any) {
-    yield put(createRequestStartAction());
+export function* validateUserToken() {
     const { token } = yield call(retrieveUserToken);
     if (token) {
         //check usertoken valid
-        const { active, error } = yield call(validateToken, token);
+        const { active } = yield call(validateToken, token);
         if (active) {
             //inject default bearer token to axios
             NetworkingConfig.putCommonHeaderWithToken(token);
@@ -47,8 +40,5 @@ export function* validateUserToken(action: any) {
             const message = i18next.t('common.error_message');
             yield put(createRequestErrorMessageAction(message));
         }
-    } else {
-        navigate(RouteName.LOGIN, {});
     }
-    yield put(createRequestEndAction());
 }

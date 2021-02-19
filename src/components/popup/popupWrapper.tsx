@@ -1,5 +1,5 @@
 import { hidePopupAction, showPopupAction } from 'src/redux/app/appAction';
-import { PopupButton } from 'src/redux/app/appType';
+import { PopupButton } from './types';
 import store from 'src/redux/store';
 
 function showPopup(title: string, message: string, icon: any, buttons: PopupButton[]) {
