@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
-import FacebookIcon from 'src/assets/images/icon_facebook_white.svg';
 import GoogleIcon from 'src/assets/images/icon_google_white.svg';
 import { AppText, Space } from 'src/components';
 import { SocialButton, PrimaryButton } from 'src/components/button';
@@ -19,6 +18,7 @@ import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { LoginProps } from './types';
 import { SocialService } from 'src/services/login-social/socialService';
+import { createRequestLoginSocialGoogleAction } from 'src/redux/user/userSaga';
 
 const Login = (props: LoginProps) => {
     const { t } = useTranslation();
@@ -86,7 +86,7 @@ const Login = (props: LoginProps) => {
                     icon={<GoogleIcon />}
                     title={t('login.login_with_google')}
                     style={styles.googleButton}
-                    onPress={() => SocialService.loginGoogle()}
+                    onPress={() => dispatch(createRequestLoginSocialGoogleAction())}
                 />
                 <Space height={AppSpacing.MEDIUM} />
                 {/*<SocialButton*/}

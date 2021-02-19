@@ -36,6 +36,7 @@ export enum DEVICE_TYPES {
 }
 
 export enum LOGIN_SOCIAL_TYPES {
-    FACEBOOK,
-    GOOGLE,
+    FACEBOOK = 0,
+    GOOGLE = 1,
+    APPLE = 2,
 }

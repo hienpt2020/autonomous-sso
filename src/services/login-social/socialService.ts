@@ -1,29 +1,35 @@
 import { ISocialService } from './types';
 import SocialFactory from './factory';
 import { SOCIAL_TYPES } from './factory/types';
-import { Google } from './factory/google';
 import { Log } from 'src/helpers/logger';
+import { LOGIN_SOCIAL_TYPES } from 'src/common/constant';
 
 class SocialServiceBase implements ISocialService {
-    private google: undefined | Google = SocialFactory.create(SOCIAL_TYPES.GOOGLE);
     public configure() {
         try {
-            this.google?.configure();
+            let google = SocialFactory.create(SOCIAL_TYPES.GOOGLE);
+            google.configure();
         } catch (e) {
             Log.error('Error configure google:' + e);
         }
     }
-    async loginGoogle(): Promise<any> {
+
+    public async login(type: number): Promise<any> {
         try {
-            let data = await this.google?.login();
-            return Promise.resolve(data);
+            switch (type) {
+                case LOGIN_SOCIAL_TYPES.GOOGLE:
+                    let google = SocialFactory.create(SOCIAL_TYPES.GOOGLE);
+                    let data = await google.login();
+                    return Promise.resolve(data);
+                case LOGIN_SOCIAL_TYPES.FACEBOOK:
+                    return Promise.resolve('FACEBOOK');
+                case LOGIN_SOCIAL_TYPES.APPLE:
+                    return Promise.resolve('APPLE');
+            }
         } catch (e) {
-            Log.error('Error login google:' + e);
+            console.log(`User login ${LOGIN_SOCIAL_TYPES[type]} failed:` + e);
         }
     }
-
-    async loginFacebook(): Promise<any> {}
-    async loginApple(): Promise<any> {}
 }
 
 export const SocialService: ISocialService = new SocialServiceBase();

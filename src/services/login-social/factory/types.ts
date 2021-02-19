@@ -11,7 +11,7 @@ export interface ISocialFactory {
 }
 
 export interface IResponse {
-    token: string;
+    accessToken: string;
     email: string;
     name: string;
     image: string;
@@ -21,7 +21,7 @@ export interface IResponse {
 export class Helper {
     public static parseResponseGoogle(response: any): IResponse {
         return {
-            token: response.idToken,
+            accessToken: response.idToken,
             email: response.user?.email,
             name: response.user?.name,
             image: response.user?.photo,
