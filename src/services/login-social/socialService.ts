@@ -16,16 +16,19 @@ class SocialServiceBase implements ISocialService {
 
     public async login(type: number): Promise<any> {
         try {
+            let service: any;
             switch (type) {
                 case LOGIN_SOCIAL_TYPES.GOOGLE:
-                    let google = SocialFactory.create(SOCIAL_TYPES.GOOGLE);
-                    let data = await google.login();
-                    return Promise.resolve(data);
+                    service = SocialFactory.create(SOCIAL_TYPES.GOOGLE);
+                    break;
                 case LOGIN_SOCIAL_TYPES.FACEBOOK:
-                    return Promise.resolve('FACEBOOK');
+                    service = SocialFactory.create(SOCIAL_TYPES.FACEBOOK);
+                    break;
                 case LOGIN_SOCIAL_TYPES.APPLE:
-                    return Promise.resolve('APPLE');
+                    service = SocialFactory.create(SOCIAL_TYPES.APPLE);
             }
+            let data = await service.login();
+            return Promise.resolve(data);
         } catch (e) {
             console.log(`User login ${LOGIN_SOCIAL_TYPES[type]} failed:` + e);
         }

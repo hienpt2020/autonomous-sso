@@ -5,7 +5,9 @@ import { View } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import FacebookIcon from 'src/assets/images/icon_facebook_white.svg';
 import GoogleIcon from 'src/assets/images/icon_google_white.svg';
+import AppleIcon from 'src/assets/images/ic_apple.svg';
 import { AppText, Space } from 'src/components';
 import { SocialButton, PrimaryButton } from 'src/components/button';
 import { LargeHeader } from 'src/components/header';
@@ -18,7 +20,8 @@ import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { LoginProps } from './types';
 import { SocialService } from 'src/services/login-social/socialService';
-import { createRequestLoginSocialGoogleAction } from 'src/redux/user/userSaga';
+import { createRequestLoginGoogleAction, createRequestLoginAppleAction } from 'src/redux/user/userSaga';
+import { appleAuth, appleAuthAndroid } from '@invertase/react-native-apple-authentication';
 
 const Login = (props: LoginProps) => {
     const { t } = useTranslation();
@@ -86,15 +89,24 @@ const Login = (props: LoginProps) => {
                     icon={<GoogleIcon />}
                     title={t('login.login_with_google')}
                     style={styles.googleButton}
-                    onPress={() => dispatch(createRequestLoginSocialGoogleAction())}
+                    onPress={() => dispatch(createRequestLoginGoogleAction())}
                 />
                 <Space height={AppSpacing.MEDIUM} />
-                {/*<SocialButton*/}
-                {/*    icon={<FacebookIcon />}*/}
-                {/*    title={t('login.login_with_facebook')}*/}
-                {/*    style={styles.facebookButton}*/}
-                {/*    onPress={() => validateLogin()}*/}
-                {/*/>*/}
+                <SocialButton
+                    icon={<FacebookIcon />}
+                    title={t('login.login_with_facebook')}
+                    style={styles.facebookButton}
+                    onPress={() => validateLogin()}
+                />
+                <Space height={AppSpacing.MEDIUM} />
+                {
+                    <SocialButton
+                        icon={<AppleIcon />}
+                        title={t('Login with Apple')}
+                        style={styles.appleButton}
+                        onPress={() => dispatch(createRequestLoginAppleAction())}
+                    />
+                }
                 <Space flex={1} />
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <AppText children={t('login.dont_have_account')} />

@@ -61,11 +61,20 @@ export function fetchUserProfileAction(): any {
     };
 }
 
-export function createRequestLoginSocialGoogleAction(): any {
+export function createRequestLoginGoogleAction(): any {
     return {
         type: REQUEST_LOGIN_SOCIAL_ACTION,
         payload: {
             source: LOGIN_SOCIAL_TYPES.GOOGLE,
+        },
+    };
+}
+
+export function createRequestLoginAppleAction(): any {
+    return {
+        type: REQUEST_LOGIN_SOCIAL_ACTION,
+        payload: {
+            source: LOGIN_SOCIAL_TYPES.APPLE,
         },
     };
 }

@@ -28,4 +28,14 @@ export class Helper {
             clientId: response.user?.id,
         };
     }
+
+    public static parseResponseApple(response: any): IResponse {
+        return {
+            accessToken: response.identityToken,
+            email: response?.email || '',
+            name: response.fullName?.givenName + response.fullName?.familyName || '',
+            image: '',
+            clientId: response.user,
+        };
+    }
 }
