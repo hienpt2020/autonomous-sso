@@ -20,6 +20,7 @@ export const FCM_TOPIC = 'booking_notication_user_id_';
 
 export enum NotificationType {
     CHECK_IN = 'checkin',
+    CHECK_OUT = 'checkout',
 }
 
 export enum ROLES {
