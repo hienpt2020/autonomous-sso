@@ -16,6 +16,7 @@ export function* requestRegisterAction(action: any) {
         action.payload.email,
         action.payload.password,
         action.payload.confirmPassword,
+        action.joinWorkSpaceToken,
     );
     if (response) {
         const message = i18next.t('register.verify_email');

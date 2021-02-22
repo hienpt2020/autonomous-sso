@@ -46,9 +46,14 @@ async function requestLogout() {
         return { error };
     }
 }
-async function requestRegister(email: string, password: string, confirmPassword: string) {
+async function requestRegister(
+    email: string,
+    password: string,
+    confirmPassword: string,
+    joinWorkSpaceToken: string | undefined,
+) {
     try {
-        const response = await SSOApi.register(email, password, confirmPassword);
+        const response = await SSOApi.register(email, password, confirmPassword, joinWorkSpaceToken);
         return { response };
     } catch (error) {
         return { error };

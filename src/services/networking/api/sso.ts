@@ -64,9 +64,15 @@ function changePassword(password: string, newPassword: string) {
     return _post('/me/change-password', { password: password, new_password: newPassword });
 }
 
-function register(email: string, password: string, confirmPassword: string) {
-    reactotron.log(email, password, confirmPassword);
-    return _post('/auth/register', {
+function register(email: string, password: string, confirmPassword: string, joinWorkSpaceToken: string | undefined) {
+    let registerPath = '';
+
+    if (joinWorkSpaceToken) {
+        registerPath = '/auth/register';
+    } else {
+        registerPath = '/auth/register?workspace_join_token=' + joinWorkSpaceToken;
+    }
+    return _post(registerPath, {
         email,
         password,
         confirm_password: confirmPassword,
@@ -75,6 +81,10 @@ function register(email: string, password: string, confirmPassword: string) {
 
 function updateUserProfile(fullName: string, phone: string) {
     return _put('/me/profile', { full_name: fullName, phone });
+}
+
+function checkExistingEmailByToken(token: string) {
+    return _post('/workspaces/existing_email_by_token', { token });
 }
 
 export const SSOApi = {
@@ -91,4 +101,5 @@ export const SSOApi = {
     getMyWorkspaces,
     changePassword,
     updateUserProfile,
+    checkExistingEmailByToken,
 };

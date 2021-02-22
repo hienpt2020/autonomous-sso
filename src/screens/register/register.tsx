@@ -1,22 +1,25 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import { Preference } from 'src/common/preference';
 import { Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { BackHeaderX } from 'src/components/header';
 import { PrimaryInput } from 'src/components/input';
 import reactotron from 'src/config/configReactoron';
 import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
-import { createRequestRegisterAction } from 'src/redux/user';
+import { createRequestRegisterAction, requestValidateAccessTokenAction } from 'src/redux/user';
 import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { Props } from './types';
 
 const Register = (props: Props) => {
     const { t } = useTranslation();
+    const token = props.route.params?.token;
+    const redirectEmail = props.route.params?.email;
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -27,6 +30,20 @@ const Register = (props: Props) => {
     const [isValidRequest, setIsValidRequest] = useState(false);
     const emailValidator: Validator = new EmailValidator();
     const passwordValidator: Validator = new PasswordValidator();
+
+    useEffect(() => {
+        if (token) {
+            Preference.saveAccessToken(token).then(() => {
+                dispatch(requestValidateAccessTokenAction());
+            });
+        }
+    }, [token]);
+
+    useEffect(() => {
+        if (redirectEmail) {
+            setEmail(redirectEmail);
+        }
+    }, [redirectEmail]);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -83,6 +100,7 @@ const Register = (props: Props) => {
             </KeyboardAvoidingView>
         </SafeAreaView>
     );
+
     function validateButtonContinue(email: string, password: string, confirmPassword: string) {
         const validRequest =
             emailValidator.isValid(email) &&
@@ -153,7 +171,10 @@ const Register = (props: Props) => {
         }
     }
     function handleRegister() {
-        dispatch(createRequestRegisterAction(email, password, confirmPassword));
+        if (redirectEmail) {
+        } else {
+            dispatch(createRequestRegisterAction(email, password, confirmPassword, token));
+        }
     }
 };
 

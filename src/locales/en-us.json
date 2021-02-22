@@ -50,6 +50,7 @@
         "login": "Log In"
     },
     "forgot_password": {
+        "title":"Forgot Password",
         "forgot_success": "We're send you an email, Check your email and follow instructions included in the message",
         "login": "Log In",
         "send_me_an_email": "Send me an email"
