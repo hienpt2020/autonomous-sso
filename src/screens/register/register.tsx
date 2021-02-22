@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, Text, View } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 import { Preference } from 'src/common/preference';
@@ -9,16 +8,15 @@ import { Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { BackHeaderX } from 'src/components/header';
 import { PrimaryInput } from 'src/components/input';
-import reactotron from 'src/config/configReactoron';
 import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
 import { createRequestRegisterAction, requestValidateAccessTokenAction } from 'src/redux/user';
-import { AppSpacing } from 'src/styles';
+import { activeAccountAction } from './actions/registerAction';
 import { styles } from './styles';
 import { Props } from './types';
 
 const Register = (props: Props) => {
     const { t } = useTranslation();
-    const token = props.route.params?.token;
+    const redirectToken = props.route.params?.token;
     const redirectEmail = props.route.params?.email;
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
@@ -32,18 +30,26 @@ const Register = (props: Props) => {
     const passwordValidator: Validator = new PasswordValidator();
 
     useEffect(() => {
-        if (token) {
-            Preference.saveAccessToken(token).then(() => {
+        // Handle Open Register Screen from Deep Linking
+        if (redirectToken) {
+            if (redirectEmail) {
+                // Case WorkSpace Invitation
+                setEmail(redirectEmail);
+            } else {
+                // Case Active Account
+                activeAccount(redirectToken);
+            }
+        }
+    }, [redirectToken]);
+
+    async function activeAccount(token: string) {
+        const accessToken = await activeAccountAction(token);
+        if (accessToken) {
+            Preference.saveAccessToken(accessToken).then(() => {
                 dispatch(requestValidateAccessTokenAction());
             });
         }
-    }, [token]);
-
-    useEffect(() => {
-        if (redirectEmail) {
-            setEmail(redirectEmail);
-        }
-    }, [redirectEmail]);
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -173,7 +179,7 @@ const Register = (props: Props) => {
     function handleRegister() {
         if (redirectEmail) {
         } else {
-            dispatch(createRequestRegisterAction(email, password, confirmPassword, token));
+            dispatch(createRequestRegisterAction(email, password, confirmPassword, redirectToken));
         }
     }
 };
