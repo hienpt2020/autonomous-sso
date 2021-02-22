@@ -89,6 +89,10 @@ const cancelBooking = async (bookId: number) => {
     return _put(baseURL + '/working-place-booking/cancel/' + bookId, {});
 };
 
+const checkInBooking = async (bookId: number) => {
+    return _put(baseURL + '/working-place-booking/checkIn/' + bookId, {});
+};
+
 export const HybridApi = {
     getListWorkspace,
     getListWorkingLayout,
@@ -98,4 +102,5 @@ export const HybridApi = {
     getPlaceDetail,
     bookPlace,
     cancelBooking,
+    checkInBooking,
 };

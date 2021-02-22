@@ -22,5 +22,11 @@ export const styles = StyleSheet.create({
     },
     list: { marginTop: 68 },
     emptyContainer: { marginTop: '15.27%' },
-    setupBtnContainer: { marginHorizontal: AppSpacing.EXTRA84, marginVertical: AppSpacing.LARGE },
+    setupBtnContainer: {
+        marginHorizontal: AppSpacing.EXTRA84,
+        marginVertical: AppSpacing.LARGE,
+        justifyContent: 'center',
+        backgroundColor: 'red',
+    },
+    setupIcon: { padding: 16, marginBottom: 3 },
 });

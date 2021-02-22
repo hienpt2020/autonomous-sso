@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { hidePopupAction } from 'src/redux/app/appAction';
-import { PopupButton, PopupState } from 'src/redux/app/appType';
+import { PopupButton, PopupState } from './types';
 import { RootState } from 'src/redux/types';
 import { AppColor, AppFontSize, AppSpacing } from 'src/styles';
 import { AppText, AppView, Space } from '..';
@@ -21,11 +21,9 @@ const AppPopup = (props: Props) => {
         // dispatch(hidePopupAction());
     }
 
-    function _onPressButton(button: PopupButton) {
-        if (button.onPress) {
-            button.onPress();
-        }
-        dispatch(hidePopupAction());
+    function _onPressButton({ onPress, isAutoClose = true }: PopupButton) {
+        onPress && onPress();
+        isAutoClose && dispatch(hidePopupAction());
     }
 
     return visible ? (

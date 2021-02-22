@@ -1,11 +1,13 @@
 import {
     AppState,
-    HidePopupActionType,
     HIDE_POPUP,
-    ShowPopupActionType,
+    SET_APP_INITIAL_ACTION,
+    AppActionType,
     SHOW_POPUP,
-    SET_NOTIFICATION_CHECKIN,
+    ShowPopupActionType,
+    HidePopupActionType,
     SetNotificationCheckinActionType,
+    SET_NOTIFICATION_CHECKIN,
 } from './appType';
 
 const initialState: AppState = {
@@ -19,11 +21,12 @@ const initialState: AppState = {
     notification: {
         hasCheckinNotification: false,
     },
+    initial: false,
 };
 
 export function appReducer(
     state = initialState,
-    action: ShowPopupActionType | HidePopupActionType | SetNotificationCheckinActionType,
+    action: AppActionType | ShowPopupActionType | HidePopupActionType | SetNotificationCheckinActionType,
 ): AppState {
     switch (action.type) {
         case SHOW_POPUP:
@@ -43,6 +46,11 @@ export function appReducer(
             return {
                 ...state,
                 popup: initialState.popup,
+            };
+        case SET_APP_INITIAL_ACTION:
+            return {
+                ...state,
+                initial: true,
             };
 
         case SET_NOTIFICATION_CHECKIN:

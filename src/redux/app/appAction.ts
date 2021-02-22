@@ -3,10 +3,12 @@ import {
     HIDE_POPUP,
     ShowPopupActionType,
     SHOW_POPUP,
-    PopupButton,
+    InitialAppActionType,
+    SET_APP_INITIAL_ACTION,
     SetNotificationCheckinActionType,
     SET_NOTIFICATION_CHECKIN,
 } from './appType';
+import { PopupButton } from 'src/components/popup/types';
 
 export const showPopupAction = (
     title: string,
@@ -33,5 +35,11 @@ export const setNotificationCheckinAction = (hasCheckinNotification: boolean): S
     return {
         type: SET_NOTIFICATION_CHECKIN,
         hasCheckinNotification,
+    };
+};
+
+export const createAppFinishInitialAction = (): InitialAppActionType => {
+    return {
+        type: SET_APP_INITIAL_ACTION,
     };
 };
