@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Preference } from 'src/common/preference';
 import { Loading } from 'src/components/loading';
+import { Log } from 'src/helpers/logger';
 import { createRequestErrorMessageAction } from 'src/redux/request';
 import { RootState } from 'src/redux/types';
 import { requestValidateAccessTokenAction } from 'src/redux/user';
@@ -27,6 +28,7 @@ const DeepLinkWorkSpaceInvitation = (props: Props) => {
         //     dispatch(createRequestErrorMessageAction('Can not parse the token data'));
         // }
         if (isLoggedIn) {
+            props.navigation.pop();
             navigate(RouteName.SWITCH_WORKSPACE, {});
         } else {
             checkExistingEmail();
@@ -35,13 +37,12 @@ const DeepLinkWorkSpaceInvitation = (props: Props) => {
 
     async function checkExistingEmail() {
         const response = await checkExistingEmailByToken(token);
+        props.navigation.pop();
         if (response) {
-            if (response.existing) {
-                Preference.saveAccessToken(token).then(() => {
-                    dispatch(requestValidateAccessTokenAction());
-                });
+            if (response.data.existing && response.data.email) {
+                navigate(RouteName.LOGIN, { email: response.data.email });
             } else {
-                navigate(RouteName.REGISTER, { token: token, email: response.email });
+                navigate(RouteName.REGISTER, { token: token, email: response.data.email });
             }
         }
     }

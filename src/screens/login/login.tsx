@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { localeData } from 'moment';
+import React, { useRef } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -12,6 +13,7 @@ import { SocialButton, PrimaryButton } from 'src/components/button';
 import { LargeHeader } from 'src/components/header';
 import { PasswordInput, PrimaryInput } from 'src/components/input';
 import { Link } from 'src/components/link';
+import { Log } from 'src/helpers/logger';
 import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
 import { createRequestLoginAction } from 'src/redux/user/';
 import { RouteName } from 'src/routers/routeName';
@@ -30,11 +32,21 @@ const Login = (props: LoginProps) => {
     const passwordValidator: Validator = new PasswordValidator();
     const [isValidRequest, setIsValidRequest] = useState(false);
 
+    const redirectEmail = props.route.params?.email;
+
+    React.useEffect(() => {
+        Log.debug(redirectEmail);
+        if (redirectEmail) {
+            setEmail(redirectEmail);
+        }
+    }, [redirectEmail]);
+
     return (
         <SafeAreaView style={styles.container}>
             <LargeHeader title={t('login.title')} style={styles.title} />
             <Space height={AppSpacing.LARGE} />
             <PrimaryInput
+                defaultValue={email}
                 placeholder={t('common.email')}
                 renderErrorMessage={emailError !== ''}
                 style={styles.input}
@@ -105,7 +117,7 @@ const Login = (props: LoginProps) => {
     }
 
     function handleCreateAccount() {
-        props.navigation.navigate(RouteName.REGISTER);
+        props.navigation.navigate(RouteName.REGISTER, {});
     }
     function validateLogin() {
         let validEmail,

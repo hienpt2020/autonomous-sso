@@ -6,7 +6,7 @@ import Device from '../models/Device';
 import WorkLayout from 'src/models/WorkLayout';
 
 export type RootStackParams = {
-    [RouteName.LOGIN]: undefined;
+    [RouteName.LOGIN]: { email?: string };
     [RouteName.INTRO]: undefined;
     [RouteName.FORGOT_PASSWORD]: undefined;
     [RouteName.RESET_PASSWORD]: undefined;

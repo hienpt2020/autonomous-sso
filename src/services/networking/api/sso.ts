@@ -68,9 +68,9 @@ function register(email: string, password: string, confirmPassword: string, join
     let registerPath = '';
 
     if (joinWorkSpaceToken) {
-        registerPath = '/auth/register';
-    } else {
         registerPath = '/auth/register?workspace_join_token=' + joinWorkSpaceToken;
+    } else {
+        registerPath = '/auth/register';
     }
     return _post(registerPath, {
         email,

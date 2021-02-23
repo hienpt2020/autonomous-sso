@@ -56,6 +56,7 @@ const Register = (props: Props) => {
             <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
                 <BackHeaderX style={styles.title} title={t('register.title')} onPress={() => handleBack()} />
                 <PrimaryInput
+                    defaultValue={email}
                     placeholder={t('register.input_your_email')}
                     style={styles.input}
                     constainError={true}
@@ -177,10 +178,7 @@ const Register = (props: Props) => {
         }
     }
     function handleRegister() {
-        if (redirectEmail) {
-        } else {
-            dispatch(createRequestRegisterAction(email, password, confirmPassword, redirectToken));
-        }
+        dispatch(createRequestRegisterAction(email, password, confirmPassword, redirectToken));
     }
 };
 
