@@ -1,55 +1,61 @@
 {
   "images" : [
     {
-      "filename" : "Logo 514.png",
+      "filename" : "iPad_Mini_Notifications_20_2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "Logo 60.png",
+      "filename" : "iPhone_Notifications_20_3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "Logo 58.png",
+      "filename" : "iPad_Settings_29_1x.png",
+      "idiom" : "iphone",
+      "scale" : "1x",
+      "size" : "29x29"
+    },
+    {
+      "filename" : "iPad_Settings_29_2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "Logo 87.png",
+      "filename" : "iPhone_Settings_29_3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "Logo 80.png",
+      "filename" : "iPhone_Spotlight_40_2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "Logo 120-1.png",
+      "filename" : "iPhone_Spotlight_40_3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "Logo 120.png",
+      "filename" : "iPhone_Spotlight_40_3x-1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "Logo 180.png",
+      "filename" : "iPhone_App_60_3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
-      "filename" : "Logo 1024.png",
+      "filename" : "App_store_1024_1x copy 2.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
