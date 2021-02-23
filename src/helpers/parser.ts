@@ -1,3 +1,4 @@
+import { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 import WorkLayout from 'src/models/WorkLayout';
 import { User } from 'src/models';
 import _ from 'lodash';
@@ -8,6 +9,7 @@ import { parseMapAddress } from './locationHelper';
 import Asset from 'src/models/Asset';
 import Device from 'src/models/Device';
 import { ROLES } from 'src/common/constant';
+import { NotificationMessage } from 'src/models/NotificationMessage';
 
 export class ParserImpl implements IParser {
     parseUser(responseData: any): User {
@@ -145,6 +147,25 @@ export class ParserImpl implements IParser {
         result.image = _.get(responseData, 'image');
         return result;
     }
+    parseNotificationData(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
+        try {
+            const notificationMessage: NotificationMessage = new NotificationMessage();
+            const data = remoteMessage.data;
+            if (data) {
+                notificationMessage.userId = data.user_id ? data.user_id : '';
+                notificationMessage.type = data.type ? data.type : '';
+                notificationMessage.bookingId = data.booking_id ? parseInt(data.booking_id) : 0;
+                notificationMessage.message = data.message ? data.message : '';
+                notificationMessage.from = data.from ? new Date(data.from) : new Date();
+                notificationMessage.to = data.from ? new Date(data.to) : new Date();
+            } else {
+                return undefined;
+            }
+            return notificationMessage;
+        } catch (error) {
+            return undefined;
+        }
+    }
 }
 interface IParser {
     parseUser(responseData: any): User;
@@ -155,6 +176,7 @@ interface IParser {
     parseWorkLayout(responseData: any): WorkLayout;
     parseBookingHistory(responseData: any): BookingHistory;
     parseDevice(responseData: any): Device;
+    parseNotificationData(remoteMessage: FirebaseMessagingTypes.RemoteMessage): NotificationMessage | undefined;
 }
 
 export const Parser = new ParserImpl();
