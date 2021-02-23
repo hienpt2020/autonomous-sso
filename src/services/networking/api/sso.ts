@@ -87,6 +87,10 @@ function checkExistingEmailByToken(token: string) {
     return _post('/workspaces/existing_email_by_token', { token });
 }
 
+function joinWorkSpace(token: string) {
+    return _post('/workspaces/join', { token });
+}
+
 export const SSOApi = {
     forgotPassword,
     login,
@@ -102,4 +106,5 @@ export const SSOApi = {
     changePassword,
     updateUserProfile,
     checkExistingEmailByToken,
+    joinWorkSpace,
 };

@@ -11,7 +11,7 @@ export type RootStackParams = {
     [RouteName.FORGOT_PASSWORD]: undefined;
     [RouteName.RESET_PASSWORD]: undefined;
     [RouteName.REGISTER]: { token?: string; email?: string };
-    [RouteName.JOINING]: { workspace: string };
+    [RouteName.JOINING]: { token: string; access_token?: string };
     [RouteName.HOME]: undefined;
     [RouteName.MAP]: { map: WorkLayout };
     [RouteName.BOOKING_RESULT]: { booking?: BookingHistory; error?: string };
@@ -142,5 +142,9 @@ export const authenticatedRoutes: RouteProps[] = [
     {
         name: RouteName.DEEPLINK_WORKSPACE_INVITATION,
         component: require('src/screens/redirect-workspace-invitation').default,
+    },
+    {
+        name: RouteName.JOINING,
+        component: require('src/screens/joining').default,
     },
 ];

@@ -29,7 +29,7 @@ const DeepLinkWorkSpaceInvitation = (props: Props) => {
         // }
         if (isLoggedIn) {
             props.navigation.pop();
-            navigate(RouteName.SWITCH_WORKSPACE, {});
+            navigate(RouteName.JOINING, { token: token });
         } else {
             checkExistingEmail();
         }
