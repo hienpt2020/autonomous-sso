@@ -20,7 +20,8 @@ function _delete(url: string, params?: object) {
 function _put(url: string, body: object, params?: object) {
     return __put(baseURL, url, authHeader(), body, params);
 }
-const CLIENT_ID = 'vflozjmgtirdrppu';
+// const CLIENT_ID = 'vflozjmgtirdrppu';
+const CLIENT_ID = 'cddwpvvqreoopgbs'; // use for 3 environments
 /**List all API below */
 function login(email: string, password: string) {
     return _post('/auth/login', { email, password, CLIENT_ID });
@@ -77,6 +78,15 @@ function updateUserProfile(fullName: string, phone: string) {
     return _put('/me/profile', { full_name: fullName, phone });
 }
 
+function loginSocial(accessToken: string, customerSource: string = '', source: number = -1) {
+    return _post('/auth/social-login', {
+        access_token: accessToken,
+        client_id: CLIENT_ID,
+        customer_source: customerSource,
+        source,
+    });
+}
+
 export const SSOApi = {
     forgotPassword,
     login,
@@ -91,4 +101,5 @@ export const SSOApi = {
     getMyWorkspaces,
     changePassword,
     updateUserProfile,
+    loginSocial,
 };
