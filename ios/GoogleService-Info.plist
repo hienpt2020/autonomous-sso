@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>725955680163-6r95uc802rn3shk8ge60hua0d1d86k6g.apps.googleusercontent.com</string>
+	<string>596944745396-593vh9q9sgvnk4im8924lvhj3oqqmgbk.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.725955680163-6r95uc802rn3shk8ge60hua0d1d86k6g</string>
+	<string>com.googleusercontent.apps.596944745396-593vh9q9sgvnk4im8924lvhj3oqqmgbk</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>596944745396-b9m40lge9tg9cr5e76g67gf4daeje03q.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCf5HAPv5jpFVL7R5tCKDlKiZ9FIjwTlzs</string>
+	<string>AIzaSyCaYNpUScP7n86I-oYu5OkJlD6hro9DEDY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>725955680163</string>
+	<string>596944745396</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>ai.autonomous.megapp.dev</string>
+	<string>ai.autonomous.megapp.staging</string>
 	<key>PROJECT_ID</key>
-	<string>avid-circle-284205</string>
+	<string>autonomous-firebase---staging</string>
 	<key>STORAGE_BUCKET</key>
-	<string>avid-circle-284205.appspot.com</string>
+	<string>autonomous-firebase---staging.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:725955680163:ios:1ac1d88f207807d60eac16</string>
+	<string>1:596944745396:ios:4d34be10f4b483b72678e1</string>
+	<key>DATABASE_URL</key>
+	<string>https://autonomous-firebase---staging-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

@@ -20,7 +20,8 @@ function _delete(url: string, params?: object) {
 function _put(url: string, body: object, params?: object) {
     return __put(baseURL, url, authHeader(), body, params);
 }
-const CLIENT_ID = 'vflozjmgtirdrppu';
+// const CLIENT_ID = 'vflozjmgtirdrppu';
+const CLIENT_ID = 'cddwpvvqreoopgbs'; // use for 3 environments
 /**List all API below */
 function login(email: string, password: string) {
     return _post('/auth/login', { email, password, CLIENT_ID });

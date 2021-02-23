@@ -15,52 +15,44 @@ export class Apple implements ISocialFactory {
                     requestedOperation: appleAuth.Operation.LOGIN,
                     requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
                 });
-                Log.debug('@appleAuthRequestResponse', appleAuthRequestResponse);
-                const credentialState = await appleAuth.getCredentialStateForUser(appleAuthRequestResponse.user);
-                // use credentialState response to ensure the user is authenticated
-                if (credentialState === appleAuth.State.AUTHORIZED) {
-                    // user is authenticated
-                    return Promise.resolve(Helper.parseResponseApple(appleAuthRequestResponse));
-                }
+                Log.debug('@appleAuthRequestResponseIOS', appleAuthRequestResponse);
+                // return Promise.resolve(Helper.parseResponseAppleAuth(appleAuthRequestResponse));
+                // const credentialState = await appleAuth.getCredentialStateForUser(appleAuthRequestResponse.user);
+                // // use credentialState response to ensure the user is authenticated
+                // if (credentialState === appleAuth.State.AUTHORIZED) {
+                //     // user is authenticated
+                //     return Promise.resolve(Helper.parseResponseAppleAuth(appleAuthRequestResponse));
+                // }
             } else {
                 appleAuthAndroid.configure({
-                    // The Service ID you registered with Apple
-                    clientId: 'ai.autonomous.megapp.staging',
-
-                    // Return URL added to your Apple dev console. We intercept this redirect, but it must still match
-                    // the URL you provided to Apple. It can be an empty route on your backend as it's never called.
-                    redirectUri: 'https://google.com',
+                    clientId: Config.APPLE_SERVICE_ID,
+                    redirectUri: Config.APPLE_REDIRECT_URI,
                     scope: appleAuthAndroid.Scope.ALL,
                     responseType: appleAuthAndroid.ResponseType.ALL,
                 });
                 const response = await appleAuthAndroid.signIn();
+                Log.debug('@appleAuthAndroid:', response);
                 if (response) {
-                    const code = response.code; // Present if selected ResponseType.ALL / ResponseType.CODE
-                    const id_token = response.id_token; // Present if selected ResponseType.ALL / ResponseType.ID_TOKEN
-                    const user = response.user; // Present when user first logs in using appleId
-                    const state = response.state; // A copy of the state value that was passed to the initial request.
-                    console.log('Got auth code', code);
-                    console.log('Got id_token', id_token);
-                    console.log('Got user', user);
-                    console.log('Got state', state);
+                    // return Promise.resolve(Helper.parseResponseAppleAuthAndroid(response));
                 }
             }
         } catch (error) {
             if (error && error.message) {
                 switch (error.message) {
                     case appleAuthAndroid.Error.NOT_CONFIGURED:
-                        console.log('appleAuthAndroid not configured yet.');
+                        Log.error('appleAuthAndroid not configured yet.');
                         break;
                     case appleAuthAndroid.Error.SIGNIN_FAILED:
-                        console.log('Apple signin failed.');
+                        Log.error('Apple signin failed.');
                         break;
                     case appleAuthAndroid.Error.SIGNIN_CANCELLED:
-                        console.log('User cancelled Apple signin.');
+                        Log.error('User cancelled Apple signin.');
                         break;
                     default:
                         break;
                 }
             }
+            Log.error('User login with apple failed:', error);
             return Promise.reject(error);
         }
     }

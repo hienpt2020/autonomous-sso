@@ -29,9 +29,18 @@ export class Helper {
         };
     }
 
-    public static parseResponseApple(response: any): IResponse {
+    public static parseResponseAppleAuth(response: any): IResponse {
         return {
-            accessToken: response.identityToken,
+            accessToken: response.authorizationCode,
+            email: response?.email || '',
+            name: response.fullName?.givenName + response.fullName?.familyName || '',
+            image: '',
+            clientId: response.user,
+        };
+    }
+    public static parseResponseAppleAuthAndroid(response: any): IResponse {
+        return {
+            accessToken: response.code,
             email: response?.email || '',
             name: response.fullName?.givenName + response.fullName?.familyName || '',
             image: '',

@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "900615547717-peau6nul05om4g7nnrh3pleuc0hd6abf.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "ai.autonomous.megapp",
-            "certificate_hash": "8d39e2e19b1ed4dde958418c7ddc3352bc8cc1b9"
-          }
-        },
-        {
           "client_id": "900615547717-kcelpcq0q5j5p40rdorajt1d4ufg13ve.apps.googleusercontent.com",
           "client_type": 3
         }
