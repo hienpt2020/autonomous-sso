@@ -4,11 +4,14 @@ import { LinkingHelper } from 'src/helpers/linkingHelper';
 
 const config = {
     screens: {
-        [RouteName.DEEPLINK_REGISTER]: {
+        [RouteName.REGISTER]: {
             path: 'account-activation/:token',
         },
         [RouteName.RESET_PASSWORD]: {
             path: 'reset-password/:token',
+        },
+        [RouteName.DEEPLINK_WORKSPACE_INVITATION]: {
+            path: 'workspace-invitation/:token',
         },
     },
 };

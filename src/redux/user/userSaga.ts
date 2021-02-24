@@ -26,7 +26,12 @@ export const userSaga = function* root() {
     yield takeLatest(REQUEST_LOGIN_SOCIAL_ACTION, requestLoginSocialAction);
 };
 
-export function createRequestRegisterAction(email: string, password: string, confirmPassword: string): any {
+export function createRequestRegisterAction(
+    email: string,
+    password: string,
+    confirmPassword: string,
+    joinWorkSpaceToken: string | undefined,
+): any {
     return {
         type: REQUEST_REGISTER_ACTION,
         payload: {
@@ -34,6 +39,7 @@ export function createRequestRegisterAction(email: string, password: string, con
             password,
             confirmPassword,
         },
+        joinWorkSpaceToken,
     };
 }
 export function createRequestLoginAction(email: string, password: string): any {

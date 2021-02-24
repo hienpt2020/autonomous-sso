@@ -6,12 +6,12 @@ import Device from '../models/Device';
 import WorkLayout from 'src/models/WorkLayout';
 
 export type RootStackParams = {
-    [RouteName.LOGIN]: undefined;
+    [RouteName.LOGIN]: { email?: string };
     [RouteName.INTRO]: undefined;
     [RouteName.FORGOT_PASSWORD]: undefined;
     [RouteName.RESET_PASSWORD]: undefined;
-    [RouteName.REGISTER]: undefined;
-    [RouteName.JOINING]: { workspace: string };
+    [RouteName.REGISTER]: { token?: string; email?: string };
+    [RouteName.JOINING]: { token: string; access_token?: string };
     [RouteName.HOME]: undefined;
     [RouteName.MAP]: { map: WorkLayout };
     [RouteName.BOOKING_RESULT]: { booking?: BookingHistory; error?: string };
@@ -31,6 +31,7 @@ export type RootStackParams = {
     [RouteName.CONFIGURATION_INTRO2]: undefined;
     [RouteName.HOME_CONTROLL]: undefined;
     [RouteName.UPDATE_PROFILE]: undefined;
+    [RouteName.DEEPLINK_WORKSPACE_INVITATION]: { token: string };
 };
 export type RootStackParamType = keyof RootStackParams;
 
@@ -66,6 +67,10 @@ export const publicRoutes: RouteProps[] = [
     {
         name: RouteName.WEBPAGE,
         component: require('src/screens/webpage').default,
+    },
+    {
+        name: RouteName.DEEPLINK_WORKSPACE_INVITATION,
+        component: require('src/screens/redirect-workspace-invitation').default,
     },
 ];
 
@@ -133,5 +138,13 @@ export const authenticatedRoutes: RouteProps[] = [
     {
         name: RouteName.UPDATE_PROFILE,
         component: require('src/screens/update-profile').default,
+    },
+    {
+        name: RouteName.DEEPLINK_WORKSPACE_INVITATION,
+        component: require('src/screens/redirect-workspace-invitation').default,
+    },
+    {
+        name: RouteName.JOINING,
+        component: require('src/screens/joining').default,
     },
 ];
