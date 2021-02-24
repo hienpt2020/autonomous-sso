@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>596944745396-0oq9fc14655j0n6g8i17r98308dliftd.apps.googleusercontent.com</string>
+	<string>596944745396-593vh9q9sgvnk4im8924lvhj3oqqmgbk.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.596944745396-0oq9fc14655j0n6g8i17r98308dliftd</string>
+	<string>com.googleusercontent.apps.596944745396-593vh9q9sgvnk4im8924lvhj3oqqmgbk</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>596944745396-b9m40lge9tg9cr5e76g67gf4daeje03q.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCaYNpUScP7n86I-oYu5OkJlD6hro9DEDY</string>
 	<key>GCM_SENDER_ID</key>
@@ -30,5 +32,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:596944745396:ios:4d34be10f4b483b72678e1</string>
+	<key>DATABASE_URL</key>
+	<string>https://autonomous-firebase---staging-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

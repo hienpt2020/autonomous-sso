@@ -1,40 +1,36 @@
 {
   "project_info": {
-    "project_number": "725955680163",
-    "project_id": "avid-circle-284205",
-    "storage_bucket": "avid-circle-284205.appspot.com"
+    "project_number": "596944745396",
+    "firebase_url": "https://autonomous-firebase---staging-default-rtdb.firebaseio.com",
+    "project_id": "autonomous-firebase---staging",
+    "storage_bucket": "autonomous-firebase---staging.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:725955680163:android:71886b27653a2f3f0eac16",
+        "mobilesdk_app_id": "1:596944745396:android:67e2f932a82d3ed32678e1",
         "android_client_info": {
-          "package_name": "ai.autonomous.megapp.dev"
+          "package_name": "ai.autonomous.megapp.staging"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "725955680163-lrdla1rocrtst4drnrnmiuot6td3posu.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCtSVr09s-CniJlk7D2oLN3RAln90B5PvY"
+          "current_key": "AIzaSyD0yQ7RxzhWzRp1NyWKuMx0ouoJCm_pKOQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "725955680163-lrdla1rocrtst4drnrnmiuot6td3posu.apps.googleusercontent.com",
+              "client_id": "596944745396-rrldgdrn6om86k32482q3jgu5a4eegab.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "725955680163-6r95uc802rn3shk8ge60hua0d1d86k6g.apps.googleusercontent.com",
+              "client_id": "596944745396-593vh9q9sgvnk4im8924lvhj3oqqmgbk.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "ai.autonomous.megapp.dev"
+                "bundle_id": "ai.autonomous.megapp.staging"
               }
             }
           ]

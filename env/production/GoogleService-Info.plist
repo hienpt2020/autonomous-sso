@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>952095476749-49s67pkr5gcqg5qmhssb1ktroql9u955.apps.googleusercontent.com</string>
+	<string>900615547717-igfj193jhvschfjfpdflj6sa72m5lqqi.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.952095476749-49s67pkr5gcqg5qmhssb1ktroql9u955</string>
+	<string>com.googleusercontent.apps.900615547717-igfj193jhvschfjfpdflj6sa72m5lqqi</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>900615547717-dto6i2g7t6q2j58oj798a3to90osk54h.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyByn_BMt2-pW4PxXgSV2VxzfyQvUfwFMV0</string>
+	<string>AIzaSyDwA_UrJzt9WdeTnyzsD4E6U8q4Lxj5SAk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>952095476749</string>
+	<string>900615547717</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>ai.autonomous.megapp</string>
 	<key>PROJECT_ID</key>
-	<string>autonomous-firebase---prod</string>
+	<string>autonomous-ai</string>
 	<key>STORAGE_BUCKET</key>
-	<string>autonomous-firebase---prod.appspot.com</string>
+	<string>autonomous-ai.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:952095476749:ios:c727c9a12dda2e149d1944</string>
+	<string>1:900615547717:ios:f044f29152f794aa256c2c</string>
+	<key>DATABASE_URL</key>
+	<string>https://autonomous-ai.firebaseio.com</string>
 </dict>
 </plist>

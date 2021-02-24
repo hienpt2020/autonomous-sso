@@ -7,14 +7,18 @@ import 'reflect-metadata';
 import { AppPopup } from './components';
 import { Spinner } from './components/spinner';
 import './config';
+import useForceUpdate from './hooks/useForceUpdate';
+import useNotification from './hooks/useNotification';
 import store from './redux/store';
 import { linkNavigation } from './routers/linkNavigation';
 import { MainStackNavigator } from './routers/mainStack';
 import { navigationRef } from './routers/rootNavigation';
-import useForceUpdate from './hooks/useForceUpdate';
 
 const App = () => {
     const [] = useForceUpdate();
+
+    useNotification();
+
     return (
         <Provider store={store}>
             <SafeAreaProvider>

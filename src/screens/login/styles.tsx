@@ -57,4 +57,9 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         alignContent: 'center',
     },
+    appleButton: {
+        marginStart: AppSpacing.LARGE,
+        marginEnd: AppSpacing.LARGE,
+        backgroundColor: AppColor.DARK_GREY_1,
+    },
 });

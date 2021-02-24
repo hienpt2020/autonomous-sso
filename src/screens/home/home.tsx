@@ -13,6 +13,9 @@ import { RouteName } from 'src/routers/routeName';
 import { RouteProps } from 'src/routers/routeProps';
 import { styles } from './styles';
 import { Props } from './types';
+import messaging from '@react-native-firebase/messaging';
+import { Log } from 'src/helpers/logger';
+import { FCM_TOPIC } from 'src/common/constant';
 
 export const homeRoutes: RouteProps[] = [
     {
@@ -71,6 +74,7 @@ function renderTabBarLabel(routeName: String, focused: boolean) {
 
 const Home = (props: Props) => {
     const workingSpaceId = useSelector((state: RootState) => state.workspaceReducer.id);
+    const userId = useSelector((state: RootState) => state.userReducer.userId);
     const [routes, setRoutes] = useState(homeRoutes);
 
     useEffect(() => {
@@ -80,6 +84,12 @@ const Home = (props: Props) => {
             setRoutes([homeRoutes[1], homeRoutes[2]]);
         }
     }, [workingSpaceId]);
+
+    useEffect(() => {
+        messaging()
+            .subscribeToTopic(FCM_TOPIC + userId)
+            .then(() => Log.debug('Subscribed to topic!'));
+    }, []);
 
     const Tab = createBottomTabNavigator();
     return (
