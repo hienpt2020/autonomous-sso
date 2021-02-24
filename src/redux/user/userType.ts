@@ -21,3 +21,7 @@ export const REQUEST_REGISTER_ACTION = 'REQUEST_REGISTER_ACTION';
 export const FETCH_USER_ACTION = 'FETCH_USER_ACTION';
 
 export const KEY_ACCESS_TOKEN = 'KEY_ACCESS_TOKEN';
+export enum PLATFORM_NAME {
+    IOS = 'ios',
+    WEB = 'web',
+}

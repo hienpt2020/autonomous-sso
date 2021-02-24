@@ -29,7 +29,13 @@ export function* requestLoginSocialAction(action: any) {
     yield put(createRequestStartAction());
     let res = yield call(SocialService.login, action.payload.source);
     if (res) {
-        const { response, error } = yield call(requestLoginSocial, res?.accessToken, '', action.payload.source);
+        const { response, error } = yield call(
+            requestLoginSocial,
+            res?.accessToken,
+            '',
+            action.payload.source,
+            action.payload.platform,
+        );
         if (response) {
             const token = response.data.access_token;
             NetworkingConfig.putCommonHeaderWithToken(token);
