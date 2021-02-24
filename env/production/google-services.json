@@ -1,40 +1,157 @@
 {
   "project_info": {
-    "project_number": "952095476749",
-    "project_id": "autonomous-firebase---prod",
-    "storage_bucket": "autonomous-firebase---prod.appspot.com"
+    "project_number": "900615547717",
+    "firebase_url": "https://autonomous-ai.firebaseio.com",
+    "project_id": "autonomous-ai",
+    "storage_bucket": "autonomous-ai.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:952095476749:android:814f97eb4b508eaf9d1944",
+        "mobilesdk_app_id": "1:900615547717:android:e86dc78fc143cade256c2c",
         "android_client_info": {
           "package_name": "ai.autonomous.megapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "952095476749-s0fh1fovbocaneeft8v8f5s3kad0s2h1.apps.googleusercontent.com",
+          "client_id": "900615547717-kcelpcq0q5j5p40rdorajt1d4ufg13ve.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBEVZmUmhNxdcSTtVFs7gfI3UgkMYvRixI"
+          "current_key": "AIzaSyCk5jDcxBgiqV1t94Yr8-TrTTI6wKiMLiw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "952095476749-s0fh1fovbocaneeft8v8f5s3kad0s2h1.apps.googleusercontent.com",
+              "client_id": "900615547717-iek6qo3ffrqtg74vjmkg1emj6oi37217.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "952095476749-49s67pkr5gcqg5qmhssb1ktroql9u955.apps.googleusercontent.com",
+              "client_id": "900615547717-2hmft59chnrtajqml2bjkofivtl9m9d1.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "ai.autonomous.megapp"
+                "bundle_id": "com.autonomous.sboardclient.point"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900615547717:android:af02a00855159b56",
+        "android_client_info": {
+          "package_name": "ai.autonomous.smartdesk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900615547717-kcelpcq0q5j5p40rdorajt1d4ufg13ve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk5jDcxBgiqV1t94Yr8-TrTTI6wKiMLiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900615547717-iek6qo3ffrqtg74vjmkg1emj6oi37217.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "900615547717-2hmft59chnrtajqml2bjkofivtl9m9d1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.autonomous.sboardclient.point"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900615547717:android:bee0746824008931",
+        "android_client_info": {
+          "package_name": "auto.sboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900615547717-dto6i2g7t6q2j58oj798a3to90osk54h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "auto.sboard",
+            "certificate_hash": "36454a278c2765ed66e5bd1a6ba592280d0bc3a0"
+          }
+        },
+        {
+          "client_id": "900615547717-kcelpcq0q5j5p40rdorajt1d4ufg13ve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk5jDcxBgiqV1t94Yr8-TrTTI6wKiMLiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900615547717-iek6qo3ffrqtg74vjmkg1emj6oi37217.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "900615547717-2hmft59chnrtajqml2bjkofivtl9m9d1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.autonomous.sboardclient.point"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900615547717:android:a31602db4f0de610",
+        "android_client_info": {
+          "package_name": "com.shopauto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900615547717-kcelpcq0q5j5p40rdorajt1d4ufg13ve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk5jDcxBgiqV1t94Yr8-TrTTI6wKiMLiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900615547717-iek6qo3ffrqtg74vjmkg1emj6oi37217.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "900615547717-2hmft59chnrtajqml2bjkofivtl9m9d1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.autonomous.sboardclient.point"
               }
             }
           ]

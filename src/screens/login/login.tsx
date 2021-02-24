@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 import FacebookIcon from 'src/assets/images/icon_facebook_white.svg';
 import GoogleIcon from 'src/assets/images/icon_google_white.svg';
+import AppleIcon from 'src/assets/images/ic_apple.svg';
 import { AppText, Space } from 'src/components';
 import { SocialButton, PrimaryButton } from 'src/components/button';
 import { LargeHeader } from 'src/components/header';
@@ -18,6 +19,9 @@ import { RouteName } from 'src/routers/routeName';
 import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { LoginProps } from './types';
+import { SocialService } from 'src/services/login-social/socialService';
+import { createRequestLoginGoogleAction, createRequestLoginAppleAction } from 'src/redux/user/userSaga';
+import { appleAuth, appleAuthAndroid } from '@invertase/react-native-apple-authentication';
 
 const Login = (props: LoginProps) => {
     const { t } = useTranslation();
@@ -29,6 +33,10 @@ const Login = (props: LoginProps) => {
     const emailValidator: Validator = new EmailValidator();
     const passwordValidator: Validator = new PasswordValidator();
     const [isValidRequest, setIsValidRequest] = useState(false);
+
+    React.useEffect(() => {
+        SocialService.configure();
+    });
 
     return (
         <SafeAreaView style={styles.container}>
@@ -71,7 +79,7 @@ const Login = (props: LoginProps) => {
             <Space height={AppSpacing.MEDIUM} />
             <View style={{ flex: 1 }}>
                 <Space height={AppSpacing.MEDIUM} />
-                {/* <View style={styles.dividerContainer}>
+                <View style={styles.dividerContainer}>
                     <Divider style={styles.divider} />
                     <AppText children={t('login.or_log_in_instantly')} style={styles.dividerText} />
                     <Divider style={styles.divider} />
@@ -81,7 +89,7 @@ const Login = (props: LoginProps) => {
                     icon={<GoogleIcon />}
                     title={t('login.login_with_google')}
                     style={styles.googleButton}
-                    onPress={() => validateLogin()}
+                    onPress={() => dispatch(createRequestLoginGoogleAction())}
                 />
                 <Space height={AppSpacing.MEDIUM} />
                 <SocialButton
@@ -89,7 +97,16 @@ const Login = (props: LoginProps) => {
                     title={t('login.login_with_facebook')}
                     style={styles.facebookButton}
                     onPress={() => validateLogin()}
-                /> */}
+                />
+                <Space height={AppSpacing.MEDIUM} />
+                {
+                    <SocialButton
+                        icon={<AppleIcon />}
+                        title={t('Login with Apple')}
+                        style={styles.appleButton}
+                        onPress={() => dispatch(createRequestLoginAppleAction())}
+                    />
+                }
                 <Space flex={1} />
                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                     <AppText children={t('login.dont_have_account')} />

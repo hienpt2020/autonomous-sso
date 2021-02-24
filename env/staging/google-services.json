@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "596944745396",
+    "firebase_url": "https://autonomous-firebase---staging-default-rtdb.firebaseio.com",
     "project_id": "autonomous-firebase---staging",
     "storage_bucket": "autonomous-firebase---staging.appspot.com"
   },
@@ -12,12 +13,7 @@
           "package_name": "ai.autonomous.megapp.staging"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "596944745396-gku1h2k0u1hhvuos6e8ajinshtmhver3.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyD0yQ7RxzhWzRp1NyWKuMx0ouoJCm_pKOQ"
@@ -27,11 +23,11 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "596944745396-gku1h2k0u1hhvuos6e8ajinshtmhver3.apps.googleusercontent.com",
+              "client_id": "596944745396-rrldgdrn6om86k32482q3jgu5a4eegab.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "596944745396-0oq9fc14655j0n6g8i17r98308dliftd.apps.googleusercontent.com",
+              "client_id": "596944745396-593vh9q9sgvnk4im8924lvhj3oqqmgbk.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "ai.autonomous.megapp.staging"
