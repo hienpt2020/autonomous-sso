@@ -43,7 +43,7 @@
 
                 <data
                     android:host="account.autonomous.ai"
-                    android:scheme="autonomous-app" />
+                    android:scheme="autonomous-ai" />
                 <data
                     android:host="account.autonomous.ai"
                     android:scheme="https" />

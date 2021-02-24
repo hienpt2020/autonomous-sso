@@ -1,5 +1,6 @@
 import i18next from 'i18next';
 import _ from 'lodash';
+import { showPopup } from 'src/components';
 import { Log } from 'src/helpers/logger';
 import {
     createRequestEndAction,
@@ -14,13 +15,18 @@ export class RequestForgotPassword {
     constructor(dispatch: (param: any) => void) {
         this.dispatch = dispatch;
     }
-    forgotPasswrod(email: string) {
+    forgotPassword(email: string) {
         this.dispatch(createRequestStartAction());
         SSOApi.forgotPassword(email)
             .then((response) => {
                 const message = i18next.t('forgot_password.forgot_success');
+                const title = i18next.t('forgot_password.title');
                 this.dispatch(createRequestSuccessAction(response));
-                this.dispatch(createRequestErrorMessageAction(message));
+                showPopup(title, message, null, [
+                    {
+                        title: i18next.t('common.ok'),
+                    },
+                ]);
                 Log.debug(response);
             })
             .catch((exception) => {
@@ -33,5 +39,5 @@ export class RequestForgotPassword {
     }
 }
 export interface IRequestForgotPassword {
-    forgotPasswrod(email: string): void;
+    forgotPassword(email: string): void;
 }

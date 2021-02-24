@@ -75,7 +75,7 @@ const ForgotPassword = (props: LoginProps) => {
         props.navigation.goBack();
     }
     function handleForgot() {
-        requestForgotPassword.forgotPasswrod(email);
+        requestForgotPassword.forgotPassword(email);
     }
 };
 

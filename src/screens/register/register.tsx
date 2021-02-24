@@ -1,22 +1,23 @@
-import * as React from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, Text, View } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import { Preference } from 'src/common/preference';
 import { Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { BackHeaderX } from 'src/components/header';
 import { PrimaryInput } from 'src/components/input';
-import reactotron from 'src/config/configReactoron';
 import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
-import { createRequestRegisterAction } from 'src/redux/user';
-import { AppSpacing } from 'src/styles';
+import { createRequestRegisterAction, requestValidateAccessTokenAction } from 'src/redux/user';
+import { activeAccountAction } from './actions/registerAction';
 import { styles } from './styles';
 import { Props } from './types';
 
 const Register = (props: Props) => {
     const { t } = useTranslation();
+    const redirectToken = props.route.params?.token;
+    const redirectEmail = props.route.params?.email;
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -28,11 +29,34 @@ const Register = (props: Props) => {
     const emailValidator: Validator = new EmailValidator();
     const passwordValidator: Validator = new PasswordValidator();
 
+    useEffect(() => {
+        // Handle Open Register Screen from Deep Linking
+        if (redirectToken) {
+            if (redirectEmail) {
+                // Case WorkSpace Invitation
+                setEmail(redirectEmail);
+            } else {
+                // Case Active Account
+                activeAccount(redirectToken);
+            }
+        }
+    }, [redirectToken]);
+
+    async function activeAccount(token: string) {
+        const accessToken = await activeAccountAction(token);
+        if (accessToken) {
+            Preference.saveAccessToken(accessToken).then(() => {
+                dispatch(requestValidateAccessTokenAction());
+            });
+        }
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
                 <BackHeaderX style={styles.title} title={t('register.title')} onPress={() => handleBack()} />
                 <PrimaryInput
+                    defaultValue={email}
                     placeholder={t('register.input_your_email')}
                     style={styles.input}
                     constainError={true}
@@ -83,6 +107,7 @@ const Register = (props: Props) => {
             </KeyboardAvoidingView>
         </SafeAreaView>
     );
+
     function validateButtonContinue(email: string, password: string, confirmPassword: string) {
         const validRequest =
             emailValidator.isValid(email) &&
@@ -153,7 +178,7 @@ const Register = (props: Props) => {
         }
     }
     function handleRegister() {
-        dispatch(createRequestRegisterAction(email, password, confirmPassword));
+        dispatch(createRequestRegisterAction(email, password, confirmPassword, redirectToken));
     }
 };
 

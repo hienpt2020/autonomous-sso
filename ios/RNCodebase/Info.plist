@@ -29,7 +29,7 @@
 			<string>autonomous-app</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>autonomous-app</string>
+				<string>autonomous-ai</string>
 			</array>
 		</dict>
 	</array>

@@ -65,9 +65,15 @@ function changePassword(password: string, newPassword: string) {
     return _post('/me/change-password', { password: password, new_password: newPassword });
 }
 
-function register(email: string, password: string, confirmPassword: string) {
-    reactotron.log(email, password, confirmPassword);
-    return _post('/auth/register', {
+function register(email: string, password: string, confirmPassword: string, joinWorkSpaceToken: string | undefined) {
+    let registerPath = '';
+
+    if (joinWorkSpaceToken) {
+        registerPath = '/auth/register?workspace_join_token=' + joinWorkSpaceToken;
+    } else {
+        registerPath = '/auth/register';
+    }
+    return _post(registerPath, {
         email,
         password,
         confirm_password: confirmPassword,
@@ -78,6 +84,13 @@ function updateUserProfile(fullName: string, phone: string) {
     return _put('/me/profile', { full_name: fullName, phone });
 }
 
+function checkExistingEmailByToken(token: string) {
+    return _post('/workspaces/existing_email_by_token', { token });
+}
+
+function joinWorkSpace(token: string) {
+    return _post('/workspaces/join', { token });
+}
 function loginSocial(accessToken: string, customerSource: string = '', source: number = -1, platform: string) {
     return _post('/auth/social-login', {
         access_token: accessToken,
@@ -102,5 +115,7 @@ export const SSOApi = {
     getMyWorkspaces,
     changePassword,
     updateUserProfile,
+    checkExistingEmailByToken,
+    joinWorkSpace,
     loginSocial,
 };
