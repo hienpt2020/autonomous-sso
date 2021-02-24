@@ -33,8 +33,8 @@ const UpdateProfile = (props: Props) => {
                     placeholder={t('Name')}
                     onChangeText={(text) => {
                         setPasswordError('');
-                        setFullName(text.trim());
-                        validateFullName(text.trim());
+                        setFullName(text);
+                        validateFullName(text);
                     }}
                     constainError={true}
                     errorMessage={passwordError}
@@ -45,8 +45,8 @@ const UpdateProfile = (props: Props) => {
                     onBlur={() => {}}
                     onChangeText={(text) => {
                         setConfirmPasswordError('');
-                        setPhone(text.trim());
-                        validatePhone(text.trim());
+                        setPhone(text);
+                        validatePhone(text);
                     }}
                     constainError={true}
                     errorMessage={confirmPasswordError}
@@ -59,7 +59,7 @@ const UpdateProfile = (props: Props) => {
                     disabled={!isValidRequest}
                     onPress={() => {
                         Keyboard.dismiss();
-                        showPopupWarning(() => updateProfileActions.updateProfile(fullName, phone));
+                        showPopupWarning(() => updateProfileActions.updateProfile(fullName.trim(), phone.trim()));
                     }}
                 />
                 <Space height={AppSpacing.LARGE} />
@@ -71,14 +71,16 @@ const UpdateProfile = (props: Props) => {
         props.navigation.goBack();
     }
 
-    function validateFullName(_name: string) {
+    function validateFullName(__name: string) {
+        const _name = __name.trim();
         if (_name !== '' && (_name !== originUser.fullName || phone !== originUser.phone)) {
             setIsValidRequest(true);
         } else {
             setIsValidRequest(false);
         }
     }
-    function validatePhone(_phone: string) {
+    function validatePhone(__phone: string) {
+        const _phone = __phone.trim();
         if (_phone !== '' && (fullName != originUser.fullName || _phone != originUser.phone)) {
             setIsValidRequest(true);
         } else {
