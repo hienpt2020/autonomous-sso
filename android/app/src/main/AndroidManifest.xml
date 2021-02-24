@@ -41,12 +41,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="account.autonomous.ai"
-                    android:scheme="autonomous-ai" />
-                <data
-                    android:host="account.autonomous.ai"
-                    android:scheme="https" />
+                <data android:scheme="autonomous-ai" />
             </intent-filter>
         </activity>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
