@@ -70,7 +70,7 @@
         "register_success":"Register Success"
     },
     "join": {
-        "content": "By Join, you agree to join ",
+        "content": "You have an invitation to join the Work Space !",
         "join_workspace": "Join Workspace"
     },
     "home": {
