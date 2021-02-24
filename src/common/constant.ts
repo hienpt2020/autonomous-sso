@@ -14,6 +14,8 @@ export enum BookingStatus {
 // TODO
 export const DEFAULT_REQUEST_LIMIT = 100;
 
+export const EMAIL_SUPPORT = 'hybrid-contact@autonomous.ai';
+
 export const ALL_WORK_SPACE_HISTORY = -1;
 
 export const FCM_TOPIC = 'booking_notication_user_id_';
