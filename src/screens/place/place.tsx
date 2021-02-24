@@ -142,12 +142,16 @@ const BookingDetail = (props: Props) => {
                     status = t('activities.cancel');
                     break;
 
-                case BookingStatus.BOOKED || BookingStatus.COMFIRMED:
+                case BookingStatus.BOOKED:
                     status = t('activities.upcoming');
                     break;
 
                 case BookingStatus.CHECKED_IN:
                     status = t('activities.checked_in');
+                    break;
+
+                case BookingStatus.CHECKED_OUT:
+                    status = t('activities.checked_out');
                     break;
 
                 default:
@@ -240,7 +244,8 @@ const BookingDetail = (props: Props) => {
                         />
                     )}
 
-                    {bookingHistory && bookingHistory.bookingStatus == BookingStatus.COMFIRMED && (
+                    {/* TODO: check have smart desk 4 = show check_in */}
+                    {/* {bookingHistory && bookingHistory.bookingStatus == BookingStatus.BOOKED && (
                         <>
                             <PrimaryButton
                                 containerStyle={styles.button}
@@ -249,17 +254,15 @@ const BookingDetail = (props: Props) => {
                             />
                             <Space height={AppSpacing.LARGE} />
                         </>
-                    )}
-
-                    {bookingHistory && bookingHistory.bookingStatus == BookingStatus.COMFIRMED && (
+                    )} */}
+                    {bookingHistory && bookingHistory.bookingStatus == BookingStatus.BOOKED && (
                         <SecondaryButton
                             containerStyle={[styles.button, styles.secondaryButtonStyle]}
                             onPress={_onPressCancelBooking}
                             title={t('booking_detail.cancel_booking')}
                         />
                     )}
-
-                    {bookingHistory && bookingHistory.bookingStatus != BookingStatus.COMFIRMED && (
+                    {bookingHistory && bookingHistory.bookingStatus != BookingStatus.BOOKED && (
                         <PrimaryButton
                             containerStyle={styles.button}
                             onPress={handleBack}

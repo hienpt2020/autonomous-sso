@@ -68,8 +68,12 @@ const BookingScreen = (props: Props) => {
                 statusStyle = { ...statusStyle, ...styles.statusInActive };
                 break;
 
-            case BookingStatus.BOOKED || BookingStatus.COMFIRMED:
+            case BookingStatus.BOOKED:
                 status = t('activities.upcoming');
+                break;
+
+            case BookingStatus.CHECKED_OUT:
+                status = t('activities.checked_out');
                 break;
 
             case BookingStatus.CHECKED_IN:

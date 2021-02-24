@@ -25,12 +25,12 @@ export class BookingHistory {
         this.placeId = 0;
         this.mapId = 0;
         this.code = 0;
-        this.bookingStatus = BookingStatus.COMFIRMED;
+        this.bookingStatus = BookingStatus.BOOKED;
         this.bookingStatusName = '';
         this.placeName = '';
     }
 
     isUpcoming(bookingStatus: number) {
-        return bookingStatus == BookingStatus.BOOKED || bookingStatus == BookingStatus.COMFIRMED;
+        return bookingStatus == BookingStatus.BOOKED;
     }
 }
