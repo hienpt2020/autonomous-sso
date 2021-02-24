@@ -2,11 +2,12 @@ import _ from 'lodash';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ScrollView, View } from 'react-native';
+import { Image, Linking, ScrollView, View } from 'react-native';
 import Config from 'react-native-config';
 import { useDispatch, useSelector } from 'react-redux';
 import EditIcon from 'src/assets/images/ic_edit.svg';
 import Icon from 'src/assets/images/placeholder_avatar.svg';
+import { EMAIL_SUPPORT } from 'src/common/constant';
 import { AppText, AppView, Divider, Space } from 'src/components';
 import { IconButton } from 'src/components/button';
 import { Header } from 'src/components/header';
@@ -88,8 +89,8 @@ const Profile = (props: Props) => {
                             </>
                         ) : null}
 
-                        <SectionItem title={t('profile.add_login_method')} value={'Email'} />
-                        <Divider />
+                        {/* <SectionItem title={t('profile.add_login_method')} value={'Email'} /> */}
+                        {/* <Divider /> */}
                         <SectionItem
                             title={t('profile.activities')}
                             hasNotification={hasCheckinNotification}
@@ -99,6 +100,8 @@ const Profile = (props: Props) => {
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
+                        <SectionItem title={t('profile.feed_back')} onPress={_onPressFeedback} />
+                        <Divider />
                         <SectionItem title={t('profile.privacy_policy')} onPress={_onPressPrivacy} />
                         <Divider />
                         <SectionItem title={t('profile.terms_of_use')} onPress={_onPressTerms} />
@@ -149,6 +152,13 @@ const Profile = (props: Props) => {
     }
     function _navigateToUpdateProfile() {
         props.navigation.navigate(RouteName.UPDATE_PROFILE);
+    }
+    function _onPressFeedback() {
+        try {
+            Linking.openURL(`mailto:${EMAIL_SUPPORT}`);
+        } catch (error) {
+            Log.error(error.toString());
+        }
     }
 };
 
