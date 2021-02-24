@@ -23,10 +23,10 @@ export const homeRoutes: RouteProps[] = [
         component: require('src/screens/homeoffice').default,
         options: {},
     },
-    {
-        name: RouteName.HOME_CONTROLL,
-        component: require('src/screens/homecontroll').default,
-    },
+    // {
+    //     name: RouteName.HOME_CONTROLL,
+    //     component: require('src/screens/homecontroll').default,
+    // },
     {
         name: RouteName.HOME_PROFILE,
         component: require('src/screens/homeprofile').default,
@@ -73,17 +73,8 @@ function renderTabBarLabel(routeName: String, focused: boolean) {
 }
 
 const Home = (props: Props) => {
-    const workingSpaceId = useSelector((state: RootState) => state.workspaceReducer.id);
     const userId = useSelector((state: RootState) => state.userReducer.userId);
     const [routes, setRoutes] = useState(homeRoutes);
-
-    useEffect(() => {
-        if (workingSpaceId > 0) {
-            setRoutes(homeRoutes);
-        } else {
-            setRoutes([homeRoutes[1], homeRoutes[2]]);
-        }
-    }, [workingSpaceId]);
 
     useEffect(() => {
         messaging()

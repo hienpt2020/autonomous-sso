@@ -60,9 +60,9 @@ async function requestRegister(
     }
 }
 
-async function requestLoginSocial(accessToken: string, customerSource: string, source: number = -1) {
+async function requestLoginSocial(accessToken: string, customerSource: string, source: number = -1, platform: string) {
     try {
-        const response = await SSOApi.loginSocial(accessToken, customerSource, source);
+        const response = await SSOApi.loginSocial(accessToken, customerSource, source, platform);
         const { access_token } = response.data;
         if (access_token) {
             Preference.saveAccessToken(access_token);

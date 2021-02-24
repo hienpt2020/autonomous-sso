@@ -11,9 +11,11 @@ import {
     REQUEST_VALIDATE_ACCESS_TOKEN,
     FETCH_USER_ACTION,
     REQUEST_LOGIN_SOCIAL_ACTION,
+    PLATFORM_NAME,
 } from './userType';
 import { fetchUserProfile } from './request/fetchUserData';
 import { LOGIN_SOCIAL_TYPES } from 'src/common/constant';
+import { Platform } from 'react-native';
 
 export const userSaga = function* root() {
     yield takeLatest(REQUEST_LOGIN_ACTION, requestLoginAction);
@@ -72,6 +74,7 @@ export function createRequestLoginGoogleAction(): any {
         type: REQUEST_LOGIN_SOCIAL_ACTION,
         payload: {
             source: LOGIN_SOCIAL_TYPES.GOOGLE,
+            platform: Platform.OS === 'ios' ? PLATFORM_NAME.IOS : PLATFORM_NAME.WEB,
         },
     };
 }
@@ -81,6 +84,17 @@ export function createRequestLoginAppleAction(): any {
         type: REQUEST_LOGIN_SOCIAL_ACTION,
         payload: {
             source: LOGIN_SOCIAL_TYPES.APPLE,
+            platform: Platform.OS === 'ios' ? PLATFORM_NAME.IOS : PLATFORM_NAME.WEB,
+        },
+    };
+}
+
+export function createRequestLoginFacebookAction(): any {
+    return {
+        type: REQUEST_LOGIN_SOCIAL_ACTION,
+        payload: {
+            source: LOGIN_SOCIAL_TYPES.FACEBOOK,
+            platform: Platform.OS === 'ios' ? PLATFORM_NAME.IOS : PLATFORM_NAME.WEB,
         },
     };
 }

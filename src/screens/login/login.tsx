@@ -103,18 +103,18 @@ const Login = (props: LoginProps) => {
                     style={styles.googleButton}
                     onPress={() => dispatch(createRequestLoginGoogleAction())}
                 />
-                <Space height={AppSpacing.MEDIUM} />
-                <SocialButton
-                    icon={<FacebookIcon />}
-                    title={t('login.login_with_facebook')}
-                    style={styles.facebookButton}
-                    onPress={() => validateLogin()}
-                />
+                {/*<Space height={AppSpacing.MEDIUM} />*/}
+                {/*<SocialButton*/}
+                {/*    icon={<FacebookIcon />}*/}
+                {/*    title={t('login.login_with_facebook')}*/}
+                {/*    style={styles.facebookButton}*/}
+                {/*    onPress={() => validateLogin()}*/}
+                {/*/>*/}
                 <Space height={AppSpacing.MEDIUM} />
                 {
                     <SocialButton
                         icon={<AppleIcon />}
-                        title={t('Login with Apple')}
+                        title={t('login.login_with_apple')}
                         style={styles.appleButton}
                         onPress={() => dispatch(createRequestLoginAppleAction())}
                     />

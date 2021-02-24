@@ -91,13 +91,13 @@ function checkExistingEmailByToken(token: string) {
 function joinWorkSpace(token: string) {
     return _post('/workspaces/join', { token });
 }
-
-function loginSocial(accessToken: string, customerSource: string = '', source: number = -1) {
+function loginSocial(accessToken: string, customerSource: string = '', source: number = -1, platform: string) {
     return _post('/auth/social-login', {
         access_token: accessToken,
         client_id: CLIENT_ID,
         customer_source: customerSource,
         source,
+        platform,
     });
 }
 

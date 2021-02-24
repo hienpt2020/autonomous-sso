@@ -43,7 +43,8 @@
         "password_require": "Password is require",
         "or_log_in_instantly": "Or log in instantly",
         "login_with_google": "Login with Google ",
-        "login_with_facebook": "Login with Facebook"
+        "login_with_facebook": "Login with Facebook",
+        "login_with_apple": "Login with Apple"
     },
     "intro": {
         "register": "Register",
