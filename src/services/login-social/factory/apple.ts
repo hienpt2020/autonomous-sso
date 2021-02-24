@@ -16,13 +16,7 @@ export class Apple implements ISocialFactory {
                     requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
                 });
                 Log.debug('@appleAuthRequestResponseIOS', appleAuthRequestResponse);
-                // return Promise.resolve(Helper.parseResponseAppleAuth(appleAuthRequestResponse));
-                // const credentialState = await appleAuth.getCredentialStateForUser(appleAuthRequestResponse.user);
-                // // use credentialState response to ensure the user is authenticated
-                // if (credentialState === appleAuth.State.AUTHORIZED) {
-                //     // user is authenticated
-                //     return Promise.resolve(Helper.parseResponseAppleAuth(appleAuthRequestResponse));
-                // }
+                return Promise.resolve(Helper.parseResponseAppleAuth(appleAuthRequestResponse));
             } else {
                 appleAuthAndroid.configure({
                     clientId: Config.APPLE_SERVICE_ID,
@@ -33,7 +27,7 @@ export class Apple implements ISocialFactory {
                 const response = await appleAuthAndroid.signIn();
                 Log.debug('@appleAuthAndroid:', response);
                 if (response) {
-                    // return Promise.resolve(Helper.parseResponseAppleAuthAndroid(response));
+                    return Promise.resolve(Helper.parseResponseAppleAuth(response));
                 }
             }
         } catch (error) {

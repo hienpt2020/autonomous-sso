@@ -31,16 +31,7 @@ export class Helper {
 
     public static parseResponseAppleAuth(response: any): IResponse {
         return {
-            accessToken: response.authorizationCode,
-            email: response?.email || '',
-            name: response.fullName?.givenName + response.fullName?.familyName || '',
-            image: '',
-            clientId: response.user,
-        };
-    }
-    public static parseResponseAppleAuthAndroid(response: any): IResponse {
-        return {
-            accessToken: response.code,
+            accessToken: response.authorizationCode || response.code, // authorizationCode for IOS, code for android
             email: response?.email || '',
             name: response.fullName?.givenName + response.fullName?.familyName || '',
             image: '',
