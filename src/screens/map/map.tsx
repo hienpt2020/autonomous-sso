@@ -74,7 +74,7 @@ const Map = (props: Props) => {
             );
 
             // TODO: hard filter
-            bookings = bookings.filter((booking) => booking.bookingStatus == BookingStatus.COMFIRMED);
+            bookings = bookings.filter((booking) => booking.bookingStatus == BookingStatus.BOOKED);
 
             dispatch(setEnableBooking(!(bookings.length > 0)));
             setWorkPlaces(workPlaces);

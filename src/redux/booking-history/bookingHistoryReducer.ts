@@ -49,7 +49,7 @@ export function bookingHistoryReducer(
                       upComingBookings: {
                           page: state.upComingBookings.page + 1,
                           //   items: action.bookings,
-                          items: action.bookings.filter((booking) => booking.bookingStatus == BookingStatus.COMFIRMED),
+                          items: action.bookings.filter((booking) => booking.bookingStatus == BookingStatus.BOOKED),
                           isLoading: false,
                       },
                   }

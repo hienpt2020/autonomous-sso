@@ -130,6 +130,7 @@
         "cancelled": "cancelled!",
         "cancelled_desc": "This slot has been cancelled",
         "checked_in": "Checked In!",
+        "checked_out": "Checked Out!",
         "checked_in_desc": "Check In Success",
         "check_in":"Check in"
     },

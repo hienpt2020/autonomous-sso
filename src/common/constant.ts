@@ -6,8 +6,8 @@ export class Constant {
 export enum BookingStatus {
     AVAILABLE = 1,
     BOOKED = 2,
-    COMFIRMED = 3,
-    CHECKED_IN = 4,
+    CHECKED_IN = 3,
+    CHECKED_OUT = 4,
     CANCEL = 5,
 }
 
