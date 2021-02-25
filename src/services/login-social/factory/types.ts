@@ -38,4 +38,14 @@ export class Helper {
             clientId: response.user,
         };
     }
+
+    public static parseResponseFacebook(response: any): IResponse {
+        return {
+            accessToken: response.token,
+            email: '',
+            name: '',
+            image: '',
+            clientId: '',
+        };
+    }
 }
