@@ -75,7 +75,7 @@ export class ParserImpl implements IParser {
         const result = new WorkPlace();
         result.id = responseData.id;
         result.mapId = responseData.working_space_layout_id;
-        result.name = responseData.working_place_types.type_name + ' ' + responseData.code;
+        result.name = responseData.label;
         result.address = parseMapAddress(
             responseData.working_space_layout.street,
             responseData.working_space_layout.city,
@@ -101,8 +101,7 @@ export class ParserImpl implements IParser {
     parseBookingHistory(responseData: any): BookingHistory {
         const result = new BookingHistory();
         result.id = responseData.id;
-        result.name =
-            responseData.working_place.working_place_types.type_name + ' ' + responseData.working_place.code.toString();
+        result.name = responseData.working_place.label;
         result.address = parseMapAddress(
             responseData.working_place.working_space_layout.street,
             responseData.working_place.working_space_layout.city,
@@ -116,8 +115,7 @@ export class ParserImpl implements IParser {
         result.mapId = responseData.working_place.working_space_layout.id;
         result.code = responseData.code;
         result.bookingStatus = responseData.working_place_booking_status_id;
-        result.placeName =
-            responseData.working_place.working_place_types.type_name + ' ' + responseData.working_place.code;
+        result.placeName = responseData.working_place.label;
         return result;
     }
 
