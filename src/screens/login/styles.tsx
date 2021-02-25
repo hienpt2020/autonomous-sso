@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
         color: AppColor.DARK_GREY_1,
     },
     button: {
-        marginStart: AppSpacing.LARGE,
-        marginEnd: AppSpacing.LARGE,
+        marginHorizontal: AppSpacing.LARGE,
+        marginTop: AppSpacing.LARGE,
     },
     facebookButton: {
         marginStart: AppSpacing.LARGE,

@@ -26,9 +26,9 @@ export function* requestLoginAction(action: any) {
 }
 
 export function* requestLoginSocialAction(action: any) {
-    yield put(createRequestStartAction());
     let res = yield call(SocialService.login, action.payload.source);
     if (res) {
+        yield put(createRequestStartAction());
         const { response, error } = yield call(
             requestLoginSocial,
             res?.accessToken,

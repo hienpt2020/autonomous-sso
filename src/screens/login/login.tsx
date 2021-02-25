@@ -2,7 +2,7 @@ import { localeData } from 'moment';
 import React, { useRef } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
@@ -22,8 +22,11 @@ import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { LoginProps } from './types';
 import { SocialService } from 'src/services/login-social/socialService';
-import { createRequestLoginGoogleAction, createRequestLoginAppleAction } from 'src/redux/user/userSaga';
-import { appleAuth, appleAuthAndroid } from '@invertase/react-native-apple-authentication';
+import {
+    createRequestLoginGoogleAction,
+    createRequestLoginAppleAction,
+    createRequestLoginFacebookAction,
+} from 'src/redux/user/userSaga';
 
 const Login = (props: LoginProps) => {
     const { t } = useTranslation();
@@ -51,81 +54,83 @@ const Login = (props: LoginProps) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <LargeHeader title={t('login.title')} style={styles.title} />
-            <Space height={AppSpacing.LARGE} />
-            <PrimaryInput
-                defaultValue={email}
-                placeholder={t('common.email')}
-                renderErrorMessage={emailError !== ''}
-                style={styles.input}
-                onChangeText={(text) => {
-                    setEmail(text);
-                    setEmailError('');
-                    validateButtonLogin(text, password);
-                }}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                errorMessage={emailError}
-                constainError={true}
-            />
-            <PasswordInput
-                renderErrorMessage={passwordError !== ''}
-                style={styles.input}
-                placeholder={t('common.password')}
-                onChangeText={(text) => {
-                    setPasswordError('');
-                    setPassword(text);
-                    validateButtonLogin(email, text);
-                }}
-                errorMessage={passwordError}
-                constainError={true}
-            />
-            <PrimaryButton
-                title={t('common.login')}
-                containerStyle={styles.button}
-                onPress={() => validateLogin()}
-                disabled={!isValidRequest}
-            />
-            <Space height={AppSpacing.MEDIUM} />
-            <Link title={t('login.forgot_password')} onPress={() => handleForgotPassword()} style={styles.link} />
-            <Space height={AppSpacing.MEDIUM} />
-            <View style={{ flex: 1 }}>
-                <Space height={AppSpacing.MEDIUM} />
-                <View style={styles.dividerContainer}>
-                    <Divider style={styles.divider} />
-                    <AppText children={t('login.or_log_in_instantly')} style={styles.dividerText} />
-                    <Divider style={styles.divider} />
-                </View>
-                <Space height={AppSpacing.MEDIUM} />
-                <SocialButton
-                    icon={<GoogleIcon />}
-                    title={t('login.login_with_google')}
-                    style={styles.googleButton}
-                    onPress={() => dispatch(createRequestLoginGoogleAction())}
-                />
-                {/*<Space height={AppSpacing.MEDIUM} />*/}
-                {/*<SocialButton*/}
-                {/*    icon={<FacebookIcon />}*/}
-                {/*    title={t('login.login_with_facebook')}*/}
-                {/*    style={styles.facebookButton}*/}
-                {/*    onPress={() => validateLogin()}*/}
-                {/*/>*/}
-                <Space height={AppSpacing.MEDIUM} />
-                {
-                    <SocialButton
-                        icon={<AppleIcon />}
-                        title={t('login.login_with_apple')}
-                        style={styles.appleButton}
-                        onPress={() => dispatch(createRequestLoginAppleAction())}
-                    />
-                }
-                <Space flex={1} />
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                    <AppText children={t('login.dont_have_account')} />
-                    <Link title={t('login.create_account')} onPress={handleCreateAccount} />
-                </View>
+            <ScrollView>
+                <LargeHeader title={t('login.title')} style={styles.title} />
                 <Space height={AppSpacing.LARGE} />
-            </View>
+                <PrimaryInput
+                    defaultValue={email}
+                    placeholder={t('common.email')}
+                    renderErrorMessage={emailError !== ''}
+                    style={styles.input}
+                    onChangeText={(text) => {
+                        setEmail(text);
+                        setEmailError('');
+                        validateButtonLogin(text, password);
+                    }}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    errorMessage={emailError}
+                    constainError={true}
+                />
+                <PasswordInput
+                    renderErrorMessage={passwordError !== ''}
+                    style={styles.input}
+                    placeholder={t('common.password')}
+                    onChangeText={(text) => {
+                        setPasswordError('');
+                        setPassword(text);
+                        validateButtonLogin(email, text);
+                    }}
+                    errorMessage={passwordError}
+                    constainError={true}
+                />
+                <PrimaryButton
+                    title={t('common.login')}
+                    containerStyle={styles.button}
+                    onPress={() => validateLogin()}
+                    disabled={!isValidRequest}
+                />
+                <Space height={AppSpacing.MEDIUM} />
+                <Link title={t('login.forgot_password')} onPress={() => handleForgotPassword()} style={styles.link} />
+                <View style={{ flex: 1 }}>
+                    <Space height={AppSpacing.MEDIUM} />
+                    <View style={styles.dividerContainer}>
+                        <Divider style={styles.divider} />
+                        <AppText children={t('login.or_log_in_instantly')} style={styles.dividerText} />
+                        <Space height={AppSpacing.EXTRA} />
+                        <Divider style={styles.divider} />
+                    </View>
+                    <Space height={AppSpacing.MEDIUM} />
+                    <SocialButton
+                        icon={<GoogleIcon />}
+                        title={t('login.login_with_google')}
+                        style={styles.googleButton}
+                        onPress={() => dispatch(createRequestLoginGoogleAction())}
+                    />
+                    <Space height={AppSpacing.MEDIUM} />
+                    <SocialButton
+                        icon={<FacebookIcon />}
+                        title={t('login.login_with_facebook')}
+                        style={styles.facebookButton}
+                        onPress={() => dispatch(createRequestLoginFacebookAction())}
+                    />
+                    <Space height={AppSpacing.MEDIUM} />
+                    {
+                        <SocialButton
+                            icon={<AppleIcon />}
+                            title={t('login.login_with_apple')}
+                            style={styles.appleButton}
+                            onPress={() => dispatch(createRequestLoginAppleAction())}
+                        />
+                    }
+                    <Space height={AppSpacing.LARGE} />
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                        <AppText children={t('login.dont_have_account')} />
+                        <Link title={t('login.create_account')} onPress={handleCreateAccount} />
+                    </View>
+                    <Space height={AppSpacing.LARGE} />
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
     function validateButtonLogin(email: string, password: string) {
