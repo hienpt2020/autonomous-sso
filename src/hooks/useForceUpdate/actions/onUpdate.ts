@@ -1,16 +1,15 @@
 import { Linking, Platform } from 'react-native';
-import Config from 'react-native-config';
 
-export const onUpdate = () => {
+export const onUpdate = (url: string) => {
     if (Platform.OS === 'android') {
-        Linking.canOpenURL(Config.LINK_GG_PLAY + Config.APP_ID)
+        Linking.canOpenURL(url)
             .then(() => {
-                Linking.openURL(Config.LINK_GG_PLAY + Config.APP_ID);
+                Linking.openURL(url);
             })
             .catch();
     } else if (Platform.OS === 'ios') {
-        Linking.canOpenURL(Config.LINK_APP_STORE)
-            .then(() => Linking.openURL(Config.LINK_APP_STORE))
+        Linking.canOpenURL(url)
+            .then(() => Linking.openURL(url))
             .catch();
     }
 };

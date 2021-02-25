@@ -8,7 +8,7 @@ export const showPopupForceUpdate = (onUpdate: () => void) => {
         null,
         [
             {
-                onPress: () => onUpdate(),
+                onPress: onUpdate,
                 title: i18next.t('force_update.button_update_label'),
                 isAutoClose: false,
             },

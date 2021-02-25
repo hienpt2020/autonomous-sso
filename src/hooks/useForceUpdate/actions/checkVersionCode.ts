@@ -4,18 +4,17 @@ import { IVersionCodeModel } from '../types';
 import { showPopupForceUpdate, showPopupRecommendedUpdate } from './showPopup';
 
 export const checkVersionCode = (
-    onUpdate: () => void,
+    onUpdate: (url: string) => void,
     onCancel: () => void,
     onChecking: (isChecking: boolean) => void,
 ): void => {
     let strVersionCode: string = remoteConfig().getValue('version_code').asString();
     let currentVersionCode: number = parseInt(Config.APP_BUILD_NUMBER);
-    let newVersionCode: IVersionCodeModel = JSON.parse(strVersionCode);
-
-    if (currentVersionCode < newVersionCode.minimum) {
-        showPopupForceUpdate(onUpdate);
-    } else if (currentVersionCode >= newVersionCode.minimum && currentVersionCode < newVersionCode.recommend) {
-        showPopupRecommendedUpdate(onUpdate, onCancel);
+    let newVersionCodeInfo: IVersionCodeModel = JSON.parse(strVersionCode);
+    if (currentVersionCode < newVersionCodeInfo.minimum) {
+        showPopupForceUpdate(() => onUpdate(newVersionCodeInfo.url));
+    } else if (currentVersionCode >= newVersionCodeInfo.minimum && currentVersionCode < newVersionCodeInfo.recommend) {
+        showPopupRecommendedUpdate(() => onUpdate(newVersionCodeInfo.url), onCancel);
     } else {
         onChecking(false);
     }
