@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>[Staging] Autonomous</string>
+	<string>Autonomous</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>ai.autonomous.megapp.staging</string>
+	<string>ai.autonomous.megapp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -36,15 +36,29 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>reverse-client-id</string>
+			<string>login-google</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.596944745396-593vh9q9sgvnk4im8924lvhj3oqqmgbk</string>
+				<string>com.googleusercontent.apps.900615547717-igfj193jhvschfjfpdflj6sa72m5lqqi</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>login-facebook</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb380022628861188</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>380022628861188</string>
+	<key>FacebookDisplayName</key>
+	<string>Autonomous</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -98,18 +112,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  <key>CFBundleURLTypes</key>
-  <array>
-    <dict>
-    <key>CFBundleURLSchemes</key>
-    <array>
-      <string>fb380022628861188</string>
-    </array>
-    </dict>
-  </array>
-  <key>FacebookAppID</key>
-  <string>380022628861188</string>
-  <key>FacebookDisplayName</key>
-  <string>Autonomous</string>
 </dict>
 </plist>
