@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FlatList, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import IcEmpty from 'src/assets/images/ic_empty_booking.svg';
+import { UserAction } from 'src/common/constant';
 import { AppView, Space } from 'src/components';
 import { Empty } from 'src/components/empty';
 import { Header, LargeHeader } from 'src/components/header';
@@ -73,6 +74,8 @@ const Office = (props: Props) => {
     const _onItemSelected = (data: WorkLayout) => {
         dispatch(setWorkLayoutAction(data));
         props.navigation.navigate(RouteName.MAP, { map: data });
+
+        Log.info(UserAction.BOOKING_SELECT_WORK_LAYOUT, data);
     };
     return (
         <View style={styles.container}>

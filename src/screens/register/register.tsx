@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import { UserAction } from 'src/common/constant';
 import { Preference } from 'src/common/preference';
 import { Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { BackHeaderX } from 'src/components/header';
 import { PrimaryInput } from 'src/components/input';
+import { Log } from 'src/helpers/logger';
 import { EmailValidator, PasswordValidator, Validator } from 'src/helpers/validators';
 import { createRequestRegisterAction, requestValidateAccessTokenAction } from 'src/redux/user';
 import { activeAccountAction } from './actions/registerAction';
@@ -179,6 +181,7 @@ const Register = (props: Props) => {
     }
     function handleRegister() {
         dispatch(createRequestRegisterAction(email, password, confirmPassword, redirectToken));
+        Log.info(UserAction.AUTH_REGISTER, { email });
     }
 };
 

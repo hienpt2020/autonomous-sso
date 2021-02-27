@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import { UserAction } from 'src/common/constant';
 import { AppText, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { BackHeaderX, BackHeader } from 'src/components/header';
 import { PrimaryInput } from 'src/components/input';
+import { Log } from 'src/helpers/logger';
 import { EmailValidator, Validator } from 'src/helpers/validators';
 import { AppSpacing } from 'src/styles';
 import { IRequestForgotPassword, RequestForgotPassword } from './actions/requestForgotPasswordAction';
@@ -76,6 +78,7 @@ const ForgotPassword = (props: LoginProps) => {
     }
     function handleForgot() {
         requestForgotPassword.forgotPassword(email);
+        Log.info(UserAction.AUTH_FORGOT_PASSWORD, { email });
     }
 };
 

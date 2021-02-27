@@ -1,5 +1,7 @@
 import reactotron from 'src/config/configReactoron';
 import _ from 'lodash';
+import crashlytics from '@react-native-firebase/crashlytics';
+import analytics from '@react-native-firebase/analytics';
 
 export interface Logger {
     debug(message?: any, ...optionalParams: any[]): void;
@@ -21,7 +23,13 @@ export class LoggerImpl implements Logger {
     }
 
     public info(message?: any, ...optionalParams: any[]): void {
-        this.instance?.info(`${this.stringify(message)}, ${this.stringify(optionalParams)}`);
+        this.instance?.log(message, optionalParams);
+
+        let firebaseAnalyticParam = {};
+        if (optionalParams[0]) {
+            firebaseAnalyticParam = { ...optionalParams[0] };
+        }
+        analytics().logEvent(message, firebaseAnalyticParam);
     }
 
     public warn(message?: any, ...optionalParams: any[]): void {
@@ -30,6 +38,7 @@ export class LoggerImpl implements Logger {
 
     public error(message?: any, ...optionalParams: any[]): void {
         this.instance?.error(`${this.stringify(message)}, ${this.stringify(optionalParams)}`);
+        crashlytics().recordError(message);
     }
 
     private stringify(metaData: any): string {

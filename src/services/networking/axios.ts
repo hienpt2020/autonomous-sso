@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { call } from 'redux-saga/effects';
 import _ from 'lodash';
+import { Log } from 'src/helpers/logger';
 
 /**
  * config axios and api url
@@ -47,9 +48,14 @@ async function requestAxios(config: AxiosRequestConfig, directResult = false) {
                 // Something happened in setting up the request that triggered an Error
                 result = { ...error };
             }
+
+            const errorMessage = _.get(error, 'response.data.error.message');
+
+            Log.error(errorMessage);
+
             return Promise.reject({
                 ...result,
-                errorMessage: _.get(error, 'response.data.error.message'),
+                errorMessage: errorMessage,
             });
         });
 }

@@ -7,7 +7,7 @@ import Config from 'react-native-config';
 import { useDispatch, useSelector } from 'react-redux';
 import EditIcon from 'src/assets/images/ic_edit.svg';
 import Icon from 'src/assets/images/placeholder_avatar.svg';
-import { EMAIL_SUPPORT } from 'src/common/constant';
+import { EMAIL_SUPPORT, UserAction } from 'src/common/constant';
 import { AppText, AppView, Divider, Space } from 'src/components';
 import { IconButton } from 'src/components/button';
 import { Header } from 'src/components/header';
@@ -125,25 +125,38 @@ const Profile = (props: Props) => {
         </View>
     );
     function _handPressLogout() {
+        Log.info(UserAction.AUTH_LOGOUT);
+
         dispatch(createRequestLogoutAction());
     }
     function _onPressContactUs() {
+        Log.info(UserAction.SETTING_CONTACT);
+
         try {
             LinkingHelper.open(Config.CONTACT_US);
+            Log.info(UserAction.SETTING_CHANGE_WORK_SPACE);
         } catch (exception) {
             Log.debug(exception);
         }
     }
     function _onPressTerms() {
+        Log.info(UserAction.SETTING_TERM_OF_USE);
+
         navigate(RouteName.WEBPAGE, { url: Config.LINK_TERM });
     }
     function _onPressPrivacy() {
+        Log.info(UserAction.SETTING_PRIVACY);
+
         navigate(RouteName.WEBPAGE, { url: Config.LINK_PRIVARY });
     }
     function _onPressResetPassword() {
+        Log.info(UserAction.SETTING_CHANGE_PASSWORD);
+
         navigate(RouteName.NEW_PASSWORD, null);
     }
     function _onPressActivities() {
+        Log.info(UserAction.SETTING_ACTIVITY);
+
         dispatch(setNotificationCheckinAction(false));
         navigate(RouteName.ACTIVITIES, null);
     }
@@ -151,9 +164,13 @@ const Profile = (props: Props) => {
         props.navigation.navigate(RouteName.SWITCH_WORKSPACE);
     }
     function _navigateToUpdateProfile() {
+        Log.info(UserAction.SETTING_CHANGE_PROFILE);
+
         props.navigation.navigate(RouteName.UPDATE_PROFILE);
     }
     function _onPressFeedback() {
+        Log.info(UserAction.SETTING_FEEDBACK);
+
         try {
             Linking.openURL(`mailto:${EMAIL_SUPPORT}`);
         } catch (error) {
