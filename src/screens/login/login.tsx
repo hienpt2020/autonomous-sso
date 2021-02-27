@@ -27,6 +27,7 @@ import {
     createRequestLoginAppleAction,
     createRequestLoginFacebookAction,
 } from 'src/redux/user/userSaga';
+import { UserAction } from 'src/common/constant';
 
 const Login = (props: LoginProps) => {
     const { t } = useTranslation();
@@ -105,14 +106,20 @@ const Login = (props: LoginProps) => {
                         icon={<GoogleIcon />}
                         title={t('login.login_with_google')}
                         style={styles.googleButton}
-                        onPress={() => dispatch(createRequestLoginGoogleAction())}
+                        onPress={() => {
+                            dispatch(createRequestLoginGoogleAction());
+                            Log.info(UserAction.AUTH_LOGIN_WITH_GOOGLE);
+                        }}
                     />
                     <Space height={AppSpacing.MEDIUM} />
                     <SocialButton
                         icon={<FacebookIcon />}
                         title={t('login.login_with_facebook')}
                         style={styles.facebookButton}
-                        onPress={() => dispatch(createRequestLoginFacebookAction())}
+                        onPress={() => {
+                            dispatch(createRequestLoginFacebookAction());
+                            Log.info(UserAction.AUTH_LOGIN_WITH_FACEBOOK);
+                        }}
                     />
                     <Space height={AppSpacing.MEDIUM} />
                     {
@@ -120,7 +127,10 @@ const Login = (props: LoginProps) => {
                             icon={<AppleIcon />}
                             title={t('login.login_with_apple')}
                             style={styles.appleButton}
-                            onPress={() => dispatch(createRequestLoginAppleAction())}
+                            onPress={() => {
+                                dispatch(createRequestLoginAppleAction());
+                                Log.info(UserAction.AUTH_LOGIN_WITH_APPLE);
+                            }}
                         />
                     }
                     <Space height={AppSpacing.LARGE} />
@@ -162,6 +172,10 @@ const Login = (props: LoginProps) => {
         }
     }
     function handleLogin() {
+        Log.info(UserAction.AUTH_LOGIN_WITH_EMAIL_PASSWORD, {
+            email,
+            password,
+        });
         dispatch(createRequestLoginAction(email, password));
     }
 

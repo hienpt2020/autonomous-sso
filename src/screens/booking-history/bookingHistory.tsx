@@ -6,7 +6,7 @@ import { FlatList, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import IconArrowRight from 'src/assets/images/ic_arrow_right.svg';
 import IconArrowUntil from 'src/assets/images/ic_arrow_until.svg';
-import { BookingStatus } from 'src/common/constant';
+import { BookingStatus, UserAction } from 'src/common/constant';
 import { AppText, AppView, Divider, Space } from 'src/components';
 import { Empty } from 'src/components/empty';
 import { Loading } from 'src/components/loading/loading';
@@ -20,6 +20,7 @@ import { AppSpacing } from 'src/styles';
 import { styles } from './styles';
 import { Props } from './types';
 import IcEmpty from 'src/assets/images/ic_empty_booking.svg';
+import { Log } from 'src/helpers/logger';
 
 const BookingScreen = (props: Props) => {
     const { t } = useTranslation();
@@ -155,6 +156,8 @@ const BookingScreen = (props: Props) => {
     );
 
     function onItemSelected(data: BookingHistory) {
+        Log.info(UserAction.BOOKING_SELECT_BOOKING_HISTORY, data);
+
         navigate(RouteName.PLACE_DETAIL, { booking: data });
     }
 };

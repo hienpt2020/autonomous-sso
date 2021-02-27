@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import Check from 'src/assets/images/ic_check.svg';
 import Uncheck from 'src/assets/images/ic_check_none.svg';
 import SuccessIcon from 'src/assets/images/ic_check_success.svg';
+import { UserAction } from 'src/common/constant';
 import { AppText, AppView, showPopup, Space } from 'src/components';
 import { PrimaryButton } from 'src/components/button';
 import { Empty } from 'src/components/empty';
 import { BackHeader } from 'src/components/header';
 import { Loading } from 'src/components/loading/loading';
+import { Log } from 'src/helpers/logger';
 import { WorkSpace } from 'src/models';
 import { createRequestErrorMessageAction } from 'src/redux/request';
 import { RootState } from 'src/redux/types';
@@ -153,6 +155,8 @@ const SwitchWorkSpace = (props: Props) => {
                 setIsLoading(false);
                 props.navigation.goBack();
             });
+
+        Log.info(UserAction.SETTING_CHANGE_WORK_SPACE, cache);
     }
 
     function handleBack() {

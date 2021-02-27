@@ -1,11 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Text, TouchableOpacity } from 'react-native';
+import { UserAction } from 'src/common/constant';
 import { AppText, AppView, Space } from 'src/components';
 import { LargeHeader } from 'src/components/header';
 import LayoutInfo from 'src/components/layoutInfo';
+import { Log } from 'src/helpers/logger';
 import { BookingHistory } from 'src/models/BookingHistory';
 import WorkLayout from 'src/models/WorkLayout';
+import { booking } from 'src/redux/reducers';
 import { navigate } from 'src/routers/rootNavigation';
 import { RouteName } from 'src/routers/routeName';
 import { AppColor, AppFontSize, AppSpacing } from 'src/styles';
@@ -17,6 +20,8 @@ const ListUpcoming = ({ data }: Props) => {
 
     function onItemSelected(data: BookingHistory) {
         navigate(RouteName.PLACE_DETAIL, { booking: data });
+
+        Log.info(UserAction.BOOKING_SELECT_BOOKING_HISTORY, data);
     }
 
     const _renderBookingStatus = (status: string) => {

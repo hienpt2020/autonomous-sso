@@ -25,7 +25,8 @@ import { CardItem } from './card';
 import { styles } from './styles';
 import { Props } from './types';
 import IcEmpty from 'src/assets/images/ic_empty_booking.svg';
-import { BookingStatus } from 'src/common/constant';
+import { BookingStatus, UserAction } from 'src/common/constant';
+import { Log } from 'src/helpers/logger';
 
 const Map = (props: Props) => {
     const FIXED_ITEM_HEIGHT = 140;
@@ -136,6 +137,7 @@ const Map = (props: Props) => {
     function onItemSelected(data: WorkPlace) {
         navigate(RouteName.PLACE_DETAIL, { place: data });
         dispatch(setBookingDataAction(new Booking(dateFrom, dateTo, data.code)));
+        Log.info(UserAction.BOOKING_SELECT_PLACE, data);
     }
 
     function setConsiderDate(date: Date) {
@@ -164,11 +166,15 @@ const Map = (props: Props) => {
         setIsFrom(true);
         setDate(dateFrom);
         sheetRef.current?.snapTo(0);
+
+        Log.info(UserAction.BOOKING_SELECT_BOOKING_TIME);
     }
     function switchToDate() {
         setIsFrom(false);
         setDate(dateTo);
         sheetRef.current?.snapTo(0);
+
+        Log.info(UserAction.BOOKING_SELECT_BOOKING_TIME);
     }
 
     function handleBack() {

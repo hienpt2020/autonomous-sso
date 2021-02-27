@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Dimensions, StatusBar, View, YellowBox } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import { BookingStatus, DEVICE_TYPES, ROLES } from 'src/common/constant';
+import { BookingStatus, DEVICE_TYPES, ROLES, UserAction } from 'src/common/constant';
 import { AppText, AppView, Divider, showPopup, Space } from 'src/components';
 import { PrimaryButton, SecondaryButton } from 'src/components/button';
 import { Chip } from 'src/components/chip';
@@ -12,6 +12,7 @@ import { Device } from 'src/components/device';
 import { BackHeader } from 'src/components/header';
 import { ImageSlider } from 'src/components/images/images';
 import TimeSelect from 'src/components/timeSelect';
+import { Log } from 'src/helpers/logger';
 import Asset from 'src/models/Asset';
 import Booking from 'src/models/Booking';
 import { BookingHistory } from 'src/models/BookingHistory';
@@ -78,6 +79,12 @@ const BookingDetail = (props: Props) => {
             } else {
                 navigate(RouteName.BOOKING_RESULT, { booking: undefined });
             }
+
+            Log.info(UserAction.BOOKING_BOOK_PLACE, {
+                ...place,
+                from,
+                to,
+            });
         }
     };
 
@@ -108,6 +115,8 @@ const BookingDetail = (props: Props) => {
                     onPress: () => {},
                 },
             ]);
+
+            Log.info(UserAction.BOOKING_CANCEL_BOOKING, bookingHistory);
         }
     };
 
@@ -126,6 +135,8 @@ const BookingDetail = (props: Props) => {
                     },
                 ]);
             }
+
+            Log.info(UserAction.BOOKING_CHECK_IN, bookingHistory);
         }
     };
 
