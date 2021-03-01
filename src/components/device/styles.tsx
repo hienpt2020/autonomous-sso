@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     container: {
         backgroundColor: AppColor.WHITE,
         paddingBottom: AppSpacing.LARGE,
+        ...AppStyle.cardShadow,
     },
     title: {
         fontWeight: '500',

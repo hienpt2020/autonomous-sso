@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { AppFontSize, AppSpacing } from 'src/styles';
+import { AppFontSize, AppSpacing, AppStyle } from 'src/styles';
 import { AppColor } from 'src/styles/colors';
 
 export const styles = StyleSheet.create({
@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     infoContainer: {
         backgroundColor: AppColor.WHITE,
         padding: AppSpacing.LARGE,
+        ...AppStyle.cardShadow,
     },
     buttonContainer: {
         marginVertical: 44,
@@ -64,6 +65,7 @@ export const styles = StyleSheet.create({
         backgroundColor: AppColor.WHITE,
         paddingHorizontal: AppSpacing.LARGE,
         paddingVertical: 16,
+        ...AppStyle.cardShadow,
     },
     sectionContent: {},
     codeContainer: {
