@@ -1,0 +1,29 @@
+stages:
+    - test
+    - build
+    - release
+
+variables:
+    LC_ALL: 'en_US.UTF-8'
+    LANG: 'en_US.UTF-8'
+
+before_script:
+    - npm install
+
+Build Develop Android:
+    stage: build
+    script:
+        - make build-android-dev keyStore="autonomous-mobile.keystore" password="autonomousdev2020" keyAlias="Autonomous Mobile"
+    only:
+        - develop
+    tags:
+        - slave
+
+Build Develop iOS:
+    stage: build
+    script:
+        - make build-ios-dev
+    only:
+        - develop
+    tags:
+        - slave
