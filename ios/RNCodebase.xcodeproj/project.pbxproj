@@ -866,7 +866,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase.app/RNCodebase";
 			};
@@ -887,7 +887,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase.app/RNCodebase";
 			};
@@ -916,7 +916,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.staging;
 				PRODUCT_NAME = RNCodebase;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "RNCodebase-Bridging-Header.h";
@@ -944,7 +944,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.staging;
 				PRODUCT_NAME = RNCodebase;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "RNCodebase-Bridging-Header.h";
@@ -974,7 +974,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "RNCodebase-tvOS-Bridging-Header.h";
@@ -1006,7 +1006,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_OBJC_BRIDGING_HEADER = "RNCodebase-tvOS-Bridging-Header.h";
@@ -1036,7 +1036,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase-tvOS.app/RNCodebase-tvOS";
@@ -1064,7 +1064,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.autonomous.megapp.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNCodebase-tvOS.app/RNCodebase-tvOS";

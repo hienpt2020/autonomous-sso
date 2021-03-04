@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import IcTabBooking from 'src/assets/images/ic_tab_booking.svg';
 import IcTabBookingActive from 'src/assets/images/ic_tab_booking_active.svg';
-import IcTabControl from 'src/assets/images/ic_tab_control.svg';
-import IcTabControlActive from 'src/assets/images/ic_tab_control_active.svg';
 import IcTabProfile from 'src/assets/images/ic_tab_profile.svg';
 import IcTabProfileActive from 'src/assets/images/ic_tab_profile_active.svg';
 import { AppText, AppView } from 'src/components';
@@ -23,10 +21,6 @@ export const homeRoutes: RouteProps[] = [
         component: require('src/screens/homeoffice').default,
         options: {},
     },
-    // {
-    //     name: RouteName.HOME_CONTROLL,
-    //     component: require('src/screens/homecontroll').default,
-    // },
     {
         name: RouteName.HOME_PROFILE,
         component: require('src/screens/homeprofile').default,
@@ -36,13 +30,7 @@ export const homeRoutes: RouteProps[] = [
 function renderTabBarIcon(routeName: String, focused: boolean) {
     let icon;
     const iconSize = 20;
-    if (routeName === RouteName.HOME_CONTROLL) {
-        icon = focused ? (
-            <IcTabControlActive width={iconSize} height={iconSize} />
-        ) : (
-            <IcTabControl width={iconSize} height={iconSize} />
-        );
-    } else if (routeName === RouteName.HOME_OFFICE) {
+    if (routeName === RouteName.HOME_OFFICE) {
         icon = focused ? (
             <IcTabBookingActive width={iconSize} height={iconSize} />
         ) : (
@@ -61,9 +49,7 @@ function renderTabBarIcon(routeName: String, focused: boolean) {
 
 function renderTabBarLabel(routeName: String, focused: boolean) {
     let label = '';
-    if (routeName === RouteName.HOME_CONTROLL) {
-        label = 'Control';
-    } else if (routeName === RouteName.HOME_OFFICE) {
+    if (routeName === RouteName.HOME_OFFICE) {
         label = 'Booking';
     } else {
         label = 'Profile';

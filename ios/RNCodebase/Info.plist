@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Autonomous</string>
+	<string>[Staging] Autonomous</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>ai.autonomous.megapp</string>
+	<string>ai.autonomous.megapp.staging</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -39,7 +39,7 @@
 			<string>login-google</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.900615547717-igfj193jhvschfjfpdflj6sa72m5lqqi</string>
+				<string>com.googleusercontent.apps.596944745396-593vh9q9sgvnk4im8924lvhj3oqqmgbk</string>
 			</array>
 		</dict>
 		<dict>
@@ -54,7 +54,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>9</string>
 	<key>FacebookAppID</key>
 	<string>380022628861188</string>
 	<key>FacebookDisplayName</key>

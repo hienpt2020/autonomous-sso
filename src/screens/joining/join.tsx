@@ -58,7 +58,7 @@ const Join = (props: Props) => {
 
     function requestUpdateCurrentWorkSpace(workSpace: WorkSpace) {
         setCurrentWorkSpaces(workSpace)
-            .then((data) => {
+            .then(() => {
                 if (accessToken) {
                     Preference.saveAccessToken(accessToken).then(() => {
                         dispatch(requestValidateAccessTokenAction());

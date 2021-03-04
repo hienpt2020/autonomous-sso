@@ -14,7 +14,6 @@ import { Header } from 'src/components/header';
 import SectionItem from 'src/components/section-item';
 import { LinkingHelper } from 'src/helpers';
 import { Log } from 'src/helpers/logger';
-import { setNotificationCheckinAction } from 'src/redux/app/appAction';
 import { RootState } from 'src/redux/types';
 import { createRequestLogoutAction } from 'src/redux/user';
 import { navigate } from 'src/routers/rootNavigation';
@@ -77,7 +76,7 @@ const Profile = (props: Props) => {
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
-                        {workspace ? (
+                        {true ? (
                             <>
                                 <SectionItem
                                     title={t('profile.workspace')}
@@ -88,24 +87,9 @@ const Profile = (props: Props) => {
                                 <Divider />
                             </>
                         ) : null}
-
-                        {/* <SectionItem title={t('profile.add_login_method')} value={'Email'} /> */}
-                        {/* <Divider /> */}
-                        <SectionItem
-                            title={t('profile.activities')}
-                            hasNotification={hasCheckinNotification}
-                            value={''}
-                            onPress={_onPressActivities}
-                        />
                     </View>
                     <Space height={AppSpacing.MEDIUM} />
                     <View style={styles.sectionContainer}>
-                        <SectionItem title={t('profile.feed_back')} onPress={_onPressFeedback} />
-                        <Divider />
-                        <SectionItem title={t('profile.privacy_policy')} onPress={_onPressPrivacy} />
-                        <Divider />
-                        <SectionItem title={t('profile.terms_of_use')} onPress={_onPressTerms} />
-                        <Divider />
                         <SectionItem title={t('profile.contact_us')} onPress={_onPressContactUs} />
                         <Divider />
                         <SectionItem
@@ -139,26 +123,11 @@ const Profile = (props: Props) => {
             Log.debug(exception);
         }
     }
-    function _onPressTerms() {
-        Log.info(UserAction.SETTING_TERM_OF_USE);
 
-        navigate(RouteName.WEBPAGE, { url: Config.LINK_TERM });
-    }
-    function _onPressPrivacy() {
-        Log.info(UserAction.SETTING_PRIVACY);
-
-        navigate(RouteName.WEBPAGE, { url: Config.LINK_PRIVARY });
-    }
     function _onPressResetPassword() {
         Log.info(UserAction.SETTING_CHANGE_PASSWORD);
 
         navigate(RouteName.NEW_PASSWORD, null);
-    }
-    function _onPressActivities() {
-        Log.info(UserAction.SETTING_ACTIVITY);
-
-        dispatch(setNotificationCheckinAction(false));
-        navigate(RouteName.ACTIVITIES, null);
     }
     function navigateToSwithProfile() {
         props.navigation.navigate(RouteName.SWITCH_WORKSPACE);
