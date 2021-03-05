@@ -46,10 +46,6 @@
         "login_with_facebook": "Login with Facebook",
         "login_with_apple": "Login with Apple"
     },
-    "intro": {
-        "register": "Register",
-        "login": "Log In"
-    },
     "forgot_password": {
         "title":"Forgot Password",
         "forgot_success": "We're send you an email, Check your email and follow instructions included in the message",
@@ -62,10 +58,6 @@
         "enter_new_password": "Enter new password",
         "confirm_password": "Re-enter new password",
         "password_not_match": "Passwords do not match",
-        "term_condition1": "By signing up, you agree to Autonomous’s ",
-        "term_condition2": "Terms of Service",
-        "term_condition3": " and ",
-        "term_condition4": " Privacy Policy. ",
         "verify_email": "Please check your email to verify your account",
         "register_success":"Register Success"
     },

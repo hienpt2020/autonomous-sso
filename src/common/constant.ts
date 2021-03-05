@@ -1,4 +1,3 @@
-import SvgDefaultDesk from 'src/assets/images/desk_default.svg';
 export class Constant {
     public static DEFAULT_LANGUAGE = 'en';
 }
@@ -32,17 +31,8 @@ export enum ROLES {
 }
 
 export const DEFAULT_IMAGES = {
-    DEVICE: require('src/assets/images/desk_default.png'),
     EMPTY: require('src/assets/images/bg_empty.png'),
-    PLACE: require('src/assets/images/image_place_placeholder.jpg'),
-    LAYOUT: require('src/assets/images/image_layout_placeholder.jpg'),
-    PLACE_THUMBNAIL: require('src/assets/images/image_place_thumbnail_placeholder.jpg'),
 };
-
-export enum DEVICE_TYPES {
-    WORKSPACE = 'WORKSPACE',
-    PERSONAL = 'PERSONAL',
-}
 
 export enum LOGIN_SOCIAL_TYPES {
     FACEBOOK = 0,
